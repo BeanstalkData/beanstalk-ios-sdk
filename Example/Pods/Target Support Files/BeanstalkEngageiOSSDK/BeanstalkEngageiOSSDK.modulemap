@@ -1,0 +1,6 @@
+framework module BeanstalkEngageiOSSDK {
+  umbrella header "BeanstalkEngageiOSSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

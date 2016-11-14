@@ -1,0 +1,6 @@
+framework module Pods_BeanstalkEngageiOSSDK_Tests {
+  umbrella header "Pods-BeanstalkEngageiOSSDK_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
