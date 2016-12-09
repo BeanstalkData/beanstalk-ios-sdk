@@ -553,10 +553,43 @@ public class ApiCommunication {
                 }
         }
     }
+  
+  //MARK: - Locations
+  
+  func getStoresAtLocation(longitude: String, latitude: String, token : String, handler : (StoresResponseProtocol?, ApiError?) -> Void) {
+    let params = [
+      "long" : longitude,
+      "lan" : latitude,
+      "token" : token
+    ]
     
-    
+    Alamofire.request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
+      .responseObject {
+        (response : Response<StoresResponse, NSError>) in
+
+        if self.dataGenerator != nil {
+          handler(self.dataGenerator!.getStores(), nil)
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let data = response.result.value {
+            handler(data, nil)
+          }else {
+            handler(nil, .Unknown())
+          }
+        }else if response.response?.statusCode == 200 {
+          handler(nil, nil)
+        }
+        else{
+          handler(nil, .NetworkConnection())
+        }
+    }
+  }
+  
+  
     //MARK: - Push Notifications
-    
+  
     func pushNotificationEnroll(contactId: String, deviceToken: String, handler : (PushNotificationResponse?, ApiError?)->Void) {
         let params = [
             "contactId" : contactId,

@@ -7,13 +7,14 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 import PKHUD
 
 public class CoreService{
     let apiService: ApiCommunication
     public required init(apiKey: String) {
         self.apiService = ApiCommunication(apiKey: apiKey)
-        //apiService.dataGenerator = MockDataGenerator()
+        apiService.dataGenerator = MockDataGenerator()
     }
     
     public func register(controller : RegistrationProtocol, request : CreateContactRequest, handler : (Bool) -> Void){
@@ -444,7 +445,40 @@ public class CoreService{
         let token = prefs.valueForKey(DataKeys.TOKEN_KEY)
         return contactId != nil && token != nil
     }
+  
+    //MARK: - Locations
+  
+  public func getStoresAtLocation(controller : CoreProtocol, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [Store]?) -> Void)) {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    let longitude = "\(coordinate.longitude)"
+    let latitude = "\(coordinate.latitude)"
+    let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+    controller.showProgress("Retrieving Stores")
     
+    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: {
+      data, error in
+      controller.hideProgress()
+      
+      if error != nil {
+        switch error! {
+        case .NetworkConnection:
+          controller.showMessage("Network Error", message: "Connection unavailable.")
+        default :
+          controller.showMessage("Find Stores Error", message: "Error Retrieving Stores Information")
+        }
+        return
+      }
+
+      if data != nil && data!.failed() {
+        controller.showMessage("Find Stores Error", message: "Error Retrieving Stores Information")
+        return
+      }
+
+      handler(success: true, stores: data?.getStores())
+    })
+  }
+
+  
     //No needs to check isNoadine user
     private func auth(controller : RegistrationProtocol, email: String, password: String, handler : (Bool) -> Void) {
         controller.showProgress("Attempting to Login")
