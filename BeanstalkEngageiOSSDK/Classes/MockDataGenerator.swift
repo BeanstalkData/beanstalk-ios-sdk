@@ -98,6 +98,52 @@ private class DummyStoresResponse: StoresResponseProtocol {
     store.geoEnabled = "1"
     
     self.stores.append(store)
+    
+    store = Store(id: "1298129837189273")
+    store.customerId = "123"
+    store.storeId = "1234"
+    store.storeName = "***REMOVED*** #960"
+    store.country = "USA"
+    store.address1 = "2659 Mt. Vernon Ave."
+    store.address2 = ""
+    store.city = "Bakersfield"
+    store.state = "CA"
+    store.zip = "93306"
+    store.phone = "661-555-1234"
+    store.fax = "661-555-1324"
+    store.concept = "Panda Express"
+    store.venue = "Street DT"
+    store.subVenue = "Free Standing"
+    store.region = "CCA"
+    store.regionName = "CENTRAL CALIFORNIA"
+    store.longitude = "-118.93041"
+    store.latitude = "35.390652"
+    store.geoEnabled = "1"
+    
+    self.stores.append(store)
+    
+    store = Store(id: "1298129837189273")
+    store.customerId = "123"
+    store.storeId = "1234"
+    store.storeName = "***REMOVED*** #961"
+    store.country = "USA"
+    store.address1 = "2659 Mt. Vernon Ave."
+    store.address2 = ""
+    store.city = "Bakersfield"
+    store.state = "CA"
+    store.zip = "93306"
+    store.phone = "661-555-1234"
+    store.fax = "661-555-1324"
+    store.concept = "Panda Express"
+    store.venue = "Street DT"
+    store.subVenue = "Free Standing"
+    store.region = "CCA"
+    store.regionName = "CENTRAL CALIFORNIA"
+    store.longitude = "-118.93041"
+    store.latitude = "35.390652"
+    store.geoEnabled = "1"
+    
+    self.stores.append(store)
   }
   
   func failed() -> Bool{
