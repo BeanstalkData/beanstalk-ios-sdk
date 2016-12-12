@@ -117,7 +117,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     store.region = "CCA"
     store.regionName = "CENTRAL CALIFORNIA"
     store.longitude = "-118.93041"
-    store.latitude = "35.390652"
+    store.latitude = "35.490652"
     store.geoEnabled = "1"
     
     self.stores.append(store)
@@ -139,7 +139,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     store.subVenue = "Free Standing"
     store.region = "CCA"
     store.regionName = "CENTRAL CALIFORNIA"
-    store.longitude = "-118.93041"
+    store.longitude = "-118.83041"
     store.latitude = "35.390652"
     store.geoEnabled = "1"
     

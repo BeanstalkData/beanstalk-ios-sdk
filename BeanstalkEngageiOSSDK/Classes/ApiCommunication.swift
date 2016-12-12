@@ -556,12 +556,15 @@ public class ApiCommunication {
   
   //MARK: - Locations
   
-  func getStoresAtLocation(longitude: String, latitude: String, token : String, handler : (StoresResponseProtocol?, ApiError?) -> Void) {
-    let params = [
+  func getStoresAtLocation(longitude: String, latitude: String, token : String?, handler : (StoresResponseProtocol?, ApiError?) -> Void) {
+    var params = [
       "long" : longitude,
-      "lan" : latitude,
-      "token" : token
+      "lan" : latitude
     ]
+    
+    if (token != nil) {
+      params["token"] = token
+    }
     
     Alamofire.request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
       .responseObject {

@@ -452,7 +452,7 @@ public class CoreService{
     let prefs = NSUserDefaults.standardUserDefaults()
     let longitude = "\(coordinate.longitude)"
     let latitude = "\(coordinate.latitude)"
-    let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+    let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as? String
     controller.showProgress("Retrieving Stores")
     
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: {
