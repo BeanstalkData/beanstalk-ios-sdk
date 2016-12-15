@@ -76,72 +76,48 @@ private class DummyStoresResponse: StoresResponseProtocol {
   init(){
     self.stores = Array()
     
-    var store = Store(id: "1298129837189273")
-    store.customerId = "123"
-    store.storeId = "1234"
-    store.storeName = "MT VERNON & HWY 178"
+    var store = Store(id: "5851a7249616259fa18034c4")
+    store.customerId = "318"
+    store.storeId = "506"
     store.country = "USA"
-    store.address1 = "2659 Mt. Vernon Ave."
-    store.address2 = ""
-    store.city = "Bakersfield"
-    store.state = "CA"
-    store.zip = "93306"
-    store.phone = "661-555-1234"
-    store.fax = "661-555-1324"
-    store.concept = "Panda Express"
-    store.venue = "Street DT"
-    store.subVenue = "Free Standing"
-    store.region = "CCA"
-    store.regionName = "CENTRAL CALIFORNIA"
-    store.longitude = "-118.93041"
-    store.latitude = "35.390652"
-    store.geoEnabled = "1"
+    store.address1 = "8521  N. Tryon St"
+    store.city = "Charlotte"
+    store.state = "NC"
+    store.zip = 28262
+    store.phone = "704-510-1194"
+    store.longitude = "-80.7325287"
+    store.latitude = "35.3301529"
+    store.geoEnabled = true
     
     self.stores.append(store)
     
-    store = Store(id: "1298129837189273")
-    store.customerId = "123"
-    store.storeId = "1234"
-    store.storeName = "***REMOVED*** #960"
+    store = Store(id: "5851a7449616259fa18034ff")
+    store.customerId = "318"
+    store.storeId = "768"
     store.country = "USA"
-    store.address1 = "2659 Mt. Vernon Ave."
-    store.address2 = ""
-    store.city = "Bakersfield"
-    store.state = "CA"
-    store.zip = "93306"
-    store.phone = "661-555-1234"
-    store.fax = "661-555-1324"
-    store.concept = "Panda Express"
-    store.venue = "Street DT"
-    store.subVenue = "Free Standing"
-    store.region = "CCA"
-    store.regionName = "CENTRAL CALIFORNIA"
-    store.longitude = "-118.93041"
-    store.latitude = "35.490652"
-    store.geoEnabled = "1"
+    store.address1 = "10329 Mallard Creek Road"
+    store.city = "Charlotte"
+    store.state = "NC"
+    store.zip = 28262
+    store.phone = "704-503-4648"
+    store.longitude = "-80.7325287"
+    store.latitude = "35.3301529"
+    store.geoEnabled = true
     
     self.stores.append(store)
     
-    store = Store(id: "1298129837189273")
-    store.customerId = "123"
-    store.storeId = "1234"
-    store.storeName = "***REMOVED*** #961"
+    store = Store(id: "5851a7319616259fa18034dc")
+    store.customerId = "318"
+    store.storeId = "609"
     store.country = "USA"
-    store.address1 = "2659 Mt. Vernon Ave."
-    store.address2 = ""
-    store.city = "Bakersfield"
-    store.state = "CA"
-    store.zip = "93306"
-    store.phone = "661-555-1234"
-    store.fax = "661-555-1324"
-    store.concept = "Panda Express"
-    store.venue = "Street DT"
-    store.subVenue = "Free Standing"
-    store.region = "CCA"
-    store.regionName = "CENTRAL CALIFORNIA"
-    store.longitude = "-118.83041"
-    store.latitude = "35.390652"
-    store.geoEnabled = "1"
+    store.address1 = "7701 Gateway Lane NW"
+    store.city = "Concord"
+    store.state = "NC"
+    store.zip = 28027
+    store.phone = "704-979-5347"
+    store.longitude = "-80.6548882"
+    store.latitude = "35.4002721"
+    store.geoEnabled = true
     
     self.stores.append(store)
   }
