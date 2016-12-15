@@ -14,7 +14,6 @@ public class CoreService{
     let apiService: ApiCommunication
     public required init(apiKey: String) {
         self.apiService = ApiCommunication(apiKey: apiKey)
-        apiService.dataGenerator = MockDataGenerator()
     }
     
     public func register(controller : RegistrationProtocol, request : CreateContactRequest, handler : (Bool) -> Void){
