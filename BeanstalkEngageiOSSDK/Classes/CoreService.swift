@@ -15,7 +15,27 @@ public class CoreService{
     public required init(apiKey: String) {
         self.apiService = ApiCommunication(apiKey: apiKey)
     }
+  
+    public func getContactId() -> String? {
+      let prefs = NSUserDefaults.standardUserDefaults()
+      return prefs.valueForKey(DataKeys.CONTACT_KEY) as? String
+    }
+  
+    private func setContactId(contactId: String?) {
+      let prefs = NSUserDefaults.standardUserDefaults()
+      prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
+    }
+  
+    public func getAuthToken() -> String? {
+      let prefs = NSUserDefaults.standardUserDefaults()
+      return prefs.valueForKey(DataKeys.TOKEN_KEY) as? String
+    }
     
+    private func setAuthToke(token: String?) {
+      let prefs = NSUserDefaults.standardUserDefaults()
+      prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
+    }
+  
     public func register(controller : RegistrationProtocol, request : CreateContactRequest, handler : (Bool) -> Void){
         guard controller.validate(request) else{
             return
@@ -152,8 +172,8 @@ public class CoreService{
                     return
                 }
                 let prefs = NSUserDefaults.standardUserDefaults()
-                prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
-                prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
+                self.setContactId(contactId)
+                self.setAuthToke(token)
                 
                 prefs.synchronize()
                 handler(success: true, additionalInfo: isNovadineContact)
@@ -187,17 +207,17 @@ public class CoreService{
     public func logout(controller : CoreProtocol, handler : () -> Void){
         let prefs = NSUserDefaults.standardUserDefaults()
         
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
-        let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+        let contactId = getContactId()!
+        let token = getAuthToken()!
         controller.showProgress("Logout...")
         apiService.logoutUser(contactId, token : token, handler: {
             error in
             controller.hideProgress()
             handler()
         })
-        
-        prefs.setValue(nil, forKey: DataKeys.CONTACT_KEY)
-        prefs.setValue(nil, forKey: DataKeys.TOKEN_KEY)
+      
+        setContactId(nil)
+        setAuthToke(nil)
         
         prefs.synchronize()
     }
@@ -218,7 +238,7 @@ public class CoreService{
     
     public func getContact(controller : CoreProtocol, handler : (Contact?) -> Void){
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
+        let contactId = getContactId()!
         controller.showProgress("Retrieving Profile")
         apiService.getContact(contactId, handler: {
             contact, error in
@@ -263,8 +283,8 @@ public class CoreService{
             return
         }
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
-        let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+        let contactId = getContactId()!
+        let token = getAuthToken()!
         controller.showProgress("Updating Password")
         apiService.updatePassword(password!, contactId: contactId, token: token, handler: {
             error in
@@ -293,7 +313,7 @@ public class CoreService{
     
     public func getAvailableRewards(controller : CoreProtocol, handler : ([Coupon])->Void){
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
+        let contactId = getContactId()!
         controller.showProgress("Loading...")
         apiService.getUserOffers(contactId, handler : {
             data, error in
@@ -317,7 +337,7 @@ public class CoreService{
     
     public func getUserProgress(controller : CoreProtocol, handler : (Int, String)->Void){
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
+        let contactId = getContactId()!
         controller.showProgress("Getting Rewards")
         apiService.getProgress(contactId, handler : {
             data, error in
@@ -345,33 +365,39 @@ public class CoreService{
     }
     
     
-    public func getAvailableFoRedeemRewards(controller : CoreProtocol, handler : ([Coupon])->Void){
+    public func getAvailableFoRedeemRewards(controller : CoreProtocol, handler : ([Coupon], ApiError?)->Void){
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
+        let contactId = getContactId()!
         apiService.getUserOffers(contactId, handler : {
             data, error in
-            if error != nil {
+          
+          if error != nil {
                 switch error! {
                 case .NetworkConnection:
                     controller.showMessage("Network Error", message: "Connection unavailable.")
                 default :
                     controller.showMessage("Coupons Error", message: "Failed to get coupons try again later")
                 }
+            
+                handler([], error)
                 return
             }
             if data == nil || data!.coupons == nil || data!.coupons!.count == 0 {
                 controller.showMessage("Coupons", message: "You have no available coupons")
+              
+                handler([], nil)
                 return
             }
-            handler(data!.coupons!)
+          
+            handler(data!.coupons!, nil)
         })
     }
     
     
     public func getGiftCards(controller : CoreProtocol, handler : ([GiftCard])->Void){
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
-        let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+        let contactId = getContactId()!
+        let token = getAuthToken()!
         controller.showProgress("Retrieving Cards")
         apiService.getGiftCards(contactId, token: token, handler: {
             data, error in
@@ -418,8 +444,8 @@ public class CoreService{
             return
         }
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
-        let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as! String
+        let contactId = getContactId()!
+        let token = getAuthToken()!
         let couponsString : String = coupons.reduce("", combine: { $0 == "" ? $1.number! : $0 + "," + $1.number! })
         apiService.startPayment(contactId, token: token, paymentId: card?.id, coupons: couponsString, handler : {
             data, error in
@@ -438,10 +464,10 @@ public class CoreService{
         })
     }
     
-    public static func isAuthenticated() ->Bool{
+    public func isAuthenticated() ->Bool{
         let prefs = NSUserDefaults.standardUserDefaults()
-        let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY)
-        let token = prefs.valueForKey(DataKeys.TOKEN_KEY)
+        let contactId = getContactId()
+        let token = getAuthToken()
         return contactId != nil && token != nil
     }
   
@@ -451,7 +477,7 @@ public class CoreService{
     let prefs = NSUserDefaults.standardUserDefaults()
     let longitude = "\(coordinate.longitude)"
     let latitude = "\(coordinate.latitude)"
-    let token = prefs.valueForKey(DataKeys.TOKEN_KEY) as? String
+    let token = getAuthToken()
     controller.showProgress("Retrieving Stores")
     
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: {
@@ -495,8 +521,8 @@ public class CoreService{
                 return
             }
             let prefs = NSUserDefaults.standardUserDefaults()
-            prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
-            prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
+            self.setContactId(contactId)
+            self.setAuthToke(token)
             
             prefs.synchronize()
             handler(true)
@@ -532,7 +558,7 @@ public class CoreService{
         var display = ""
         if data == nil || data!.characters.count == 0{
             let prefs = NSUserDefaults.standardUserDefaults()
-            let contactId = prefs.valueForKey(DataKeys.CONTACT_KEY) as! String
+            let contactId = getContactId()!
             content = contactId
             display = "Member ID: \(content)"
         }else {
