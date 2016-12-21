@@ -55,6 +55,7 @@ public class Store : Mappable {
   private static let kLongitude = "_longitude"
   private static let kLatitude = "_latitude"
   private static let kGeoEnabled = "_geoEnabled"
+  private static let kPaymentLoyaltyParticipation = "_paymentLoyaltyParticipation"
 
 //  private static let kStoreName = "_storeName"
 //  private static let kAddress2 = "_address2"
@@ -79,6 +80,7 @@ public class Store : Mappable {
   public var longitude: String?
   public var latitude: String?
   public var geoEnabled: Bool?
+  public var paymentLoyaltyParticipation: Bool?
   
 //  public var storeName: String?
 //  public var address2: String?
@@ -131,10 +133,17 @@ public class Store : Mappable {
     state <- map["State"]
     country <- map["Country"]
     phone <- map["Phone"]
+    
     var geoEnabledNumber: String?
     geoEnabledNumber <- map["geoEnabled"]
     if (geoEnabledNumber != nil) {
       geoEnabled = (Int(geoEnabledNumber!) != 0)
+    }
+    
+    var paymentLoyaltyParticipationNumber: NSNumber?
+    paymentLoyaltyParticipationNumber <- map["PaymentLoyaltyParticipation"]
+    if (paymentLoyaltyParticipationNumber != nil) {
+      paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
     
 //  storeName <- map["StoreName"]

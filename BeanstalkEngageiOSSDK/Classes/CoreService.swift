@@ -36,6 +36,104 @@ public class CoreService{
       prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
     }
   
+  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, handler: (Bool) -> Void){
+    guard controller.validate(request) else{
+      return
+    }
+    controller.showProgress("Registering User")
+    if request.novadine {
+      apiService.createLoyaltyAccount(request, handler: {
+        _,error in
+        controller.hideProgress()
+        guard error == nil else {
+          
+          switch error! {
+          case .NetworkConnection:
+            controller.showMessage("Network Error", message: "Connection unavailable.")
+          default :
+            controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
+          }
+          handler(false)
+          return
+        }
+        self.auth(controller, email : request.email!, password: request.password!, handler: handler)
+        
+      })
+    }else {
+      apiService.checkContactsByEmailExisted(request.email!, handler: {
+        error in
+        
+        var updateExisted = false
+        if let e = error {
+          
+          var title : String? = nil
+          var message : String? = nil;
+          var notifyError = true
+          switch e {
+          case .NetworkConnection:
+            title = "Network Error"
+            message = "Connection unavailable."
+          case .ContactExisted(true):
+            notifyError = false
+            updateExisted = true
+          default :
+            title = "Registration Error"
+            message = "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
+          }
+          if notifyError {
+            controller.hideProgress()
+            controller.showMessage(title!, message: message!)
+            handler(false)
+            return
+          }
+        }
+        self.apiService.checkContactsByPhoneExisted(request.phone!, handler: {
+          error in
+          if let e = error {
+            
+            var title : String? = nil
+            var message : String? = nil;
+            var notifyError = true
+            switch e {
+            case .NetworkConnection:
+              title = "Network Error"
+              message = "Connection unavailable."
+            case .ContactExisted(true):
+              notifyError = false
+              updateExisted = true
+            default :
+              title = "Registration Error"
+              message = "This phone is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
+            }
+            if notifyError {
+              controller.hideProgress()
+              controller.showMessage(title!, message: message!)
+              handler(false)
+              return
+            }
+          }
+          self.apiService.createLoyaltyAccount(request, handler: {
+            contactId, error in
+            guard contactId != nil && error == nil else {
+              controller.hideProgress()
+              switch error! {
+              case .NetworkConnection:
+                controller.showMessage("Network Error", message: "Connection unavailable.")
+              default :
+                controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
+              }
+              handler(false)
+              return
+            }
+            
+            self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+            
+          })
+        })
+      })
+    }
+  }
+  
     public func register(controller : RegistrationProtocol, request : CreateContactRequest, handler : (Bool) -> Void){
         guard controller.validate(request) else{
             return
@@ -46,7 +144,7 @@ public class CoreService{
                 _,error in
                 controller.hideProgress()
                 guard error == nil else {
-                    
+                  
                     switch error! {
                     case .NetworkConnection:
                         controller.showMessage("Network Error", message: "Connection unavailable.")
@@ -57,15 +155,15 @@ public class CoreService{
                     return
                 }
                 self.auth(controller, email : request.email!, password: request.password!, handler: handler)
-                
+              
             })
         }else {
             apiService.checkContactsByEmailExisted(request.email!, handler: {
                 error in
-                
+              
                 var updateExisted = false
                 if let e = error {
-                    
+                  
                     var title : String? = nil
                     var message : String? = nil;
                     var notifyError = true
@@ -435,11 +533,11 @@ public class CoreService{
         })
     }
     
-    public func startPayment(controller : CoreProtocol, card : GiftCard?, coupons: [Coupon], handler : (String, String)->Void){
+    public func startPayment(controller : CoreProtocol, cardId : String?, coupons: [Coupon], handler : (String, String)->Void){
         controller.showProgress("Generating Barcode")
-        if card == nil && coupons.count == 0 {
+        if cardId == nil && coupons.count == 0 {
             controller.hideProgress()
-            let data = getBarCodeInfo(nil, card: card, coupons: coupons)
+            let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
             handler(data.0, data.1)
             return
         }
@@ -447,7 +545,7 @@ public class CoreService{
         let contactId = getContactId()!
         let token = getAuthToken()!
         let couponsString : String = coupons.reduce("", combine: { $0 == "" ? $1.number! : $0 + "," + $1.number! })
-        apiService.startPayment(contactId, token: token, paymentId: card?.id, coupons: couponsString, handler : {
+        apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler : {
             data, error in
             controller.hideProgress()
             if error != nil {
@@ -459,7 +557,7 @@ public class CoreService{
                 }
                 return
             }
-            let data = self.getBarCodeInfo(data?.token, card: card, coupons: coupons)
+            let data = self.getBarCodeInfo(data?.token, cardId: cardId, coupons: coupons)
             handler(data.0, data.1)
         })
     }
@@ -553,7 +651,7 @@ public class CoreService{
         })
     }
     
-    private func getBarCodeInfo(data: String?, card : GiftCard?, coupons : [Coupon]) -> (String, String){
+    private func getBarCodeInfo(data: String?, cardId : String?, coupons : [Coupon]) -> (String, String){
         var content = ""
         var display = ""
         if data == nil || data!.characters.count == 0{
@@ -563,9 +661,9 @@ public class CoreService{
             display = "Member ID: \(content)"
         }else {
             content = data!
-            if card == nil && coupons.count > 0 {
+            if cardId == nil && coupons.count > 0 {
                 display = "Rewards Token: \(content)"
-            } else if card != nil  && coupons.count == 0 {
+            } else if cardId != nil  && coupons.count == 0 {
                 display = "Pay Token: \(content)"
             }else {
                 display = "Rewards and Pay Token: \(content)"

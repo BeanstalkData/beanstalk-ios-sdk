@@ -126,7 +126,40 @@ public class ApiCommunication {
                 }
         }
     }
+  
+  func createLoyaltyAccount (request : CreateContactRequest, handler: (LoyaltyUser?, ApiError?) -> Void) {
+    let params = [
+      "FirstName": request.firstName!,
+      "LastName": request.lastName!,
+      "ZipCode" : request.zipCode!,
+      "Email" : request.email!,
+      "Password": request.password!,
+      "Cell_Number" : request.phone!,
+      "Birthday" : request.birthdate!,
+      "custom_PreferredReward" : request.preferredReward!,
+      "Gender" : request.male ? "Male" : "Female",
+      "Email_Optin": request.emailOptIn ? "true" :"false",
+      "Txt_Optin": request.txtOptIn ? "true" :"false",
+      "custom_Novadine_User" : request.novadine ? "1" :"0",
+      "Source" : "iosapp",
+      "Prospect" : "loyalty"
+    ]
     
+    Alamofire.request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
+      .responseObject(completionHandler: { (response : Response<LoyaltyUser, NSError>) in
+        if (response.result.isSuccess) {
+          if response.result.value != nil {
+            handler(response.result.value!, nil)
+          }else{
+            handler(nil, .DataSerialization(reason : "Bad request!"))
+          }
+        }
+        else{
+          handler(nil, .NetworkConnection())
+        }
+      })
+  }
+  
     func createContact(request : CreateContactRequest, handler: (String?, ApiError?) -> Void) {
         let params = [
             "FirstName": request.firstName!,
@@ -813,6 +846,28 @@ public class ApiCommunication {
                 }
         }
     }
+}
+
+public class LoyaltyUser : Mappable {
+  public var contactId: String?
+  public var sessionToken: String?
+  public var giftCardNumber : String?
+  public var giftCardPin : String?
+  public var giftCardRegistrationStatus : Bool?
+  public var giftCardTrack2 : String?
+  
+  required public init?(_ map: Map) {
+    
+  }
+  
+  public func mapping(map: Map) {
+    contactId <- map["contactId"]
+    sessionToken <- map["sessionToken"]
+    giftCardNumber <- map["giftCardNumber"]
+    giftCardPin <- map["giftCardPin"]
+    giftCardRegistrationStatus <- map["giftCardRegistrationStatus"]
+    giftCardTrack2 <- map["giftCardTrack2"]
+  }
 }
 
 public class Contact : Mappable {
