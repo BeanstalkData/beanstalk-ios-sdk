@@ -564,6 +564,8 @@ public class ApiCommunication {
         }
         if coupons.characters.count > 0{
             params["coupons"] = coupons
+        } else {
+            params["coupons"] = ""
         }
         Alamofire.request(.GET, BASE_URL + "/bsdPayment/startPayment", parameters: params)
             .responseObject {
