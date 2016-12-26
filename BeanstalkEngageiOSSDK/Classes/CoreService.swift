@@ -555,6 +555,9 @@ public class CoreService{
                 default :
                     controller.showMessage("Payment Error", message: "Error generating barcode. Please try again later.")
                 }
+              
+                let data = self.getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
+                handler(data.0, data.1)
                 return
             }
             let data = self.getBarCodeInfo(data?.token, cardId: cardId, coupons: coupons)
