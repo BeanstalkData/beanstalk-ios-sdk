@@ -10,18 +10,18 @@ import Foundation
 import ObjectMapper
 
 public class PaymentResponse : Mappable {
-    var token : String?
+  var token : String?
+  
+  //for mocks only
+  init(token : String){
+    self.token = token
+  }
+  
+  required public init?(_ map: Map) {
     
-    //for mocks only
-    init(token : String){
-        self.token = token
-    }
-    
-    required public init?(_ map: Map) {
-        
-    }
-    
-    public func mapping(map: Map) {
-        token <- map["paymentToken"]
-    }
+  }
+  
+  public func mapping(map: Map) {
+    token <- map["paymentToken"]
+  }
 }

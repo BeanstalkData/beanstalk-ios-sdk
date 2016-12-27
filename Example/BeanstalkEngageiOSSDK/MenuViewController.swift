@@ -73,7 +73,7 @@ class MenuViewController: UIViewController, CoreProtocol {
     //MARK: - Private
     
     private func updateAuthStatus() {
-        let isAuthenticated = CoreService.isAuthenticated()
+        let isAuthenticated = self.coreService.isAuthenticated()
         
         self.registerButton.enabled = !isAuthenticated
         self.signInButton.enabled = !isAuthenticated

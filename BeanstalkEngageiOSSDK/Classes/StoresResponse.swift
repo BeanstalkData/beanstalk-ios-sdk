@@ -22,7 +22,7 @@ public class StoresResponse : Mappable, StoresResponseProtocol {
   required public init?(_ map: Map) {
     
   }
-    
+  
   public func mapping(map: Map) {
     status <- map["status"]
     stores <- map["stores"]
@@ -32,10 +32,10 @@ public class StoresResponse : Mappable, StoresResponseProtocol {
     if status == nil || !(status!) {
       return true
     }
-      
+    
     return false
   }
-    
+  
   public func getStores() -> [Store]?{
     return stores
   }
@@ -56,17 +56,17 @@ public class Store : Mappable {
   private static let kLatitude = "_latitude"
   private static let kGeoEnabled = "_geoEnabled"
   private static let kPaymentLoyaltyParticipation = "_paymentLoyaltyParticipation"
-
-//  private static let kStoreName = "_storeName"
-//  private static let kAddress2 = "_address2"
-//  private static let kFax = "_fax"
-//  private static let kConcept = "_concept"
-//  private static let kVenue = "_venue"
-//  private static let kSubVenue = "_subVenue"
-//  private static let kRegion = "_region"
-//  private static let kRegionName = "_regionName"
-
-
+  
+  //  private static let kStoreName = "_storeName"
+  //  private static let kAddress2 = "_address2"
+  //  private static let kFax = "_fax"
+  //  private static let kConcept = "_concept"
+  //  private static let kVenue = "_venue"
+  //  private static let kSubVenue = "_subVenue"
+  //  private static let kRegion = "_region"
+  //  private static let kRegionName = "_regionName"
+  
+  
   public var id: String?
   public var customerId: String?
   public var openDate: NSDate?
@@ -82,14 +82,14 @@ public class Store : Mappable {
   public var geoEnabled: Bool?
   public var paymentLoyaltyParticipation: Bool?
   
-//  public var storeName: String?
-//  public var address2: String?
-//  public var fax: String?
-//  public var concept: String?
-//  public var venue: String?
-//  public var subVenue: String?
-//  public var region: String?
-//  public var regionName: String?
+  //  public var storeName: String?
+  //  public var address2: String?
+  //  public var fax: String?
+  //  public var concept: String?
+  //  public var venue: String?
+  //  public var subVenue: String?
+  //  public var region: String?
+  //  public var regionName: String?
   
   public init(id: String){
     self.id = id
@@ -146,13 +146,13 @@ public class Store : Mappable {
       paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
     
-//  storeName <- map["StoreName"]
-//  address2 <- map["Address2"]
-//  fax <- map["Fax"]
-//  concept <- map["Concept"]
-//  venue <- map["Venue"]
-//  subVenue <- map["SubVenue"]
-//  region <- map["Region"]
-//  regionName <- map["RegionName"]
+    //  storeName <- map["StoreName"]
+    //  address2 <- map["Address2"]
+    //  fax <- map["Fax"]
+    //  concept <- map["Concept"]
+    //  venue <- map["Venue"]
+    //  subVenue <- map["SubVenue"]
+    //  region <- map["Region"]
+    //  regionName <- map["RegionName"]
   }
 }

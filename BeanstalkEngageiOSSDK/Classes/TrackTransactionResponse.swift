@@ -10,11 +10,11 @@ import Foundation
 import ObjectMapper
 
 public class TrackTransactionResponse : Mappable {
-    required public init?(_ map: Map) {
-        
-    }
+  required public init?(_ map: Map) {
     
-    public func mapping(map: Map) {
-        
-    }
+  }
+  
+  public func mapping(map: Map) {
+    
+  }
 }
