@@ -632,22 +632,24 @@ public class ApiCommunication {
     ]
     
     Alamofire.request(.GET, BASE_URL + "/pushNotificationEnroll", parameters: params)
-      .responseObject {
-        (response : Response<PushNotificationResponse, NSError>) in
+      .responseObject { (response : Response<PushNotificationResponse, NSError>) in
         if self.dataGenerator != nil {
           handler(nil, nil)
           return
         }
+        
         if (response.result.isSuccess) {
           if let result = response.result.value {
             handler(result, nil)
-          }else {
+          }
+          else {
             handler(nil, .Unknown())
           }
-        }else if response.response?.statusCode == 200 {
+        }
+        else if response.response?.statusCode == 200 {
           handler(nil, nil)
         }
-        else{
+        else {
           handler(nil, .NetworkConnection())
         }
     }
@@ -660,22 +662,24 @@ public class ApiCommunication {
     ]
     
     Alamofire.request(.GET, BASE_URL + "/pushNotificationDelete", parameters: params)
-      .responseObject {
-        (response : Response<PushNotificationResponse, NSError>) in
+      .responseObject { (response : Response<PushNotificationResponse, NSError>) in
         if self.dataGenerator != nil {
           handler(nil, nil)
           return
         }
+        
         if (response.result.isSuccess) {
           if let result = response.result.value {
             handler(result, nil)
-          }else {
+          }
+          else {
             handler(nil, .Unknown())
           }
-        }else if response.response?.statusCode == 200 {
+        }
+        else if response.response?.statusCode == 200 {
           handler(nil, nil)
         }
-        else{
+        else {
           handler(nil, .NetworkConnection())
         }
     }

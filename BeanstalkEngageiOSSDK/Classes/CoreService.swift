@@ -572,6 +572,48 @@ public class CoreService{
     return contactId != nil && token != nil
   }
   
+  
+  //MARK: - Push Notifications
+  
+  public func pushNotificationEnroll(deviceToken: String, handler: (success: Bool, error: ApiError?) -> Void) {
+    if let contactId = self.getContactId() {
+      apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (response, error) in
+        if error != nil {
+          handler(success: false, error: error)
+        }
+        else if response != nil {
+          handler(success: true, error: nil)
+        }
+        else {
+          handler(success: false, error: nil)
+        }
+      })
+    }
+    else {
+      handler(success: false, error: nil)
+    }
+  }
+  
+  public func pushNotificationDelete(handler: (success: Bool, error: ApiError?) -> Void) {
+    if let contactId = self.getContactId() {
+      apiService.pushNotificationDelete(contactId, handler: { (response, error) in
+        if error != nil {
+          handler(success: false, error: error)
+        }
+        else if response != nil {
+          handler(success: true, error: nil)
+        }
+        else {
+          handler(success: false, error: nil)
+        }
+      })
+    }
+    else {
+      handler(success: false, error: nil)
+    }
+  }
+  
+  
   //MARK: - Locations
   
   public func getStoresAtLocation(controller : CoreProtocol, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [Store]?) -> Void)) {
