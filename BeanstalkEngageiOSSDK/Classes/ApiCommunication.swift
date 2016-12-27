@@ -625,7 +625,7 @@ public class ApiCommunication {
   
   func pushNotificationEnroll(contactId: String, deviceToken: String, handler : (PushNotificationResponse?, ApiError?)->Void) {
     let params = [
-      "contactId" : contactId,
+      "contact_id" : contactId,
       "deviceToken" : deviceToken,
       "key" : self.apiKey,
       "platform" : "iOS"
@@ -657,7 +657,7 @@ public class ApiCommunication {
   
   func pushNotificationDelete(contactId: String, handler : (PushNotificationResponse?, ApiError?)->Void) {
     let params = [
-      "contactId" : contactId,
+      "contact_id" : contactId,
       "key" : self.apiKey
     ]
     
@@ -687,9 +687,9 @@ public class ApiCommunication {
   
   func pushNotificationGetMessages(contactId: String, maxResults: Int, handler : (PushNotificationMessagesResponse?, ApiError?)->Void) {
     let params = [
-      "contactId" : contactId,
+      "contact_id" : contactId,
       "key" : self.apiKey,
-      "maxResults": NSNumber(integer: maxResults)
+      "max_results": NSNumber(integer: maxResults)
     ]
     
     Alamofire.request(.GET, BASE_URL + "/pushNotification/getMessages", parameters: params)
