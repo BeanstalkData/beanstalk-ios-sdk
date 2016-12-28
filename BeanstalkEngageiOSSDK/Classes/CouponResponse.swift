@@ -8,11 +8,12 @@
 import Foundation
 import ObjectMapper
 
+
 public class CouponResponse : Mappable {
-  var coupons : [Coupon]?
+  var coupons: [Coupon]?
   
   //for mocks only
-  init(coupons: [Coupon]){
+  init(coupons: [Coupon]) {
     self.coupons = coupons
   }
   
@@ -31,10 +32,10 @@ public class Coupon : Mappable {
   public var number: String?
   public var expiration: String?
   public var text: String?
-  private var imageUrl : String?
+  public var imageUrl: String?
   
   //for mocks only
-  init(imageUrl :String){
+  init(imageUrl: String) {
     self.imageUrl = imageUrl
   }
   
@@ -49,18 +50,29 @@ public class Coupon : Mappable {
     imageUrl <- map["Image"]
   }
   
-  public func getDisplayExpiration(formatter : NSDateFormatter) -> String{
-    do {
-      formatter.dateFormat = Coupon.kOriginalDateFormat
-      let date = formatter.dateFromString(expiration!)!
-      formatter.dateFormat = Coupon.kDisplayDateFormat
-      return formatter.stringFromDate(date)
-    } catch {
-      return ""
+  
+  public func getDisplayExpiration(formatter: NSDateFormatter) -> String? {
+    guard let expirationString = self.expiration else {
+      return nil
     }
+    
+    formatter.dateFormat = Coupon.kOriginalDateFormat
+    if let date = formatter.dateFromString(expirationString) {
+      formatter.dateFormat = Coupon.kDisplayDateFormat
+      
+      return formatter.stringFromDate(date)
+    }
+    
+    return nil
   }
   
-  public func getImageUrl() -> String {
-    return imageUrl!;
+  public func getImageURL() -> NSURL? {
+    if let imageUrlString = self.imageUrl {
+      if let URL = NSURL(string: imageUrlString) {
+        return URL
+      }
+    }
+    
+    return nil
   }
 }

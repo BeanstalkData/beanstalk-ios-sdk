@@ -8,13 +8,16 @@
 import Foundation
 import ObjectMapper
 
-public protocol GiftCardBalanceResponse{
+
+public protocol GiftCardBalanceResponse {
   func getCardBalance() -> String
 }
-public class GCBResponse : Mappable, GiftCardBalanceResponse {
-  private var status : Bool?
+
+
+public class GCBResponse: Mappable, GiftCardBalanceResponse {
+  private var status: Bool?
   
-  private var response : GCBDataResponse?
+  private var response: GCBDataResponse?
   
   required public init?(_ map: Map) {
     
@@ -26,20 +29,19 @@ public class GCBResponse : Mappable, GiftCardBalanceResponse {
   }
   
   
-  public func getCardBalance() -> String{
-    let amount = response?.message?.response?.cardBalance?.balanceAmount?.amount
-    if amount == nil {
+  public func getCardBalance() -> String {
+    guard let amount = response?.message?.response?.cardBalance?.balanceAmount?.amount else {
       return GiftCard.kDefaultBalance
-    }else {
-      return String(format : "$%.2f", amount!)
     }
+    
+    return String(format : "$%.2f", amount)
   }
 }
 
-public class GCBDataResponse : Mappable{
-  
-  var code : Int?
-  var message : GCBDataMessage?
+
+public class GCBDataResponse: Mappable {
+  var code: Int?
+  var message: GCBDataMessage?
   
   required public init?(_ map: Map) {
     
@@ -51,8 +53,9 @@ public class GCBDataResponse : Mappable{
   }
 }
 
-public class GCBDataMessage : Mappable {
-  var response : GCBMResponse?
+
+public class GCBDataMessage: Mappable {
+  var response: GCBMResponse?
   
   required public init?(_ map: Map) {
     
@@ -63,9 +66,10 @@ public class GCBDataMessage : Mappable {
   }
 }
 
-public class GCBMResponse : Mappable{
-  var message : String?
-  var cardBalance : GiftCardBalance?
+
+public class GCBMResponse: Mappable {
+  var message: String?
+  var cardBalance: GiftCardBalance?
   
   required public init?(_ map: Map) {
     
@@ -77,8 +81,8 @@ public class GCBMResponse : Mappable{
   }
 }
 
-public class GiftCardBalance : Mappable {
-  
+
+public class GiftCardBalance: Mappable {
   var balanceAmount: BalanceAmount?
   
   required public init?(_ map: Map) {
@@ -90,8 +94,8 @@ public class GiftCardBalance : Mappable {
   }
 }
 
-public class BalanceAmount : Mappable {
-  
+
+public class BalanceAmount: Mappable {
   var amount: Double?
   
   required public init?(_ map: Map) {
