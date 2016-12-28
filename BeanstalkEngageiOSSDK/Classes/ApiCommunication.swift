@@ -134,7 +134,7 @@ public class ApiCommunication {
       "ZipCode" : request.zipCode!,
       "Email" : request.email!,
       "Password": request.password!,
-      "Cell_Number" : request.phone!,
+      "CellNumber" : request.phone!,
       "Birthday" : request.birthdate!,
       "custom_PreferredReward" : request.preferredReward!,
       "Gender" : request.male ? "Male" : "Female",
