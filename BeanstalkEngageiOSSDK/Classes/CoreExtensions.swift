@@ -46,7 +46,7 @@ extension String {
     let phoneUtil = NBPhoneNumberUtil()
     do {
       let phoneNumber = try phoneUtil.parse(self, defaultRegion: "US")
-      return phoneUtil.isValidNumber(phoneNumber)
+      return phoneUtil.isValidNumberForRegion(phoneNumber, regionCode: "US")
     } catch _ as NSError {
     }
     
