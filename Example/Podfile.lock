@@ -3,10 +3,12 @@ PODS:
   - AlamofireObjectMapper (3.0.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - BeanstalkEngageiOSSDK (0.1.4):
+  - BeanstalkEngageiOSSDK (0.2.0):
     - Alamofire (~> 3.5.1)
     - AlamofireObjectMapper (~> 3.0.0)
+    - libPhoneNumber-iOS (~> 0.8)
     - PKHUD (~> 3.2.1)
+  - libPhoneNumber-iOS (0.9.2)
   - ObjectMapper (1.5.0)
   - PKHUD (3.2.1)
 
@@ -20,7 +22,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
-  BeanstalkEngageiOSSDK: 8dffdecd02d95f4446f3fc8a45693d48f6414460
+  BeanstalkEngageiOSSDK: a307d79e413f2b52a49f14f50c6704b147e4bde4
+  libPhoneNumber-iOS: a8bffdec18c37728360f6771fe021302f1e0b497
   ObjectMapper: 386645adca9d9d23b95eda43090b09d66444cf14
   PKHUD: 001c11518f125a273ddf026bcc64918423744ea2
 

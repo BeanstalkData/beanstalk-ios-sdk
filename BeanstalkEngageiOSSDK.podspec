@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
   s.dependency 'Alamofire', '~> 3.5.1'
   s.dependency 'AlamofireObjectMapper', '~> 3.0.0'
   s.dependency 'PKHUD', '~> 3.2.1'
+  s.dependency 'libPhoneNumber-iOS', '~> 0.8'
 end
