@@ -40,6 +40,9 @@ public class CoreService{
     guard controller.validate(request) else{
       return
     }
+    
+    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    
     controller.showProgress("Registering User")
     if request.novadine {
       apiService.createLoyaltyAccount(request, handler: {
@@ -138,6 +141,9 @@ public class CoreService{
     guard controller.validate(request) else{
       return
     }
+    
+    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    
     controller.showProgress("Registering User")
     if request.novadine {
       apiService.createContact(request, handler: {
@@ -358,6 +364,9 @@ public class CoreService{
       handler(false)
       return
     }
+    
+    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    
     controller.showProgress("Updating Profile")
     apiService.updateContact(original, request: request, handler: {
       error in

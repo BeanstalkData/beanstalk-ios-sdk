@@ -8,17 +8,49 @@
 import Foundation
 import UIKit
 
+import libPhoneNumber_iOS
 import PKHUD
 
 
 // MARK:  Public String Extensions
 
 extension String {
+  
+  public func formatPhoneNumberToNational() -> String! {
+    var formattedPhone = self
+    
+    let phoneUtil = NBPhoneNumberUtil()
+    do {
+      let phoneNumber = try phoneUtil.parse(formattedPhone, defaultRegion: "US")
+      formattedPhone = try phoneUtil.format(phoneNumber, numberFormat: .NATIONAL)
+    } catch _ as NSError {
+    }
+    
+    return formattedPhone
+  }
+  
+  public func formatPhoneNumberToNationalSignificant() -> String! {
+    var formattedPhone = self
+    
+    let phoneUtil = NBPhoneNumberUtil()
+    do {
+      let phoneNumber = try phoneUtil.parse(formattedPhone, defaultRegion: "US")
+      formattedPhone = try phoneUtil.getNationalSignificantNumber(phoneNumber)
+    } catch _ as NSError {
+    }
+    
+    return formattedPhone
+  }
+  
   public func isValidPhone() -> Bool{
-    let regex = try! NSRegularExpression(pattern: "[0-9]{10}", options: [.CaseInsensitive])
-    let range = NSRange(location: 0, length: self.characters.count)
-    let matches = regex.matchesInString(self, options : NSMatchingOptions(), range: range)
-    return matches.count == 1
+    let phoneUtil = NBPhoneNumberUtil()
+    do {
+      let phoneNumber = try phoneUtil.parse(self, defaultRegion: "US")
+      return phoneUtil.isValidNumber(phoneNumber)
+    } catch _ as NSError {
+    }
+    
+    return false
   }
   
   public func isValidZipCode() -> Bool{
