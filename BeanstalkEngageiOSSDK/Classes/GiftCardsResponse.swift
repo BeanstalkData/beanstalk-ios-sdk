@@ -111,6 +111,14 @@ public class GiftCard : Mappable {
   
   public func mapping(map: Map) {
     id <- map["Id"]
+    if id == nil {
+      var numberId: NSNumber?
+      numberId <- map["Id"]
+      
+      if numberId != nil {
+        id = numberId?.stringValue
+      }
+    }
     number <- map["cardNumber"]
     balance <- map["balance"]
   }
