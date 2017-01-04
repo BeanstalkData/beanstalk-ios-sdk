@@ -36,6 +36,22 @@ public class CoreService{
     prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
   }
   
+  public func getDefaultCard() -> GiftCard? {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    var giftCard = GiftCard(storage: prefs)
+    
+    if giftCard?.id == nil {
+      giftCard = nil
+    }
+    
+    return giftCard
+  }
+  
+  public func saveDefaultCard(card : GiftCard){
+    let prefs = NSUserDefaults.standardUserDefaults()
+    card.save(prefs)
+  }
+  
   public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, handler: (Bool) -> Void){
     guard controller.validate(request) else{
       return
@@ -413,16 +429,6 @@ public class CoreService{
     })
   }
   
-  public func getDefaultCard() -> GiftCard? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return GiftCard(storage: prefs)
-  }
-  
-  public func saveDefaultCard(card : GiftCard){
-    let prefs = NSUserDefaults.standardUserDefaults()
-    card.save(prefs)
-  }
-  
   public func getAvailableRewards(controller : CoreProtocol, handler : ([Coupon])->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
     let contactId = getContactId()!
@@ -505,7 +511,6 @@ public class CoreService{
     })
   }
   
-  
   public func getGiftCards(controller : CoreProtocol, handler : ([GiftCard])->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
     let contactId = getContactId()!
@@ -522,28 +527,24 @@ public class CoreService{
         default :
           controller.showMessage("Cards Error", message: "Error Retrieving Cards Information")
         }
+        handler([])
         return
       }
       if data != nil && data!.failed() {
         controller.hideProgress()
         controller.showMessage("Cards Error", message: "Error Retrieving Cards Information")
+        handler([])
         return
       }
       if data == nil || data!.getCards() == nil || data!.getCards()!.count == 0 {
         controller.hideProgress()
         controller.showMessage("Cards", message: "You have no cards registered")
+        handler([])
         return
       }
       let cards = data!.getCards()!
-      if(self.apiService.dataGenerator != nil){
-        handler(cards)
-      }
-      if cards.count > 0 {
-        self.getBalanceForCard(controller, contactId: contactId, token: token, index: 0, cards: cards, handler: handler)
-      } else {
-        handler(cards)
-      }
       
+      handler(cards)
     })
   }
   
