@@ -5,9 +5,9 @@ target 'BeanstalkEngageiOSSDK_Example' do
 
   target 'BeanstalkEngageiOSSDK_Tests' do
     inherit! :search_paths
-
-    
+    pod 'BeanstalkEngageiOSSDKTests', :path => '../'
   end
+  
 end
 
 post_install do |installer|

@@ -22,6 +22,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		802ADB58DC8A30EB11CC5B35 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
+		894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894907B91E1C2E730089CB10 /* TestsMetadata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		607FACE51AFB9204008FA782 /* BeanstalkEngageiOSSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanstalkEngageiOSSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		894907B51E1BFE940089CB10 /* BeanstalkEngageiOSSDKTests.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BeanstalkEngageiOSSDKTests.podspec; path = ../BeanstalkEngageiOSSDKTests.podspec; sourceTree = "<group>"; };
+		894907B91E1C2E730089CB10 /* TestsMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsMetadata.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE60A046E42F8F552D2977DB /* Pods-BeanstalkEngageiOSSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeanstalkEngageiOSSDK_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -89,7 +92,6 @@
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for BeanstalkEngageiOSSDK */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				607FACD11AFB9204008FA782 /* Products */,
 				6495E7081AC6A3CF65495854 /* Pods */,
 				932BD09EFB9CFD9C8A3AF8AE /* Frameworks */,
 			);
@@ -102,6 +104,7 @@
 				607FACE51AFB9204008FA782 /* BeanstalkEngageiOSSDK_Tests.xctest */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		607FACD21AFB9204008FA782 /* Example for BeanstalkEngageiOSSDK */ = {
@@ -137,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				894907B91E1C2E730089CB10 /* TestsMetadata.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -146,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
+				607FACD11AFB9204008FA782 /* Products */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				3BB9CBAC53060E7DC2795B5B /* BeanstalkEngageiOSSDK.podspec */,
+				894907B51E1BFE940089CB10 /* BeanstalkEngageiOSSDKTests.podspec */,
 				AEB80099628A8D15F333D3F5 /* README.md */,
 				1A78645877142EFB4A3A3A44 /* LICENSE */,
 			);
@@ -399,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

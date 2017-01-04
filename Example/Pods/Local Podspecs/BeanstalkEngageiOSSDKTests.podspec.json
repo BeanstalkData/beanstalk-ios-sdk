@@ -1,7 +1,7 @@
 {
-  "name": "BeanstalkEngageiOSSDK",
+  "name": "BeanstalkEngageiOSSDKTests",
   "version": "0.2.4",
-  "summary": "Beanstalk Engage iOS SDK.",
+  "summary": "Beanstalk Engage iOS SDK Tests.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
     "type": "MIT",
@@ -17,19 +17,11 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "BeanstalkEngageiOSSDK/Classes/**/*",
+  "source_files": "BeanstalkEngageiOSSDK/Tests/**/*",
+  "frameworks": "XCTest",
   "dependencies": {
-    "Alamofire": [
-      "~> 3.5.1"
-    ],
-    "AlamofireObjectMapper": [
-      "~> 3.0.0"
-    ],
-    "PKHUD": [
-      "~> 3.2.1"
-    ],
-    "libPhoneNumber-iOS": [
-      "~> 0.8"
+    "BeanstalkEngageiOSSDK": [
+
     ]
   }
 }
