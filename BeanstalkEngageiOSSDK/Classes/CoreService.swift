@@ -255,22 +255,25 @@ public class CoreService{
     }
   }
   
-  public func authenticate(controller : AuthenticationProtocol, email: String?, password: String?, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
-    guard controller.validate(email, password: password) else{
-      return
+  public func authenticate(controller: AuthenticationProtocol?, email: String?, password: String?, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
+    if controller != nil {
+      guard controller!.validate(email, password: password) else{
+        return
+      }
     }
-    controller.showProgress("Attempting to Login")
+    
+    controller?.showProgress("Attempting to Login")
     apiService.checkContactIsNovadine(email!, handler: {
       isNovadineContact, _ in
       self.apiService.authenticateUser(email!, password: password!, handler: {
         contactId, token, error in
-        controller.hideProgress()
+        controller?.hideProgress()
         guard error == nil else {
           switch error! {
           case .NetworkConnection:
-            controller.showMessage("Network Error", message: "Connection unavailable.")
+            controller?.showMessage("Network Error", message: "Connection unavailable.")
           default :
-            controller.showMessage("Login Error", message: "Unable to Login!")
+            controller?.showMessage("Login Error", message: "Unable to Login!")
           }
           handler(success: false, additionalInfo: isNovadineContact)
           return
@@ -286,22 +289,24 @@ public class CoreService{
     })
   }
   
-  public func resetPassword(controller: AuthenticationProtocol, email : String?, handler : () -> Void) {
-    guard controller.validate(email, password: "123456") else{
-      return
+  public func resetPassword(controller: AuthenticationProtocol?, email : String?, handler : () -> Void) {
+    if controller != nil {
+      guard controller!.validate(email, password: "123456") else{
+        return
+      }
     }
-    controller.showProgress("Reseting Password")
+    controller?.showProgress("Reseting Password")
     apiService.resetPassword(email!, handler: {
       message, error in
-      controller.hideProgress()
+      controller?.hideProgress()
       if error == nil {
-        controller.showMessage("Password reset", message: message!)
+        controller?.showMessage("Password reset", message: message!)
       }else{
         switch error! {
         case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
+          controller?.showMessage("Network Error", message: "Connection unavailable.")
         default :
-          controller.showMessage("Password reset", message: "Unable to reset password")
+          controller?.showMessage("Password reset", message: "Unable to reset password")
         }
       }
       handler()

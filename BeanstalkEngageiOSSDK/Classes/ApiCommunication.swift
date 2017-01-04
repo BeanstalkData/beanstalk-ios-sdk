@@ -10,14 +10,17 @@ import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
 
-
 public class ApiCommunication {
   let BASE_URL    = "https://proc.beanstalkdata.com"
   private let apiKey: String
+  
+  internal let reachabilityManager: Alamofire.NetworkReachabilityManager
+  
   internal var dataGenerator: MockDataGenerator?
   
   public required init(apiKey: String) {
     self.apiKey = apiKey
+    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: BASE_URL)!
   }
   
   func checkContactsByEmailExisted(email: String, handler: (ApiError?) -> Void) {
@@ -127,6 +130,44 @@ public class ApiCommunication {
     }
   }
   
+  private func getErrorHandler(defaultMessage: String) -> Request.Validation {
+    let validation : Request.Validation = { (urlRequest, ulrResponse) -> Request.ValidationResult in
+      
+      let acceptableStatusCodes: Range<Int> = 200..<300
+      if acceptableStatusCodes.contains(ulrResponse.statusCode) {
+      
+        return .Success
+      } else {
+        
+        var failureReason = defaultMessage
+        
+        if (ulrResponse.statusCode == 400) {
+          //TODO: Handle custom error
+          failureReason = "Response status code was unacceptable: \(ulrResponse.statusCode)"
+        } else if (ulrResponse.statusCode == 404) {
+          
+        }
+        
+        let error = NSError(
+          domain: Error.Domain,
+          code: Error.Code.StatusCodeValidationFailed.rawValue,
+          userInfo: [
+            NSLocalizedFailureReasonErrorKey: failureReason,
+            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
+          ]
+        )
+        
+        return .Failure(error)
+      }
+    }
+   
+    return validation
+  }
+  
+  private func getDefaultErrorHandler() -> Request.Validation {
+    return getErrorHandler("Got error while processing your request.");
+  }
+  
   func createLoyaltyAccount (request : CreateContactRequest, handler: (LoyaltyUser?, ApiError?) -> Void) {
     let params = [
       "FirstName": request.firstName!,
@@ -146,6 +187,7 @@ public class ApiCommunication {
     ]
     
     Alamofire.request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
+      .validate(getDefaultErrorHandler())
       .responseObject(completionHandler: { (response : Response<LoyaltyUser, NSError>) in
         if (response.result.isSuccess) {
           if response.result.value != nil {
@@ -229,16 +271,18 @@ public class ApiCommunication {
   }
   
   func authenticateUser(email: String, password: String, handler: (contactId : Optional<String> , token : Optional<String> , error : ApiError?) -> Void) {
-    let params = ["email": email,
-                  "password": password,
-                  "key": self.apiKey,
-                  "time": "-1"
-    ]
-    Alamofire.request(.POST, BASE_URL + "/authenticateUser/", parameters: params)
-      .responseString { response in
-        print(response)
-        if (response.result.isSuccess) {
-          if response.result.value != nil {
+    
+    if (self.reachabilityManager.isReachable) {
+      let params = ["email": email,
+                    "password": password,
+                    "key": self.apiKey,
+                    "time": "-1"
+      ]
+      Alamofire.request(.POST, BASE_URL + "/authenticateUser/", parameters: params)
+        .validate(getErrorHandler("Login failed. Please try again."))
+        .responseString { response in
+          print(response)
+          if (response.result.isSuccess) {
             let responseData = response.result.value?.dataUsingEncoding(NSUTF8StringEncoding)
             var jsonResponse : AnyObject? = nil
             
@@ -246,18 +290,17 @@ public class ApiCommunication {
               jsonResponse = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions(rawValue: 0))
             } catch { }
             guard let data = jsonResponse as? [AnyObject] where data.count == 2 else {
-              handler(contactId : nil, token : nil, error: .DataSerialization(reason : "Failed deserialization!"))
+              handler(contactId : nil, token : nil, error: .DataSerialization(reason : "Login failed. Please try again."))
               return
             }
             let contactId = String(data[0] as! Int)
             handler(contactId : contactId, token : data[1] as? String, error: nil)
-            
-          } else {
-            handler(contactId: nil, token: nil, error : .DataSerialization(reason : "Bad request!"))
+          } else{
+            handler(contactId: nil, token: nil, error : .Network(error: response.result.error!))
           }
-        } else{
-          handler(contactId: nil, token: nil, error : .NetworkConnection())
-        }
+      }
+    } else {
+       handler(contactId: nil, token: nil, error : .NetworkConnection())
     }
   }
   

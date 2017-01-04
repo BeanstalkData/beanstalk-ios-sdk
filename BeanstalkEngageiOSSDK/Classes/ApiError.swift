@@ -9,9 +9,9 @@ import Foundation
 
 public enum ApiError: ErrorType {
   case Network(error:NSError)
+  case DataSerialization(reason: String)
+
   case NetworkConnection()
-  case DataSerialization(reason:String)
-  case JsonSerialization(error:NSError)
   case ContactExisted(update: Bool)
   case Unknown()
 }
