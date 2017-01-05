@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDKTests'
-  s.version          = '0.2.4'
+  s.version          = '0.2.5'
   s.summary          = 'Beanstalk Engage iOS SDK Tests.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
 
   s.framework = 'XCTest'
   s.dependency 'BeanstalkEngageiOSSDK'
+
 end

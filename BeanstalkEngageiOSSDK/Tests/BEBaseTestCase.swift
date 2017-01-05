@@ -2,7 +2,7 @@ import UIKit
 import XCTest
 import BeanstalkEngageiOSSDK
 
-public class BEBaseTestCase: XCTestCase {
+public class BEBaseTestCase: BEAsyncTestCase {
   
   var beanstalkCoreService: CoreService?
   
