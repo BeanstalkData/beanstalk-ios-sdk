@@ -392,6 +392,14 @@ public class ApiCommunication {
       params["Email_Optin"] = request.emailOptIn ? "true" :"false"
     }
     
+    if request.pushNotificationOptin != (original.pushNotificationOptin == 1) {
+      params["PushNotification_Optin"] = request.pushNotificationOptin ? "true" :"false"
+    }
+    
+    if request.inboxMessageOptin != (original.inboxMessageOptin == 1) {
+      params["InboxMessage_Optin"] = request.inboxMessageOptin ? "true" :"false"
+    }
+    
     if request.male != (original.gender == "Male") {
       params["Gender"] = request.male ? "Male" : "Female"
     }
