@@ -140,6 +140,8 @@ public class ApiCommunication {
       "Gender" : request.male ? "Male" : "Female",
       "Email_Optin": request.emailOptIn ? "true" :"false",
       "Txt_Optin": request.txtOptIn ? "true" :"false",
+      "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
+      "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
       "custom_Novadine_User" : request.novadine ? "1" :"0",
       "Source" : "iosapp",
       "Prospect" : "loyalty"
@@ -172,6 +174,8 @@ public class ApiCommunication {
       "Gender" : request.male ? "Male" : "Female",
       "Email_Optin": request.emailOptIn ? "true" :"false",
       "Txt_Optin": request.txtOptIn ? "true" :"false",
+      "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
+      "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
       "custom_Novadine_User" : request.novadine ? "1" :"0",
       "Source" : "iosapp",
       "Prospect" : "loyalty"
@@ -889,6 +893,8 @@ public class Contact : Mappable {
   public var phone : String?
   public var textOptin = 0
   public var emailOptin = 0
+  public var pushNotificationOptin = 0
+  public var inboxMessageOptin = 0
   public var preferredReward : String?
   public var nodavine = false
   
@@ -909,6 +915,8 @@ public class Contact : Mappable {
     phone <- map["Cell_Number"]
     textOptin <- map["Txt_Optin"]
     emailOptin <- map["Email_Optin"]
+    pushNotificationOptin <- map["PushNotification_Optin"]
+    inboxMessageOptin <- map["InboxMessage_Optin"]
     preferredReward <- map["PreferredReward"]
     nodavine <- map["Novadine_User"]
   }
@@ -928,6 +936,8 @@ public final class CreateContactRequest{
   public var male = false
   public var emailOptIn = false
   public var txtOptIn = false
+  public var pushNotificationOptin = false
+  public var inboxMessageOptin = false
   public var preferredReward : String?
   public var novadine = false
   
@@ -946,6 +956,8 @@ public final class UpdateContactRequest{
   public var male = false
   public var emailOptIn = false
   public var txtOptIn = false
+  public var pushNotificationOptin = false
+  public var inboxMessageOptin = false
   public var preferredReward : String?
   
   public init() {
