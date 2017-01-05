@@ -77,7 +77,7 @@ public class CoreService{
     prefs.synchronize()
   }
   
-  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, handler: (Bool) -> Void){
+  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, checkUniqueEmailPhone: Bool, handler: (Bool) -> Void){
     guard controller.validate(request) else{
       return
     }
@@ -85,7 +85,7 @@ public class CoreService{
     request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
     
     controller.showProgress("Registering User")
-    if request.novadine {
+    if (request.novadine || !checkUniqueEmailPhone) {
       apiService.createLoyaltyAccount(request, handler: {
         _,error in
         controller.hideProgress()
