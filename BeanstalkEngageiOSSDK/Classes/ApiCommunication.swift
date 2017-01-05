@@ -157,7 +157,11 @@ public class ApiCommunication {
           }
         }
         else{
-          handler(nil, .NetworkConnection())
+          if (response.response?.statusCode == 200) {
+            handler(nil, .DataSerialization(reason : "Bad request!"))
+          } else {
+            handler(nil, .NetworkConnection())
+          }
         }
       })
   }
@@ -200,7 +204,11 @@ public class ApiCommunication {
           }
         }
         else{
-          handler(nil, .NetworkConnection())
+          if (response.response?.statusCode == 200) {
+            handler(nil, .DataSerialization(reason : "Bad request!"))
+          } else {
+            handler(nil, .NetworkConnection())
+          }
         }
     }
   }
