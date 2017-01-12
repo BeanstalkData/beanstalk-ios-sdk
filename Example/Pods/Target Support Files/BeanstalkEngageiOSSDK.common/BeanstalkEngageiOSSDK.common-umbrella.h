@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double BeanstalkEngageiOSSDKTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char BeanstalkEngageiOSSDKTestsVersionString[];
+FOUNDATION_EXPORT double BeanstalkEngageiOSSDKVersionNumber;
+FOUNDATION_EXPORT const unsigned char BeanstalkEngageiOSSDKVersionString[];
 

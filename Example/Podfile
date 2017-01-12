@@ -2,12 +2,11 @@ use_frameworks!
 
 target 'BeanstalkEngageiOSSDK_Example' do
   pod 'BeanstalkEngageiOSSDK', :path => '../'
+end
 
-  target 'BeanstalkEngageiOSSDK_Tests' do
-    inherit! :search_paths
-    pod 'BeanstalkEngageiOSSDKTests', :path => '../'
-  end
-  
+target 'BeanstalkEngageiOSSDK_Tests' do
+  pod 'BeanstalkEngageiOSSDK', :path => '../'
+  pod 'BeanstalkEngageiOSSDK/Testing', :path => '../'
 end
 
 post_install do |installer|

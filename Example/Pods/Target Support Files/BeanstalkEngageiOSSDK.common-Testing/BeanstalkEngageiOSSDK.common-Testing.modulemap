@@ -1,0 +1,6 @@
+framework module BeanstalkEngageiOSSDK {
+  umbrella header "BeanstalkEngageiOSSDK.common-Testing-umbrella.h"
+
+  export *
+  module * { export * }
+}

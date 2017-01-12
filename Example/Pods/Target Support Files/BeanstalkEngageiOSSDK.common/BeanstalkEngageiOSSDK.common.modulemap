@@ -1,5 +1,5 @@
 framework module BeanstalkEngageiOSSDK {
-  umbrella header "BeanstalkEngageiOSSDK-umbrella.h"
+  umbrella header "BeanstalkEngageiOSSDK.common-umbrella.h"
 
   export *
   module * { export * }

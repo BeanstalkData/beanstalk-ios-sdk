@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import BeanstalkEngageiOSSDKTests
+import BeanstalkEngageiOSSDK
 
 class TestsMetadata: BEBaseTestsMetadataProtocol {
   internal func getBeanstalkApiKey() -> String {

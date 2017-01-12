@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.2.5",
+  "version": "0.2.9",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,24 +12,70 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.2.5"
+    "tag": "0.2.9"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "BeanstalkEngageiOSSDK/Classes/**/*",
-  "dependencies": {
-    "Alamofire": [
-      "~> 3.5.1"
-    ],
-    "AlamofireObjectMapper": [
-      "~> 3.0.0"
-    ],
-    "PKHUD": [
-      "~> 3.2.1"
-    ],
-    "libPhoneNumber-iOS": [
-      "~> 0.8"
-    ]
-  }
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "dependencies": {
+        "BeanstalkEngageiOSSDK/Model": [
+
+        ],
+        "BeanstalkEngageiOSSDK/Network": [
+
+        ],
+        "BeanstalkEngageiOSSDK/Control": [
+
+        ]
+      }
+    },
+    {
+      "name": "Model",
+      "source_files": "BeanstalkEngageiOSSDK/Classes/Model/**/*"
+    },
+    {
+      "name": "Network",
+      "source_files": "BeanstalkEngageiOSSDK/Classes/Network/**/*",
+      "dependencies": {
+        "Alamofire": [
+          "~> 3.5.1"
+        ],
+        "AlamofireObjectMapper": [
+          "~> 3.0.0"
+        ]
+      }
+    },
+    {
+      "name": "Control",
+      "source_files": "BeanstalkEngageiOSSDK/Classes/Control/**/*",
+      "dependencies": {
+        "PKHUD": [
+          "~> 3.2.1"
+        ],
+        "libPhoneNumber-iOS": [
+          "~> 0.8"
+        ]
+      }
+    },
+    {
+      "name": "Testing",
+      "source_files": "BeanstalkEngageiOSSDK/Tests/**/*",
+      "dependencies": {
+        "BeanstalkEngageiOSSDK/Model": [
+
+        ],
+        "BeanstalkEngageiOSSDK/Network": [
+
+        ],
+        "BeanstalkEngageiOSSDK/Control": [
+
+        ]
+      },
+      "frameworks": "XCTest"
+    }
+  ]
 }

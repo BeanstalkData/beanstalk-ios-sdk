@@ -24,7 +24,7 @@ public class BECoreServiceTestHandler {
   }
   
   /* User */
-  public func signIn(email: String, password: String, handler : (Bool) -> Void) {
+  public func signIn(email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
