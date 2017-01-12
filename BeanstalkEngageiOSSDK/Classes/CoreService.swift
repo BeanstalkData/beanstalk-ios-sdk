@@ -24,6 +24,7 @@ public class CoreService{
   private func setContactId(contactId: String?) {
     let prefs = NSUserDefaults.standardUserDefaults()
     prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
+    prefs.synchronize()
   }
   
   public func getAuthToken() -> String? {
@@ -34,6 +35,29 @@ public class CoreService{
   private func setAuthToke(token: String?) {
     let prefs = NSUserDefaults.standardUserDefaults()
     prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
+    prefs.synchronize()
+  }
+  
+  public func getAPNSToken() -> String? {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    return prefs.valueForKey(DataKeys.DEVICE_TOKEN) as? String
+  }
+  
+  public func setAPNSToken(apnsToken: String?) {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    prefs.setValue(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
+    prefs.synchronize()
+  }
+  
+  public func getRegisteredAPNSToken() -> String? {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    return prefs.valueForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
+  }
+  
+  public func setRegisteredAPNSToken(apnsToken: String?) {
+    let prefs = NSUserDefaults.standardUserDefaults()
+    prefs.setValue(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
+    prefs.synchronize()
   }
   
   public func getDefaultCard() -> GiftCard? {
@@ -50,9 +74,10 @@ public class CoreService{
   public func saveDefaultCard(card : GiftCard){
     let prefs = NSUserDefaults.standardUserDefaults()
     card.save(prefs)
+    prefs.synchronize()
   }
   
-  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, handler: (Bool) -> Void){
+  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, checkUniqueEmailPhone: Bool, handler: (Bool) -> Void){
     guard controller.validate(request) else{
       return
     }
@@ -60,7 +85,7 @@ public class CoreService{
     request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
     
     controller.showProgress("Registering User")
-    if request.novadine {
+    if (request.novadine || !checkUniqueEmailPhone) {
       apiService.createLoyaltyAccount(request, handler: {
         _,error in
         controller.hideProgress()
@@ -294,11 +319,16 @@ public class CoreService{
           handler(success: false, additionalInfo: isNovadineContact)
           return
         }
-        let prefs = NSUserDefaults.standardUserDefaults()
+        
         self.setContactId(contactId)
         self.setAuthToke(token)
         
-        prefs.synchronize()
+        if let deviceToken = self.getAPNSToken() {
+          self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
+            
+          })
+        }
+        
         handler(success: true, additionalInfo: isNovadineContact)
         
       })
@@ -330,21 +360,26 @@ public class CoreService{
   }
   
   public func logout(controller : CoreProtocol, handler : () -> Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
-    
     let contactId = getContactId()!
     let token = getAuthToken()!
+    let registeredDeviceToken = getRegisteredAPNSToken()
+    
     controller.showProgress("Logout...")
     apiService.logoutUser(contactId, token : token, handler: {
       error in
       controller.hideProgress()
+      
+      if registeredDeviceToken != nil {
+        self.pushNotificationDelete({ (success, error) in
+          
+        })
+      }
+      
+      self.setContactId(nil)
+      self.setAuthToke(nil)
+      
       handler()
     })
-    
-    setContactId(nil)
-    setAuthToke(nil)
-    
-    prefs.synchronize()
   }
   
   public func validateZIP(controller: CoreProtocol, ZIP: String, handler: ((success: Bool) -> Void)) {
@@ -597,6 +632,8 @@ public class CoreService{
           handler(success: false, error: error)
         }
         else if response != nil {
+          self.setRegisteredAPNSToken(deviceToken)
+          
           handler(success: true, error: nil)
         }
         else {
@@ -626,6 +663,8 @@ public class CoreService{
     else {
       handler(success: false, error: nil)
     }
+    
+    self.setRegisteredAPNSToken(nil)
   }
   
   
@@ -678,11 +717,15 @@ public class CoreService{
         handler(false)
         return
       }
-      let prefs = NSUserDefaults.standardUserDefaults()
       self.setContactId(contactId)
       self.setAuthToke(token)
       
-      prefs.synchronize()
+      if let deviceToken = self.getAPNSToken() {
+        self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
+          
+        })
+      }
+      
       handler(true)
       
     })
@@ -736,6 +779,8 @@ public class CoreService{
 private struct DataKeys{
   static let TOKEN_KEY = "_token"
   static let CONTACT_KEY = "_contact_id"
+  static let DEVICE_TOKEN = "_device_token"
+  static let REGISTERED_DEVICE_TOKEN = "_registered_device_token"
 }
 
 public extension UIViewController {
