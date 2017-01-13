@@ -10,7 +10,7 @@ import BeanstalkEngageiOSSDK
 
 
 class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableViewDataSource, UITableViewDelegate {
-    var rewards: [Coupon]?
+    var rewards: [BECoupon]?
     
     @IBOutlet var tableView: UITableView!
     

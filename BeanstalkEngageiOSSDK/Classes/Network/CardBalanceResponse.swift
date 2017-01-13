@@ -31,7 +31,7 @@ public class GCBResponse: Mappable, GiftCardBalanceResponse {
   
   public func getCardBalance() -> String {
     guard let amount = response?.message?.response?.cardBalance?.balanceAmount?.amount else {
-      return GiftCard.kDefaultBalance
+      return BEGiftCard.kDefaultBalance
     }
     
     return String(format : "$%.2f", amount)
@@ -69,7 +69,7 @@ public class GCBDataMessage: Mappable {
 
 public class GCBMResponse: Mappable {
   var message: String?
-  var cardBalance: GiftCardBalance?
+  var cardBalance: BEGiftCardBalance?
   
   required public init?(_ map: Map) {
     
@@ -81,28 +81,3 @@ public class GCBMResponse: Mappable {
   }
 }
 
-
-public class GiftCardBalance: Mappable {
-  var balanceAmount: BalanceAmount?
-  
-  required public init?(_ map: Map) {
-    
-  }
-  
-  public func mapping(map: Map) {
-    balanceAmount <- map["balanceAmount"]
-  }
-}
-
-
-public class BalanceAmount: Mappable {
-  var amount: Double?
-  
-  required public init?(_ map: Map) {
-    
-  }
-  
-  public func mapping(map: Map) {
-    amount <- map["amount"]
-  }
-}

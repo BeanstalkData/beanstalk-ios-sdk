@@ -25,8 +25,8 @@ class MockDataGenerator {
     
     let items = [Int](count: 10, repeatedValue: 0)
     
-    let coupons = items.map({ (item)->Coupon in
-      let c = Coupon(imageUrl: urls[item % urls.count])
+    let coupons = items.map({ (item)-> BECoupon in
+      let c = BECoupon(imageUrl: urls[item % urls.count])
       c.text = "Description text \(item)"
       c.number = "\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)"
       
@@ -71,12 +71,12 @@ class MockDataGenerator {
 
 private class DummyStoresResponse: StoresResponseProtocol {
   
-  private var stores : [Store]
+  private var stores : [BEStore]
   
   init(){
     self.stores = Array()
     
-    var store = Store(id: "5851a7249616259fa18034c4")
+    var store = BEStore(id: "5851a7249616259fa18034c4")
     store.customerId = "318"
     store.storeId = "506"
     store.country = "USA"
@@ -91,7 +91,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     
     self.stores.append(store)
     
-    store = Store(id: "5851a7449616259fa18034ff")
+    store = BEStore(id: "5851a7449616259fa18034ff")
     store.customerId = "318"
     store.storeId = "768"
     store.country = "USA"
@@ -106,7 +106,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     
     self.stores.append(store)
     
-    store = Store(id: "5851a7319616259fa18034dc")
+    store = BEStore(id: "5851a7319616259fa18034dc")
     store.customerId = "318"
     store.storeId = "609"
     store.country = "USA"
@@ -126,7 +126,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     return false
   }
   
-  func getStores() -> [Store]? {
+  func getStores() -> [BEStore]? {
     return stores
   }
   
@@ -134,12 +134,12 @@ private class DummyStoresResponse: StoresResponseProtocol {
 
 private class DummyGCResponse : GiftCardsResponse{
   
-  private let cards : [GiftCard]
+  private let cards : [BEGiftCard]
   
   init(count : Int){
     let items  = [Int](count: 4, repeatedValue: 0)
-    self.cards = items.map({ (item)->GiftCard in
-      let c = GiftCard(id : "\(arc4random())",
+    self.cards = items.map({ (item) -> BEGiftCard in
+      let c = BEGiftCard(id : "\(arc4random())",
         number: "\(arc4random())\(arc4random())" ,
         balance: String(format: "$%.2f", Double(arc4random_uniform(500))))
       return c
@@ -150,7 +150,7 @@ private class DummyGCResponse : GiftCardsResponse{
     return false
   }
   
-  func getCards() -> [GiftCard]?{
+  func getCards() -> [BEGiftCard]?{
     return cards;
   }
 }

@@ -12,69 +12,11 @@ import PKHUD
 
 public class CoreService{
   let apiService: ApiCommunication
-  public required init(apiKey: String) {
+  let session: BESession
+  
+  public required init(apiKey: String, session: BESession) {
     self.apiService = ApiCommunication(apiKey: apiKey)
-  }
-  
-  public func getContactId() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.CONTACT_KEY) as? String
-  }
-  
-  private func setContactId(contactId: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
-    prefs.synchronize()
-  }
-  
-  public func getAuthToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.TOKEN_KEY) as? String
-  }
-  
-  private func setAuthToke(token: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
-    prefs.synchronize()
-  }
-  
-  public func getAPNSToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.DEVICE_TOKEN) as? String
-  }
-  
-  public func setAPNSToken(apnsToken: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
-    prefs.synchronize()
-  }
-  
-  public func getRegisteredAPNSToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
-  }
-  
-  public func setRegisteredAPNSToken(apnsToken: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
-    prefs.synchronize()
-  }
-  
-  public func getDefaultCard() -> GiftCard? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    var giftCard = GiftCard(storage: prefs)
-    
-    if giftCard?.id == nil {
-      giftCard = nil
-    }
-    
-    return giftCard
-  }
-  
-  public func saveDefaultCard(card : GiftCard){
-    let prefs = NSUserDefaults.standardUserDefaults()
-    card.save(prefs)
-    prefs.synchronize()
+    self.session = session
   }
   
   public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, checkUniqueEmailPhone: Bool, handler: (Bool) -> Void){
@@ -320,10 +262,10 @@ public class CoreService{
           return
         }
         
-        self.setContactId(contactId)
-        self.setAuthToke(token)
+        self.session.setContactId(contactId)
+        self.session.setAuthToke(token)
         
-        if let deviceToken = self.getAPNSToken() {
+        if let deviceToken = self.session.getAPNSToken() {
           self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
             
           })
@@ -360,9 +302,9 @@ public class CoreService{
   }
   
   public func logout(controller : CoreProtocol, handler : () -> Void){
-    let contactId = getContactId()!
-    let token = getAuthToken()!
-    let registeredDeviceToken = getRegisteredAPNSToken()
+    let contactId = session.getContactId()!
+    let token = session.getAuthToken()!
+    let registeredDeviceToken = session.getRegisteredAPNSToken()
     
     controller.showProgress("Logout...")
     apiService.logoutUser(contactId, token : token, handler: {
@@ -375,8 +317,8 @@ public class CoreService{
         })
       }
       
-      self.setContactId(nil)
-      self.setAuthToke(nil)
+      self.session.setContactId(nil)
+      self.session.setAuthToke(nil)
       
       handler()
     })
@@ -398,7 +340,7 @@ public class CoreService{
   
   public func getContact(controller : CoreProtocol, handler : (Contact?) -> Void){
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
+    let contactId = session.getContactId()!
     controller.showProgress("Retrieving Profile")
     apiService.getContact(contactId, handler: {
       contact, error in
@@ -446,8 +388,8 @@ public class CoreService{
       return
     }
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
-    let token = getAuthToken()!
+    let contactId = session.getContactId()!
+    let token = session.getAuthToken()!
     controller.showProgress("Updating Password")
     apiService.updatePassword(password!, contactId: contactId, token: token, handler: {
       error in
@@ -464,14 +406,14 @@ public class CoreService{
     })
   }
   
-  public func getAvailableRewards(controller : CoreProtocol, handler : ([Coupon])->Void){
+  public func getAvailableRewards(controller : CoreProtocol, handler : ([BECoupon])->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
+    let contactId = session.getContactId()!
     controller.showProgress("Loading...")
     apiService.getUserOffers(contactId, handler : {
       data, error in
       controller.hideProgress()
-      var rewards = [Coupon]()
+      var rewards = [BECoupon]()
       if error == nil {
         if data?.coupons != nil {
           rewards = data!.coupons!
@@ -490,7 +432,7 @@ public class CoreService{
   
   public func getUserProgress(controller : CoreProtocol, handler : (Int, String)->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
+    let contactId = session.getContactId()!
     controller.showProgress("Getting Rewards")
     apiService.getProgress(contactId, handler : {
       data, error in
@@ -518,9 +460,9 @@ public class CoreService{
   }
   
   
-  public func getAvailableFoRedeemRewards(controller : CoreProtocol, handler : ([Coupon], ApiError?)->Void){
+  public func getAvailableFoRedeemRewards(controller : CoreProtocol, handler : ([BECoupon], ApiError?)->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
+    let contactId = session.getContactId()!
     apiService.getUserOffers(contactId, handler : {
       data, error in
       
@@ -546,10 +488,10 @@ public class CoreService{
     })
   }
   
-  public func getGiftCards(controller : CoreProtocol, handler : ([GiftCard])->Void){
+  public func getGiftCards(controller : CoreProtocol, handler : ([BEGiftCard])->Void){
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
-    let token = getAuthToken()!
+    let contactId = session.getContactId()!
+    let token = session.getAuthToken()!
     controller.showProgress("Retrieving Cards")
     apiService.getGiftCards(contactId, token: token, handler: {
       data, error in
@@ -583,7 +525,7 @@ public class CoreService{
     })
   }
   
-  public func startPayment(controller : CoreProtocol, cardId : String?, coupons: [Coupon], handler : (String, String)->Void){
+  public func startPayment(controller : CoreProtocol, cardId : String?, coupons: [BECoupon], handler : (String, String)->Void){
     controller.showProgress("Generating Barcode")
     if cardId == nil && coupons.count == 0 {
       controller.hideProgress()
@@ -592,8 +534,8 @@ public class CoreService{
       return
     }
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()!
-    let token = getAuthToken()!
+    let contactId = session.getContactId()!
+    let token = session.getAuthToken()!
     let couponsString : String = coupons.reduce("", combine: { $0 == "" ? $1.number! : $0 + "," + $1.number! })
     apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler : {
       data, error in
@@ -617,8 +559,8 @@ public class CoreService{
   
   public func isAuthenticated() ->Bool{
     let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = getContactId()
-    let token = getAuthToken()
+    let contactId = session.getContactId()
+    let token = session.getAuthToken()
     return contactId != nil && token != nil
   }
   
@@ -626,13 +568,13 @@ public class CoreService{
   //MARK: - Push Notifications
   
   public func pushNotificationEnroll(deviceToken: String, handler: (success: Bool, error: ApiError?) -> Void) {
-    if let contactId = self.getContactId() {
+    if let contactId = self.session.getContactId() {
       apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (response, error) in
         if error != nil {
           handler(success: false, error: error)
         }
         else if response != nil {
-          self.setRegisteredAPNSToken(deviceToken)
+          self.session.setRegisteredAPNSToken(deviceToken)
           
           handler(success: true, error: nil)
         }
@@ -647,7 +589,7 @@ public class CoreService{
   }
   
   public func pushNotificationDelete(handler: (success: Bool, error: ApiError?) -> Void) {
-    if let contactId = self.getContactId() {
+    if let contactId = self.session.getContactId() {
       apiService.pushNotificationDelete(contactId, handler: { (response, error) in
         if error != nil {
           handler(success: false, error: error)
@@ -664,17 +606,17 @@ public class CoreService{
       handler(success: false, error: nil)
     }
     
-    self.setRegisteredAPNSToken(nil)
+    self.session.setRegisteredAPNSToken(nil)
   }
   
   
   //MARK: - Locations
   
-  public func getStoresAtLocation(controller : CoreProtocol, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [Store]?) -> Void)) {
+  public func getStoresAtLocation(controller : CoreProtocol, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
     let prefs = NSUserDefaults.standardUserDefaults()
     let longitude = "\(coordinate.longitude)"
     let latitude = "\(coordinate.latitude)"
-    let token = getAuthToken()
+    let token = session.getAuthToken()
     controller.showProgress("Retrieving Stores")
     
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: {
@@ -717,10 +659,10 @@ public class CoreService{
         handler(false)
         return
       }
-      self.setContactId(contactId)
-      self.setAuthToke(token)
+      self.session.setContactId(contactId)
+      self.session.setAuthToke(token)
       
-      if let deviceToken = self.getAPNSToken() {
+      if let deviceToken = self.session.getAPNSToken() {
         self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
           
         })
@@ -731,7 +673,7 @@ public class CoreService{
     })
   }
   
-  private func getBalanceForCard(controller : CoreProtocol , contactId: String, token: String, index: Int, cards : [GiftCard], handler :([GiftCard])->Void){
+  private func getBalanceForCard(controller : CoreProtocol , contactId: String, token: String, index: Int, cards : [BEGiftCard], handler :([BEGiftCard])->Void){
     if index == 0 {
       dispatch_async(dispatch_get_main_queue(),{
         // controller.showProgress("Retrieving Cards Balances")
@@ -754,12 +696,12 @@ public class CoreService{
     })
   }
   
-  private func getBarCodeInfo(data: String?, cardId : String?, coupons : [Coupon]) -> (String, String){
+  private func getBarCodeInfo(data: String?, cardId : String?, coupons : [BECoupon]) -> (String, String){
     var content = ""
     var display = ""
     if data == nil || data!.characters.count == 0{
       let prefs = NSUserDefaults.standardUserDefaults()
-      let contactId = getContactId()!
+      let contactId = session.getContactId()!
       content = contactId
       display = "Member ID: \(content)"
     }else {
@@ -775,12 +717,6 @@ public class CoreService{
     return (content, display)
   }
   
-}
-private struct DataKeys{
-  static let TOKEN_KEY = "_token"
-  static let CONTACT_KEY = "_contact_id"
-  static let DEVICE_TOKEN = "_device_token"
-  static let REGISTERED_DEVICE_TOKEN = "_registered_device_token"
 }
 
 public extension UIViewController {

@@ -10,7 +10,7 @@ import BeanstalkEngageiOSSDK
 
 
 class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewDataSource, UITableViewDelegate {
-    var giftCards: [GiftCard]?
+    var giftCards: [BEGiftCard]?
     
     @IBOutlet var tableView: UITableView!
     

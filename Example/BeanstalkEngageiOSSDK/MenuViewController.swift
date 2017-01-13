@@ -18,7 +18,7 @@ class MenuViewController: UIViewController, CoreProtocol {
     @IBOutlet var giftCardsButton: UIButton!
     
     
-    let coreService = CoreService(apiKey: "")
+    let coreService = CoreService(apiKey: "", session: BESession())
     
     override func viewDidLoad() {
         super.viewDidLoad()

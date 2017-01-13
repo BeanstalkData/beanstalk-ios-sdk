@@ -11,7 +11,7 @@ import ObjectMapper
 public protocol GiftCardsResponse {
   func failed() -> Bool
   
-  func getCards() -> [GiftCard]?
+  func getCards() -> [BEGiftCard]?
   
 }
 
@@ -44,7 +44,7 @@ public class GCResponse : Mappable, GiftCardsResponse {
     return false
   }
   
-  public func getCards() -> [GiftCard]?{
+  public func getCards() -> [BEGiftCard]?{
     return response?.message?.response?.cards
   }
 }
@@ -78,7 +78,7 @@ public class GCDataMessage : Mappable {
 
 public class GCDataList : Mappable{
   var success : Bool?
-  var cards : [GiftCard]?
+  var cards : [BEGiftCard]?
   
   required public init?(_ map: Map) {
     
@@ -90,68 +90,3 @@ public class GCDataList : Mappable{
   }
 }
 
-public class GiftCard : Mappable {
-  public static let kDefaultBalance = "$0.00"
-  private static let kId = "_id"
-  private static let kNumber = "_number"
-  private static let kBalance = "_balance"
-  public var id: String?
-  public var number: String?
-  public var balance: String?
-  
-  public init(id: String, number : String, balance : String){
-    self.id = id
-    self.number = number
-    self.balance = balance
-  }
-  
-  required public init?(_ map: Map) {
-    
-  }
-  
-  public func mapping(map: Map) {
-    id <- map["Id"]
-    if id == nil {
-      var numberId: NSNumber?
-      numberId <- map["Id"]
-      
-      if numberId != nil {
-        id = numberId?.stringValue
-      }
-    }
-    number <- map["cardNumber"]
-    balance <- map["balance"]
-  }
-  
-  init?(storage : NSUserDefaults){
-    id = storage.valueForKey(GiftCard.kId) as? String
-    if id == nil {
-      return nil
-    }
-    number = storage.valueForKey(GiftCard.kNumber) as? String
-    balance = storage.valueForKey(GiftCard.kBalance) as? String
-  }
-  
-  func save(storage : NSUserDefaults){
-    storage.setValue(id, forKey: GiftCard.kId)
-    storage.setValue(number, forKey: GiftCard.kNumber)
-    storage.setValue(balance, forKey: GiftCard.kBalance)
-    storage.synchronize()
-  }
-  
-  public func getDisplayNumber() -> String {
-    if number != nil && number!.characters.count > 4{
-      return "XXXXXXXXXXXX\(number!.substringFromIndex(number!.endIndex.advancedBy(-4)))"
-    }else {
-      return "XXXXXXXXXXXXXXXX"
-    }
-  }
-  
-  public func getDisplayBalanse() -> String {
-    if balance == nil{
-      return GiftCard.kDefaultBalance
-    }else {
-      return balance!
-    }
-  }
-}

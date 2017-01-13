@@ -3,20 +3,21 @@ PODS:
   - AlamofireObjectMapper (3.0.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - BeanstalkEngageiOSSDK (0.2.9):
-    - BeanstalkEngageiOSSDK/Core (= 0.2.9)
-  - BeanstalkEngageiOSSDK/Control (0.2.9):
+  - BeanstalkEngageiOSSDK (0.3.1):
+    - BeanstalkEngageiOSSDK/Core (= 0.3.1)
+  - BeanstalkEngageiOSSDK/Control (0.3.1):
     - libPhoneNumber-iOS (~> 0.8)
     - PKHUD (~> 3.2.1)
-  - BeanstalkEngageiOSSDK/Core (0.2.9):
+  - BeanstalkEngageiOSSDK/Core (0.3.1):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Model (0.2.9)
-  - BeanstalkEngageiOSSDK/Network (0.2.9):
+  - BeanstalkEngageiOSSDK/Model (0.3.1):
+    - AlamofireObjectMapper (~> 3.0.0)
+  - BeanstalkEngageiOSSDK/Network (0.3.1):
     - Alamofire (~> 3.5.1)
     - AlamofireObjectMapper (~> 3.0.0)
-  - BeanstalkEngageiOSSDK/Testing (0.2.9):
+  - BeanstalkEngageiOSSDK/Testing (0.3.1):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
@@ -35,7 +36,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
-  BeanstalkEngageiOSSDK: 4d773094c8056e6f9e4f5e6cbbdd767e039087be
+  BeanstalkEngageiOSSDK: 1598e86a03f462fb0f76b73f3ddadff51abd1c4c
   libPhoneNumber-iOS: a8bffdec18c37728360f6771fe021302f1e0b497
   ObjectMapper: 386645adca9d9d23b95eda43090b09d66444cf14
   PKHUD: 001c11518f125a273ddf026bcc64918423744ea2

@@ -19,6 +19,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Model' do |ms|
     ms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Model/**/*'
+
+    ms.dependency 'AlamofireObjectMapper', '~> 3.0.0'
   end
 
   s.subspec 'Network' do |ns|
