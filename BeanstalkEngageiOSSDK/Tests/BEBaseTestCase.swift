@@ -10,7 +10,7 @@ public class BEBaseTestCase: BEAsyncTestCase {
     super.setUp()
     
     if let _ = getMetadata() {
-      beanstalkCoreService = CoreService(apiKey: getMetadata()!.getBeanstalkApiKey())
+      beanstalkCoreService = CoreService(apiKey: getMetadata()!.getBeanstalkApiKey(), session: BESession())
     }
   }
   
