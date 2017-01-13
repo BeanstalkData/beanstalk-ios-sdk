@@ -10,7 +10,7 @@ import BeanstalkEngageiOSSDK
 
 
 class ProfileViewController: BaseViewController, CoreProtocol {
-    var contact: Contact?
+    var contact: BEContact?
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!

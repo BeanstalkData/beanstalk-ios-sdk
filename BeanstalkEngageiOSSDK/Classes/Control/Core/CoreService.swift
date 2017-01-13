@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import PKHUD
 
+import BeanstalkEngageiOSSDK
+
 public class CoreService{
   let apiService: ApiCommunication
   let session: BESession
@@ -338,7 +340,7 @@ public class CoreService{
     }
   }
   
-  public func getContact(controller : CoreProtocol, handler : (Contact?) -> Void){
+  public func getContact(controller : CoreProtocol, handler : (BEContact?) -> Void){
     let prefs = NSUserDefaults.standardUserDefaults()
     let contactId = session.getContactId()!
     controller.showProgress("Retrieving Profile")
@@ -357,7 +359,7 @@ public class CoreService{
     })
   }
   
-  public func updateContact(controller : EditProfileProtocol, original: Contact, request : UpdateContactRequest, handler : (Bool) -> Void){
+  public func updateContact(controller : EditProfileProtocol, original: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void){
     guard controller.validate(request) else{
       handler(false)
       return

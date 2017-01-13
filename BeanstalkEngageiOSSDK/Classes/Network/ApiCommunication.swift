@@ -168,7 +168,7 @@ public class ApiCommunication {
     return getErrorHandler("Got error while processing your request.");
   }
   
-  func createLoyaltyAccount (request : CreateContactRequest, handler: (LoyaltyUser?, ApiError?) -> Void) {
+  func createLoyaltyAccount (request : CreateContactRequest, handler: (BELoyaltyUser?, ApiError?) -> Void) {
     let params = [
       "FirstName": request.firstName!,
       "LastName": request.lastName!,
@@ -190,7 +190,7 @@ public class ApiCommunication {
     
     Alamofire.request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
       .validate(getDefaultErrorHandler())
-      .responseObject(completionHandler: { (response : Response<LoyaltyUser, NSError>) in
+      .responseObject(completionHandler: { (response : Response<BELoyaltyUser, NSError>) in
         if (response.result.isSuccess) {
           if response.result.value != nil {
             handler(response.result.value!, nil)
@@ -387,14 +387,14 @@ public class ApiCommunication {
     }
   }
   
-  func getContact(contactId: String, handler: (Contact?, ApiError?) -> Void) {
+  func getContact(contactId: String, handler: (BEContact?, ApiError?) -> Void) {
     let params = [
       "key": self.apiKey,
       "q": contactId
     ]
     Alamofire.request(.GET, BASE_URL + "/contacts", parameters: params)
       .responseArray {
-        (response : Response<[Contact], NSError>) in
+        (response : Response<[BEContact], NSError>) in
         if (response.result.isSuccess) {
           if let data = response.result.value  where data.count == 1 {
             handler(data[0], nil)
@@ -408,7 +408,7 @@ public class ApiCommunication {
     }
   }
   
-  func updateContact(original: Contact, request : UpdateContactRequest, handler: (ApiError?) -> Void)  {
+  func updateContact(original: BEContact, request : UpdateContactRequest, handler: (ApiError?) -> Void)  {
     var params = [
       "ContactID" : "\(original.contactId!)"]
     if request.firstName!.caseInsensitiveCompare(original.firstName!) != NSComparisonResult.OrderedSame {
@@ -914,70 +914,6 @@ public class ApiCommunication {
           hanler(lat: lat, lon: lon, error: error)
         }
     }
-  }
-}
-
-public class LoyaltyUser : Mappable {
-  public var contactId: String?
-  public var sessionToken: String?
-  public var giftCardNumber : String?
-  public var giftCardPin : String?
-  public var giftCardRegistrationStatus : Bool?
-  public var giftCardTrack2 : String?
-  
-  required public init?(_ map: Map) {
-    
-  }
-  
-  public func mapping(map: Map) {
-    contactId <- map["contactId"]
-    sessionToken <- map["sessionToken"]
-    giftCardNumber <- map["giftCardNumber"]
-    giftCardPin <- map["giftCardPin"]
-    giftCardRegistrationStatus <- map["giftCardRegistrationStatus"]
-    giftCardTrack2 <- map["giftCardTrack2"]
-  }
-}
-
-public class Contact : Mappable {
-  public var contactId: Int?
-  public var firstName: String?
-  public var lastName : String?
-  public var zipCode : String?
-  public var email : String?
-  public var prospect : String?
-  public var gender: String?
-  public var birthday : String?
-  public var fKey : String?
-  public var phone : String?
-  public var textOptin = 0
-  public var emailOptin = 0
-  public var pushNotificationOptin = 0
-  public var inboxMessageOptin = 0
-  public var preferredReward : String?
-  public var nodavine = false
-  
-  required public init?(_ map: Map) {
-    
-  }
-  
-  public func mapping(map: Map) {
-    contactId <- map["contactId"]
-    firstName <- map["contactFirstName"]
-    lastName <- map["contactLastName"]
-    zipCode <- map["contactZipCode"]
-    email <- map["contactEmail"]
-    prospect <- map["Prospect"]
-    gender <- map["gender"]
-    birthday <- map["contactBirthday"]
-    fKey <- map["FKey"]
-    phone <- map["Cell_Number"]
-    textOptin <- map["Txt_Optin"]
-    emailOptin <- map["Email_Optin"]
-    pushNotificationOptin <- map["PushNotification_Optin"]
-    inboxMessageOptin <- map["InboxMessage_Optin"]
-    preferredReward <- map["PreferredReward"]
-    nodavine <- map["Novadine_User"]
   }
 }
 
