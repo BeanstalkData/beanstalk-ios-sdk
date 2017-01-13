@@ -46,6 +46,9 @@
       "name": "Network",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Network/**/*",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Model": [
+
+        ],
         "Alamofire": [
           "~> 3.5.1"
         ],
@@ -58,6 +61,12 @@
       "name": "Control",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Control/**/*",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Model": [
+
+        ],
+        "BeanstalkEngageiOSSDK/Network": [
+
+        ],
         "PKHUD": [
           "~> 3.2.1"
         ],

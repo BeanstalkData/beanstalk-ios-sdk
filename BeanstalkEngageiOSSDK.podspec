@@ -26,12 +26,17 @@ Pod::Spec.new do |s|
   s.subspec 'Network' do |ns|
     ns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Network/**/*'
 
+    ns.dependency 'BeanstalkEngageiOSSDK/Model'
+
     ns.dependency 'Alamofire', '~> 3.5.1'
     ns.dependency 'AlamofireObjectMapper', '~> 3.0.0'
   end
 
   s.subspec 'Control' do |cns|
     cns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Control/**/*'
+
+    cns.dependency 'BeanstalkEngageiOSSDK/Model'
+    cns.dependency 'BeanstalkEngageiOSSDK/Network'
 
     cns.dependency 'PKHUD', '~> 3.2.1'
     cns.dependency 'libPhoneNumber-iOS', '~> 0.8'
