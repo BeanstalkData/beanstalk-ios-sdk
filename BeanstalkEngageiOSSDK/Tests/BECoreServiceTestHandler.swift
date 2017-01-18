@@ -37,10 +37,44 @@ public class BECoreServiceTestHandler {
     
     self.testCase.wait()
     
-    XCTAssert(signInStatus, "Login request finished with error");
-    
     handler(signInStatus)
     
-    return signInStatus ? nil : self;
+    return self
+  }
+  
+  public func registerLoyaltyAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var registerStatus = false
+    self.testCase.getCoreService()?.registerLoyaltyAccount(nil, request: request, handler: { (result) in
+      
+      registerStatus = result
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(registerStatus)
+    
+    return self
+  }
+  
+  public func registerAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var registerStatus = false
+    self.testCase.getCoreService()?.register(nil, request: request, handler: { (result) in
+      
+      registerStatus = result
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(registerStatus)
+    
+    return self
   }
 }

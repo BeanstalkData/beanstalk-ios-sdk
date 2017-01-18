@@ -28,6 +28,10 @@ public class BEContact : Mappable {
   public var preferredReward : String?
   public var nodavine = false
   
+  public init() {
+    
+  }
+  
   required public init?(_ map: Map) {
     
   }

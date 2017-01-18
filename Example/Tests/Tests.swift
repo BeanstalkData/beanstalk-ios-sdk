@@ -23,7 +23,60 @@ class Tests: BEBaseTestCase {
   
   func testLoginRegisteredUser() {
     
-//    XCTAssert(success, "Can not sighIn with email " + "\(self.getMetadata()!.getRegisteredUser1Email())")
-
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error");
+    }
+  }
+  
+  func testRegisterLoyaltyAccount() {
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    let contact = getMetadata()!.getRegisteredUser1Contact()
+    let request = CreateContactRequest()
+    request.firstName = contact.firstName
+    request.lastName = contact.lastName
+    request.phone = contact.phone
+    request.email = contact.email
+    request.emailConfirm = contact.email
+    request.password = getMetadata()!.getRegisteredUser1Password()
+    request.passwordConfirm = getMetadata()!.getRegisteredUser1Password()
+    request.zipCode  = contact.zipCode
+    request.birthdate = contact.birthday
+    request.emailOptIn = (contact.emailOptin != 0)
+    request.preferredReward = ""
+    request.male = (contact.gender == "Male")
+    
+    coreServiceHandler.registerLoyaltyAccount(request) { (result) in
+      
+      XCTAssert(result, "Register Loyalty Account request finished with error");
+    }
+  }
+  
+  func testRegisterAccount() {
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    let contact = getMetadata()!.getRegisteredUser1Contact()
+    let request = CreateContactRequest()
+    request.firstName = contact.firstName
+    request.lastName = contact.lastName
+    request.phone = contact.phone
+    request.email = contact.email
+    request.emailConfirm = contact.email
+    request.password = getMetadata()!.getRegisteredUser1Password()
+    request.passwordConfirm = getMetadata()!.getRegisteredUser1Password()
+    request.zipCode  = contact.zipCode
+    request.birthdate = contact.birthday
+    request.emailOptIn = (contact.emailOptin != 0)
+    request.preferredReward = ""
+    request.male = (contact.gender == "Male")
+    
+    coreServiceHandler.registerAccount(request) { (result) in
+      
+      XCTAssert(result, "Register Account request finished with error");
+    }
   }
 }
