@@ -171,7 +171,7 @@ else
 
     cat $LOG_DIR/$BUILD_PRODUCT_NAME.Test.log | ./buildTools/ocunit2junit 1>/dev/null
 
-    slather coverage --verbose --input-format profdata --cobertura-xml  \
+    /usr/local/bin/slather coverage --verbose --input-format profdata --cobertura-xml  \
     --binary-file $DERIVED_PATH/Build/Intermediates/CodeCoverage/Products/${BUILD_CONFIGURATION}-iphonesimulator/BeanstalkEngageiOSSDK.common/${BUILD_PRODUCT_NAME}.framework/${BUILD_PRODUCT_NAME}  \
     --build-directory $DERIVED_PATH --output-directory $SLATHER_PATH        \
     --scheme $SCHEME --workspace $WORKSPACE_NAME $PROJECT_NAME
