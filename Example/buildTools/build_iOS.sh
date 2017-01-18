@@ -169,7 +169,7 @@ else
     -destination "platform=iOS Simulator,name=iPhone 6,OS=latest" VALID_ARCHS=x86_64\
     -derivedDataPath $DERIVED_PATH -verbose -configuration $BUILD_CONFIGURATION clean test 1>$LOG_DIR/$BUILD_PRODUCT_NAME.Test.log 2>&1
 
-    cat $LOG_DIR/$BUILD_PRODUCT_NAME.Test.log | ${SCRIPT_PATH}ocunit2junit 1>/dev/null
+    cat $LOG_DIR/$BUILD_PRODUCT_NAME.Test.log | ./buildTools/ocunit2junit 1>/dev/null
 
     slather coverage --verbose --input-format profdata --cobertura-xml  \
     --binary-file $DERIVED_PATH/Build/Intermediates/CodeCoverage/Products/${BUILD_CONFIGURATION}-iphonesimulator/BeanstalkEngageiOSSDK.common/${BUILD_PRODUCT_NAME}.framework/${BUILD_PRODUCT_NAME}  \
