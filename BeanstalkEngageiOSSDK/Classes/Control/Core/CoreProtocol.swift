@@ -8,7 +8,8 @@
 import Foundation
 
 public protocol CoreProtocol {
-  func showMessage(title: String, message : String)
+  func showMessage(error: ApiError)
+  func showMessage(title: String?, message : String?)
   func showProgress(message: String)
   func hideProgress()
 }

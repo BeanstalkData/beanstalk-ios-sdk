@@ -29,7 +29,6 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
 
     ns.dependency 'Alamofire', '~> 3.5.1'
-    ns.dependency 'AlamofireObjectMapper', '~> 3.0.0'
   end
 
   s.subspec 'Control' do |cns|

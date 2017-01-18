@@ -21,260 +21,135 @@ public class CoreService{
     self.session = session
   }
   
-  public func registerLoyaltyAccount(controller: RegistrationProtocol, request: CreateContactRequest, checkUniqueEmailPhone: Bool, handler: (Bool) -> Void){
-    guard controller.validate(request) else{
-      return
-    }
-    
-    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
-    
-    controller.showProgress("Registering User")
-    if (request.novadine || !checkUniqueEmailPhone) {
-      apiService.createLoyaltyAccount(request, handler: {
-        _,error in
-        controller.hideProgress()
-        guard error == nil else {
-          
-          switch error! {
-          case .NetworkConnection:
-            controller.showMessage("Network Error", message: "Connection unavailable.")
-          default :
-            controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
-          }
-          handler(false)
-          return
-        }
-        self.auth(controller, email : request.email!, password: request.password!, handler: handler)
-        
-      })
-    }else {
-      apiService.checkContactsByEmailExisted(request.email!, handler: {
-        error in
-        
-        var updateExisted = false
-        if let e = error {
-          
-          var title : String? = nil
-          var message : String? = nil;
-          var notifyError = true
-          switch e {
-          case .NetworkConnection:
-            title = "Network Error"
-            message = "Connection unavailable."
-          case .ContactExisted(true):
-            notifyError = false
-            updateExisted = true
-          default :
-            title = "Registration Error"
-            message = "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
-          }
-          if notifyError {
-            controller.hideProgress()
-            controller.showMessage(title!, message: message!)
-            handler(false)
-            return
-          }
-        }
-        self.apiService.checkContactsByPhoneExisted(request.phone!, handler: {
-          error in
-          if let e = error {
-            
-            var title : String? = nil
-            var message : String? = nil;
-            var notifyError = true
-            switch e {
-            case .NetworkConnection:
-              title = "Network Error"
-              message = "Connection unavailable."
-            case .ContactExisted(true):
-              notifyError = false
-              updateExisted = true
-            default :
-              title = "Registration Error"
-              message = "This phone is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
-            }
-            if notifyError {
-              controller.hideProgress()
-              controller.showMessage(title!, message: message!)
-              handler(false)
-              return
-            }
-          }
-          self.apiService.createLoyaltyAccount(request, handler: {
-            contactId, error in
-            guard contactId != nil && error == nil else {
-              controller.hideProgress()
-              switch error! {
-              case .NetworkConnection:
-                controller.showMessage("Network Error", message: "Connection unavailable.")
-              default :
-                controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
-              }
-              handler(false)
-              return
-            }
-            
-            self.auth(controller, email: request.email!, password: request.password!, handler: handler)
-            
-          })
-        })
-      })
-    }
+  public func isAuthenticated() ->Bool{
+    let contactId = session.getContactId()
+    let token = session.getAuthToken()
+    return contactId != nil && token != nil
   }
   
-  public func register(controller : RegistrationProtocol, request : CreateContactRequest, handler : (Bool) -> Void){
-    guard controller.validate(request) else{
-      return
+  public func registerLoyaltyAccount(controller: RegistrationProtocol?, request: CreateContactRequest, handler: (Bool) -> Void){
+    if (controller != nil) {
+      guard controller!.validate(request) else{
+        handler(false)
+        return
+      }
     }
     
     request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
     
-    controller.showProgress("Registering User")
-    if request.novadine {
-      apiService.createContact(request, handler: {
-        _,error in
-        controller.hideProgress()
-        guard error == nil else {
-          
-          switch error! {
-          case .NetworkConnection:
-            controller.showMessage("Network Error", message: "Connection unavailable.")
-          default :
-            controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
-          }
-          handler(false)
-          return
-        }
+    controller?.showProgress("Registering User")
+    apiService.createLoyaltyAccount(request, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(result.error!)
+        handler(false)
+      } else {
         self.auth(controller, email : request.email!, password: request.password!, handler: handler)
+      }
+    })
+  }
+  
+  public func register(controller : RegistrationProtocol?, request : CreateContactRequest, handler : (Bool) -> Void){
+    if (controller != nil) {
+      guard controller!.validate(request) else{
+        handler(false)
+        return
+      }
+    }
+    
+    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    
+    controller?.showProgress("Registering User")
+    if request.novadine {
+      apiService.createContact(request, handler: { (result) in
+        controller?.hideProgress()
         
-      })
-    }else {
-      apiService.checkContactsByEmailExisted(request.email!, handler: {
-        error in
-        
-        var updateExisted = false
-        if let e = error {
-          
-          var title : String? = nil
-          var message : String? = nil;
-          var notifyError = true
-          switch e {
-          case .NetworkConnection:
-            title = "Network Error"
-            message = "Connection unavailable."
-          case .ContactExisted(true):
-            notifyError = false
-            updateExisted = true
-          default :
-            title = "Registration Error"
-            message = "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
-          }
-          if notifyError {
-            controller.hideProgress()
-            controller.showMessage(title!, message: message!)
-            handler(false)
-            return
-          }
+        if result.isFailure {
+          controller?.showMessage(result.error!)
+          handler(false)
+        } else {
+          self.auth(controller, email : request.email!, password: request.password!, handler: handler)
         }
-        self.apiService.checkContactsByPhoneExisted(request.phone!, handler: {
-          error in
-          if let e = error {
+      })
+    } else {
+      apiService.checkContactsByEmailExisted(request.email!, handler: { (result) in
+        
+        if result.isFailure {
+          controller?.hideProgress()
+          controller?.showMessage(.UserEmailExists(reason: result.error!))
+          handler(false)
+        } else {
+          var updateExisted = result.value!
+          
+          self.apiService.checkContactsByPhoneExisted(request.phone!, handler: { (result) in
             
-            var title : String? = nil
-            var message : String? = nil;
-            var notifyError = true
-            switch e {
-            case .NetworkConnection:
-              title = "Network Error"
-              message = "Connection unavailable."
-            case .ContactExisted(true):
-              notifyError = false
-              updateExisted = true
-            default :
-              title = "Registration Error"
-              message = "This phone is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it."
-            }
-            if notifyError {
-              controller.hideProgress()
-              controller.showMessage(title!, message: message!)
+            if result.isFailure {
+              controller?.hideProgress()
+              controller?.showMessage(.UserPhoneExists(reason: result.error!))
               handler(false)
-              return
-            }
-          }
-          self.apiService.createContact(request, handler: {
-            contactId, error in
-            guard contactId != nil && error == nil else {
-              controller.hideProgress()
-              switch error! {
-              case .NetworkConnection:
-                controller.showMessage("Network Error", message: "Connection unavailable.")
-              default :
-                controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
-              }
-              handler(false)
-              return
-            }
-            if !updateExisted {
-              self.apiService.createUser(request.email!, password: request.password!, contactId: contactId!, handler: {
-                error in
-                controller.hideProgress()
-                guard error == nil else {
-                  switch error! {
-                  case .NetworkConnection:
-                    controller.showMessage("Network Error", message: "Connection unavailable.")
-                  default :
-                    controller.showMessage("Registration Error", message: "Unable to sign up user, please try again later.")
-                  }
-                  handler(false)
-                  return
-                }
-                self.auth(controller, email: request.email!, password: request.password!, handler: handler)
-              })
             } else {
-              self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+              updateExisted = updateExisted || result.value!
+              
+              self.apiService.createContact(request, handler: { (result) in
+                
+                if result.isFailure {
+                  controller?.hideProgress()
+                  controller?.showMessage(result.error!)
+                  handler(false)
+                } else {
+                    if !updateExisted {
+                      self.apiService.createUser(request.email!, password: request.password!, contactId: result.value!, handler: { (result) in
+                        
+                        if result.isFailure {
+                          controller?.hideProgress()
+                          controller?.showMessage(result.error!)
+                          handler(false)
+                        } else {
+                          self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+                        }
+                      })
+                    } else {
+                      self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+                    }
+                }
+              })
             }
-            
           })
-        })
+        }
       })
     }
   }
   
   public func authenticate(controller: AuthenticationProtocol?, email: String?, password: String?, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
     if controller != nil {
-      guard controller!.validate(email, password: password) else{
+      guard controller!.validate(email, password: password) else {
+        handler(success: false, additionalInfo: false)
         return
       }
     }
     
     controller?.showProgress("Attempting to Login")
-    apiService.checkContactIsNovadine(email!, handler: {
-      isNovadineContact, _ in
-      self.apiService.authenticateUser(email!, password: password!, handler: {
-        contactId, token, error in
+    apiService.checkContactIsNovadine(email!, handler: { (result) in
+      let isNovadineContact = (result.value != nil) ? result.value! : false
+      self.apiService.authenticateUser(email!, password: password!, handler: { (result) in
         controller?.hideProgress()
-        guard error == nil else {
-          switch error! {
-          case .NetworkConnection:
-            controller?.showMessage("Network Error", message: "Connection unavailable.")
-          default :
-            controller?.showMessage("Login Error", message: "Unable to Login!")
-          }
+        
+        if result.isFailure {
+          controller?.showMessage(result.error!)
           handler(success: false, additionalInfo: isNovadineContact)
-          return
+        } else {
+          self.session.setContactId(result.value!.contactId)
+          self.session.setAuthToke(result.value!.token)
+          
+          if let deviceToken = self.session.getAPNSToken() {
+            self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
+              
+            })
+          }
+          
+          handler(success: true, additionalInfo: isNovadineContact)
         }
-        
-        self.session.setContactId(contactId)
-        self.session.setAuthToke(token)
-        
-        if let deviceToken = self.session.getAPNSToken() {
-          self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-            
-          })
-        }
-        
-        handler(success: true, additionalInfo: isNovadineContact)
-        
       })
     })
   }
@@ -282,36 +157,32 @@ public class CoreService{
   public func resetPassword(controller: AuthenticationProtocol?, email : String?, handler : () -> Void) {
     if controller != nil {
       guard controller!.validate(email, password: "123456") else{
+        handler()
         return
       }
     }
     controller?.showProgress("Reseting Password")
-    apiService.resetPassword(email!, handler: {
-      message, error in
+    apiService.resetPassword(email!, handler: { (result) in
       controller?.hideProgress()
-      if error == nil {
-        controller?.showMessage("Password reset", message: message!)
-      }else{
-        switch error! {
-        case .NetworkConnection:
-          controller?.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller?.showMessage("Password reset", message: "Unable to reset password")
-        }
+      
+      if result.isFailure {
+        controller?.showMessage(.ResetPasswordError(reason: result.error!))
+      } else {
+        controller?.showMessage("Password reset", message: result.value!)
       }
+      
       handler()
     })
   }
   
-  public func logout(controller : CoreProtocol, handler : () -> Void){
+  public func logout(controller : CoreProtocol?, handler : () -> Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
     let registeredDeviceToken = session.getRegisteredAPNSToken()
     
-    controller.showProgress("Logout...")
-    apiService.logoutUser(contactId, token : token, handler: {
-      error in
-      controller.hideProgress()
+    controller?.showProgress("Logout...")
+    apiService.logoutUser(contactId, token : token, handler: { (result) in
+      controller?.hideProgress()
       
       if registeredDeviceToken != nil {
         self.pushNotificationDelete({ (success, error) in
@@ -326,124 +197,104 @@ public class CoreService{
     })
   }
   
-  public func validateZIP(controller: CoreProtocol, ZIP: String, handler: ((success: Bool) -> Void)) {
-    controller.showProgress("Checking...")
-    apiService.checkZIPForAvailable(ZIP) { (available, error) in
-      controller.hideProgress()
-      
-      if error != nil {
-        handler(success: false)
-      }
-      else {
-        handler(success: available)
-      }
-    }
-  }
-  
-  public func getContact(controller : CoreProtocol, handler : (BEContact?) -> Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
+  public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void){
     let contactId = session.getContactId()!
-    controller.showProgress("Retrieving Profile")
-    apiService.getContact(contactId, handler: {
-      contact, error in
-      controller.hideProgress()
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Profile Error", message: "Unable to retrieve profile")
-        }
+
+    controller?.showProgress("Retrieving Profile")
+    apiService.getContact(contactId, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(.ProfileError(reason: result.error!))
+        handler(nil)
+      } else {
+        handler(result.value!)
       }
-      handler(contact)
     })
   }
   
-  public func updateContact(controller : EditProfileProtocol, original: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void){
-    guard controller.validate(request) else{
-      handler(false)
-      return
+  public func updateContact(controller : EditProfileProtocol?, original: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void){
+    
+    if controller != nil {
+      guard controller!.validate(request) else{
+        handler(false)
+        return
+      }
     }
     
     request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
     
-    controller.showProgress("Updating Profile")
-    apiService.updateContact(original, request: request, handler: {
-      error in
-      controller.hideProgress()
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Update Error", message: "Update Failed!")
-        }
+    controller?.showProgress("Updating Profile")
+    apiService.updateContact(original, request: request, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(.UpdateProfileError(reason: result.error!))
+        handler(false)
+      } else {
+        handler(true)
       }
-      handler(error == nil)
     })
-    
   }
   
-  public func updatePassword(controller : UpdatePasswordProtocol, password: String?, confirmPassword: String?, handler : (Bool) -> Void){
-    guard controller.validate(password, confirmPassword: confirmPassword) else{
-      handler(false)
-      return
+  public func updatePassword(controller : UpdatePasswordProtocol?, password: String?, confirmPassword: String?, handler : (Bool) -> Void){
+    
+    if controller != nil {
+      guard controller!.validate(password, confirmPassword: confirmPassword) else{
+        handler(false)
+        return
+      }
     }
-    let prefs = NSUserDefaults.standardUserDefaults()
+    
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
-    controller.showProgress("Updating Password")
-    apiService.updatePassword(password!, contactId: contactId, token: token, handler: {
-      error in
-      controller.hideProgress()
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Password Update", message: "Unable to update password")
-        }
+    
+    controller?.showProgress("Updating Password")
+    apiService.updatePassword(password!, contactId: contactId, token: token, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(.UpdatePasswordError(reason: result.error!))
+        handler(false)
+      } else {
+        handler(true)
       }
-      handler(error == nil)
     })
   }
   
-  public func getAvailableRewards(controller : CoreProtocol, handler : ([BECoupon])->Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
+  public func getAvailableRewards(controller : CoreProtocol?, handler : ([BECoupon])->Void){
     let contactId = session.getContactId()!
-    controller.showProgress("Loading...")
-    apiService.getUserOffers(contactId, handler : {
-      data, error in
-      controller.hideProgress()
+    
+    controller?.showProgress("Retrieving Rewards")
+    apiService.getUserOffers(contactId, handler : { (result) in
+      controller?.hideProgress()
+      
       var rewards = [BECoupon]()
-      if error == nil {
-        if data?.coupons != nil {
-          rewards = data!.coupons!
-        }
-      }else {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default:
-          print("skip error")
-        }
+      if result.isFailure {
+        controller?.showMessage(result.error!)
+      } else {
+        rewards = result.value!
       }
+      
       handler(rewards)
     })
   }
   
-  public func getUserProgress(controller : CoreProtocol, handler : (Int, String)->Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
+  public func getUserProgress(controller : CoreProtocol?, handler : (Int, String)->Void){
     let contactId = session.getContactId()!
-    controller.showProgress("Getting Rewards")
-    apiService.getProgress(contactId, handler : {
-      data, error in
-      controller.hideProgress()
+    
+    controller?.showProgress("Getting Rewards")
+    apiService.getProgress(contactId, handler : { (result) in
+      controller?.hideProgress()
+      
       let required = 8
       var progressValue = 0;
       var progressText = "Only \(required) more purchases until your next TC reward!"
-      if error == nil {
-        let rewardValue = data == nil ? 0 : Int(data!.getCount())
+      
+      if result.isFailure {
+        //Check it
+      } else {
+        let rewardValue = result.value! == nil ? 0 : Int(result.value!!)
         if (rewardValue > 0 && rewardValue % required == 0) {
           progressValue = required;
         } else {
@@ -457,125 +308,68 @@ public class CoreService{
           progressText = "Only \(remainingCountUntilReward) more purchases until your next TC reward!"
         }
       }
+      
       handler(progressValue, progressText)
     })
   }
   
-  
-  public func getAvailableFoRedeemRewards(controller : CoreProtocol, handler : ([BECoupon], ApiError?)->Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = session.getContactId()!
-    apiService.getUserOffers(contactId, handler : {
-      data, error in
-      
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Coupons Error", message: "Failed to get coupons try again later")
-        }
-        
-        handler([], error)
-        return
-      }
-      if data == nil || data!.coupons == nil || data!.coupons!.count == 0 {
-        controller.showMessage("Coupons", message: "You have no available coupons")
-        
-        handler([], nil)
-        return
-      }
-      
-      handler(data!.coupons!, nil)
-    })
-  }
-  
-  public func getGiftCards(controller : CoreProtocol, handler : ([BEGiftCard])->Void){
-    let prefs = NSUserDefaults.standardUserDefaults()
+  public func getGiftCards(controller : CoreProtocol?, handler : ([BEGiftCard])->Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
-    controller.showProgress("Retrieving Cards")
-    apiService.getGiftCards(contactId, token: token, handler: {
-      data, error in
-      controller.hideProgress()
-      if error != nil {
-        controller.hideProgress()
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Cards Error", message: "Error Retrieving Cards Information")
-        }
-        handler([])
-        return
-      }
-      if data != nil && data!.failed() {
-        controller.hideProgress()
-        controller.showMessage("Cards Error", message: "Error Retrieving Cards Information")
-        handler([])
-        return
-      }
-      if data == nil || data!.getCards() == nil || data!.getCards()!.count == 0 {
-        controller.hideProgress()
-        controller.showMessage("Cards", message: "You have no cards registered")
-        handler([])
-        return
-      }
-      let cards = data!.getCards()!
+    
+    controller?.showProgress("Retrieving Cards")
+    apiService.getGiftCards(contactId, token: token, handler: { (result) in
+      controller?.hideProgress()
       
-      handler(cards)
+      if result.isFailure {
+        controller?.showMessage(.GiftCardsError(reason: result.error!))
+        handler([])
+      } else {
+        let cards = result.value!
+        
+        handler(cards)
+      }
     })
   }
   
-  public func startPayment(controller : CoreProtocol, cardId : String?, coupons: [BECoupon], handler : (String, String)->Void){
-    controller.showProgress("Generating Barcode")
+  public func startPayment(controller : CoreProtocol?, cardId : String?, coupons: [BECoupon], handler : (String, String)->Void){
+
     if cardId == nil && coupons.count == 0 {
-      controller.hideProgress()
       let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
       handler(data.0, data.1)
       return
     }
-    let prefs = NSUserDefaults.standardUserDefaults()
+
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
     let couponsString : String = coupons.reduce("", combine: { $0 == "" ? $1.number! : $0 + "," + $1.number! })
-    apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler : {
-      data, error in
-      controller.hideProgress()
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Payment Error", message: "Error generating barcode. Please try again later.")
-        }
-        
+    
+    controller?.showProgress("Generating Barcode")
+    apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler : { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(.PaymentError(reason: result.error!))
         let data = self.getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
         handler(data.0, data.1)
-        return
+      } else {
+        let cards = result.value!
+        
+        let data = self.getBarCodeInfo(result.value!, cardId: cardId, coupons: coupons)
+        handler(data.0, data.1)
       }
-      let data = self.getBarCodeInfo(data?.token, cardId: cardId, coupons: coupons)
-      handler(data.0, data.1)
     })
   }
-  
-  public func isAuthenticated() ->Bool{
-    let prefs = NSUserDefaults.standardUserDefaults()
-    let contactId = session.getContactId()
-    let token = session.getAuthToken()
-    return contactId != nil && token != nil
-  }
-  
   
   //MARK: - Push Notifications
   
   public func pushNotificationEnroll(deviceToken: String, handler: (success: Bool, error: ApiError?) -> Void) {
     if let contactId = self.session.getContactId() {
-      apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (response, error) in
-        if error != nil {
-          handler(success: false, error: error)
+      apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (result) in
+        if result.isFailure {
+          handler(success: false, error: result.error)
         }
-        else if response != nil {
+        else if result.value! != nil {
           self.session.setRegisteredAPNSToken(deviceToken)
           
           handler(success: true, error: nil)
@@ -592,11 +386,12 @@ public class CoreService{
   
   public func pushNotificationDelete(handler: (success: Bool, error: ApiError?) -> Void) {
     if let contactId = self.session.getContactId() {
-      apiService.pushNotificationDelete(contactId, handler: { (response, error) in
-        if error != nil {
-          handler(success: false, error: error)
+      apiService.pushNotificationDelete(contactId, handler: { (result) in
+        
+        if result.isFailure {
+          handler(success: false, error: result.error)
         }
-        else if response != nil {
+        else if result.value! != nil {
           handler(success: true, error: nil)
         }
         else {
@@ -614,95 +409,82 @@ public class CoreService{
   
   //MARK: - Locations
   
-  public func getStoresAtLocation(controller : CoreProtocol, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
-    let prefs = NSUserDefaults.standardUserDefaults()
+  public func getStoresAtLocation(controller : CoreProtocol?, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
     let longitude = "\(coordinate.longitude)"
     let latitude = "\(coordinate.latitude)"
     let token = session.getAuthToken()
-    controller.showProgress("Retrieving Stores")
     
-    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: {
-      data, error in
-      controller.hideProgress()
+    controller?.showProgress("Retrieving Stores")
+    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: { (result) in
+      controller?.hideProgress()
       
-      if error != nil {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Find Stores Error", message: "Error Retrieving Stores Information")
-        }
-        return
+      if result.isFailure {
+        controller?.showMessage(.FindStoresError(reason: result.error!))
+        handler(success: false, stores: [])
+      } else {
+        handler(success: true, stores: result.value!)
       }
-      
-      if data != nil && data!.failed() {
-        controller.showMessage("Find Stores Error", message: "Error Retrieving Stores Information")
-        return
-      }
-      
-      handler(success: true, stores: data?.getStores())
     })
   }
   
   
   //No needs to check isNoadine user
-  private func auth(controller : RegistrationProtocol, email: String, password: String, handler : (Bool) -> Void) {
-    controller.showProgress("Attempting to Login")
-    apiService.authenticateUser(email, password: password, handler: {
-      contactId, token, error in
-      controller.hideProgress()
-      guard error == nil else {
-        switch error! {
-        case .NetworkConnection:
-          controller.showMessage("Network Error", message: "Connection unavailable.")
-        default :
-          controller.showMessage("Login Error", message: "Unable to Login!")
-        }
+  private func auth(controller : RegistrationProtocol?, email: String, password: String, handler : (Bool) -> Void) {
+    
+    controller?.showProgress("Attempting to Login")
+    apiService.authenticateUser(email, password: password, handler: { (result) in
+      controller?.hideProgress()
+    
+      if result.isFailure {
+        controller?.showMessage(result.error!)
         handler(false)
-        return
+      } else {
+        let contactId = result.value!.contactId
+        let token = result.value!.token
+        
+        self.session.setContactId(contactId)
+        self.session.setAuthToke(token)
+        
+        if let deviceToken = self.session.getAPNSToken() {
+          self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
+            
+          })
+        }
+        
+        handler(true)
       }
-      self.session.setContactId(contactId)
-      self.session.setAuthToke(token)
-      
-      if let deviceToken = self.session.getAPNSToken() {
-        self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-          
-        })
-      }
-      
-      handler(true)
-      
     })
   }
   
-  private func getBalanceForCard(controller : CoreProtocol , contactId: String, token: String, index: Int, cards : [BEGiftCard], handler :([BEGiftCard])->Void){
-    if index == 0 {
-      dispatch_async(dispatch_get_main_queue(),{
-        // controller.showProgress("Retrieving Cards Balances")
-      })
-    }
-    apiService.getGiftCardBalance(contactId, token: token, number: cards[index].number!, handler: {
-      data, error in
-      debugPrint("index \(index)")
-      if index == cards.count-1 {
-        controller.hideProgress()
-      }
-      if error == nil {
-        cards[index].balance = data?.getCardBalance()
-      }
-      if index == cards.count-1 {
-        handler(cards)
-      }else {
-        self.getBalanceForCard(controller, contactId: contactId, token: token, index: index + 1, cards: cards, handler: handler)
-      }
-    })
-  }
+  // TODO: fixme
+//  private func getBalanceForCard(controller : CoreProtocol , contactId: String, token: String, index: Int, cards : [BEGiftCard], handler :([BEGiftCard])->Void){
+//    
+//    if index == 0 {
+//      dispatch_async(dispatch_get_main_queue(),{
+//        // controller.showProgress("Retrieving Cards Balances")
+//      })
+//    }
+//    apiService.getGiftCardBalance(contactId, token: token, number: cards[index].number!, handler: {
+//      data, error in
+//      debugPrint("index \(index)")
+//      if index == cards.count-1 {
+//        controller.hideProgress()
+//      }
+//      if error == nil {
+//        cards[index].balance = data?.getCardBalance()
+//      }
+//      if index == cards.count-1 {
+//        handler(cards)
+//      }else {
+//        self.getBalanceForCard(controller, contactId: contactId, token: token, index: index + 1, cards: cards, handler: handler)
+//      }
+//    })
+//  }
   
   private func getBarCodeInfo(data: String?, cardId : String?, coupons : [BECoupon]) -> (String, String){
     var content = ""
     var display = ""
     if data == nil || data!.characters.count == 0{
-      let prefs = NSUserDefaults.standardUserDefaults()
       let contactId = session.getContactId()!
       content = contactId
       display = "Member ID: \(content)"

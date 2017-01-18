@@ -74,7 +74,13 @@ extension String {
 
 extension UIViewController {
   
-  public func showMessage(title: String, message : String){
+  public func showMessage(error: ApiError) {
+    var title = error.errorTitle()
+    var message = error.errorMessage()
+    self.showMessage(title, message: message)
+  }
+  
+  public func showMessage(title: String?, message : String?){
     let alertController = UIAlertController(title: title, message:
       message, preferredStyle: UIAlertControllerStyle.Alert)
     alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))

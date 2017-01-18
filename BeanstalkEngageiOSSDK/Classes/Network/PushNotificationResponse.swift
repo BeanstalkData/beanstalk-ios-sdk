@@ -22,12 +22,30 @@ enum PushNotificationStatus: String {
  */
 
 public class PushNotificationResponse : Mappable {
+ 
+  private var status100 : AnyObject?
+  private var status : AnyObject?
+  private var messages : [BEPushNotificationMessage]?
+  
   required public init?(_ map: Map) {
     
   }
   
   public func mapping(map: Map) {
+    status100 <- map["error"]
+    status <- map["error100"]
+  }
+  
+  public func failed() -> Bool{
+    if (status != nil || status100 != nil) {
+      return true
+    }
     
+    return false
+  }
+  
+  public func getMessages() -> [BEPushNotificationMessage]? {
+    return messages
   }
 }
 
@@ -75,11 +93,18 @@ public class PushNotificationResponse : Mappable {
  */
 
 public class PushNotificationMessagesResponse : Mappable {
+  
+  var messages : [BEPushNotificationMessage]?
+  
   required public init?(_ map: Map) {
     
   }
   
   public func mapping(map: Map) {
     
+  }
+  
+  public func getMessages() -> [BEPushNotificationMessage]? {
+    return messages
   }
 }

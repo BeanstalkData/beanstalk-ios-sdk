@@ -37,6 +37,8 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
         self.zipCodeTextField.text = ""
         self.optEmailCheckBox.on = false
         self.genderSegmentView.selectedSegmentIndex = 0
+      
+        self.selectedDate = self.dateInPast(21)!
     }
     
     
@@ -69,8 +71,12 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
         request.emailOptIn = self.optEmailCheckBox.on
         request.preferredReward = ""
         request.male = self.genderSegmentView.selectedSegmentIndex == 0 ? true : false
-        
-        self.coreService?.register(self, request: request, handler: {
+      
+//        self.coreService?.register(self, request: request, handler: { (success) in
+//          self.completionBlock?(success: success)
+//        })
+      
+        self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
             success in
             self.completionBlock?(success: success)
         })
@@ -116,4 +122,22 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
         self.scrollView.contentInset = UIEdgeInsetsZero
         self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero
     }
+  
+  //MARK: - Private
+  
+  private func dateInPast(yearsAgo: Int) -> NSDate? {
+    let currentDate = NSDate()
+    
+    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+    
+    if let dateComponents = calendar?.components([.Year, .Month, .Day], fromDate: currentDate) {
+      dateComponents.year = dateComponents.year - yearsAgo
+      
+      let date = calendar?.dateFromComponents(dateComponents)
+      
+      return date
+    }
+    
+    return nil
+  }
 }
