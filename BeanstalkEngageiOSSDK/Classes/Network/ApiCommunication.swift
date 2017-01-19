@@ -9,8 +9,9 @@ import Foundation
 import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
+import Timberjack
 
-public class ApiCommunication {
+public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   let BASE_URL    = "https://proc.beanstalkdata.com"
   private let apiKey: String
   
@@ -34,7 +35,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "q": email
       ]
-      Alamofire.request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -80,7 +81,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "q": phone
       ]
-      Alamofire.request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -127,7 +128,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "q": email
       ]
-      Alamofire.request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -172,7 +173,7 @@ public class ApiCommunication {
         "Prospect" : "loyalty"
       ]
       
-      Alamofire.request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject(completionHandler: { (response : Response<BELoyaltyUser, NSError>) in
           if (response.result.isSuccess) {
@@ -213,7 +214,7 @@ public class ApiCommunication {
         "Source" : "iosapp",
         "Prospect" : "loyalty"
       ]
-      Alamofire.request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseJSON {
           response in
@@ -253,7 +254,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "contact": contactId
       ]
-      Alamofire.request(.POST, BASE_URL + "/addUser/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addUser/", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -284,7 +285,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "time": "-1"
       ]
-      Alamofire.request(.POST, BASE_URL + "/authenticateUser/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/authenticateUser/", parameters: params)
         .validate(getErrorHandler("Login failed. Please try again."))
         .responseString { response in
           if (response.result.isSuccess) {
@@ -315,7 +316,7 @@ public class ApiCommunication {
    
     if (isOnline()) {
       let params = ["user": email]
-      Alamofire.request(.POST, BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -334,7 +335,7 @@ public class ApiCommunication {
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
-      Alamofire.request(.POST, BASE_URL + "/logoutUser", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/logoutUser", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -360,7 +361,7 @@ public class ApiCommunication {
         "key": self.apiKey,
         "q": contactId
       ]
-      Alamofire.request(.GET, BASE_URL + "/contacts", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
           (response : Response<[BEContact], NSError>) in
@@ -431,7 +432,7 @@ public class ApiCommunication {
       if params.count <= 1{
         handler(.Failure(.MissingParameterError()))
       } else {
-        Alamofire.request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
+        SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
           .validate(getDefaultErrorHandler())
           .responseJSON {
             response in
@@ -465,7 +466,7 @@ public class ApiCommunication {
                     "key": self.apiKey,
                     "contact": contactId
       ]
-      Alamofire.request(.POST, BASE_URL + "/bsdLoyalty/?function=updatePassword", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/?function=updatePassword", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -495,7 +496,7 @@ public class ApiCommunication {
         "key": self.apiKey,
         "Card": contactId
       ]
-      Alamofire.request(.GET, BASE_URL + "/bsdLoyalty/getOffersM.php", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdLoyalty/getOffersM.php", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<CouponResponse, NSError>) in
@@ -528,7 +529,7 @@ public class ApiCommunication {
       let params = [
         "contact": contactId
       ]
-      Alamofire.request(.POST, BASE_URL + "/bsdLoyalty/getProgress.php?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/getProgress.php?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<RewardsCountResponse, NSError>) in
@@ -560,7 +561,7 @@ public class ApiCommunication {
         "contactId" : contactId,
         "token" : token
       ]
-      Alamofire.request(.GET, BASE_URL + "/bsdPayment/list?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/list?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<GCResponse, NSError>) in
@@ -593,7 +594,7 @@ public class ApiCommunication {
         "token" : token,
         "cardNumber" : number
       ]
-      Alamofire.request(.GET, BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<GCBResponse, NSError>) in
@@ -635,7 +636,7 @@ public class ApiCommunication {
       } else {
         params["coupons"] = ""
       }
-      Alamofire.request(.GET, BASE_URL + "/bsdPayment/startPayment", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/startPayment", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<PaymentResponse, NSError>) in
@@ -675,7 +676,7 @@ public class ApiCommunication {
         params["token"] = token
       }
       
-      Alamofire.request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<StoresResponse, NSError>) in
@@ -716,7 +717,7 @@ public class ApiCommunication {
         "platform" : "iOS"
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/pushNotificationEnroll", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotificationEnroll", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : Response<PushNotificationResponse, NSError>) in
           if self.dataGenerator != nil {
@@ -757,7 +758,7 @@ public class ApiCommunication {
         "key" : self.apiKey
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/pushNotificationDelete", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotificationDelete", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : Response<PushNotificationResponse, NSError>) in
           if self.dataGenerator != nil {
@@ -798,7 +799,7 @@ public class ApiCommunication {
         "max_results": NSNumber(integer: maxResults)
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/pushNotification/getMessages", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/getMessages", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<PushNotificationMessagesResponse, NSError>) in
@@ -833,7 +834,7 @@ public class ApiCommunication {
         "action": action.rawValue
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/pushNotification/updateStatus", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/updateStatus", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<PushNotificationResponse, NSError>) in
@@ -868,7 +869,7 @@ public class ApiCommunication {
         "key" : self.apiKey
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/pushNotification/getMessageById", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/getMessageById", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<PushNotificationMessagesResponse, NSError>) in
@@ -907,7 +908,7 @@ public class ApiCommunication {
         "details" : transactionData
       ]
       
-      Alamofire.request(.GET, BASE_URL + "/bsdTransactions/add/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdTransactions/add/", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : Response<TrackTransactionResponse, NSError>) in
@@ -974,5 +975,20 @@ public class ApiCommunication {
   }
 }
 
+public class HTTPAlamofireManager: Alamofire.Manager {
+  class func getSharedInstance() -> Alamofire.Manager {
+    return Alamofire.Manager.sharedInstance
+  }
+}
 
-
+public class HTTPTimberjackManager: HTTPAlamofireManager {
+  static internal let shared: Alamofire.Manager = {
+    let configuration = Timberjack.defaultSessionConfiguration()
+    let manager = HTTPTimberjackManager(configuration: configuration)
+    return manager
+  }()
+  
+  public override class func getSharedInstance() -> Alamofire.Manager {
+    return shared
+  }
+}

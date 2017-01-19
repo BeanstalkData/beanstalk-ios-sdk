@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
 
     ns.dependency 'Alamofire', '~> 3.5.1'
+    ns.dependency 'Timberjack'
   end
 
   s.subspec 'Control' do |cns|

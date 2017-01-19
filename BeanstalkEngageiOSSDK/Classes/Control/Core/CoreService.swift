@@ -10,10 +10,11 @@ import UIKit
 import CoreLocation
 import PKHUD
 
+import Alamofire
 import BeanstalkEngageiOSSDK
 
-public class CoreService{
-  let apiService: ApiCommunication
+public class CoreService <SessionManager: HTTPAlamofireManager> {
+  let apiService: ApiCommunication<SessionManager>
   let session: BESession
   
   public required init(apiKey: String, session: BESession) {
