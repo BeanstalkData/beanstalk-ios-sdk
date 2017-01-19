@@ -12,7 +12,7 @@ import BeanstalkEngageiOSSDK
 
 
 class BaseViewController: UIViewController {
-    var coreService: CoreService<HTTPAlamofireManager>?
+    var coreService: CoreService?
     
     var completionBlock: ((success: Bool) -> Void)?
     

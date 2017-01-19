@@ -13,7 +13,9 @@ import PKHUD
 import Alamofire
 import BeanstalkEngageiOSSDK
 
-public class CoreService <SessionManager: HTTPAlamofireManager> {
+public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
+
+public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
   let apiService: ApiCommunication<SessionManager>
   let session: BESession
   

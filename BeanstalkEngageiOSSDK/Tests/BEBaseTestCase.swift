@@ -4,7 +4,7 @@ import BeanstalkEngageiOSSDK
 
 public class BEBaseTestCase: BEAsyncTestCase {
   
-  var beanstalkCoreService: CoreService<HTTPTimberjackManager>?
+  var beanstalkCoreService: CoreService?
   var session: BESession?
   
   override public func setUp() {
@@ -12,7 +12,7 @@ public class BEBaseTestCase: BEAsyncTestCase {
     
     if let _ = getMetadata() {
       session = BESession()
-      beanstalkCoreService = CoreService<HTTPTimberjackManager>(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session!)
+      beanstalkCoreService = CoreService(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session!)
     }
   }
   
@@ -21,7 +21,7 @@ public class BEBaseTestCase: BEAsyncTestCase {
     super.tearDown()
   }
   
-  public func getCoreService() -> CoreService<HTTPTimberjackManager>? {
+  public func getCoreService() -> CoreService? {
     XCTAssert(beanstalkCoreService != nil)
     return beanstalkCoreService
   }
