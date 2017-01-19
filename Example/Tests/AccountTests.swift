@@ -3,7 +3,7 @@ import XCTest
 import BeanstalkEngageiOSSDK
 import Pods_BeanstalkEngageiOSSDK_Tests
 
-class Tests: BEBaseTestCase {
+class AccountTests: BEBaseTestCase {
   
   let testsMetadata = TestsMetadata()
   
@@ -27,6 +27,60 @@ class Tests: BEBaseTestCase {
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
       XCTAssert(result, "Login request finished with error");
+      
+      if (result) {
+        coreServiceHandler.signOut() { (result) in
+          XCTAssert(result, "Logout request finished with error");
+        }
+      }
+    }
+  }
+  
+  func testLoginRegisteredUserWithValidPush() {
+    
+    let pushToken = getMetadata()!.getValidAPNSToken()
+    
+    self.getSession()?.setAPNSToken(pushToken)
+    self.getSession()?.setRegisteredAPNSToken(nil)
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error");
+      
+      XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after login")
+      XCTAssert(self.getSession()?.getRegisteredAPNSToken() == pushToken, "Invalid APNS token after login")
+      
+      if (result) {
+        coreServiceHandler.signOut() { (result) in
+          XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after logout")
+          XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil, "Invalid APNS token after logout")
+        }
+      }
+    }
+  }
+  
+  func testLoginRegisteredUserWithInvalidPush() {
+    
+    let pushToken = getMetadata()!.getInvalidAPNSToken()
+    
+    self.getSession()?.setAPNSToken(pushToken)
+    self.getSession()?.setRegisteredAPNSToken(nil)
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error");
+      
+      XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after login")
+      XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil, "Invalid APNS token after login")
+      
+      if (result) {
+        coreServiceHandler.signOut() { (result) in
+          XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after logout")
+          XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil, "Invalid APNS token after logout")
+        }
+      }
     }
   }
   
@@ -52,6 +106,12 @@ class Tests: BEBaseTestCase {
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
       
       XCTAssert(result, "Register Loyalty Account request finished with error");
+      
+      if (result) {
+        coreServiceHandler.signOut() { (result) in
+          XCTAssert(result, "Logout request finished with error");
+        }
+      }
     }
   }
   
@@ -77,6 +137,12 @@ class Tests: BEBaseTestCase {
     coreServiceHandler.registerAccount(request) { (result) in
       
       XCTAssert(result, "Register Account request finished with error");
+      
+      if (result) {
+        coreServiceHandler.signOut() { (result) in
+          XCTAssert(result, "Logout request finished with error");
+        }
+      }
     }
   }
 }

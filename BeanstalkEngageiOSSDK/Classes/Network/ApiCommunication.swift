@@ -729,7 +729,7 @@ public class ApiCommunication {
               if (result.failed()) {
                 handler(.Failure(.DataSerialization(reason: "Bad request!")))
               } else {
-                handler(.Success(nil))
+                handler(.Success(deviceToken))
               }
             }
             else {
@@ -770,7 +770,7 @@ public class ApiCommunication {
               if (result.failed()) {
                 handler(.Failure(.DataSerialization(reason: "Bad request!")))
               } else {
-                handler(.Success(nil))
+                handler(.Success("success"))
               }
             }
             else {

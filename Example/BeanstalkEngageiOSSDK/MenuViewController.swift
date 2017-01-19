@@ -62,7 +62,7 @@ class MenuViewController: UIViewController, CoreProtocol {
                                       preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Sign Out", style: .Default, handler: { (_) in
-            self.coreService.logout(self, handler: {
+            self.coreService.logout(self, handler: { (success) in
                 self.updateAuthStatus()
             })
         }))

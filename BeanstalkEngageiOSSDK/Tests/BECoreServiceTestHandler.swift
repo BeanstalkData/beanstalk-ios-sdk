@@ -42,6 +42,24 @@ public class BECoreServiceTestHandler {
     return self
   }
   
+  public func signOut(handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var signOutStatus = false
+    self.testCase.getCoreService()?.logout(nil, handler: { (success) in
+      
+      signOutStatus = success
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(signOutStatus)
+    
+    return self
+  }
+  
   public func registerLoyaltyAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()

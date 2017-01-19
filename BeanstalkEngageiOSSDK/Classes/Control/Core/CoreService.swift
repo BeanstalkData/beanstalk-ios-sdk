@@ -144,11 +144,11 @@ public class CoreService{
           
           if let deviceToken = self.session.getAPNSToken() {
             self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-              
+              handler(success: true, additionalInfo: isNovadineContact)
             })
+          } else {
+            handler(success: true, additionalInfo: isNovadineContact)
           }
-          
-          handler(success: true, additionalInfo: isNovadineContact)
         }
       })
     })
@@ -175,7 +175,7 @@ public class CoreService{
     })
   }
   
-  public func logout(controller : CoreProtocol?, handler : () -> Void){
+  public func logout(controller : CoreProtocol?, handler : (success: Bool) -> Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
     let registeredDeviceToken = session.getRegisteredAPNSToken()
@@ -186,14 +186,18 @@ public class CoreService{
       
       if registeredDeviceToken != nil {
         self.pushNotificationDelete({ (success, error) in
-          
+          handler(success: success)
         })
+        
+        self.session.setContactId(nil)
+        self.session.setAuthToke(nil)
+        
+      } else {
+        self.session.setContactId(nil)
+        self.session.setAuthToke(nil)
+        
+        handler(success: result.isSuccess)
       }
-      
-      self.session.setContactId(nil)
-      self.session.setAuthToke(nil)
-      
-      handler()
     })
   }
   

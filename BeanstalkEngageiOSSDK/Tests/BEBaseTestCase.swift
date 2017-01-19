@@ -5,12 +5,14 @@ import BeanstalkEngageiOSSDK
 public class BEBaseTestCase: BEAsyncTestCase {
   
   var beanstalkCoreService: CoreService?
+  var session: BESession?
   
   override public func setUp() {
     super.setUp()
     
     if let _ = getMetadata() {
-      beanstalkCoreService = CoreService(apiKey: getMetadata()!.getBeanstalkApiKey(), session: BESession())
+      session = BESession()
+      beanstalkCoreService = CoreService(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session!)
     }
   }
   
@@ -22,6 +24,11 @@ public class BEBaseTestCase: BEAsyncTestCase {
   public func getCoreService() -> CoreService? {
     XCTAssert(beanstalkCoreService != nil)
     return beanstalkCoreService
+  }
+  
+  public func getSession() -> BESession? {
+    XCTAssert(session != nil)
+    return session
   }
   
   // override in inherited class

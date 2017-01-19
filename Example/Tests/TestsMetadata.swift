@@ -40,4 +40,12 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     
     return contact
   }
+  
+  func getValidAPNSToken() -> String {
+    return "1212121212121212121212121212121212121212"
+  }
+  
+  func getInvalidAPNSToken() -> String {
+    return "qwerty"
+  }
 }

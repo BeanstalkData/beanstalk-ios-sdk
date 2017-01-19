@@ -14,4 +14,7 @@ public protocol BEBaseTestsMetadataProtocol: class {
   func getRegisteredUser1Email() -> String
   func getRegisteredUser1Password() -> String
   func getRegisteredUser1Contact() -> BEContact
+  
+  func getValidAPNSToken() -> String
+  func getInvalidAPNSToken() -> String
 }
