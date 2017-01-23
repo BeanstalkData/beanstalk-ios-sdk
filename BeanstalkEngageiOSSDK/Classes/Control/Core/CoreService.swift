@@ -454,11 +454,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
         
         if let deviceToken = self.session.getAPNSToken() {
           self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-            
+            handler(true)
           })
+        } else {
+          handler(true)
         }
-        
-        handler(true)
       }
     })
   }
