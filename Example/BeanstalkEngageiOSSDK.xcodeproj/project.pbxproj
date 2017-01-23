@@ -22,6 +22,7 @@
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		6C7E8E0DFDCFAB0757D82709 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
 		893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA2501E3151EE0095A44B /* AccountTests.swift */; };
+		893DA2701E36A5140095A44B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA26F1E36A5140095A44B /* SessionTests.swift */; };
 		894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894907B91E1C2E730089CB10 /* TestsMetadata.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		607FACE51AFB9204008FA782 /* BeanstalkEngageiOSSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanstalkEngageiOSSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		894907B91E1C2E730089CB10 /* TestsMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsMetadata.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				893DA2501E3151EE0095A44B /* AccountTests.swift */,
+				893DA26F1E36A5140095A44B /* SessionTests.swift */,
 				894907B91E1C2E730089CB10 /* TestsMetadata.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -403,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				893DA2701E36A5140095A44B /* SessionTests.swift in Sources */,
 				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
 				893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */,
 			);

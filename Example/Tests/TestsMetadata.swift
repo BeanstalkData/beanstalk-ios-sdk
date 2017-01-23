@@ -25,6 +25,7 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
   internal func getRegisteredUser1Contact() -> BEContact {
     let contact = BEContact()
     
+    contact.contactId = 17761827
     contact.firstName = "Pavel"
     contact.lastName = "Dv"
     contact.zipCode = "28071"
@@ -39,6 +40,12 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     contact.inboxMessageOptin = 0
     
     return contact
+  }
+  
+  internal func getRegisteredUser1GiftCard() -> BEGiftCard {
+    let card = BEGiftCard(id: "713", number : "5022440100002652373", balance : "100")
+    
+    return card
   }
   
   func getValidAPNSToken() -> String {

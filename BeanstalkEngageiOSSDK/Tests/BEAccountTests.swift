@@ -20,6 +20,9 @@ public class BEAccountTests: BEBaseTestCase {
   
   public func loginRegisteredUserTest() {
     
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
@@ -34,6 +37,9 @@ public class BEAccountTests: BEBaseTestCase {
   }
   
   public func loginRegisteredUserWithValidPushTest() {
+    
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
     
     let pushToken = getMetadata()!.getValidAPNSToken()
     
@@ -59,6 +65,9 @@ public class BEAccountTests: BEBaseTestCase {
   
   public func loginRegisteredUserWithInvalidPushTest() {
     
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
     let pushToken = getMetadata()!.getInvalidAPNSToken()
     
     self.getSession()?.setAPNSToken(pushToken)
@@ -82,6 +91,9 @@ public class BEAccountTests: BEBaseTestCase {
   }
   
   public func registerLoyaltyAccountTest() {
+    
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
     
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
@@ -113,6 +125,9 @@ public class BEAccountTests: BEBaseTestCase {
   }
   
   public func registerAccountTest() {
+    
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
     
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     

@@ -52,7 +52,14 @@ public class BEGiftCard : Mappable {
     balance = storage.valueForKey(BEGiftCard.kBalance) as? String
   }
   
-  func save(storage : NSUserDefaults){
+  class func clear(storage : NSUserDefaults) {
+    storage.setValue(nil, forKey: BEGiftCard.kId)
+    storage.setValue(nil, forKey: BEGiftCard.kNumber)
+    storage.setValue(nil, forKey: BEGiftCard.kBalance)
+    storage.synchronize()
+  }
+  
+  func save(storage : NSUserDefaults) {
     storage.setValue(id, forKey: BEGiftCard.kId)
     storage.setValue(number, forKey: BEGiftCard.kNumber)
     storage.setValue(balance, forKey: BEGiftCard.kBalance)

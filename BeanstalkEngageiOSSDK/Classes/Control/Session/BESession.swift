@@ -13,6 +13,18 @@ public class BESession {
   public init() {
   }
   
+  public func clearSession() {
+    setContactId(nil)
+    setAuthToke(nil)
+    saveDefaultCard(nil)
+    setRegisteredAPNSToken(nil)
+  }
+  
+  public func clearApnsTokens() {
+    setAPNSToken(nil)
+    setRegisteredAPNSToken(nil)
+  }
+  
   public func getContactId() -> String? {
     let prefs = NSUserDefaults.standardUserDefaults()
     return prefs.valueForKey(DataKeys.CONTACT_KEY) as? String
@@ -68,9 +80,13 @@ public class BESession {
     return giftCard
   }
   
-  public func saveDefaultCard(card : BEGiftCard){
+  public func saveDefaultCard(card : BEGiftCard?){
     let prefs = NSUserDefaults.standardUserDefaults()
-    card.save(prefs)
+    if (card != nil) {
+      card?.save(prefs)
+    } else {
+      BEGiftCard.clear(prefs)
+    }
     prefs.synchronize()
   }
   
