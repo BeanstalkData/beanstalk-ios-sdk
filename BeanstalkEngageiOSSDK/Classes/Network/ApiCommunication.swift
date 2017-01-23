@@ -335,7 +335,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/logoutUser", parameters: params)
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/logoutUser/", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
