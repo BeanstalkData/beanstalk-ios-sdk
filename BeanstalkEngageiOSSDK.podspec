@@ -48,6 +48,9 @@ Pod::Spec.new do |s|
     ts.dependency 'BeanstalkEngageiOSSDK/Model'
     ts.dependency 'BeanstalkEngageiOSSDK/Network'
     ts.dependency 'BeanstalkEngageiOSSDK/Control'
+
+    ts.dependency 'CCTestingUserDefaults'
+
     ts.framework = 'XCTest'
   end
 

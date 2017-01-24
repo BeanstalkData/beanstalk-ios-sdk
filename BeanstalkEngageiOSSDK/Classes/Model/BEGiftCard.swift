@@ -1,3 +1,4 @@
+
 //
 //  BEGiftCard.swift
 //  Pods
@@ -12,9 +13,9 @@ import ObjectMapper
 
 public class BEGiftCard : Mappable {
   public static let kDefaultBalance = "$0.00"
-  private static let kId = "_id"
-  private static let kNumber = "_number"
-  private static let kBalance = "_balance"
+  private static let kId = "BEGiftCard" + "_id"
+  private static let kNumber = "BEGiftCard" + "_number"
+  private static let kBalance = "BEGiftCard" + "_balance"
   public var id: String?
   public var number: String?
   public var balance: String?
@@ -44,25 +45,29 @@ public class BEGiftCard : Mappable {
   }
   
   init?(storage : NSUserDefaults){
-    id = storage.valueForKey(BEGiftCard.kId) as? String
+    id = storage.objectForKey(BEGiftCard.kId) as? String
     if id == nil {
       return nil
     }
-    number = storage.valueForKey(BEGiftCard.kNumber) as? String
-    balance = storage.valueForKey(BEGiftCard.kBalance) as? String
+    number = storage.objectForKey(BEGiftCard.kNumber) as? String
+    balance = storage.objectForKey(BEGiftCard.kBalance) as? String
   }
   
   class func clear(storage : NSUserDefaults) {
-    storage.setValue(nil, forKey: BEGiftCard.kId)
-    storage.setValue(nil, forKey: BEGiftCard.kNumber)
-    storage.setValue(nil, forKey: BEGiftCard.kBalance)
+    storage.setObject(nil, forKey: BEGiftCard.kId)
+    if storage.objectForKey(BEGiftCard.kId) != nil {
+      let nErr = 1
+    }
+    
+    storage.setObject(nil, forKey: BEGiftCard.kNumber)
+    storage.setObject(nil, forKey: BEGiftCard.kBalance)
     storage.synchronize()
   }
   
   func save(storage : NSUserDefaults) {
-    storage.setValue(id, forKey: BEGiftCard.kId)
-    storage.setValue(number, forKey: BEGiftCard.kNumber)
-    storage.setValue(balance, forKey: BEGiftCard.kBalance)
+    storage.setObject(id, forKey: BEGiftCard.kId)
+    storage.setObject(number, forKey: BEGiftCard.kNumber)
+    storage.setObject(balance, forKey: BEGiftCard.kBalance)
     storage.synchronize()
   }
   

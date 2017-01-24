@@ -8,7 +8,9 @@
 
 import Foundation
 
-public class BESession {
+public typealias BESession = BESessionT<BEUserDefaults>
+
+public class BESessionT<UserDefaults: BEUserDefaults> {
   
   public init() {
   }
@@ -26,51 +28,68 @@ public class BESession {
   }
   
   public func getContactId() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.CONTACT_KEY) as? String
+    let prefs = UserDefaults.getTransientDefaults()
+    return prefs.objectForKey(DataKeys.CONTACT_KEY) as? String
   }
   
   public func setContactId(contactId: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(contactId, forKey: DataKeys.CONTACT_KEY)
+    let prefs = UserDefaults.getTransientDefaults()
+    if contactId != nil {
+      prefs.setObject(contactId, forKey: DataKeys.CONTACT_KEY)
+    } else {
+      prefs.removeObjectForKey(DataKeys.CONTACT_KEY)
+    }
+    
     prefs.synchronize()
   }
   
   public func getAuthToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.TOKEN_KEY) as? String
+    let prefs = UserDefaults.getTransientDefaults()
+    return prefs.objectForKey(DataKeys.TOKEN_KEY) as? String
   }
   
   public func setAuthToke(token: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(token, forKey: DataKeys.TOKEN_KEY)
+    let prefs = UserDefaults.getTransientDefaults()
+    if token != nil {
+      prefs.setObject(token, forKey: DataKeys.TOKEN_KEY)
+    } else {
+      prefs.removeObjectForKey(DataKeys.TOKEN_KEY)
+    }
     prefs.synchronize()
   }
   
   public func getAPNSToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.DEVICE_TOKEN) as? String
+    let prefs = UserDefaults.getTransientDefaults()
+    return prefs.objectForKey(DataKeys.DEVICE_TOKEN) as? String
   }
   
   public func setAPNSToken(apnsToken: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
+    let prefs = UserDefaults.getTransientDefaults()
+    if (apnsToken != nil) {
+      prefs.setObject(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
+    } else {
+      prefs.removeObjectForKey(DataKeys.DEVICE_TOKEN)
+    }
     prefs.synchronize()
   }
   
   public func getRegisteredAPNSToken() -> String? {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    return prefs.valueForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
+    let prefs = UserDefaults.getTransientDefaults()
+    return prefs.objectForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
   }
   
   public func setRegisteredAPNSToken(apnsToken: String?) {
-    let prefs = NSUserDefaults.standardUserDefaults()
-    prefs.setValue(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
+    let prefs = UserDefaults.getTransientDefaults()
+    if apnsToken != nil {
+      prefs.setObject(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
+    } else {
+      prefs.removeObjectForKey(DataKeys.REGISTERED_DEVICE_TOKEN)
+    }
     prefs.synchronize()
   }
   
   public func getDefaultCard() -> BEGiftCard? {
-    let prefs = NSUserDefaults.standardUserDefaults()
+    let prefs = UserDefaults.getTransientDefaults()
     var giftCard = BEGiftCard(storage: prefs)
     
     if giftCard?.id == nil {
@@ -81,7 +100,7 @@ public class BESession {
   }
   
   public func saveDefaultCard(card : BEGiftCard?){
-    let prefs = NSUserDefaults.standardUserDefaults()
+    let prefs = UserDefaults.getTransientDefaults()
     if (card != nil) {
       card?.save(prefs)
     } else {
@@ -89,11 +108,17 @@ public class BESession {
     }
     prefs.synchronize()
   }
-  
-  private struct DataKeys{
-    static let TOKEN_KEY = "_token"
-    static let CONTACT_KEY = "_contact_id"
-    static let DEVICE_TOKEN = "_device_token"
-    static let REGISTERED_DEVICE_TOKEN = "_registered_device_token"
+}
+
+public class BEUserDefaults: NSUserDefaults {
+  public class func getTransientDefaults() -> NSUserDefaults {
+    return NSUserDefaults.standardUserDefaults()
   }
+}
+
+private struct DataKeys{
+  static let TOKEN_KEY = "_token"
+  static let CONTACT_KEY = "_contact_id"
+  static let DEVICE_TOKEN = "_device_token"
+  static let REGISTERED_DEVICE_TOKEN = "_registered_device_token"
 }

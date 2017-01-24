@@ -1,0 +1,6 @@
+framework module CCTestingUserDefaults {
+  umbrella header "CCTestingUserDefaults-umbrella.h"
+
+  export *
+  module * { export * }
+}

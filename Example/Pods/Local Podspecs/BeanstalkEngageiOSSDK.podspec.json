@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.3.7"
+    "tag": "0.3.8"
   },
   "platforms": {
     "ios": "8.0"
@@ -86,6 +86,9 @@
 
         ],
         "BeanstalkEngageiOSSDK/Control": [
+
+        ],
+        "CCTestingUserDefaults": [
 
         ]
       },
