@@ -192,12 +192,9 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
           handler(success: success)
         })
         
-        self.session.setContactId(nil)
-        self.session.setAuthToke(nil)
-        
+        self.session.clearSession()
       } else {
-        self.session.setContactId(nil)
-        self.session.setAuthToke(nil)
+        self.session.clearSession()
         
         handler(success: result.isSuccess)
       }
