@@ -34,7 +34,7 @@ public enum ApiError: ErrorType {
   
   //MARK: error title / message
   
-  func errorTitle() -> String? {
+  public func errorTitle() -> String? {
     var errorTitle: String?
     
     switch self {
@@ -83,7 +83,7 @@ public enum ApiError: ErrorType {
     return errorTitle
   }
   
-  func errorMessage() -> String? {
+  public func errorMessage() -> String? {
     var errorMessage: String?
     
     switch self {
