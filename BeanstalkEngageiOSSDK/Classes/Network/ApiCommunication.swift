@@ -29,7 +29,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     return self.reachabilityManager.isReachable
   }
   
-  func checkContactsByEmailExisted(email: String, handler: (Result<Bool, ApiError>) -> Void) {
+  func checkContactsByEmailExisted(email: String, prospectTypes: [ProspectType], handler: (Result<Bool, ApiError>) -> Void) {
     if (isOnline()) {
       let params = ["type": "email",
                     "key": self.apiKey,
@@ -56,8 +56,15 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
               }
               if let contact = data[0] as? [String : AnyObject]{
                 if let prospect = contact["Prospect"] as? String {
-                  if ("eclub".caseInsensitiveCompare(prospect) == NSComparisonResult.OrderedSame ||
-                    "loyalty".caseInsensitiveCompare(prospect) == NSComparisonResult.OrderedSame) {
+                  var exists = false
+                  for prospectType in prospectTypes {
+                    if prospectType == prospect {
+                      exists = true
+                      break
+                    }
+                  }
+                  
+                  if exists {
                     handler(.Success(true))
                     return
                   }
@@ -991,4 +998,15 @@ public class HTTPTimberjackManager: HTTPAlamofireManager {
   public override class func getSharedInstance() -> Alamofire.Manager {
     return shared
   }
+}
+
+public enum ProspectType: String {
+  case Loyalty = "loyalty"
+  case eClub = "eclub"
+}
+
+func ==(left: ProspectType, right: String) -> Bool {
+  let strValue = left.rawValue
+  
+  return strValue.caseInsensitiveCompare(right) == NSComparisonResult.OrderedSame
 }

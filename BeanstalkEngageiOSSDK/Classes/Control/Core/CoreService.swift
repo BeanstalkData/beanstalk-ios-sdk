@@ -76,7 +76,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         }
       })
     } else {
-      apiService.checkContactsByEmailExisted(request.email!, handler: { (result) in
+      apiService.checkContactsByEmailExisted(request.email!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
         
         if result.isFailure {
           controller?.hideProgress()
@@ -199,6 +199,25 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         handler(success: result.isSuccess)
       }
     })
+  }
+  
+  func checkContactsByEmailExisted(
+    controller: CoreProtocol?,
+    email: String,
+    prospectTypes: [ProspectType],
+    handler : (Bool?) -> Void
+    ) {
+    controller?.showProgress("Checking email")
+    apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        controller?.showMessage(.UserEmailExists(reason: result.error!))
+        handler(nil)
+      } else {
+        handler(result.value!)
+      }
+    }
   }
   
   public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void){
