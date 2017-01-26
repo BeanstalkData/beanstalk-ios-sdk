@@ -201,7 +201,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  func checkContactsByEmailExisted(
+  public func checkContactsByEmailExisted(
     controller: CoreProtocol?,
     email: String,
     prospectTypes: [ProspectType],
