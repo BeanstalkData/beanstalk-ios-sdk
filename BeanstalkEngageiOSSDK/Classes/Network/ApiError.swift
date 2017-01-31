@@ -50,7 +50,7 @@ public enum ApiError: ErrorType {
       errorTitle = "Connection Failed"
     
     case .AuthenticatFailed(let reason):
-      errorTitle = "Login Error"
+      errorTitle = "Login Failed"
     case .RegistrationFailed(let reason):
       errorTitle = "Registration Error"
     case .UserEmailExists(let reason):
@@ -99,7 +99,7 @@ public enum ApiError: ErrorType {
       errorMessage = "Connection unavailable"
     
     case .AuthenticatFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
+      errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .RegistrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
       break
