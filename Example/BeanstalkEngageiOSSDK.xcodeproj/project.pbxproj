@@ -24,6 +24,7 @@
 		893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA2501E3151EE0095A44B /* AccountTests.swift */; };
 		893DA2701E36A5140095A44B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA26F1E36A5140095A44B /* SessionTests.swift */; };
 		894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894907B91E1C2E730089CB10 /* TestsMetadata.swift */; };
+		896623E61E449DF70015698C /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623E51E449DF70015698C /* StoresTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		894907B91E1C2E730089CB10 /* TestsMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsMetadata.swift; sourceTree = "<group>"; };
+		896623E51E449DF70015698C /* StoresTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTests.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBD98C60E5D745C6627B2FCE /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				893DA2501E3151EE0095A44B /* AccountTests.swift */,
 				893DA26F1E36A5140095A44B /* SessionTests.swift */,
+				896623E51E449DF70015698C /* StoresTests.swift */,
 				894907B91E1C2E730089CB10 /* TestsMetadata.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -409,6 +412,7 @@
 				893DA2701E36A5140095A44B /* SessionTests.swift in Sources */,
 				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
 				893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */,
+				896623E61E449DF70015698C /* StoresTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

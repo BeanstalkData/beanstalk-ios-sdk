@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import XCTest
 
 public class BECoreServiceTestHandler {
@@ -92,6 +93,28 @@ public class BECoreServiceTestHandler {
     self.testCase.wait()
     
     handler(registerStatus)
+    
+    return self
+  }
+  
+  // Stores
+  
+  public func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
+    self.testCase.prepare()
+    
+    var locationStatus = false
+    var locationStores: [BEStore]? = nil
+    self.testCase.getCoreService()?.getStoresAtLocation(nil, coordinate: coordinate, handler: { (success, stores) in
+      
+      locationStatus = success
+      locationStores = stores
+      
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(locationStatus, locationStores)
     
     return self
   }

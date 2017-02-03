@@ -432,9 +432,9 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   
   //MARK: - Locations
   
-  public func getStoresAtLocation(controller : CoreProtocol?, coordinate: CLLocationCoordinate2D, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
-    let longitude = "\(coordinate.longitude)"
-    let latitude = "\(coordinate.latitude)"
+  public func getStoresAtLocation(controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
+    let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
+    let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = session.getAuthToken()
     
     controller?.showProgress("Retrieving Stores")

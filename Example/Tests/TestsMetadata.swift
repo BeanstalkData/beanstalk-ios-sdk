@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import BeanstalkEngageiOSSDK
 
 class TestsMetadata: BEBaseTestsMetadataProtocol {
@@ -54,5 +55,19 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
   
   func getInvalidAPNSToken() -> String {
     return "qwerty"
+  }
+  
+  func getValidLocationCoordinate() -> CLLocationCoordinate2D? {
+    var coordinate = CLLocationCoordinate2D()
+    
+    // Concord coordinates
+    coordinate.longitude = -80.579510
+    coordinate.latitude = 35.408752
+    
+    return coordinate
+  }
+  
+  func getInvalidLocationCoordinate() -> CLLocationCoordinate2D? {
+    return nil
   }
 }

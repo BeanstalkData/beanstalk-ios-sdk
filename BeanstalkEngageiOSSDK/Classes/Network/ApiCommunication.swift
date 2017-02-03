@@ -671,16 +671,21 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   
   //MARK: - Locations
   
-  func getStoresAtLocation(longitude: String, latitude: String, token : String?, handler : (Result<[BEStore]?, ApiError>) -> Void) {
+  func getStoresAtLocation(longitude: String?, latitude: String?, token : String?, handler : (Result<[BEStore]?, ApiError>) -> Void) {
     
     if (isOnline()) {
-      var params = [
-        "long" : longitude,
-        "lat" : latitude
-      ]
+      
+      var params = Dictionary<String, String>()
+      if longitude != nil {
+        params["long"] = longitude!
+      }
+      
+      if latitude != nil {
+        params["lat"] = latitude!
+      }
       
       if (token != nil) {
-        params["token"] = token
+        params["token"] = token!
       }
       
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)

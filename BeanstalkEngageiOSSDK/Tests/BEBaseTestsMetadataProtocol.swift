@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public protocol BEBaseTestsMetadataProtocol: class {
   func getBeanstalkApiKey() -> String
@@ -18,4 +19,7 @@ public protocol BEBaseTestsMetadataProtocol: class {
   
   func getValidAPNSToken() -> String
   func getInvalidAPNSToken() -> String
+  
+  func getValidLocationCoordinate() -> CLLocationCoordinate2D?
+  func getInvalidLocationCoordinate() -> CLLocationCoordinate2D?
 }
