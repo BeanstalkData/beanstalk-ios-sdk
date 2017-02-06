@@ -220,11 +220,15 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void){
+  public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void) {
+    self.getContact(controller, contactClass: BEContact.self, handler: handler)
+  }
+  
+  public func getContact <ContactClass: BEContact> (controller : CoreProtocol?, contactClass: ContactClass.Type, handler : (BEContact?) -> Void) {
     let contactId = session.getContactId()!
 
     controller?.showProgress("Retrieving Profile")
-    apiService.getContact(contactId, handler: { (result) in
+    apiService.getContact(contactId, contactClass: contactClass, handler: { (result) in
       controller?.hideProgress()
       
       if result.isFailure {
@@ -286,20 +290,23 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   }
   
   public func getAvailableRewards(controller : CoreProtocol?, handler : ([BECoupon])->Void){
+    self.getAvailableRewards(controller, couponClass: BECoupon.self, handler: handler)
+  }
+  
+  public func getAvailableRewards <CouponClass: BECoupon> (controller : CoreProtocol?, couponClass: CouponClass.Type, handler : ([BECoupon])->Void){
     let contactId = session.getContactId()!
     
     controller?.showProgress("Retrieving Rewards")
-    apiService.getUserOffers(contactId, handler : { (result) in
+    apiService.getUserOffers(contactId, couponClass: couponClass, handler : { (result) in
       controller?.hideProgress()
       
-      var rewards = [BECoupon]()
       if result.isFailure {
         controller?.showMessage(result.error!)
+        handler([])
       } else {
-        rewards = result.value!
+        let rewards = result.value!
+        handler(rewards)
       }
-      
-      handler(rewards)
     })
   }
   
@@ -337,11 +344,15 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   }
   
   public func getGiftCards(controller : CoreProtocol?, handler : ([BEGiftCard])->Void){
+    self.getGiftCards(controller, giftCardClass: BEGiftCard.self, handler: handler)
+  }
+  
+  public func getGiftCards <GiftCardClass: BEGiftCard> (controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : ([BEGiftCard])->Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
     
     controller?.showProgress("Retrieving Cards")
-    apiService.getGiftCards(contactId, token: token, handler: { (result) in
+    apiService.getGiftCards(contactId, token: token, giftCardClass: giftCardClass, handler: { (result) in
       controller?.hideProgress()
       
       if result.isFailure {
@@ -429,16 +440,18 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     self.session.setRegisteredAPNSToken(nil)
   }
   
-  
   //MARK: - Locations
-  
   public func getStoresAtLocation(controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
+    self.getStoresAtLocation(controller, coordinate: coordinate, storeClass: BEStore.self, handler: handler)
+  }
+  
+  public func getStoresAtLocation <StoreClass: BEStore> (controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : ((success: Bool, stores : [BEStore]?) -> Void)) {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = session.getAuthToken()
     
     controller?.showProgress("Retrieving Stores")
-    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, handler: { (result) in
+    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, storeClass: storeClass, handler: { (result) in
       controller?.hideProgress()
       
       if result.isFailure {

@@ -362,7 +362,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func getContact(contactId: String, handler: (Result<BEContact?, ApiError>) -> Void) {
+  func getContact <ContactClass: BEContact> (contactId: String, contactClass: ContactClass.Type, handler: (Result<BEContact?, ApiError>) -> Void) {
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
@@ -371,7 +371,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
-          (response : Response<[BEContact], NSError>) in
+          (response : Response<[ContactClass], NSError>) in
           if (response.result.isSuccess) {
             if let data = response.result.value  where data.count == 1 {
               handler(.Success(data[0]))
@@ -496,7 +496,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func getUserOffers(contactId : String, handler : (Result<[BECoupon], ApiError>)->Void){
+  func getUserOffers <CouponClass: BECoupon> (contactId : String, couponClass: CouponClass.Type, handler : (Result<[BECoupon], ApiError>)->Void){
     
     if (isOnline()) {
       let params = [
@@ -506,7 +506,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdLoyalty/getOffersM.php", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<CouponResponse, NSError>) in
+          (response : Response<CouponResponse<CouponClass>, NSError>) in
           if self.dataGenerator != nil {
             let coupons: [BECoupon] = (self.dataGenerator!.getUserOffers().coupons != nil) ? self.dataGenerator!.getUserOffers().coupons! : []
             handler(.Success(coupons))
@@ -561,7 +561,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func getGiftCards(contactId: String, token : String, handler : (Result<[BEGiftCard], ApiError>) -> Void) {
+  func getGiftCards <GiftCardClass: BEGiftCard> (contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : (Result<[BEGiftCard], ApiError>) -> Void) {
     
     if (isOnline()) {
       let params = [
@@ -571,7 +571,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/list?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<GCResponse, NSError>) in
+          (response : Response<GCResponse<GiftCardClass>, NSError>) in
           if self.dataGenerator != nil {
             handler(.Success(self.dataGenerator!.getUserGiftCards().getCards()!))
           } else {
@@ -671,7 +671,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   
   //MARK: - Locations
   
-  func getStoresAtLocation(longitude: String?, latitude: String?, token : String?, handler : (Result<[BEStore]?, ApiError>) -> Void) {
+  func getStoresAtLocation <StoreClass: BEStore> (longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : (Result<[BEStore]?, ApiError>) -> Void) {
     
     if (isOnline()) {
       
@@ -691,7 +691,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<StoresResponse, NSError>) in
+          (response : Response<StoresResponse<StoreClass>, NSError>) in
           
           if (response.result.isSuccess) {
             if let data = response.result.value {

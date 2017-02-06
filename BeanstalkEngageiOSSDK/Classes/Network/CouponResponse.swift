@@ -9,11 +9,11 @@ import Foundation
 import ObjectMapper
 
 
-public class CouponResponse : Mappable {
-  var coupons: [BECoupon]?
+public class CouponResponse <CouponClass: BECoupon> : Mappable {
+  var coupons: [CouponClass]?
   
   //for mocks only
-  init(coupons: [BECoupon]) {
+  init(coupons: [CouponClass]) {
     self.coupons = coupons
   }
   

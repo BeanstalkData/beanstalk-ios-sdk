@@ -15,7 +15,7 @@ class MockDataGenerator {
     "http://d1ivierdlu2fd9.cloudfront.net/260/30154.png",
     "http://d1ivierdlu2fd9.cloudfront.net/260/30155.png"];
   
-  func getUserOffers () -> CouponResponse {
+  func getUserOffers () -> CouponResponse<BECoupon> {
     
     let  formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

@@ -14,10 +14,10 @@ public protocol StoresResponseProtocol {
   func getStores() -> [BEStore]?
 }
 
-public class StoresResponse : Mappable, StoresResponseProtocol {
+public class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtocol {
   private var status : Bool?
   
-  var stores : [BEStore]?
+  var stores : [StoreClass]?
   
   required public init?(_ map: Map) {
     

@@ -15,10 +15,10 @@ public protocol GiftCardsResponse {
   
 }
 
-public class GCResponse : Mappable, GiftCardsResponse {
+public class GCResponse <GiftCardClass: BEGiftCard> : Mappable, GiftCardsResponse {
   private var status : Bool?
   
-  private var response : GCDataResponse?
+  private var response : GCDataResponse<GiftCardClass>?
   
   required public init?(_ map: Map) {
     
@@ -49,10 +49,10 @@ public class GCResponse : Mappable, GiftCardsResponse {
   }
 }
 
-public class GCDataResponse : Mappable{
+public class GCDataResponse <GiftCardClass: BEGiftCard> : Mappable{
   
   var code : Int?
-  var message : GCDataMessage?
+  var message : GCDataMessage<GiftCardClass>?
   
   required public init?(_ map: Map) {
     
@@ -64,8 +64,8 @@ public class GCDataResponse : Mappable{
   }
 }
 
-public class GCDataMessage : Mappable {
-  var response : GCDataList?
+public class GCDataMessage <GiftCardClass: BEGiftCard> : Mappable {
+  var response : GCDataList<GiftCardClass>?
   
   required public init?(_ map: Map) {
     
@@ -76,9 +76,9 @@ public class GCDataMessage : Mappable {
   }
 }
 
-public class GCDataList : Mappable{
+public class GCDataList <GiftCardClass: BEGiftCard>  : Mappable{
   var success : Bool?
-  var cards : [BEGiftCard]?
+  var cards : [GiftCardClass]?
   
   required public init?(_ map: Map) {
     
