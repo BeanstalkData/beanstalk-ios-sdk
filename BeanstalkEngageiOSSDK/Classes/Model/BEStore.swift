@@ -68,7 +68,7 @@ public class BEStore : Mappable {
   }
   
   public func getStoreName() -> String {
-    let storeName = "***REMOVED***" + (self.storeId != nil ? " #\(storeId!)" : "")
+    let storeName = "Store" + (self.storeId != nil ? " #\(storeId!)" : "")
     
     return storeName
   }
