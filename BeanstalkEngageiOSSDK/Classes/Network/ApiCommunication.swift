@@ -320,7 +320,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   }
   
   func resetPassword(email: String, handler: (Result<String?, ApiError>) -> Void) {
-   
+    
     if (isOnline()) {
       let params = ["user": email]
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, parameters: params)
@@ -328,7 +328,11 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         .responseString {
           response in
           if (response.result.isSuccess) {
-            handler(.Success(response.result.value))
+            if response.result.value?.characters.count > 0 {
+              handler(.Failure(.ResetPasswordError(reason: response.result.value)))
+            } else {
+              handler(.Success(response.result.value))
+            }
           } else {
             handler(.Failure(.Network(error: response.result.error)))
           }

@@ -1,6 +1,7 @@
 import UIKit
 import XCTest
 
+import ObjectMapper
 import Timberjack
 
 public class BEAccountTests: BEBaseTestCase {
@@ -88,6 +89,44 @@ public class BEAccountTests: BEBaseTestCase {
         }
       }
     }
+  }
+  
+  public func resetPasswordTest() {
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.resetPassword("invalidEmail@InvalidEmail.com") { (result) in
+      XCTAssert(result == false, "Success reset password for invalid user email")
+      
+      coreServiceHandler.resetPassword(self.getMetadata()!.getRegisteredUserEmail()) { (result) in
+        XCTAssert(result == true, "Failed to reset password for valid user email")
+      }
+    }
+  }
+  
+  public func newLoyaltyAccountTest() {
+    let JSON: [String: AnyObject] = [
+      "giftCardTrack2" : ";5022111100001111222=12344321111111?",
+      "contactId" : "12341234",
+      "sessionToken" : "42f5481997c18f778c973170c3ad4317f7eeb830",
+      "giftCardNumber" : "5022111100001111222",
+      "giftCardRegistrationStatus" : true,
+      "giftCardPin" : NSNull()
+    ]
+    
+    self.newLoyaltyAccountTest(JSON)
+  }
+  
+  public func newLoyaltyAccountTest(JSON: [String: AnyObject]) {
+    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
+    
+    var loyaltyAccount = BELoyaltyUser(map)
+    
+    XCTAssert(loyaltyAccount!.contactId == JSON["contactId"] as? String, "Loyalty account object is invalid")
+    XCTAssert(loyaltyAccount!.sessionToken == JSON["sessionToken"] as? String, "Loyalty account object is invalid")
+    XCTAssert(loyaltyAccount!.giftCardNumber == JSON["giftCardNumber"] as? String, "Loyalty account object is invalid")
+    XCTAssert(loyaltyAccount!.giftCardPin == JSON["giftCardPin"] as? String, "Loyalty account object is invalid")
+    XCTAssert(loyaltyAccount!.giftCardRegistrationStatus == JSON["giftCardRegistrationStatus"]  as? Bool, "Loyalty account object is invalid")
+    XCTAssert(loyaltyAccount!.giftCardTrack2 == JSON["giftCardTrack2"] as? String, "Loyalty account object is invalid")
   }
   
   public func registerLoyaltyAccountTest() {

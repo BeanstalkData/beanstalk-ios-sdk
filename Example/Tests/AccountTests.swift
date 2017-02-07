@@ -29,8 +29,16 @@ class AccountTests: BEAccountTests {
     loginRegisteredUserWithInvalidPushTest()
   }
   
+  func testResetPassword() {
+    resetPasswordTest()
+  }
+  
   func testRegisterLoyaltyAccount() {
     registerLoyaltyAccountTest()
+  }
+  
+  func testNewLoyaltyAccount() {
+    newLoyaltyAccountTest()
   }
   
   func testRegisterAccount() {

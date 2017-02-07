@@ -61,6 +61,24 @@ public class BECoreServiceTestHandler {
     return self
   }
   
+  public func resetPassword(email: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var resetPasswordStatus = false
+    self.testCase.getCoreService()?.resetPassword(nil, email: email, handler: { (result) in
+      
+      resetPasswordStatus = result
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(resetPasswordStatus)
+    
+    return self
+  }
+  
   public func registerLoyaltyAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()

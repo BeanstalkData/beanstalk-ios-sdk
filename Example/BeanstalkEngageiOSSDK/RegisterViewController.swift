@@ -71,15 +71,15 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
         request.emailOptIn = self.optEmailCheckBox.on
         request.preferredReward = ""
         request.male = self.genderSegmentView.selectedSegmentIndex == 0 ? true : false
-      
-//        self.coreService?.register(self, request: request, handler: { (success) in
-//          self.completionBlock?(success: success)
-//        })
-      
-        self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
-            success in
-            self.completionBlock?(success: success)
+        
+        self.coreService?.register(self, request: request, handler: { (success) in
+          self.completionBlock?(success: success)
         })
+      
+//        self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
+//            success in
+//            self.completionBlock?(success: success)
+//        })
     }
     
     

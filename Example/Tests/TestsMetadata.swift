@@ -15,26 +15,30 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     return "1234-4321-ABCD-DCBA"
   }
   
-  internal func getRegisteredUser1Email() -> String {
+  internal func getRegisteredUserEmail() -> String {
     return "pavel105@dp.net"
   }
   
+  internal func getRegisteredUser1Email() -> String {
+    return "test@email.com"
+  }
+  
   internal func getRegisteredUser1Password() -> String {
-    return "qazwsxe"
+    return "qazwsxed"
   }
   
   internal func getRegisteredUser1Contact() -> BEContact {
     let contact = BEContact()
     
     contact.contactId = 17761827
-    contact.firstName = "Pavel"
-    contact.lastName = "Dv"
+    contact.firstName = "John"
+    contact.lastName = "Apple"
     contact.zipCode = "28071"
     contact.email = getRegisteredUser1Email()
     contact.prospect = "loyalty"
     contact.gender = "Male"
     contact.birthday = "1996-01-18"
-    contact.phone = "8774655555"
+    contact.phone = "8774655554"
     contact.textOptin = 0
     contact.emailOptin = 0
     contact.pushNotificationOptin = 0

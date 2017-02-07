@@ -157,10 +157,10 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  public func resetPassword(controller: AuthenticationProtocol?, email : String?, handler : () -> Void) {
+  public func resetPassword(controller: AuthenticationProtocol?, email : String?, handler : (success: Bool) -> Void) {
     if controller != nil {
       guard controller!.validate(email, password: "123456") else{
-        handler()
+        handler(success: false)
         return
       }
     }
@@ -174,7 +174,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         controller?.showMessage("Password reset", message: result.value!)
       }
       
-      handler()
+      handler(success: !result.isFailure)
     })
   }
   
