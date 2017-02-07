@@ -52,4 +52,8 @@ class AccountTests: BEAccountTests {
   func testGetContact() {
     getContactTest(ContactModel.self)
   }
+  
+  func testUpdateContact() {
+    updateContactTest(ContactModel.self)
+  }
 }

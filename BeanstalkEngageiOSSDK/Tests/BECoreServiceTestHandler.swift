@@ -149,6 +149,25 @@ public class BECoreServiceTestHandler {
     return self
   }
 
+  public func updateContact(contact: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var updateStatus = false
+    self.testCase.getCoreService()?.updateContact(nil, original: contact, request : request, handler : { result in
+
+      updateStatus = result
+
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(updateStatus)
+    
+    return self
+  }
+  
   public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()

@@ -421,7 +421,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       }
       
       if request.preferredReward != original.preferredReward{
-        params["custom_PreferredReward"] = request.preferredReward!
+        params["custom_PreferredReward"] = request.preferredReward! 
       }
       
       if request.emailOptIn != (original.emailOptin == 1) {
