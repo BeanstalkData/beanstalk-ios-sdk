@@ -103,6 +103,31 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
+  public func updatePasswordTest() {
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error")
+      
+      if (result) {
+        coreServiceHandler.updatePassword(self.getMetadata()!.getRegisteredUser1Password(), handler: { (result) in
+          XCTAssert(result, "Update password request finished with error")
+          
+          if (result) {
+            coreServiceHandler.updatePassword("testPassword", handler: { (result) in
+              XCTAssert(result, "Update password request finished with error")
+              
+              coreServiceHandler.updatePassword(self.getMetadata()!.getRegisteredUser1Password(), handler: { (result) in
+                XCTAssert(result, "Update password request finished with error")
+                
+              })
+            })
+          }
+        })
+      }
+    }
+  }
+  
   public func newLoyaltyAccountTest() {
     let JSON: [String: AnyObject] = [
       "giftCardTrack2" : ";5022111100001111222=12344321111111?",

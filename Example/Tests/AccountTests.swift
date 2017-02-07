@@ -33,6 +33,10 @@ class AccountTests: BEAccountTests {
     resetPasswordTest()
   }
   
+  func testUpdatePassword() {
+    updatePasswordTest()
+  }
+  
   func testRegisterLoyaltyAccount() {
     registerLoyaltyAccountTest()
   }

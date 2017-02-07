@@ -79,6 +79,23 @@ public class BECoreServiceTestHandler {
     return self
   }
   
+  public func updatePassword(password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var updatePasswordStatus = false
+    self.testCase.getCoreService()?.updatePassword(nil, password: password, confirmPassword: password, handler: { (result) in
+      updatePasswordStatus = result
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(updatePasswordStatus)
+    
+    return self
+  }
+  
   public func registerLoyaltyAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
