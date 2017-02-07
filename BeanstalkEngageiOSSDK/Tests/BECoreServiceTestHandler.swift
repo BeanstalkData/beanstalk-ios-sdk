@@ -97,6 +97,41 @@ public class BECoreServiceTestHandler {
     return self
   }
   
+  public func getContact(handler : (BEContact?) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var contact: BEContact?
+    self.testCase.getCoreService()?.getContact(nil, handler: { result in
+      contact = result
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(contact)
+    
+    return self
+  }
+
+  public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var contact: ContactClass?
+    self.testCase.getCoreService()?.getContact(nil, contactClass: contactClass, handler: { result in
+      contact = result as? ContactClass
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(contact)
+    
+    return self
+  }
+
+  
   // Stores
   
   public func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {

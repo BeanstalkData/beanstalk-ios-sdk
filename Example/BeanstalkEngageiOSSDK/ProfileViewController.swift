@@ -10,43 +10,37 @@ import BeanstalkEngageiOSSDK
 
 
 class ProfileViewController: BaseViewController, CoreProtocol {
-    var contact: BEContact?
+  var contact: ContactModel?
+  
+  @IBOutlet var nameLabel: UILabel!
+  @IBOutlet var emailLabel: UILabel!
+  
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var emailLabel: UILabel!
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    if self.contact == nil {
+      self.loadProfile()
+    }
+    else {
+      self.updateProfile()
+    }
+  }
+  
+  //MARK: - Private
+  
+  func loadProfile() {
+    self.coreService?.getContact(self, contactClass: ContactModel.self, handler: { (contact) in
+      if contact != nil {
+        self.contact = contact as? ContactModel
         
-        if self.contact == nil {
-            self.loadProfile()
-        }
-        else {
-            self.updateProfile()
-        }
-    }
-    
-    
-    //MARK: - Private
-    
-    func loadProfile() {
-        self.coreService?.getContact(self, handler: { (contact) in
-            if contact != nil {
-                self.contact = contact
-                
-                self.updateProfile()
-            }
-        })
-    }
-    
-    func updateProfile() {
-        if let firstName = self.contact?.firstName {
-            if let lastName = self.contact?.lastName {
-                self.nameLabel.text = "\(firstName) \(lastName)"
-            }
-        }
-        
-        self.emailLabel.text = self.contact?.email
-    }
+        self.updateProfile()
+      }
+    })
+  }
+  
+  func updateProfile() {
+    self.nameLabel.text = self.contact?.getFullName()
+    self.emailLabel.text = self.contact?.email
+  }
 }

@@ -7,6 +7,7 @@
 //
 
 import BeanstalkEngageiOSSDK
+import BeanstalkEngageiOSSDK_Example
 import Pods_BeanstalkEngageiOSSDK_Tests
 
 class AccountTests: BEAccountTests {
@@ -34,5 +35,9 @@ class AccountTests: BEAccountTests {
   
   func testRegisterAccount() {
     registerAccountTest()
+  }
+  
+  func testGetContact() {
+    getContactTest(ContactModel.self)
   }
 }

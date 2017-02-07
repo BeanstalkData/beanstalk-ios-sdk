@@ -157,4 +157,52 @@ public class BEAccountTests: BEBaseTestCase {
       }
     }
   }
+  
+  public func getContactTest<ContactClass: BEContact>(contactClass: ContactClass.Type) {
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error")
+      
+      if (result) {
+        
+        coreServiceHandler.getContact({ (contact) in
+          XCTAssert(contact != nil, "Get contact request finished with error")
+          
+          if contact != nil {
+            XCTAssert(contact!.contactId != nil, "Contact object is invalid")
+            XCTAssert(contact!.firstName != nil, "Contact object is invalid")
+            XCTAssert(contact!.lastName != nil, "Contact object is invalid")
+            XCTAssert(contact!.zipCode != nil, "Contact object is invalid")
+            XCTAssert(contact!.email != nil, "Contact object is invalid")
+            XCTAssert(contact!.gender != nil, "Contact object is invalid")
+            XCTAssert(contact!.birthday != nil, "Contact object is invalid")
+            XCTAssert(contact!.phone != nil, "Contact object is invalid")
+          }
+          
+          coreServiceHandler.getContact(contactClass, handler: { (contact) in
+            debugPrint("Contact object: " + contact.debugDescription)
+            XCTAssert(contact != nil, "Get contact request finished with error")
+            
+            if contact != nil {
+              XCTAssert(contact!.contactId != nil, "Contact object is invalid")
+              XCTAssert(contact!.firstName != nil, "Contact object is invalid")
+              XCTAssert(contact!.lastName != nil, "Contact object is invalid")
+              XCTAssert(contact!.zipCode != nil, "Contact object is invalid")
+              XCTAssert(contact!.email != nil, "Contact object is invalid")
+              XCTAssert(contact!.gender != nil, "Contact object is invalid")
+              XCTAssert(contact!.birthday != nil, "Contact object is invalid")
+              XCTAssert(contact!.phone != nil, "Contact object is invalid")
+            }
+            
+            coreServiceHandler.signOut() { (result) in
+            }
+          })
+        })
+      }
+    }
+  }
 }
