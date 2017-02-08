@@ -27,6 +27,8 @@
 		896623E61E449DF70015698C /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623E51E449DF70015698C /* StoresTests.swift */; };
 		896623EE1E49B74E0015698C /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623ED1E49B74E0015698C /* ContactModel.swift */; };
 		896623F31E49C4E90015698C /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623ED1E49B74E0015698C /* ContactModel.swift */; };
+		896623F81E4B0C4D0015698C /* RewardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623F71E4B0C4D0015698C /* RewardsTests.swift */; };
+		896623FC1E4B2A210015698C /* GiftCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623FB1E4B2A210015698C /* GiftCardsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		896623ED1E49B74E0015698C /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		896623EF1E49C42C0015698C /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_BeanstalkEngageiOSSDK_Example.framework; path = "../../../../../build/BeanstalkEngageiOSSDK-gkwiewcyarlksxfjgcoxqskuchtq/Build/Products/Debug-iphonesimulator/Pods_BeanstalkEngageiOSSDK_Example.framework"; sourceTree = "<group>"; };
 		896623F11E49C4960015698C /* BeanstalkEngageiOSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BeanstalkEngageiOSSDK.framework; path = "Pods/../build/Debug-iphoneos/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.framework"; sourceTree = "<group>"; };
+		896623F71E4B0C4D0015698C /* RewardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsTests.swift; sourceTree = "<group>"; };
+		896623FB1E4B2A210015698C /* GiftCardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftCardsTests.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBD98C60E5D745C6627B2FCE /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				893DA2501E3151EE0095A44B /* AccountTests.swift */,
+				896623FB1E4B2A210015698C /* GiftCardsTests.swift */,
+				896623F71E4B0C4D0015698C /* RewardsTests.swift */,
 				893DA26F1E36A5140095A44B /* SessionTests.swift */,
 				896623E51E449DF70015698C /* StoresTests.swift */,
 				894907B91E1C2E730089CB10 /* TestsMetadata.swift */,
@@ -434,6 +440,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896623F81E4B0C4D0015698C /* RewardsTests.swift in Sources */,
+				896623FC1E4B2A210015698C /* GiftCardsTests.swift in Sources */,
 				893DA2701E36A5140095A44B /* SessionTests.swift in Sources */,
 				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
 				893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */,

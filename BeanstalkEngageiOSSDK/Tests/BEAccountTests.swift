@@ -128,7 +128,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func newLoyaltyAccountTest() {
+  public func loyaltyAccountParsingTest() {
     let JSON: [String: AnyObject] = [
       "giftCardTrack2" : ";5022111100001111222=12344321111111?",
       "contactId" : "12341234",
@@ -138,10 +138,10 @@ public class BEAccountTests: BEBaseTestCase {
       "giftCardPin" : NSNull()
     ]
     
-    self.newLoyaltyAccountTest(JSON)
+    self.loyaltyAccountParsingTest(JSON)
   }
   
-  public func newLoyaltyAccountTest(JSON: [String: AnyObject]) {
+  public func loyaltyAccountParsingTest(JSON: [String: AnyObject]) {
     let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
     
     var loyaltyAccount = BELoyaltyUser(map)

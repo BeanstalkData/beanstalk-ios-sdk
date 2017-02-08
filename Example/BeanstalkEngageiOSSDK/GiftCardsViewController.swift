@@ -30,7 +30,7 @@ class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewData
     //MARK: - Private
     
     func loadGiftCards() {
-        self.coreService?.getGiftCards(self, handler: { (giftCards) in
+        self.coreService?.getGiftCards(self, handler: { (success, giftCards) in
             self.giftCards = giftCards
             
             self.updateGiftCards()

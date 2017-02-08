@@ -30,7 +30,7 @@ class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableV
     //MARK: - Private
     
     func loadRewards() {
-        self.coreService?.getAvailableRewards(self, handler: { (coupons) in
+        self.coreService?.getAvailableRewards(self, handler: { (success, coupons) in
             self.rewards = coupons
             
             self.updateRewards()

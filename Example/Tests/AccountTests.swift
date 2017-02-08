@@ -41,8 +41,8 @@ class AccountTests: BEAccountTests {
     registerLoyaltyAccountTest()
   }
   
-  func testNewLoyaltyAccount() {
-    newLoyaltyAccountTest()
+  func testLoyaltyAccountParsing() {
+    loyaltyAccountParsingTest()
   }
   
   func testRegisterAccount() {

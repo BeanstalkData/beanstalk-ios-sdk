@@ -21,7 +21,7 @@ public class GCResponse <GiftCardClass: BEGiftCard> : Mappable, GiftCardsRespons
   private var response : GCDataResponse<GiftCardClass>?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {
@@ -55,7 +55,7 @@ public class GCDataResponse <GiftCardClass: BEGiftCard> : Mappable{
   var message : GCDataMessage<GiftCardClass>?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {
@@ -68,7 +68,7 @@ public class GCDataMessage <GiftCardClass: BEGiftCard> : Mappable {
   var response : GCDataList<GiftCardClass>?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {
@@ -81,7 +81,7 @@ public class GCDataList <GiftCardClass: BEGiftCard>  : Mappable{
   var cards : [GiftCardClass]?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {

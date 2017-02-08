@@ -20,7 +20,7 @@ public class GCBResponse: Mappable, GiftCardBalanceResponse {
   private var response: GCBDataResponse?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {

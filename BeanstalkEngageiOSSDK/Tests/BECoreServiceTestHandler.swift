@@ -184,16 +184,84 @@ public class BECoreServiceTestHandler {
     
     return self
   }
+  
+  // Rewards
+  
+  public func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler : (Bool, [CouponClass]) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var resultStatus = false
+    var resultCoupons: [CouponClass] = []
+    self.testCase.getCoreService()?.getAvailableRewards(nil, couponClass: couponClass, handler: { (success, result) in
+      resultStatus = success
+      if let coupons = result as? [CouponClass] {
+        resultCoupons = coupons
+      }
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(resultStatus, resultCoupons)
+    
+    return self
+  }
 
+  public func getProgress (handler : (Bool, Int, String) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var resultStatus = false
+    var resultCount = 0
+    var resultText = ""
+    self.testCase.getCoreService()?.getUserProgress(nil, handler: { (success, count, text) in
+      resultStatus = success
+      resultCount = count
+      resultText = text
+      
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(resultStatus, resultCount, resultText)
+    
+    return self
+  }
+  
+  // Gift cards
+  
+  public func getGiftCards <GiftCardClass: BEGiftCard> (giftCardClass: GiftCardClass.Type, handler : (Bool, [GiftCardClass]) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var resultStatus = false
+    var resultGiftCards: [GiftCardClass] = []
+    self.testCase.getCoreService()?.getGiftCards(nil, giftCardClass: giftCardClass, handler: { (success, result) in
+      resultStatus = success
+      if let giftCards = result as? [GiftCardClass] {
+        resultGiftCards = giftCards
+      }
+      
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(resultStatus, resultGiftCards)
+    
+    return self
+  }
   
   // Stores
   
-  public func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
+  public func getStoresAtLocation <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
     self.testCase.prepare()
     
     var locationStatus = false
     var locationStores: [BEStore]? = nil
-    self.testCase.getCoreService()?.getStoresAtLocation(nil, coordinate: coordinate, handler: { (success, stores) in
+    self.testCase.getCoreService()?.getStoresAtLocation(nil, coordinate: coordinate, storeClass: storeClass, handler: { (success, stores) in
       
       locationStatus = success
       locationStores = stores

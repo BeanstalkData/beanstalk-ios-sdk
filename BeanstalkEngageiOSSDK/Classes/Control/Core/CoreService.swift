@@ -289,11 +289,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  public func getAvailableRewards(controller : CoreProtocol?, handler : ([BECoupon])->Void){
+  public func getAvailableRewards(controller : CoreProtocol?, handler : (Bool, [BECoupon])->Void){
     self.getAvailableRewards(controller, couponClass: BECoupon.self, handler: handler)
   }
   
-  public func getAvailableRewards <CouponClass: BECoupon> (controller : CoreProtocol?, couponClass: CouponClass.Type, handler : ([BECoupon])->Void){
+  public func getAvailableRewards <CouponClass: BECoupon> (controller : CoreProtocol?, couponClass: CouponClass.Type, handler : (Bool, [BECoupon])->Void){
     let contactId = session.getContactId()!
     
     controller?.showProgress("Retrieving Rewards")
@@ -302,21 +302,22 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       
       if result.isFailure {
         controller?.showMessage(result.error!)
-        handler([])
+        handler(result.isSuccess, [])
       } else {
         let rewards = result.value!
-        handler(rewards)
+        handler(result.isSuccess, rewards)
       }
     })
   }
   
-  public func getUserProgress(controller : CoreProtocol?, handler : (Int, String)->Void){
+  public func getUserProgress(controller : CoreProtocol?, handler : (Bool, Int, String)->Void){
     let contactId = session.getContactId()!
     
     controller?.showProgress("Getting Rewards")
     apiService.getProgress(contactId, handler : { (result) in
       controller?.hideProgress()
       
+      let resultStatus = result.isSuccess
       let required = 8
       var progressValue = 0;
       var progressText = "Only \(required) more purchases until your next TC reward!"
@@ -339,15 +340,15 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         }
       }
       
-      handler(progressValue, progressText)
+      handler(resultStatus, progressValue, progressText)
     })
   }
   
-  public func getGiftCards(controller : CoreProtocol?, handler : ([BEGiftCard])->Void){
+  public func getGiftCards(controller : CoreProtocol?, handler : (Bool, [BEGiftCard])->Void){
     self.getGiftCards(controller, giftCardClass: BEGiftCard.self, handler: handler)
   }
   
-  public func getGiftCards <GiftCardClass: BEGiftCard> (controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : ([BEGiftCard])->Void){
+  public func getGiftCards <GiftCardClass: BEGiftCard> (controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : (Bool, [BEGiftCard])->Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
     
@@ -357,11 +358,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       
       if result.isFailure {
         controller?.showMessage(.GiftCardsError(reason: result.error!))
-        handler([])
+        handler(result.isSuccess, [])
       } else {
         let cards = result.value!
         
-        handler(cards)
+        handler(result.isSuccess, cards)
       }
     })
   }

@@ -151,7 +151,7 @@ private class DummyGCResponse : GiftCardsResponse{
   }
   
   func getCards() -> [BEGiftCard]?{
-    return cards;
+    return cards
   }
 }
 

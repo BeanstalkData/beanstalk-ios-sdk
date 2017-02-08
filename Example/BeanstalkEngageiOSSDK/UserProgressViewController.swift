@@ -24,7 +24,7 @@ class UserProgressViewController: BaseViewController, CoreProtocol {
     //MARK: - Private
     
     func loadProgress() {
-        self.coreService?.getUserProgress(self, handler: { (progressValue, progressText) in
+        self.coreService?.getUserProgress(self, handler: { (success, progressValue, progressText) in
             self.progressValueLabel.text = "\(progressValue)"
             self.progressTextLabel.text = progressText
         })

@@ -1,26 +1,27 @@
 //
-//  StoresTests.swift
+//  GiftCardsTests.swift
 //  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 2/3/17.
+//  Created by Pavel Dvorovenko on 2/8/17.
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
 import BeanstalkEngageiOSSDK
+import BeanstalkEngageiOSSDK_Example
 import Pods_BeanstalkEngageiOSSDK_Tests
 
-class StoresTests: BEStoresTests {
+class GiftCardsTests: BEGiftCardsTests {
   let testsMetadata = TestsMetadata()
   
   override func getMetadata() -> BEBaseTestsMetadataProtocol? {
     return testsMetadata
   }
   
-  func testAllStores() {
-    allStoresTest(BEStore.self)
+  func testGiftCards() {
+    giftCardsTest()
   }
   
-  func testStoresAtLocation() {
-    allStoresAtLocationTest(BEStore.self)
+  func testGiftCardParsing() {
+    giftCardParsingTest()
   }
 }

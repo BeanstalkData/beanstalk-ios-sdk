@@ -27,7 +27,7 @@ public class BEStoresTests: BEBaseTestCase {
     Timberjack.unregister()
   }
   
-  public func allStoresTest() -> [BEStore]? {
+  public func allStoresTest <StoreClass: BEStore> (storeClass: StoreClass.Type) -> [BEStore]? {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -42,7 +42,7 @@ public class BEStoresTests: BEBaseTestCase {
       if (result) {
         var coordinate = self.getMetadata()!.getInvalidLocationCoordinate()
         
-        coreServiceHandler.getStoresAtLocation(coordinate) { (result, stores) in
+        coreServiceHandler.getStoresAtLocation(coordinate, storeClass: storeClass) { (result, stores) in
           XCTAssert(result, "Get stores at location finished with error")
           
           storesResult = stores
@@ -53,7 +53,7 @@ public class BEStoresTests: BEBaseTestCase {
     return storesResult
   }
   
-  public func allStoresAtLocationTest() -> [BEStore]? {
+  public func allStoresAtLocationTest <StoreClass: BEStore> (storeClass: StoreClass.Type) -> [BEStore]? {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -68,7 +68,7 @@ public class BEStoresTests: BEBaseTestCase {
       if (result) {
         var coordinate = self.getMetadata()!.getValidLocationCoordinate()
         
-        coreServiceHandler.getStoresAtLocation(coordinate) { (result, stores) in
+        coreServiceHandler.getStoresAtLocation(coordinate, storeClass: storeClass) { (result, stores) in
           XCTAssert(result, "Get stores at location finished with error")
           
           storesResult = stores

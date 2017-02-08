@@ -97,7 +97,7 @@ public class PushNotificationMessagesResponse : Mappable {
   var messages : [BEPushNotificationMessage]?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {
