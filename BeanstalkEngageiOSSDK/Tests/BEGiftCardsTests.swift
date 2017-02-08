@@ -61,9 +61,33 @@ public class BEGiftCardsTests: BEBaseTestCase {
       XCTAssert(giftCard?.id == "7", "Gift card object is invalid")
       XCTAssert(giftCard?.number == "6276000001329907735", "Gift card object is invalid")
       XCTAssert(giftCard?.balance == nil, "Gift card object is invalid")
+      XCTAssert(giftCard?.getDisplayNumber() == "XXXXXXXXXXXX7735", "Gift card object formatting is invalid")
+      XCTAssert(giftCard?.getDisplayBalanse() == BEGiftCard.kDefaultBalance, "Gift card object formatting is invalid")
     }
   }
 
+  public func giftCardBalanceParsingTest() {
+    let JSON: [String: AnyObject] = [
+      "status":true,"success":["code":2,"message":["response":["balanceInquiryReturn":["authorizationCode":"006035","balanceAmount":["amount":60.35,"currency":"USD"],"card":["cardCurrency":"840","cardNumber":"6276000001329907735","pinNumber":"0695    ","cardExpiration": NSNull(),"cardTrackOne": NSNull(),"cardTrackTwo": NSNull(),"eovDate":"20500101T0500Z"],"conversionRate":"1.000000","returnCode":["returnCode":"01","returnDescription":"Approval"],"stan":"176149","transactionID":""]]]]
+    ]
+    
+    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
+    var giftCardBalanceResponce = GCBResponse(map)
+    
+    XCTAssert(giftCardBalanceResponce?.getCardBalance() == "$60.35", "Gift card balance objects count is invalid")
+  }
   
+  public func giftCardStartPaymentTest(cardId: String?, coupons: [BECoupon], handler: (String, String) -> Void) {
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error");
+      
+      coreServiceHandler.startPayment(cardId, coupons: coupons, handler: handler)
+    }
+  }
 }
 

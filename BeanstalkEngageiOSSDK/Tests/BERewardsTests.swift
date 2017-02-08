@@ -76,6 +76,8 @@ public class BERewardsTests: BEBaseTestCase {
       XCTAssert(coupon?.expiration == "2012-11-19T00:00:00", "Coupon object is invalid")
       XCTAssert(coupon?.text == "Free Side Item", "Coupon object is invalid")
       XCTAssert(coupon?.imageUrl == "https://s3.amazonaws.com/beanstalkloyalty_images/209/10011.png", "Coupon object is invalid")
+      XCTAssert(coupon?.getDisplayExpiration(NSDateFormatter()) == "11/19/2012", "Coupon object formatting is invalid")
+      XCTAssert(coupon?.getImageURL()?.absoluteString == "https://s3.amazonaws.com/beanstalkloyalty_images/209/10011.png",  "Coupon object formatting is invalid")
     }
   }
   

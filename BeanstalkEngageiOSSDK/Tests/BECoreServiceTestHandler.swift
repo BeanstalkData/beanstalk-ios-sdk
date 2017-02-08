@@ -254,6 +254,27 @@ public class BECoreServiceTestHandler {
     return self
   }
   
+  public func startPayment (cardId: String?, coupons: [BECoupon], handler : (String, String) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var contentText = ""
+    var displayText = ""
+    self.testCase.getCoreService()?.startPayment(nil, cardId: cardId, coupons: coupons, handler: { (content, display) in
+      
+      contentText = content
+      displayText = display
+      
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(contentText, displayText)
+    
+    return self
+  }
+  
   // Stores
   
   public func getStoresAtLocation <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {

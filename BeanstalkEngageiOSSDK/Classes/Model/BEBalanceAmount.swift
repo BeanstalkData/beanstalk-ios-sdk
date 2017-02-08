@@ -14,7 +14,7 @@ public class BEBalanceAmount: Mappable {
   var amount: Double?
   
   required public init?(_ map: Map) {
-    
+    self.mapping(map)
   }
   
   public func mapping(map: Map) {

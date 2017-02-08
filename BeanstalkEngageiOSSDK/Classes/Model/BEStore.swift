@@ -65,6 +65,7 @@ public class BEStore : Mappable {
   }
   
   required public init?(_ map: Map) {
+    self.mapping(map)
   }
   
   public func getStoreName() -> String {
