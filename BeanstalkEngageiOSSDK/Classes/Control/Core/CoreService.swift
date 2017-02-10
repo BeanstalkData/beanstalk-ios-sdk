@@ -19,9 +19,22 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   let apiService: ApiCommunication<SessionManager>
   let session: BESessionT<UserDefautls>
   
+  private var p_isAuthenticateInProgress = false
+  public var isAuthenticateInProgress: Bool {
+    get {
+      return self.p_isAuthenticateInProgress
+    }
+  }
+  
+  var contactClass: BEContact.Type = BEContact.self
+  
   public required init(apiKey: String, session: BESessionT<UserDefautls>) {
     self.apiService = ApiCommunication(apiKey: apiKey)
     self.session = session
+  }
+  
+  public func register <ContactClass: BEContact> (contactClass: ContactClass.Type) {
+    self.contactClass = contactClass
   }
   
   public func isAuthenticated() ->Bool{
@@ -124,6 +137,35 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
+  public func autoSignIn(controller: AuthenticationProtocol?, handler : ((success: Bool) -> Void)) {
+
+    let contactId = session.getContactId()
+    let token = session.getAuthToken()
+    
+    guard (contactId != nil && token != nil) else {
+      handler(success: false)
+      return
+    }
+    
+    self.p_isAuthenticateInProgress = true
+    controller?.showProgress("Attempting to Login")
+    
+    self.apiService.checkUserSession(contactId!, token: token!) { result in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        self.p_isAuthenticateInProgress = false
+        controller?.showMessage(result.error!)
+        handler(success: false)
+      } else {
+        self.handleLoginComplete(contactId, token: token, handler: { result in
+          self.p_isAuthenticateInProgress = false
+          handler(success: result)
+        })
+      }
+    }
+  }
+  
   public func authenticate(controller: AuthenticationProtocol?, email: String?, password: String?, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
     if controller != nil {
       guard controller!.validate(email, password: password) else {
@@ -132,6 +174,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       }
     }
     
+    self.p_isAuthenticateInProgress = true
     controller?.showProgress("Attempting to Login")
     apiService.checkContactIsNovadine(email!, handler: { (result) in
       let isNovadineContact = (result.value != nil) ? result.value! : false
@@ -139,21 +182,56 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         controller?.hideProgress()
         
         if result.isFailure {
+          self.p_isAuthenticateInProgress = false
           controller?.showMessage(result.error!)
           handler(success: false, additionalInfo: isNovadineContact)
         } else {
-          self.session.setContactId(result.value!.contactId)
-          self.session.setAuthToke(result.value!.token)
-          
-          if let deviceToken = self.session.getAPNSToken() {
-            self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-              handler(success: true, additionalInfo: isNovadineContact)
-            })
-          } else {
-            handler(success: true, additionalInfo: isNovadineContact)
-          }
+          let contactId = result.value!.contactId
+          let token = result.value!.token
+          self.handleLoginComplete(contactId, token: token, handler: { result in
+            self.p_isAuthenticateInProgress = false
+            handler(success: result, additionalInfo: isNovadineContact)
+          })
         }
       })
+    })
+  }
+  
+  //No needs to check isNoadine user
+  private func auth(controller : RegistrationProtocol?, email: String, password: String, handler : (Bool) -> Void) {
+    
+    self.p_isAuthenticateInProgress = true
+    controller?.showProgress("Attempting to Login")
+    apiService.authenticateUser(email, password: password, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        self.p_isAuthenticateInProgress = false
+        controller?.showMessage(result.error!)
+        handler(false)
+      } else {
+        let contactId = result.value!.contactId
+        let token = result.value!.token
+        self.handleLoginComplete(contactId, token: token, handler: { result in
+          self.p_isAuthenticateInProgress = false
+          handler(result)
+        })
+      }
+    })
+  }
+  
+  private func handleLoginComplete(contactId : String?, token : String?, handler : (Bool) -> Void) {
+    
+    guard (contactId != nil && token != nil) else {
+      self.session.clearSession()
+      handler(false)
+      return
+    }
+    
+    apiService.getContact(contactId!, contactClass: self.contactClass, handler: { (result) in
+      self.session.setContactId(contactId)
+      self.session.setAuthToke(token)
+      handler(result.isSuccess)
     })
   }
   
@@ -221,14 +299,10 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   }
   
   public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void) {
-    self.getContact(controller, contactClass: BEContact.self, handler: handler)
-  }
-  
-  public func getContact <ContactClass: BEContact> (controller : CoreProtocol?, contactClass: ContactClass.Type, handler : (BEContact?) -> Void) {
     let contactId = session.getContactId()!
 
     controller?.showProgress("Retrieving Profile")
-    apiService.getContact(contactId, contactClass: contactClass, handler: { (result) in
+    apiService.getContact(contactId, contactClass: self.contactClass, handler: { (result) in
       controller?.hideProgress()
       
       if result.isFailure {
@@ -460,35 +534,6 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         handler(success: false, stores: [])
       } else {
         handler(success: true, stores: result.value!)
-      }
-    })
-  }
-  
-  
-  //No needs to check isNoadine user
-  private func auth(controller : RegistrationProtocol?, email: String, password: String, handler : (Bool) -> Void) {
-    
-    controller?.showProgress("Attempting to Login")
-    apiService.authenticateUser(email, password: password, handler: { (result) in
-      controller?.hideProgress()
-    
-      if result.isFailure {
-        controller?.showMessage(result.error!)
-        handler(false)
-      } else {
-        let contactId = result.value!.contactId
-        let token = result.value!.token
-        
-        self.session.setContactId(contactId)
-        self.session.setAuthToke(token)
-        
-        if let deviceToken = self.session.getAPNSToken() {
-          self.pushNotificationEnroll(deviceToken, handler: { (success, error) in
-            handler(true)
-          })
-        } else {
-          handler(true)
-        }
       }
     })
   }

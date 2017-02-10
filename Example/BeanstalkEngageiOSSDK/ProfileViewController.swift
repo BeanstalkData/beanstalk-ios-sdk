@@ -30,7 +30,7 @@ class ProfileViewController: BaseViewController, CoreProtocol {
   //MARK: - Private
   
   func loadProfile() {
-    self.coreService?.getContact(self, contactClass: ContactModel.self, handler: { (contact) in
+    self.coreService?.getContact(self, handler: { (contact) in
       if contact != nil {
         self.contact = contact as? ContactModel
         

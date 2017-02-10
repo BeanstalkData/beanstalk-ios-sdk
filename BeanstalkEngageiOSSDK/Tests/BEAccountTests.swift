@@ -37,6 +37,52 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
+  public func autoLoginRegisteredUserTest() {
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.autoSignIn( { result in
+      XCTAssert(!result, "Unexpected Auto Login status, should be false");
+      
+      coreServiceHandler.signIn(self.getMetadata()!.getRegisteredUser1Email(), password: self.getMetadata()!.getRegisteredUser1Password()) { (result) in
+        XCTAssert(result, "Login request finished with error");
+        
+        coreServiceHandler.autoSignIn( { result in
+          XCTAssert(result, "Unexpected Auto Login status, should be true");
+          
+          coreServiceHandler.signOut() { result in
+            XCTAssert(result, "Logout request finished with error");
+            
+            coreServiceHandler.autoSignIn( { result in
+              XCTAssert(!result, "Unexpected Auto Login status, should be false");
+            })
+          }
+        })
+      }
+    })
+  }
+
+  public func autoLoginUnRegisteredUserTest() {
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.autoSignIn( { result in
+      XCTAssert(!result, "Unexpected Auto Login status, should be false");
+      
+      coreServiceHandler.signIn("invalid@email.com", password: "123456789") { (result) in
+        XCTAssert(!result, "Unexpected Login request state, should be false");
+        
+        coreServiceHandler.autoSignIn( { result in
+          XCTAssert(!result, "Unexpected Auto Login status, should be false");
+        })
+      }
+    })
+  }
+
   public func loginRegisteredUserWithValidPushTest() {
     
     self.getSession()?.clearSession()

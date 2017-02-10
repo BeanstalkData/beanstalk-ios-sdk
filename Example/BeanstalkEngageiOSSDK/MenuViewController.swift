@@ -19,10 +19,12 @@ class MenuViewController: UIViewController, CoreProtocol {
     
     
     let coreService = CoreService(apiKey: "1234-4321-ABCD-DCBA", session: BESession())
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+        coreService.register(ContactModel.self)
+      
         self.updateAuthStatus()
     }
     

@@ -319,6 +319,31 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
+  func checkUserSession(contactId: String, token : String, handler: (Result<AnyObject?, ApiError>) -> Void) {
+    
+    if (isOnline()) {
+      let params = ["contact": contactId,
+                    "token" : token]
+      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/checkSession/",
+        parameters: params)
+        .validate(getDefaultErrorHandler())
+        .responseString {
+          response in
+          if (response.result.isSuccess) {
+            if response.result.value == Optional("valid"){
+              handler(.Success(nil))
+            }else {
+              handler(.Failure(.Unknown()))
+            }
+          } else {
+            handler(.Failure(.Network(error: response.result.error)))
+          }
+      }
+    } else {
+      handler(.Failure(.NetworkConnectionError()))
+    }
+  }
+  
   func resetPassword(email: String, handler: (Result<String?, ApiError>) -> Void) {
     
     if (isOnline()) {

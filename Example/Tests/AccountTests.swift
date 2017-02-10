@@ -21,6 +21,14 @@ class AccountTests: BEAccountTests {
     loginRegisteredUserTest()
   }
   
+  func testAutoLoginRegisteredUser() {
+    autoLoginRegisteredUserTest()
+  }
+  
+  func testAutoLoginUnRegisteredUser() {
+    autoLoginUnRegisteredUserTest()
+  }
+  
   func testLoginRegisteredUserWithValidPush() {
     loginRegisteredUserWithValidPushTest()
   }

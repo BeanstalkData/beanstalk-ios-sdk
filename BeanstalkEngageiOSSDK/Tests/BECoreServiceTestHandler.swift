@@ -25,6 +25,24 @@ public class BECoreServiceTestHandler {
   }
   
   /* User */
+  
+  public func autoSignIn(handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+    
+    self.testCase.prepare()
+    
+    var signInStatus = false
+    self.testCase.getCoreService()?.autoSignIn(nil, handler: { (success) in
+      signInStatus = success
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(signInStatus)
+    
+    return self
+  }
+  
   public func signIn(email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
@@ -170,10 +188,12 @@ public class BECoreServiceTestHandler {
   
   public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
+    self.testCase.getCoreService()?.register(contactClass)
+    
     self.testCase.prepare()
     
     var contact: ContactClass?
-    self.testCase.getCoreService()?.getContact(nil, contactClass: contactClass, handler: { result in
+    self.testCase.getCoreService()?.getContact(nil, handler: { result in
       contact = result as? ContactClass
       self.testCase .fullfill()
     })
