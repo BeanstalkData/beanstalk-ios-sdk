@@ -31,7 +31,7 @@ public class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signInStatus = false
-    self.testCase.getCoreService()?.autoSignIn(nil, handler: { (success) in
+    self.testCase.getCoreService()?.autoSignIn(nil, contactClass: BEContact.self, handler: { (success) in
       signInStatus = success
       self.testCase .fullfill()
     })
@@ -48,7 +48,7 @@ public class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signInStatus = false
-    self.testCase.getCoreService()?.authenticate(nil, email: email, password: password, handler: { (success, additionalInfo) in
+    self.testCase.getCoreService()?.authenticate(nil, email: email, password: password, contactClass: BEContact.self, handler: { (success, additionalInfo) in
       
       signInStatus = success
       self.testCase .fullfill()
@@ -119,7 +119,7 @@ public class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.registerLoyaltyAccount(nil, request: request, handler: { (result) in
+    self.testCase.getCoreService()?.registerLoyaltyAccount(nil, request: request, contactClass: BEContact.self, handler: { (result) in
       
       registerStatus = result
       self.testCase .fullfill()
@@ -137,7 +137,7 @@ public class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.register(nil, request: request, handler: { (result) in
+    self.testCase.getCoreService()?.register(nil, request: request, contactClass: BEContact.self, handler: { (result) in
       
       registerStatus = result
       self.testCase .fullfill()
@@ -155,7 +155,7 @@ public class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var contact: BEContact?
-    self.testCase.getCoreService()?.getContact(nil, handler: { result in
+    self.testCase.getCoreService()?.getContact(nil, contactClass: BEContact.self, handler: { result in
       contact = result
       self.testCase .fullfill()
     })
@@ -188,12 +188,10 @@ public class BECoreServiceTestHandler {
   
   public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
-    self.testCase.getCoreService()?.register(contactClass)
-    
     self.testCase.prepare()
     
     var contact: ContactClass?
-    self.testCase.getCoreService()?.getContact(nil, handler: { result in
+    self.testCase.getCoreService()?.getContact(nil, contactClass: contactClass, handler: { result in
       contact = result as? ContactClass
       self.testCase .fullfill()
     })

@@ -26,15 +26,9 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  var contactClass: BEContact.Type = BEContact.self
-  
   public required init(apiKey: String, session: BESessionT<UserDefautls>) {
     self.apiService = ApiCommunication(apiKey: apiKey)
     self.session = session
-  }
-  
-  public func register <ContactClass: BEContact> (contactClass: ContactClass.Type) {
-    self.contactClass = contactClass
   }
   
   public func isAuthenticated() ->Bool{
@@ -43,7 +37,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     return contactId != nil && token != nil
   }
   
-  public func registerLoyaltyAccount(controller: RegistrationProtocol?, request: CreateContactRequest, handler: (Bool) -> Void){
+  public func registerLoyaltyAccount <ContactClass: BEContact> (controller: RegistrationProtocol?, request: CreateContactRequest, contactClass: ContactClass.Type, handler: (Bool) -> Void){
     if (controller != nil) {
       guard controller!.validate(request) else{
         handler(false)
@@ -61,12 +55,12 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         controller?.showMessage(result.error!)
         handler(false)
       } else {
-        self.auth(controller, email : request.email!, password: request.password!, handler: handler)
+        self.auth(controller, email : request.email!, password: request.password!, contactClass: contactClass, handler: handler)
       }
     })
   }
   
-  public func register(controller : RegistrationProtocol?, request : CreateContactRequest, handler : (Bool) -> Void){
+  public func register <ContactClass: BEContact> (controller : RegistrationProtocol?, request : CreateContactRequest, contactClass: ContactClass.Type, handler : (Bool) -> Void) {
     if (controller != nil) {
       guard controller!.validate(request) else{
         handler(false)
@@ -85,7 +79,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
           controller?.showMessage(result.error!)
           handler(false)
         } else {
-          self.auth(controller, email : request.email!, password: request.password!, handler: handler)
+          self.auth(controller, email : request.email!, password: request.password!, contactClass: contactClass, handler: handler)
         }
       })
     } else {
@@ -122,11 +116,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
                           controller?.showMessage(result.error!)
                           handler(false)
                         } else {
-                          self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+                          self.auth(controller, email: request.email!, password: request.password!, contactClass: contactClass, handler: handler)
                         }
                       })
                     } else {
-                      self.auth(controller, email: request.email!, password: request.password!, handler: handler)
+                      self.auth(controller, email: request.email!, password: request.password!, contactClass: contactClass, handler: handler)
                     }
                 }
               })
@@ -137,7 +131,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  public func autoSignIn(controller: AuthenticationProtocol?, handler : ((success: Bool) -> Void)) {
+  public func autoSignIn <ContactClass: BEContact> (controller: AuthenticationProtocol?, contactClass: ContactClass.Type, handler : ((success: Bool) -> Void)) {
 
     let contactId = session.getContactId()
     let token = session.getAuthToken()
@@ -158,7 +152,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         controller?.showMessage(result.error!)
         handler(success: false)
       } else {
-        self.handleLoginComplete(contactId, token: token, handler: { result in
+        self.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
           self.p_isAuthenticateInProgress = false
           handler(success: result)
         })
@@ -166,7 +160,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  public func authenticate(controller: AuthenticationProtocol?, email: String?, password: String?, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
+  public func authenticate <ContactClass: BEContact> (controller: AuthenticationProtocol?, email: String?, password: String?, contactClass: ContactClass.Type, handler : ((success: Bool, additionalInfo : Bool) -> Void)) {
     if controller != nil {
       guard controller!.validate(email, password: password) else {
         handler(success: false, additionalInfo: false)
@@ -188,7 +182,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         } else {
           let contactId = result.value!.contactId
           let token = result.value!.token
-          self.handleLoginComplete(contactId, token: token, handler: { result in
+          self.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
             self.p_isAuthenticateInProgress = false
             handler(success: result, additionalInfo: isNovadineContact)
           })
@@ -198,7 +192,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   }
   
   //No needs to check isNoadine user
-  private func auth(controller : RegistrationProtocol?, email: String, password: String, handler : (Bool) -> Void) {
+  private func auth <ContactClass: BEContact> (controller : RegistrationProtocol?, email: String, password: String, contactClass: ContactClass.Type, handler : (Bool) -> Void) {
     
     self.p_isAuthenticateInProgress = true
     controller?.showProgress("Attempting to Login")
@@ -212,7 +206,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       } else {
         let contactId = result.value!.contactId
         let token = result.value!.token
-        self.handleLoginComplete(contactId, token: token, handler: { result in
+        self.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
           self.p_isAuthenticateInProgress = false
           handler(result)
         })
@@ -220,7 +214,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  private func handleLoginComplete(contactId : String?, token : String?, handler : (Bool) -> Void) {
+  private func handleLoginComplete <ContactClass: BEContact> (contactId : String?, token : String?, contactClass: ContactClass.Type, handler : (Bool) -> Void) {
     
     guard (contactId != nil && token != nil) else {
       self.session.clearSession()
@@ -228,7 +222,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       return
     }
     
-    apiService.getContact(contactId!, contactClass: self.contactClass, handler: { (result) in
+    apiService.getContact(contactId!, contactClass: contactClass, handler: { (result) in
       self.session.setContactId(contactId)
       self.session.setAuthToke(token)
       handler(result.isSuccess)
@@ -298,11 +292,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  public func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void) {
+  public func getContact <ContactClass: BEContact> (controller : CoreProtocol?, contactClass: ContactClass.Type, handler : (BEContact?) -> Void) {
     let contactId = session.getContactId()!
 
     controller?.showProgress("Retrieving Profile")
-    apiService.getContact(contactId, contactClass: self.contactClass, handler: { (result) in
+    apiService.getContact(contactId, contactClass: contactClass, handler: { (result) in
       controller?.hideProgress()
       
       if result.isFailure {
