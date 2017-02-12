@@ -18,13 +18,11 @@ class MenuViewController: UIViewController, CoreProtocol {
     @IBOutlet var giftCardsButton: UIButton!
     
     
-    let coreService = CoreService(apiKey: "1234-4321-ABCD-DCBA", session: BESession())
+    let coreService = ApiService(apiKey: "1234-4321-ABCD-DCBA", session: BESession())
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      coreService.register(ContactModel.self)
-      
+        
         self.updateAuthStatus()
     }
     

@@ -12,7 +12,7 @@ import BeanstalkEngageiOSSDK
 
 
 class BaseViewController: UIViewController {
-    var coreService: CoreService?
+    var coreService: ApiService?
     
     var completionBlock: ((success: Bool) -> Void)?
     
