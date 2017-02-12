@@ -34,6 +34,22 @@ public class BEContact : Mappable {
   required public init?(_ map: Map) {
   }
   
+  public func isMale() -> Bool? {
+    guard gender != nil else {
+      return nil
+    }
+    
+    return (self.gender == "Male")
+  }
+  
+  public func isEmailOptin() -> Bool {
+    return emailOptin != 0
+  }
+  
+  public func isPushNotificationOptin() -> Bool {
+    return pushNotificationOptin != 0
+  }
+  
   public func mapping(map: Map) {
     contactId <- map["contactId"]
     firstName <- map["contactFirstName"]

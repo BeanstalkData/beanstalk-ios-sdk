@@ -30,13 +30,9 @@ public class ContactRequest: Mappable{
   
   public private(set) var origin: BEContact?
   
-  public init(prospect: String = "loyalty") {
-    
-  }
-  
-  public init(origin: BEContact, prospect: String = "loyalty") {
+  public init(origin: BEContact? = nil, prospect: String = "loyalty") {
     self.origin = origin
-    self.contactId = origin.contactId
+    self.contactId = origin?.contactId
     self.prospect = prospect
   }
   
@@ -207,7 +203,7 @@ public class ContactRequest: Mappable{
     prospect <- map["Prospect"]
     phone <- map["Cell_Number"]
     birthday <- map["Birthday"]
-    gender <- map["gender"]
+    gender <- map["Gender"]
     emailOptin <- map["Email_Optin"]
     textOptin <- map["Txt_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]

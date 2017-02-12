@@ -221,7 +221,7 @@ public class BEAccountTests: BEBaseTestCase {
     request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
     request.set(textOptin: (contact.textOptin != 0))
 //    request.set(preferredReward: "")
-    request.set(male: (contact.gender == "Male"))
+    request.set(male: contact.isMale())
     
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
       
@@ -255,8 +255,7 @@ public class BEAccountTests: BEBaseTestCase {
     request.set(pushNotificationOptin: (contact.pushNotificationOptin != 0))
     request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
     request.set(textOptin: (contact.textOptin != 0))
-    //    request.set(preferredReward: "")
-    request.set(male: (contact.gender == "Male"))
+    request.set(male: contact.isMale())
     
     coreServiceHandler.registerAccount(request) { (result) in
       
@@ -342,7 +341,7 @@ public class BEAccountTests: BEBaseTestCase {
             request.set(zipCode: contact!.zipCode! + "1")
             request.set(birthday: contact!.birthday)
             request.set(emailOptin: (contact!.emailOptin != 0))
-            request.set(male: (contact!.gender == "Male"))
+            request.set(male: contact!.isMale())
             
             coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
               XCTAssert(result, "Update contact request finished with error")
@@ -371,7 +370,7 @@ public class BEAccountTests: BEBaseTestCase {
                     request.set(zipCode: user1Contact.zipCode)
                     request.set(birthday: user1Contact.birthday)
                     request.set(emailOptin: (user1Contact.emailOptin != 0))
-                    request.set(male: (user1Contact.gender == "Male"))
+                    request.set(male: user1Contact.isMale())
                     
                     coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
                       XCTAssert(result, "Update contact request finished with error")
