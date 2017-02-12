@@ -15,11 +15,11 @@ class ApiService: CoreService {
     super.init(apiKey: apiKey, session: session)
   }
   
-  func registerLoyaltyAccount (controller: RegistrationProtocol?, request: CreateContactRequest, handler: (Bool) -> Void) {
+  func registerLoyaltyAccount (controller: RegistrationProtocol?, request: ContactRequest, handler: (Bool) -> Void) {
     registerLoyaltyAccount(controller, request: request, contactClass: ContactModel.self, handler: handler)
   }
   
-  func register (controller : RegistrationProtocol?, request : CreateContactRequest, handler : (Bool) -> Void) {
+  func register (controller : RegistrationProtocol?, request : ContactRequest, handler : (Bool) -> Void) {
     register(controller, request : request, contactClass: ContactModel.self, handler : handler)
   }
   
