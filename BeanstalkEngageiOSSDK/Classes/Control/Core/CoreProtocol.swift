@@ -19,7 +19,7 @@ public protocol RegistrationProtocol :CoreProtocol {
 }
 
 public protocol EditProfileProtocol :CoreProtocol {
-  func validate(request: UpdateContactRequest) -> Bool
+  func validate(request: ContactRequest) -> Bool
 }
 
 public protocol UpdatePasswordProtocol :CoreProtocol {

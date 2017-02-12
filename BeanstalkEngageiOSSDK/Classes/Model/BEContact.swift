@@ -25,7 +25,6 @@ public class BEContact : Mappable {
   public var emailOptin = 0
   public var pushNotificationOptin = 0
   public var inboxMessageOptin = 0
-  public var preferredReward : String?
   public var novadine = false
   
   required public init() {
@@ -50,7 +49,6 @@ public class BEContact : Mappable {
     emailOptin <- map["Email_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
-    preferredReward <- map["PreferredReward"]
     novadine <- map["Novadine_User"]
   }
 }

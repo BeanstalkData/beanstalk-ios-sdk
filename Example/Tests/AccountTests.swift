@@ -6,6 +6,8 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
+import XCTest
+
 import BeanstalkEngageiOSSDK
 import BeanstalkEngageiOSSDK_Example
 import Pods_BeanstalkEngageiOSSDK_Tests
@@ -63,5 +65,77 @@ class AccountTests: BEAccountTests {
   
   func testUpdateContact() {
     updateContactTest(ContactModel.self)
+  }
+  
+  internal func testUpdateContactCustomFields() {
+    self.getSession()?.clearSession()
+    self.getSession()?.clearApnsTokens()
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
+      XCTAssert(result, "Login request finished with error")
+      
+      if (result) {
+        
+        coreServiceHandler.getContact(ContactModel.self) { contact in
+          XCTAssert(contact != nil, "Get contact request finished with error")
+          
+          if contact != nil {
+            
+            let request = ContactRequest(origin: contact!)
+            request.preferredReward = "testRewards"
+            
+            coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+              XCTAssert(result, "Update contact request finished with error")
+              
+              if result {
+                coreServiceHandler.getContact(ContactModel.self) { (contact) in
+                  XCTAssert(contact != nil, "Get contact request finished with error")
+                  
+                  if contact != nil {
+                    XCTAssert(contact!.firstName == request.origin?.firstName, "Contact object is invalid")
+                    XCTAssert(contact!.lastName == request.origin?.lastName, "Contact object is invalid")
+                    XCTAssert(contact!.phone == request.origin?.phone, "Contact object is invalid")
+                    XCTAssert(contact!.email == request.origin?.email, "Contact object is invalid")
+                    XCTAssert(contact!.zipCode == request.origin?.zipCode, "Contact object is invalid")
+                    XCTAssert(contact!.birthday == request.origin?.birthday, "Contact object is invalid")
+                    XCTAssert(contact!.emailOptin == request.origin?.emailOptin, "Contact object is invalid")
+                    XCTAssert(contact!.preferredReward == request.preferredReward, "Contact object is invalid")
+                    XCTAssert(contact!.gender == request.origin?.gender, "Contact object is invalid")
+                  }
+                  
+                  let user1Contact = self.getMetadata()!.getRegisteredUser1Contact()
+                  let request = ContactRequest(origin: user1Contact)
+                  request.preferredReward = ""
+                  
+                  coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+                    XCTAssert(result, "Update contact request finished with error")
+                    
+                    if result {
+                      coreServiceHandler.getContact(ContactModel.self) { (contact) in
+                        XCTAssert(contact != nil, "Get contact request finished with error")
+                        
+                        if contact != nil {
+                          XCTAssert(contact!.firstName == user1Contact.firstName, "Contact object is invalid")
+                          XCTAssert(contact!.lastName == user1Contact.lastName, "Contact object is invalid")
+                          XCTAssert(contact!.phone == user1Contact.phone, "Contact object is invalid")
+                          XCTAssert(contact!.email == user1Contact.email, "Contact object is invalid")
+                          XCTAssert(contact!.zipCode == user1Contact.zipCode, "Contact object is invalid")
+                          XCTAssert(contact!.birthday == user1Contact.birthday, "Contact object is invalid")
+                          XCTAssert(contact!.emailOptin == user1Contact.emailOptin, "Contact object is invalid")
+                          XCTAssert(contact!.preferredReward == request.preferredReward, "Contact object is invalid")
+                          XCTAssert(contact!.gender == user1Contact.gender, "Contact object is invalid")
+                        }
+                      }
+                    }
+                  })
+                }
+              }
+            })
+          }
+        }
+      }
+    }
   }
 }

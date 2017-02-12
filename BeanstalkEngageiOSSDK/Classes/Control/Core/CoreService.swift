@@ -308,7 +308,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  public func updateContact(controller : EditProfileProtocol?, original: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void){
+  public func updateContact(controller : EditProfileProtocol?, original: BEContact, request : ContactRequest, handler : (Bool) -> Void){
     
     if controller != nil {
       guard controller!.validate(request) else{
@@ -317,7 +317,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       }
     }
     
-    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
     
     controller?.showProgress("Updating Profile")
     apiService.updateContact(original, request: request, handler: { (result) in
@@ -610,34 +610,6 @@ public extension UIViewController {
         self.showMessage("Registration Error", message: "Enter Password")
         return false
       }
-    }
-    return true
-  }
-  
-  func validate(request : UpdateContactRequest) -> Bool{
-    guard !(request.firstName?.isEmpty)! else{
-      self.showMessage("Update Error", message: "Enter First Name")
-      return false
-    }
-    guard !(request.lastName?.isEmpty)! else{
-      self.showMessage("Update Error", message: "Enter Last Name")
-      return false
-    }
-    guard (request.phone?.isValidPhone())! else{
-      self.showMessage("Update Error", message: "Please enter a valid phone number")
-      return false
-    }
-    guard !(request.birthdate?.isEmpty)! else{
-      self.showMessage("Update Error", message: "Enter Birthdate")
-      return false
-    }
-    guard (request.zipCode?.isValidZipCode())! else{
-      self.showMessage("Update Error", message: "Enter 5 Digit Zipcode")
-      return false
-    }
-    guard (request.email?.isValidEmail())! else{
-      self.showMessage("Update Error", message: "Enter Valid Email")
-      return false
     }
     return true
   }

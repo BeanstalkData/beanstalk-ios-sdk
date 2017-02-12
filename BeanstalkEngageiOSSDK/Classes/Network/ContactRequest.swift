@@ -12,28 +12,23 @@ import ObjectMapper
 
 public class ContactRequest: Mappable{
   
-  private(set) var contactId: Int?
-  private(set) var firstName : String?
-  private(set) var lastName : String?
-  private(set) var phone: String?
-  private(set) var email: String?
-  private(set) var password : String?
-  private(set) var zipCode : String?
-  private(set) var birthday: String?
-  private(set) var gender: String?
-  private(set) var emailOptin: Bool?
-  private(set) var textOptin: Bool?
-  private(set) var pushNotificationOptin: Bool?
-  private(set) var inboxMessageOptin: Bool?
-  private(set) var novadine: String?
-  private(set) var prospect : String?
+  public private(set) var contactId: Int?
+  public private(set) var firstName : String?
+  public private(set) var lastName : String?
+  public private(set) var phone: String?
+  public private(set) var email: String?
+  public private(set) var password : String?
+  public private(set) var zipCode : String?
+  public private(set) var birthday: String?
+  public private(set) var gender: String?
+  public private(set) var emailOptin: Bool?
+  public private(set) var textOptin: Bool?
+  public private(set) var pushNotificationOptin: Bool?
+  public private(set) var inboxMessageOptin: Bool?
+  public private(set) var novadine: String?
+  public private(set) var prospect : String?
   
-//  public var passwordConfirm : String?
-//  public var emailConfirm: String?
-//  public var gender: String?
-//  public var preferredReward : String?
-  
-  private var origin: BEContact?
+  public private(set) var origin: BEContact?
   
   public init(prospect: String = "loyalty") {
     
@@ -204,7 +199,7 @@ public class ContactRequest: Mappable{
   
   public func mapping(map: Map) {
     
-    contactId <- map["contactId"]
+    contactId <- map["ContactID"]
     firstName <- map["FirstName"]
     lastName <- map["LastName"]
     zipCode <- map["ZipCode"]
@@ -214,15 +209,10 @@ public class ContactRequest: Mappable{
     birthday <- map["Birthday"]
     gender <- map["gender"]
     emailOptin <- map["Email_Optin"]
-//    "Email_Optin": request.emailOptIn ? "true" :"false",
     textOptin <- map["Txt_Optin"]
-//    "Txt_Optin": request.txtOptIn ? "true" :"false",
     pushNotificationOptin <- map["PushNotification_Optin"]
-//    "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
     inboxMessageOptin <- map["InboxMessage_Optin"]
-//    "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
     novadine <- map["custom_Novadine_User"]
-//    "custom_Novadine_User" : request.novadine ? "1" :"0",
   }
 
 }

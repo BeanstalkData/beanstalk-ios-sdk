@@ -167,7 +167,7 @@ public class BECoreServiceTestHandler {
     return self
   }
 
-  public func updateContact(contact: BEContact, request : UpdateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  public func updateContact(contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     

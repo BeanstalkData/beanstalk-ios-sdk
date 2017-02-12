@@ -334,19 +334,18 @@ public class BEAccountTests: BEBaseTestCase {
           
           if contact != nil {
             
-            let request = UpdateContactRequest()
-            request.firstName = contact!.firstName! + "1"
-            request.lastName = contact!.lastName! + "1"
-            request.phone = contact!.phone
-            request.email = contact!.email! + "m"
-            request.zipCode  = contact!.zipCode! + "1"
-            request.birthdate = contact!.birthday
-            request.emailOptIn = (contact!.emailOptin != 0)
-            request.preferredReward = ""
-            request.male = (contact!.gender == "Male")
+            let request = ContactRequest(origin: contact!)
+            request.set(firstName: contact!.firstName! + "1")
+            request.set(lastName: contact!.lastName! + "1")
+            request.set(phone: contact!.phone)
+            request.set(email: contact!.email! + "m")
+            request.set(zipCode: contact!.zipCode! + "1")
+            request.set(birthday: contact!.birthday)
+            request.set(emailOptin: (contact!.emailOptin != 0))
+            request.set(male: (contact!.gender == "Male"))
             
             coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
-              XCTAssert(contact != nil, "Update contact request finished with error")
+              XCTAssert(result, "Update contact request finished with error")
               
               if result {
                 coreServiceHandler.getContact({ (contact) in
@@ -355,48 +354,46 @@ public class BEAccountTests: BEBaseTestCase {
                   if contact != nil {
                     XCTAssert(contact!.firstName == request.firstName, "Contact object is invalid")
                     XCTAssert(contact!.lastName == request.lastName, "Contact object is invalid")
-                    XCTAssert(contact!.phone == request.phone, "Contact object is invalid")
+                    XCTAssert(contact!.phone == request.origin!.phone, "Contact object is invalid")
                     XCTAssert(contact!.email == request.email, "Contact object is invalid")
                     XCTAssert(contact!.zipCode == request.zipCode, "Contact object is invalid")
-                    XCTAssert(contact!.birthday == request.birthdate, "Contact object is invalid")
-                    XCTAssert((contact!.emailOptin != 0) == request.emailOptIn, "Contact object is invalid")
-                    XCTAssert(contact!.preferredReward == request.preferredReward, "Contact object is invalid")
-                    XCTAssert((contact!.gender == "Male") == request.male, "Contact object is invalid")
-                  }
+                    XCTAssert(contact!.birthday == request.origin!.birthday, "Contact object is invalid")
+                    XCTAssert(contact!.emailOptin == request.origin!.emailOptin, "Contact object is invalid")
+                    XCTAssert(contact!.gender == request.origin!.gender, "Contact object is invalid")
                   
-                  let user1Contact = self.getMetadata()!.getRegisteredUser1Contact()
-                  let request = UpdateContactRequest()
-                  request.firstName = user1Contact.firstName
-                  request.lastName = user1Contact.lastName
-                  request.phone = user1Contact.phone
-                  request.email = user1Contact.email
-                  request.zipCode  = user1Contact.zipCode
-                  request.birthdate = user1Contact.birthday
-                  request.emailOptIn = (user1Contact.emailOptin != 0)
-                  request.preferredReward = ""
-                  request.male = (user1Contact.gender == "Male")
-                  
-                  coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
-                    XCTAssert(contact != nil, "Update contact request finished with error")
+                    let request = ContactRequest(origin: contact!)
                     
-                    if result {
-                      coreServiceHandler.getContact({ (contact) in
-                        XCTAssert(contact != nil, "Get contact request finished with error")
-                        
-                        if contact != nil {
-                          XCTAssert(contact!.firstName == user1Contact.firstName, "Contact object is invalid")
-                          XCTAssert(contact!.lastName == user1Contact.lastName, "Contact object is invalid")
-                          XCTAssert(contact!.phone == user1Contact.phone, "Contact object is invalid")
-                          XCTAssert(contact!.email == user1Contact.email, "Contact object is invalid")
-                          XCTAssert(contact!.zipCode == user1Contact.zipCode, "Contact object is invalid")
-                          XCTAssert(contact!.birthday == user1Contact.birthday, "Contact object is invalid")
-                          XCTAssert(contact!.emailOptin == user1Contact.emailOptin, "Contact object is invalid")
-                          XCTAssert(contact!.preferredReward == user1Contact.preferredReward, "Contact object is invalid")
-                          XCTAssert(contact!.gender == user1Contact.gender, "Contact object is invalid")
-                        }
-                      })
-                    }
-                  })
+                    let user1Contact = self.getMetadata()!.getRegisteredUser1Contact()
+                    request.set(firstName: user1Contact.firstName)
+                    request.set(lastName: user1Contact.lastName)
+                    request.set(phone: user1Contact.phone)
+                    request.set(email: user1Contact.email)
+                    request.set(zipCode: user1Contact.zipCode)
+                    request.set(birthday: user1Contact.birthday)
+                    request.set(emailOptin: (user1Contact.emailOptin != 0))
+                    request.set(male: (user1Contact.gender == "Male"))
+                    
+                    coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+                      XCTAssert(result, "Update contact request finished with error")
+                      
+                      if result {
+                        coreServiceHandler.getContact({ (contact) in
+                          XCTAssert(contact != nil, "Get contact request finished with error")
+                          
+                          if contact != nil {
+                            XCTAssert(contact!.firstName == user1Contact.firstName, "Contact object is invalid")
+                            XCTAssert(contact!.lastName == user1Contact.lastName, "Contact object is invalid")
+                            XCTAssert(contact!.phone == user1Contact.phone, "Contact object is invalid")
+                            XCTAssert(contact!.email == user1Contact.email, "Contact object is invalid")
+                            XCTAssert(contact!.zipCode == user1Contact.zipCode, "Contact object is invalid")
+                            XCTAssert(contact!.birthday == user1Contact.birthday, "Contact object is invalid")
+                            XCTAssert(contact!.emailOptin == user1Contact.emailOptin, "Contact object is invalid")
+                            XCTAssert(contact!.gender == user1Contact.gender, "Contact object is invalid")
+                          }
+                        })
+                      }
+                    })
+                  }
                 })
               }
             })

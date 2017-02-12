@@ -31,6 +31,8 @@
 		896623FC1E4B2A210015698C /* GiftCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896623FB1E4B2A210015698C /* GiftCardsTests.swift */; };
 		89ACF7F01E4F215300F8B67A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7EF1E4F215300F8B67A /* ApiService.swift */; };
 		89ACF7F11E4F215300F8B67A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7EF1E4F215300F8B67A /* ApiService.swift */; };
+		89ACF7F41E5091C300F8B67A /* ContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7F31E5091C300F8B67A /* ContactRequest.swift */; };
+		89ACF7F51E5091C300F8B67A /* ContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7F31E5091C300F8B67A /* ContactRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,7 @@
 		896623F71E4B0C4D0015698C /* RewardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsTests.swift; sourceTree = "<group>"; };
 		896623FB1E4B2A210015698C /* GiftCardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftCardsTests.swift; sourceTree = "<group>"; };
 		89ACF7EF1E4F215300F8B67A /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		89ACF7F31E5091C300F8B67A /* ContactRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRequest.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBD98C60E5D745C6627B2FCE /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		607FACD21AFB9204008FA782 /* Example for BeanstalkEngageiOSSDK */ = {
 			isa = PBXGroup;
 			children = (
+				89ACF7F21E5091B300F8B67A /* Network */,
 				89ACF7EE1E4F210F00F8B67A /* Core */,
 				896623EC1E49B6F70015698C /* ViewControllers */,
 				896623EB1E49B6E70015698C /* Models */,
@@ -219,6 +223,14 @@
 				89ACF7EF1E4F215300F8B67A /* ApiService.swift */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		89ACF7F21E5091B300F8B67A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				89ACF7F31E5091C300F8B67A /* ContactRequest.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		932BD09EFB9CFD9C8A3AF8AE /* Frameworks */ = {
@@ -443,6 +455,7 @@
 				0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */,
 				89ACF7F01E4F215300F8B67A /* ApiService.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				89ACF7F41E5091C300F8B67A /* ContactRequest.swift in Sources */,
 				0A6696E41DC3654600E51E82 /* AvailableRewardsViewController.swift in Sources */,
 				896623EE1E49B74E0015698C /* ContactModel.swift in Sources */,
 				0AB1DAE71DB50B6400B65DC7 /* MenuViewController.swift in Sources */,
@@ -458,6 +471,7 @@
 				893DA2701E36A5140095A44B /* SessionTests.swift in Sources */,
 				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
 				893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */,
+				89ACF7F51E5091C300F8B67A /* ContactRequest.swift in Sources */,
 				896623F31E49C4E90015698C /* ContactModel.swift in Sources */,
 				89ACF7F11E4F215300F8B67A /* ApiService.swift in Sources */,
 				896623E61E449DF70015698C /* StoresTests.swift in Sources */,

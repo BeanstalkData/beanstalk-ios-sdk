@@ -7,9 +7,14 @@
 //
 
 import Foundation
+
+import ObjectMapper
+
 import BeanstalkEngageiOSSDK
 
 public class ContactModel: BEContact {
+  
+  public var preferredReward : String?
   
   public func getFullName() -> String {
     var fullName = ""
@@ -27,5 +32,11 @@ public class ContactModel: BEContact {
     }
     
     return fullName
+  }
+  
+  override public func mapping(map: Map) {
+    super.mapping(map)
+    
+    preferredReward <- map["PreferredReward"]
   }
 }

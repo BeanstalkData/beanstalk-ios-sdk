@@ -210,25 +210,6 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
       
       let params = Mapper().toJSON(request)
       
-      /*
-      let params = [
-        "FirstName": request.firstName!,
-        "LastName": request.lastName!,
-        "ZipCode" : request.zipCode!,
-        "Email" : request.email!,
-        "Cell_Number" : request.phone!,
-        "Birthday" : request.birthday!,
-        "custom_PreferredReward" : request.preferredReward!,
-        "Gender" : request.male ? "Male" : "Female",
-        "Email_Optin": request.emailOptIn ? "true" :"false",
-        "Txt_Optin": request.txtOptIn ? "true" :"false",
-        "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
-        "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
-        "custom_Novadine_User" : request.novadine ? "1" :"0",
-        "Source" : "iosapp",
-        "Prospect" : "loyalty"
-      ]
-     */
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseJSON {
@@ -431,54 +412,11 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func updateContact(original: BEContact, request : UpdateContactRequest, handler: (Result<AnyObject?, ApiError>) -> Void)  {
+  func updateContact(original: BEContact, request : ContactRequest, handler: (Result<AnyObject?, ApiError>) -> Void)  {
     
     if (isOnline()) {
-      var params = [
-        "ContactID" : "\(original.contactId!)"]
-      if request.firstName!.caseInsensitiveCompare(original.firstName!) != NSComparisonResult.OrderedSame {
-        params["FirstName"] = request.firstName!
-      }
       
-      if request.lastName!.caseInsensitiveCompare(original.lastName!) != NSComparisonResult.OrderedSame {
-        params["LastName"] = request.lastName!
-      }
-      
-      if request.zipCode != original.zipCode {
-        params["ZipCode"] = request.zipCode!
-      }
-      
-      if request.email!.caseInsensitiveCompare(original.email!) != NSComparisonResult.OrderedSame {
-        params["Email"] = request.email!
-      }
-      
-      if request.phone != original.phone {
-        params["Cell_Number"] = request.phone!
-      }
-      
-      if request.birthdate != original.birthday {
-        params["Birthday"] = request.birthdate!
-      }
-      
-      if request.preferredReward != original.preferredReward{
-        params["custom_PreferredReward"] = request.preferredReward! 
-      }
-      
-      if request.emailOptIn != (original.emailOptin == 1) {
-        params["Email_Optin"] = request.emailOptIn ? "true" :"false"
-      }
-      
-      if request.pushNotificationOptin != (original.pushNotificationOptin == 1) {
-        params["PushNotification_Optin"] = request.pushNotificationOptin ? "true" :"false"
-      }
-      
-      if request.inboxMessageOptin != (original.inboxMessageOptin == 1) {
-        params["InboxMessage_Optin"] = request.inboxMessageOptin ? "true" :"false"
-      }
-      
-      if request.male != (original.gender == "Male") {
-        params["Gender"] = request.male ? "Male" : "Female"
-      }
+      let params = Mapper().toJSON(request)
       
       if params.count <= 1{
         handler(.Failure(.MissingParameterError()))
