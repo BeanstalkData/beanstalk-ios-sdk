@@ -114,7 +114,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func registerLoyaltyAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  public func registerLoyaltyAccount(request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -132,7 +132,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func registerAccount(request: CreateContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  public func registerAccount(request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -188,7 +188,7 @@ public class BECoreServiceTestHandler {
   
   public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
-    self.testCase.getCoreService()?.register(contactClass)
+    self.testCase.getCoreService()?.register(contactClass: contactClass)
     
     self.testCase.prepare()
     

@@ -43,7 +43,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     return contactId != nil && token != nil
   }
   
-  public func registerLoyaltyAccount(controller: RegistrationProtocol?, request: CreateContactRequest, handler: (Bool) -> Void){
+  public func registerLoyaltyAccount(controller: RegistrationProtocol?, request: ContactRequest, handler: (Bool) -> Void){
     if (controller != nil) {
       guard controller!.validate(request) else{
         handler(false)
@@ -51,7 +51,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       }
     }
     
-    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
     
     controller?.showProgress("Registering User")
     apiService.createLoyaltyAccount(request, handler: { (result) in
@@ -66,7 +66,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     })
   }
   
-  public func register(controller : RegistrationProtocol?, request : CreateContactRequest, handler : (Bool) -> Void){
+  public func register(controller : RegistrationProtocol?, request : ContactRequest, handler : (Bool) -> Void){
     if (controller != nil) {
       guard controller!.validate(request) else{
         handler(false)
@@ -74,10 +74,10 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
       }
     }
     
-    request.phone = request.phone?.formatPhoneNumberToNationalSignificant()
+    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
     
     controller?.showProgress("Registering User")
-    if request.novadine {
+    if request.isNovadine() {
       apiService.createContact(request, handler: { (result) in
         controller?.hideProgress()
         
@@ -586,7 +586,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
 }
 
 public extension UIViewController {
-  func validate(request : CreateContactRequest) -> Bool{
+  func validate(request : ContactRequest) -> Bool{
     guard !(request.firstName?.isEmpty)! else{
       self.showMessage("Registration Error", message: "Enter First Name")
       return false
@@ -599,7 +599,7 @@ public extension UIViewController {
       self.showMessage("Registration Error", message: "Please enter a valid phone number")
       return false
     }
-    guard !(request.birthdate?.isEmpty)! else{
+    guard !(request.birthday?.isEmpty)! else{
       self.showMessage("Registration Error", message: "Enter Birthdate")
       return false
     }
@@ -607,21 +607,13 @@ public extension UIViewController {
       self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
       return false
     }
-    if !request.novadine{
+    if !request.isNovadine(){
       guard (request.email?.isValidEmail())! else{
         self.showMessage("Registration Error", message: "Enter Valid Email")
         return false
       }
-      guard request.email == request.emailConfirm else{
-        self.showMessage("Registration Error", message: "Emails do not match")
-        return false
-      }
       guard !(request.password?.isEmpty)! else{
         self.showMessage("Registration Error", message: "Enter Password")
-        return false
-      }
-      guard request.password == request.passwordConfirm else{
-        self.showMessage("Registration Error", message: "Passwords do not match")
         return false
       }
     }

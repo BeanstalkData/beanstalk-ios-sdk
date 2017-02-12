@@ -208,19 +208,20 @@ public class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     let contact = getMetadata()!.getRegisteredUser1Contact()
-    let request = CreateContactRequest()
-    request.firstName = contact.firstName
-    request.lastName = contact.lastName
-    request.phone = contact.phone
-    request.email = contact.email
-    request.emailConfirm = contact.email
-    request.password = getMetadata()!.getRegisteredUser1Password()
-    request.passwordConfirm = getMetadata()!.getRegisteredUser1Password()
-    request.zipCode  = contact.zipCode
-    request.birthdate = contact.birthday
-    request.emailOptIn = (contact.emailOptin != 0)
-    request.preferredReward = ""
-    request.male = (contact.gender == "Male")
+    let request = ContactRequest()
+    request.set(firstName: contact.firstName)
+    request.set(lastName: contact.lastName)
+    request.set(phone: contact.phone)
+    request.set(email: contact.email)
+    request.set(password: getMetadata()!.getRegisteredUser1Password())
+    request.set(zipCode: contact.zipCode)
+    request.set(birthday: contact.birthday)
+    request.set(emailOptin: (contact.emailOptin != 0))
+    request.set(pushNotificationOptin: (contact.pushNotificationOptin != 0))
+    request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
+    request.set(textOptin: (contact.textOptin != 0))
+//    request.set(preferredReward: "")
+    request.set(male: (contact.gender == "Male"))
     
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
       
@@ -242,19 +243,20 @@ public class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     let contact = getMetadata()!.getRegisteredUser1Contact()
-    let request = CreateContactRequest()
-    request.firstName = contact.firstName
-    request.lastName = contact.lastName
-    request.phone = contact.phone
-    request.email = contact.email
-    request.emailConfirm = contact.email
-    request.password = getMetadata()!.getRegisteredUser1Password()
-    request.passwordConfirm = getMetadata()!.getRegisteredUser1Password()
-    request.zipCode  = contact.zipCode
-    request.birthdate = contact.birthday
-    request.emailOptIn = (contact.emailOptin != 0)
-    request.preferredReward = ""
-    request.male = (contact.gender == "Male")
+    let request = ContactRequest()
+    request.set(firstName: contact.firstName)
+    request.set(lastName: contact.lastName)
+    request.set(phone: contact.phone)
+    request.set(email: contact.email)
+    request.set(password: getMetadata()!.getRegisteredUser1Password())
+    request.set(zipCode: contact.zipCode)
+    request.set(birthday: contact.birthday)
+    request.set(emailOptin: (contact.emailOptin != 0))
+    request.set(pushNotificationOptin: (contact.pushNotificationOptin != 0))
+    request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
+    request.set(textOptin: (contact.textOptin != 0))
+    //    request.set(preferredReward: "")
+    request.set(male: (contact.gender == "Male"))
     
     coreServiceHandler.registerAccount(request) { (result) in
       
@@ -279,7 +281,7 @@ public class BEAccountTests: BEBaseTestCase {
       
       if (result) {
         
-        coreServiceHandler.getContact({ (contact) in
+        coreServiceHandler.getContact(contactClass, handler:{ (contact) in
           XCTAssert(contact != nil, "Get contact request finished with error")
           
           if contact != nil {

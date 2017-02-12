@@ -159,8 +159,11 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   }
 
   
-  func createLoyaltyAccount (request : CreateContactRequest, handler: (Result<BELoyaltyUser?, ApiError>) -> Void) {
+  func createLoyaltyAccount (request : ContactRequest, handler: (Result<BELoyaltyUser?, ApiError>) -> Void) {
     if (isOnline()) {
+      
+      let params = Mapper().toJSON(request)
+/*
       let params = [
         "FirstName": request.firstName!,
         "LastName": request.lastName!,
@@ -179,7 +182,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Source" : "iosapp",
         "Prospect" : "loyalty"
       ]
-      
+      */
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject(completionHandler: { (response : Response<BELoyaltyUser, NSError>) in
@@ -202,15 +205,19 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func createContact(request : CreateContactRequest, handler: (Result<String, ApiError>) -> Void) {
+  func createContact(request : ContactRequest, handler: (Result<String, ApiError>) -> Void) {
     if (isOnline()) {
+      
+      let params = Mapper().toJSON(request)
+      
+      /*
       let params = [
         "FirstName": request.firstName!,
         "LastName": request.lastName!,
         "ZipCode" : request.zipCode!,
         "Email" : request.email!,
         "Cell_Number" : request.phone!,
-        "Birthday" : request.birthdate!,
+        "Birthday" : request.birthday!,
         "custom_PreferredReward" : request.preferredReward!,
         "Gender" : request.male ? "Male" : "Female",
         "Email_Optin": request.emailOptIn ? "true" :"false",
@@ -221,6 +228,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Source" : "iosapp",
         "Prospect" : "loyalty"
       ]
+     */
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseJSON {
@@ -391,12 +399,19 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func getContact <ContactClass: BEContact> (contactId: String, contactClass: ContactClass.Type, handler: (Result<BEContact?, ApiError>) -> Void) {
+  func getContact <ContactClass: Mappable> (contactId: String, contactClass: ContactClass.Type, handler: (Result<ContactClass?, ApiError>) -> Void) {
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
         "q": contactId
       ]
+      
+      print(contactClass)
+      
+      let map = Map(mappingType: .FromJSON, JSONDictionary: ["24": "23"])
+      var tmp: ContactClass? = ContactClass(map)
+      print(tmp.debugDescription)
+      
       SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {

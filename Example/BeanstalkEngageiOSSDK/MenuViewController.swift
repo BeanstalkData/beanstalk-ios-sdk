@@ -23,7 +23,7 @@ class MenuViewController: UIViewController, CoreProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        coreService.register(ContactModel.self)
+      coreService.register(ContactModel.self)
       
         self.updateAuthStatus()
     }

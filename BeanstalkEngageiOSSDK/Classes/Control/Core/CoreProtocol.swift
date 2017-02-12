@@ -15,7 +15,7 @@ public protocol CoreProtocol {
 }
 
 public protocol RegistrationProtocol :CoreProtocol {
-  func validate(request: CreateContactRequest) -> Bool
+  func validate(request: ContactRequest) -> Bool
 }
 
 public protocol EditProfileProtocol :CoreProtocol {

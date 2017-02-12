@@ -58,19 +58,17 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     func register() {
         self.scrollView.endEditing(true)
         
-        let request = CreateContactRequest()
-        request.firstName = self.firstNameTextField.text
-        request.lastName = self.lastNameTextField.text
-        request.phone = self.phoneTextField.text?.stringByReplacingOccurrencesOfString("-", withString: "")
-        request.email = self.emailTextField.text
-        request.emailConfirm = self.confirmEmailTextField.text
-        request.password = self.passwordTextField.text
-        request.passwordConfirm = self.confirmPasswordTextField.text
-        request.zipCode  = self.zipCodeTextField.text
-        request.birthdate = self.getFormatedDate(self.selectedDate, dateFormat: "yyyy-MM-dd")
-        request.emailOptIn = self.optEmailCheckBox.on
-        request.preferredReward = ""
-        request.male = self.genderSegmentView.selectedSegmentIndex == 0 ? true : false
+        let request = ContactRequest()
+        request.set(firstName: self.firstNameTextField.text)
+        request.set(lastName: self.lastNameTextField.text)
+        request.set(phone: self.phoneTextField.text?.stringByReplacingOccurrencesOfString("-", withString: ""))
+        request.set(email: self.emailTextField.text)
+        request.set(password: self.passwordTextField.text)
+        request.set(zipCode: self.zipCodeTextField.text)
+        request.set(birthday: self.getFormatedDate(self.selectedDate, dateFormat: "yyyy-MM-dd"))
+        request.set(emailOptin: self.optEmailCheckBox.on)
+//        request.set(preferredReward: "")
+        request.set(male: self.genderSegmentView.selectedSegmentIndex == 0 ? true : false)
         
         self.coreService?.register(self, request: request, handler: { (success) in
           self.completionBlock?(success: success)
