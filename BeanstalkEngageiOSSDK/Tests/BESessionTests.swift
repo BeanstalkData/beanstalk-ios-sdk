@@ -22,7 +22,7 @@ public class BESessionTests: BEBaseTestCase {
   
   public func userSessionTest() {
     
-    self.getSession()?.setContactId(String(getMetadata()!.getRegisteredUser1Contact().contactId!))
+    self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
     self.getSession()?.setAuthToke("12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
     self.getSession()?.setAPNSToken(getMetadata()!.getValidAPNSToken())
     self.getSession()?.setRegisteredAPNSToken(getMetadata()!.getValidAPNSToken())
@@ -35,7 +35,7 @@ public class BESessionTests: BEBaseTestCase {
     XCTAssert(self.getSession()?.getDefaultCard() != nil)
     XCTAssert(String(getMetadata()!.getRegisteredUser1GiftCard().id!) == self.getSession()?.getDefaultCard()?.id)
     
-    self.getSession()?.setContactId(nil)
+    self.getSession()?.setContact(nil)
     self.getSession()?.setAuthToke(nil)
     self.getSession()?.setAPNSToken(nil)
     self.getSession()?.setRegisteredAPNSToken(nil)
@@ -47,7 +47,7 @@ public class BESessionTests: BEBaseTestCase {
   }
   
   public func clearSessionTest() {
-    self.getSession()?.setContactId(String(getMetadata()!.getRegisteredUser1Contact().contactId!))
+    self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
     self.getSession()?.setAuthToke("12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
     self.getSession()?.setAPNSToken(getMetadata()!.getValidAPNSToken())
     self.getSession()?.setRegisteredAPNSToken(getMetadata()!.getValidAPNSToken())
@@ -85,5 +85,34 @@ public class BESessionTests: BEBaseTestCase {
     let giftCardNil = self.getSession()?.getDefaultCard()
 
     XCTAssert(giftCardNil == nil)
+  }
+  
+  public func contactSessionTest() {
+    
+    self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
+    
+    let contact = self.getSession()?.getContact()
+    
+    XCTAssert(contact != nil)
+    XCTAssert(contact?.contactId == getMetadata()!.getRegisteredUser1Contact().contactId)
+    XCTAssert(contact?.firstName == getMetadata()!.getRegisteredUser1Contact().firstName)
+    XCTAssert(contact?.lastName == getMetadata()!.getRegisteredUser1Contact().lastName)
+    XCTAssert(contact?.zipCode == getMetadata()!.getRegisteredUser1Contact().zipCode)
+    XCTAssert(contact?.email == getMetadata()!.getRegisteredUser1Contact().email)
+    XCTAssert(contact?.prospect == getMetadata()!.getRegisteredUser1Contact().prospect)
+    XCTAssert(contact?.gender == getMetadata()!.getRegisteredUser1Contact().gender)
+    XCTAssert(contact?.birthday == getMetadata()!.getRegisteredUser1Contact().birthday)
+    XCTAssert(contact?.fKey == getMetadata()!.getRegisteredUser1Contact().fKey)
+    XCTAssert(contact?.phone == getMetadata()!.getRegisteredUser1Contact().phone)
+    XCTAssert(contact?.textOptin == getMetadata()!.getRegisteredUser1Contact().textOptin)
+    XCTAssert(contact?.emailOptin == getMetadata()!.getRegisteredUser1Contact().emailOptin)
+    XCTAssert(contact?.pushNotificationOptin == getMetadata()!.getRegisteredUser1Contact().pushNotificationOptin)
+    XCTAssert(contact?.inboxMessageOptin == getMetadata()!.getRegisteredUser1Contact().inboxMessageOptin)
+    XCTAssert(contact?.novadine == getMetadata()!.getRegisteredUser1Contact().novadine)
+    
+    self.getSession()?.setContact(nil)
+    let contactNill = self.getSession()?.getContact()
+    
+    XCTAssert(contactNill == nil)
   }
 }

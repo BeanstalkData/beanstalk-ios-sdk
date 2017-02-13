@@ -55,10 +55,6 @@ public class BEGiftCard : Mappable {
   
   class func clear(storage : NSUserDefaults) {
     storage.setObject(nil, forKey: BEGiftCard.kId)
-    if storage.objectForKey(BEGiftCard.kId) != nil {
-      let nErr = 1
-    }
-    
     storage.setObject(nil, forKey: BEGiftCard.kNumber)
     storage.setObject(nil, forKey: BEGiftCard.kBalance)
     storage.synchronize()

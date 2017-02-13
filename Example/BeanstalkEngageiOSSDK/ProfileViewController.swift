@@ -20,6 +20,9 @@ class ProfileViewController: BaseViewController, CoreProtocol {
     super.viewDidAppear(animated)
     
     if self.contact == nil {
+      self.contact = self.coreService?.getSession()?.getContact()
+      self.updateProfile()
+      
       self.loadProfile()
     }
     else {

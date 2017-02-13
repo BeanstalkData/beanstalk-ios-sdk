@@ -27,4 +27,8 @@ class SessionTests: BESessionTests {
   func testGiftCardSession() {
     giftCardSessionTest()
   }
+  
+  func testContactSession() {
+    contactSessionTest()
+  }
 }

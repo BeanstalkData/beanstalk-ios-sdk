@@ -31,6 +31,10 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     self.session = session
   }
   
+  public func getSession() -> BESessionT<UserDefautls>? {
+    return session
+  }
+  
   public func isAuthenticated() ->Bool{
     let contactId = session.getContactId()
     let token = session.getAuthToken()
@@ -223,7 +227,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
     
     apiService.getContact(contactId!, contactClass: contactClass, handler: { (result) in
-      self.session.setContactId(contactId)
+      if result.isSuccess {
+        self.session.setContact(result.value!)
+      } else {
+        self.session.setContact(nil)
+      }
       self.session.setAuthToke(token)
       handler(result.isSuccess)
     })
@@ -303,6 +311,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         controller?.showMessage(.ProfileError(reason: result.error!))
         handler(nil)
       } else {
+        self.session.setContact(result.value!)
         handler(result.value!)
       }
     })
