@@ -13,11 +13,11 @@ import PKHUD
 import Alamofire
 import BeanstalkEngageiOSSDK
 
-public typealias CoreService = CoreServiceT<HTTPAlamofireManager, BEUserDefaults>
+public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
-public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: BEUserDefaults> {
+public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
   let apiService: ApiCommunication<SessionManager>
-  let session: BESessionT<UserDefautls>
+  let session: BESession
   
   private var p_isAuthenticateInProgress = false
   public var isAuthenticateInProgress: Bool {
@@ -26,13 +26,17 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
     }
   }
   
-  public required init(apiKey: String, session: BESessionT<UserDefautls>) {
+  public required init(apiKey: String, session: BESession) {
     self.apiService = ApiCommunication(apiKey: apiKey)
     self.session = session
   }
   
-  public func getSession() -> BESessionT<UserDefautls>? {
+  public func getSession() -> BESession? {
     return session
+  }
+  
+  public func clearSession() {
+    self.session.clearSession()
   }
   
   public func isAuthenticated() ->Bool{
@@ -221,7 +225,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
   private func handleLoginComplete <ContactClass: BEContact> (contactId : String?, token : String?, contactClass: ContactClass.Type, handler : (Bool) -> Void) {
     
     guard (contactId != nil && token != nil) else {
-      self.session.clearSession()
+      self.clearSession()
       handler(false)
       return
     }
@@ -272,9 +276,9 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
           handler(success: success)
         })
         
-        self.session.clearSession()
+        self.clearSession()
       } else {
-        self.session.clearSession()
+        self.clearSession()
         
         handler(success: result.isSuccess)
       }

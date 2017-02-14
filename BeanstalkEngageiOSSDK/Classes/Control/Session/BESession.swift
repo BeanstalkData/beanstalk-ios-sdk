@@ -8,11 +8,16 @@
 
 import Foundation
 
-public typealias BESession = BESessionT<BEUserDefaults>
-
-public class BESessionT<UserDefaults: BEUserDefaults> {
+public class BESession {
   
-  required public init() {
+  private let userDefaults: BEUserDefaults
+  
+  public init(userDefaults: BEUserDefaults = BEUserDefaults()) {
+    self.userDefaults = userDefaults
+  }
+  
+  public func getUserDefaults() -> BEUserDefaults {
+    return self.userDefaults
   }
   
   public func clearSession() {
@@ -28,7 +33,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getContactId() -> String? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     
     var contact = BEContact(storage: prefs)
     
@@ -40,7 +45,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getContact <ContactClass: BEContact> () -> ContactClass? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     
     var contact = ContactClass(storage: prefs)
     
@@ -48,7 +53,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func setContact(contact: BEContact?) {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     if contact != nil {
       contact?.save(prefs)
     } else {
@@ -58,12 +63,12 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getAuthToken() -> String? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     return prefs.objectForKey(DataKeys.TOKEN_KEY) as? String
   }
   
   public func setAuthToke(token: String?) {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     if token != nil {
       prefs.setObject(token, forKey: DataKeys.TOKEN_KEY)
     } else {
@@ -73,12 +78,12 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getAPNSToken() -> String? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     return prefs.objectForKey(DataKeys.DEVICE_TOKEN) as? String
   }
   
   public func setAPNSToken(apnsToken: String?) {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     if (apnsToken != nil) {
       prefs.setObject(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
     } else {
@@ -88,12 +93,12 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getRegisteredAPNSToken() -> String? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     return prefs.objectForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
   }
   
   public func setRegisteredAPNSToken(apnsToken: String?) {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     if apnsToken != nil {
       prefs.setObject(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
     } else {
@@ -103,7 +108,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func getDefaultCard() -> BEGiftCard? {
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     var giftCard = BEGiftCard(storage: prefs)
     
     if giftCard?.id == nil {
@@ -114,7 +119,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
   }
   
   public func saveDefaultCard(card : BEGiftCard?){
-    let prefs = UserDefaults.getTransientDefaults()
+    let prefs = self.userDefaults.getTransientDefaults()
     if (card != nil) {
       card?.save(prefs)
     } else {
@@ -125,7 +130,7 @@ public class BESessionT<UserDefaults: BEUserDefaults> {
 }
 
 public class BEUserDefaults: NSUserDefaults {
-  public class func getTransientDefaults() -> NSUserDefaults {
+  public func getTransientDefaults() -> NSUserDefaults {
     return NSUserDefaults.standardUserDefaults()
   }
 }

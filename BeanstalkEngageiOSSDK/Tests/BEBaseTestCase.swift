@@ -3,20 +3,18 @@ import XCTest
 import BeanstalkEngageiOSSDK
 import CCTestingUserDefaults
 
-public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager, BETestUserDefaults>
+public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager>
 
 public class BEBaseTestCase: BEAsyncTestCase {
   
   var beanstalkCoreService: CoreServiceTest?
-  var session: BESessionT<BETestUserDefaults>?
+  var session: BESession?
   
   override public func setUp() {
     super.setUp()
     
-    if let _ = getMetadata() {
-      session = BESessionT<BETestUserDefaults>()
-      beanstalkCoreService = CoreServiceTest(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session!)
-    }
+    self.beanstalkCoreService = self.createCoreService()
+    self.session = self.beanstalkCoreService?.getSession()
   }
   
   override public func tearDown() {
@@ -24,12 +22,23 @@ public class BEBaseTestCase: BEAsyncTestCase {
     super.tearDown()
   }
   
+  public func createCoreService() -> CoreServiceTest? {
+    if let _ = getMetadata() {
+      let session = BESession(userDefaults: BETestUserDefaults())
+      let beanstalkCoreService = CoreServiceTest(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session)
+      
+      return beanstalkCoreService
+    }
+    
+    return nil
+  }
+  
   public func getCoreService() -> CoreServiceTest? {
     XCTAssert(beanstalkCoreService != nil)
     return beanstalkCoreService
   }
   
-  public func getSession() -> BESessionT<BETestUserDefaults>? {
+  public func getSession() -> BESession? {
     XCTAssert(session != nil)
     return session
   }
@@ -42,9 +51,9 @@ public class BEBaseTestCase: BEAsyncTestCase {
 
 public class BETestUserDefaults: BEUserDefaults {
   
-  static let userTransientDefaults = NSUserDefaults.transientDefaults()
+  let userTransientDefaults = NSUserDefaults.transientDefaults()
   
-  override public class func getTransientDefaults() -> NSUserDefaults {
+  override public func getTransientDefaults() -> NSUserDefaults {
     return userTransientDefaults
   }
 }
