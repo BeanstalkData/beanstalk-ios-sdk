@@ -45,6 +45,10 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
     return contactId != nil && token != nil
   }
   
+  public func isOnline() -> Bool {
+    return self.apiService.isOnline()
+  }
+  
   public func registerLoyaltyAccount <ContactClass: BEContact> (controller: RegistrationProtocol?, request: ContactRequest, contactClass: ContactClass.Type, handler: (Bool) -> Void){
     if (controller != nil) {
       guard controller!.validate(request) else{
