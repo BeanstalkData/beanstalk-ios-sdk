@@ -10,9 +10,16 @@ import Foundation
 
 import ObjectMapper
 
-public class BECoupon : Mappable {
+public class BECoupon : NSObject, NSCoding, Mappable {
   private static let kOriginalDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
   private static let kDisplayDateFormat = "MM/dd/yyyy"
+  
+  private static let kObject = "BECoupon" + "_object"
+  private static let kNumber = "BECoupon" + "_number"
+  private static let kExpiration = "BECoupon" + "_expiration"
+  private static let kText = "BECoupon" + "_text"
+  private static let kImageUrl = "BECoupon" + "_imageUrl"
+  
   public var number: String?
   public var expiration: String?
   public var text: String?
@@ -20,11 +27,12 @@ public class BECoupon : Mappable {
   
   //for mocks only
   init(imageUrl: String) {
+    super.init()
     self.imageUrl = imageUrl
   }
   
   required public init?(_ map: Map) {
-    self.mapping(map)
+    super.init()
   }
   
   public func mapping(map: Map) {
@@ -58,5 +66,48 @@ public class BECoupon : Mappable {
     }
     
     return nil
+  }
+  
+  //MARK: - Persistence store -
+  
+  class public func initList(storage : NSUserDefaults) -> [BECoupon] {
+    
+    var couponList: [BECoupon]?
+    if let list = storage.objectForKey(BECoupon.kObject) as? NSData {
+      couponList = NSKeyedUnarchiver.unarchiveObjectWithData(list) as? [BECoupon]
+    }
+    
+    if couponList == nil {
+      couponList = []
+    }
+    
+    return couponList!
+  }
+  
+  class public func clearList(storage : NSUserDefaults) {
+    storage.setObject(nil, forKey: BECoupon.kObject)
+    
+    storage.synchronize()
+  }
+  
+  class public func saveList(list : [BECoupon], storage : NSUserDefaults) {
+    storage.setObject(NSKeyedArchiver.archivedDataWithRootObject(list), forKey: BECoupon.kObject)
+    
+    storage.synchronize()
+  }
+  
+  //MARK: - NSCoding -
+  required public init(coder aDecoder: NSCoder) {
+    self.number = aDecoder.decodeObjectForKey(BECoupon.kNumber) as? String
+    self.expiration = aDecoder.decodeObjectForKey(BECoupon.kExpiration) as? String
+    self.text = aDecoder.decodeObjectForKey(BECoupon.kText) as? String
+    self.imageUrl = aDecoder.decodeObjectForKey(BECoupon.kImageUrl) as? String
+  }
+  
+  public func encodeWithCoder(aCoder: NSCoder) {
+    aCoder.encodeObject(number, forKey: BECoupon.kNumber)
+    aCoder.encodeObject(expiration, forKey: BECoupon.kExpiration)
+    aCoder.encodeObject(text, forKey: BECoupon.kText)
+    aCoder.encodeObject(imageUrl, forKey: BECoupon.kImageUrl)
   }
 }

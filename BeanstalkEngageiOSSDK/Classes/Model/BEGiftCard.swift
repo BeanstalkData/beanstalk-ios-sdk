@@ -57,6 +57,7 @@ public class BEGiftCard : Mappable {
     storage.setObject(nil, forKey: BEGiftCard.kId)
     storage.setObject(nil, forKey: BEGiftCard.kNumber)
     storage.setObject(nil, forKey: BEGiftCard.kBalance)
+    
     storage.synchronize()
   }
   
@@ -64,6 +65,7 @@ public class BEGiftCard : Mappable {
     storage.setObject(id, forKey: BEGiftCard.kId)
     storage.setObject(number, forKey: BEGiftCard.kNumber)
     storage.setObject(balance, forKey: BEGiftCard.kBalance)
+    
     storage.synchronize()
   }
   

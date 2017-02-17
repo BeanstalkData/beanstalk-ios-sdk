@@ -24,6 +24,7 @@ public class BESession {
     setContact(nil)
     setAuthToke(nil)
     saveDefaultCard(nil)
+    saveRewards(nil)
     setRegisteredAPNSToken(nil)
   }
   
@@ -59,7 +60,6 @@ public class BESession {
     } else {
       BEContact.clear(prefs)
     }
-    prefs.synchronize()
   }
   
   public func getAuthToken() -> String? {
@@ -125,7 +125,22 @@ public class BESession {
     } else {
       BEGiftCard.clear(prefs)
     }
-    prefs.synchronize()
+  }
+  
+  public func getRewards() -> [BECoupon]? {
+    let prefs = self.userDefaults.getTransientDefaults()
+    var rewards = BECoupon.initList(prefs)
+    
+    return rewards
+  }
+  
+  public func saveRewards(rewards : [BECoupon]?){
+    let prefs = self.userDefaults.getTransientDefaults()
+    if (rewards != nil) {
+      BECoupon.saveList(rewards!, storage: prefs)
+    } else {
+      BECoupon.clearList(prefs)
+    }
   }
 }
 

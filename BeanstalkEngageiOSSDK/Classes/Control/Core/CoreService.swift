@@ -390,6 +390,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
         handler(result.isSuccess, [])
       } else {
         let rewards = result.value!
+        self.session.saveRewards(rewards)
         handler(result.isSuccess, rewards)
       }
     })
