@@ -62,7 +62,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
                   
                   
                   // check for email equals
-                  guard let contactEmail = contact["email"] as? String else {
+                  guard let contactEmail = contact["contactEmail"] as? String else {
                     continue
                   }
                   
@@ -137,7 +137,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
                   
                   
                   // check for email equals
-                  guard let contactPhone = contact["phone"] as? String else {
+                  guard let contactPhone = contact["Cell_Number"] as? String else {
                     continue
                   }
                   
