@@ -54,17 +54,39 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
                 handler(.Success(false))
                 return
               }
-              if let contact = data[0] as? [String : AnyObject]{
-                if let prospect = contact["Prospect"] as? String {
-                  var exists = false
-                  for prospectType in prospectTypes {
-                    if prospectType == prospect {
-                      exists = true
-                      break
+              
+              for contactData in data {
+                if let contact = contactData as? [String : AnyObject] {
+                  var emailEquals = false
+                  var prospectEquals = true
+                  
+                  
+                  // check for email equals
+                  guard let contactEmail = contact["email"] as? String else {
+                    continue
+                  }
+                  
+                  if contactEmail == email {
+                    emailEquals = true
+                    
+                    // check for required prospect type
+                    if let prospect = contact["Prospect"] as? String {
+                      // we need initial 'false' if desired prospect type specified
+                      var contactProspectEquals = (prospectTypes.count == 0)
+                      
+                      for prospectType in prospectTypes {
+                        if prospectType == prospect {
+                          contactProspectEquals = true
+                          break
+                        }
+                      }
+                      
+                      prospectEquals = contactProspectEquals
                     }
                   }
                   
-                  if exists {
+                  // if both email and prospect satusfies - contact exists
+                  if emailEquals && prospectEquals {
                     handler(.Success(true))
                     return
                   }
@@ -82,7 +104,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     }
   }
   
-  func checkContactsByPhoneExisted(phone: String, handler: (Result<Bool, ApiError>) -> Void) {
+  func checkContactsByPhoneExisted(phone: String, prospectTypes: [ProspectType], handler: (Result<Bool, ApiError>) -> Void) {
     if (isOnline()) {
       let params = ["type": "cell_number",
                     "key": self.apiKey,
@@ -107,10 +129,39 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
                 handler(.Success(false))
                 return
               }
-              if let contact = data[0] as? [String : AnyObject]{
-                if let prospect = contact["Prospect"] as? String {
-                  if ("eclub".caseInsensitiveCompare(prospect) == NSComparisonResult.OrderedSame  ||
-                    "loyalty".caseInsensitiveCompare(prospect) == NSComparisonResult.OrderedSame ){
+              
+              for contactData in data {
+                if let contact = contactData as? [String : AnyObject] {
+                  var phoneEquals = false
+                  var prospectEquals = true
+                  
+                  
+                  // check for email equals
+                  guard let contactPhone = contact["phone"] as? String else {
+                    continue
+                  }
+                  
+                  if contactPhone == phone {
+                    phoneEquals = true
+                    
+                    // check for required prospect type
+                    if let prospect = contact["Prospect"] as? String {
+                      // we need initial 'false' if desired prospect type specified
+                      var contactProspectEquals = (prospectTypes.count == 0)
+                      
+                      for prospectType in prospectTypes {
+                        if prospectType == prospect {
+                          contactProspectEquals = true
+                          break
+                        }
+                      }
+                      
+                      prospectEquals = contactProspectEquals
+                    }
+                  }
+                  
+                  // if both email and prospect satusfies - contact exists
+                  if phoneEquals && prospectEquals {
                     handler(.Success(true))
                     return
                   }
