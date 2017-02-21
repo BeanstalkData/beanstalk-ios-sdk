@@ -2,23 +2,9 @@ import UIKit
 import XCTest
 
 import ObjectMapper
-import Timberjack
 
 public class BEAccountTests: BEBaseTestCase {
-  
-  public override func setUp() {
-    super.setUp()
     
-    Timberjack.register()
-  }
-  
-  public override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-    
-    Timberjack.unregister()
-  }
-  
   public func loginRegisteredUserTest() {
     
     self.getSession()?.clearSession()
@@ -99,7 +85,6 @@ public class BEAccountTests: BEBaseTestCase {
       XCTAssert(result, "Login request finished with error");
       
       XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after login")
-      XCTAssert(self.getSession()?.getRegisteredAPNSToken() == pushToken, "Invalid APNS token after login")
       
       if (result) {
         coreServiceHandler.signOut() { (result) in

@@ -2,6 +2,7 @@ import UIKit
 import XCTest
 import BeanstalkEngageiOSSDK
 import CCTestingUserDefaults
+import Timberjack
 
 public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager>
 
@@ -13,12 +14,15 @@ public class BEBaseTestCase: BEAsyncTestCase {
   override public func setUp() {
     super.setUp()
     
+    Timberjack.register()
+    
     self.beanstalkCoreService = self.createCoreService()
     self.session = self.beanstalkCoreService?.getSession()
   }
   
   override public func tearDown() {
-    // 
+    Timberjack.unregister()
+    
     super.tearDown()
   }
   

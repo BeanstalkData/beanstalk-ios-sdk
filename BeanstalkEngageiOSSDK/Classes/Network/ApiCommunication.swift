@@ -1021,20 +1021,28 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
 }
 
 public class HTTPAlamofireManager: Alamofire.Manager {
-  class func getSharedInstance() -> Alamofire.Manager {
+  public class func getSharedInstance() -> Alamofire.Manager {
     return Alamofire.Manager.sharedInstance
+  }
+  
+  public class func defaultSessionConfiguration() -> NSURLSessionConfiguration {
+    return NSURLSessionConfiguration.defaultSessionConfiguration()
   }
 }
 
 public class HTTPTimberjackManager: HTTPAlamofireManager {
   static internal let shared: Alamofire.Manager = {
-    let configuration = Timberjack.defaultSessionConfiguration()
+    let configuration = HTTPTimberjackManager.defaultSessionConfiguration()
     let manager = HTTPTimberjackManager(configuration: configuration)
     return manager
   }()
   
   public override class func getSharedInstance() -> Alamofire.Manager {
     return shared
+  }
+  
+  public override class func defaultSessionConfiguration() -> NSURLSessionConfiguration {
+    return Timberjack.defaultSessionConfiguration()
   }
 }
 

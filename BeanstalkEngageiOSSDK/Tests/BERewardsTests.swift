@@ -10,23 +10,9 @@ import Foundation
 import XCTest
 
 import ObjectMapper
-import Timberjack
 
 public class BERewardsTests: BEBaseTestCase {
   
-  public override func setUp() {
-    super.setUp()
-    
-    Timberjack.register()
-  }
-  
-  public override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-    
-    Timberjack.unregister()
-  }
-
   public func availableRewardsTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()

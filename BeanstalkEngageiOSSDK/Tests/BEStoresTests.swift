@@ -10,22 +10,7 @@ import Foundation
 import CoreLocation
 import XCTest
 
-import Timberjack
-
 public class BEStoresTests: BEBaseTestCase {
-
-  public override func setUp() {
-    super.setUp()
-    
-    Timberjack.register()
-  }
-  
-  public override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-    
-    Timberjack.unregister()
-  }
   
   public func allStoresTest <StoreClass: BEStore> (storeClass: StoreClass.Type) -> [BEStore]? {
     
