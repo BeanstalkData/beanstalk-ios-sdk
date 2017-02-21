@@ -92,7 +92,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager, UserDefautls: B
         } else {
           var updateExisted = result.value!
           
-          self.apiService.checkContactsByPhoneExisted(request.phone!, handler: { (result) in
+          self.apiService.checkContactsByPhoneExisted(request.phone!, prospectTypes: [], handler: { (result) in
             
             if result.isFailure {
               controller?.hideProgress()
