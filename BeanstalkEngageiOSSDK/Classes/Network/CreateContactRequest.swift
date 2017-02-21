@@ -19,7 +19,7 @@ public final class CreateContactRequest{
   public var passwordConfirm : String?
   public var zipCode : String?
   public var birthdate: String?
-  public var male = false
+  public var gender = "Unknown"
   public var emailOptIn = false
   public var txtOptIn = false
   public var pushNotificationOptin = false

@@ -220,8 +220,8 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Password": request.password!,
         "CellNumber" : request.phone!,
         "Birthday" : request.birthdate!,
+        "Gender" : request.gender,
         "custom_PreferredReward" : request.preferredReward!,
-        "Gender" : request.male ? "Male" : "Female",
         "Email_Optin": request.emailOptIn ? "true" :"false",
         "Txt_Optin": request.txtOptIn ? "true" :"false",
         "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
@@ -262,8 +262,8 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Email" : request.email!,
         "Cell_Number" : request.phone!,
         "Birthday" : request.birthdate!,
+        "Gender" : request.gender,
         "custom_PreferredReward" : request.preferredReward!,
-        "Gender" : request.male ? "Male" : "Female",
         "Email_Optin": request.emailOptIn ? "true" :"false",
         "Txt_Optin": request.txtOptIn ? "true" :"false",
         "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
@@ -272,6 +272,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Source" : "iosapp",
         "Prospect" : "loyalty"
       ]
+      
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseJSON {
@@ -512,8 +513,8 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         params["InboxMessage_Optin"] = request.inboxMessageOptin ? "true" :"false"
       }
       
-      if request.male != (original.gender == "Male") {
-        params["Gender"] = request.male ? "Male" : "Female"
+      if request.gender != original.gender {
+        params["Gender"] = request.gender
       }
       
       if params.count <= 1{
