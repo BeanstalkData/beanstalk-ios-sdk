@@ -115,14 +115,12 @@ public class ContactRequest: Mappable{
     self.birthday = birthday
   }
   
-  public func set(male male: Bool?) {
-    guard male != nil else {
+  public func set(gender gender: String?) {
+    guard gender != nil else {
       return
     }
     
-    let gender = male! ? "Male" : "Female"
-    
-    guard origin?.gender?.caseInsensitiveCompare(gender) != NSComparisonResult.OrderedSame else {
+    guard origin?.gender?.caseInsensitiveCompare(gender!) != NSComparisonResult.OrderedSame else {
       return
     }
     

@@ -599,36 +599,36 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
 
 public extension UIViewController {
   func validate(request : ContactRequest) -> Bool{
-    guard !(request.firstName?.isEmpty)! else{
-      self.showMessage("Registration Error", message: "Enter First Name")
-      return false
-    }
-    guard !(request.lastName?.isEmpty)! else{
-      self.showMessage("Registration Error", message: "Enter Last Name")
-      return false
-    }
-    guard (request.phone?.isValidPhone())! else{
-      self.showMessage("Registration Error", message: "Please enter a valid phone number")
-      return false
-    }
-    guard !(request.birthday?.isEmpty)! else{
-      self.showMessage("Registration Error", message: "Enter Birthdate")
-      return false
-    }
-    guard (request.zipCode?.isValidZipCode())! else{
-      self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
-      return false
-    }
-    if !request.isNovadine(){
-      guard (request.email?.isValidEmail())! else{
-        self.showMessage("Registration Error", message: "Enter Valid Email")
+    if request.origin == nil {
+      // Validate create contact request
+      guard (request.firstName != nil && !(request.firstName?.isEmpty)!) else{
+        self.showMessage("Registration Error", message: "Enter First Name")
         return false
       }
-      guard !(request.password?.isEmpty)! else{
-        self.showMessage("Registration Error", message: "Enter Password")
+      guard (request.lastName != nil && !(request.lastName?.isEmpty)!) else{
+        self.showMessage("Registration Error", message: "Enter Last Name")
         return false
       }
+      guard (request.phone != nil && (request.phone?.isValidPhone())!) else{
+        self.showMessage("Registration Error", message: "Please enter a valid phone number")
+        return false
+      }
+      guard (request.zipCode != nil && (request.zipCode?.isValidZipCode())!) else{
+        self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
+        return false
+      }
+      if !request.isNovadine(){
+        guard (request.email != nil && (request.email?.isValidEmail())!) else{
+          self.showMessage("Registration Error", message: "Enter Valid Email")
+          return false
+        }
+        guard (request.password != nil && !(request.password?.isEmpty)!) else{
+          self.showMessage("Registration Error", message: "Enter Password")
+          return false
+        }
+      }
     }
+    
     return true
   }
   

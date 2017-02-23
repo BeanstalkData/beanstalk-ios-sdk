@@ -11,7 +11,7 @@ import BeanstalkEngageiOSSDK
 
 class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtocol {
   var contact: ContactModel?
-  var updateContactRequest: UpdateContactRequest?
+  var updateContactRequest: ContactRequest?
   
   @IBOutlet var nameLabel: UILabel!
   @IBOutlet var emailLabel: UILabel!
@@ -45,17 +45,17 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   }
   
   func updateProfile() {
-    let updateRequest = UpdateContactRequest(contact: self.contact)
+    let updateRequest = ContactRequest(origin: self.contact)
     
     self.updateContactRequest = updateRequest
     
     self.nameLabel.text = self.contact?.getFullName()
     self.emailLabel.text = updateRequest.email
     
-    if self.updateContactRequest?.gender == "Male" {
+    if self.contact?.gender == "Male" {
       self.genderSegment.selectedSegmentIndex = 0
     }
-    else if self.updateContactRequest?.gender == "Female" {
+    else if self.contact?.gender == "Female" {
       self.genderSegment.selectedSegmentIndex = 1
     }
     else {
@@ -69,11 +69,11 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   @IBAction func genderAction() {
     switch self.genderSegment.selectedSegmentIndex {
     case 0:
-      self.updateContactRequest?.gender = "Male"
+      self.updateContactRequest?.set(gender: "Male")
     case 1:
-      self.updateContactRequest?.gender = "Female"
+      self.updateContactRequest?.set(gender: "Female")
     default:
-      self.updateContactRequest?.gender = "Unknown"
+      self.updateContactRequest?.set(gender: "Unknown")
     }
   }
   

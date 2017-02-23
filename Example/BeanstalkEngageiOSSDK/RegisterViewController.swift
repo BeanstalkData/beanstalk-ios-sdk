@@ -68,7 +68,7 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     request.set(birthday: self.getFormatedDate(self.selectedDate, dateFormat: "yyyy-MM-dd"))
     request.set(emailOptin: self.optEmailCheckBox.on)
 //    request.set(preferredReward: "")
-    request.set(male: self.genderSegmentView.selectedSegmentIndex == 0 ? true : false)
+    request.set(gender: self.genderSegmentView.selectedSegmentIndex == 0 ? "Male" : "Female")
     
     self.coreService?.register(self, request: request, handler: { (success) in
       self.completionBlock?(success: success)
