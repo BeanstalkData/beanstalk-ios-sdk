@@ -56,6 +56,10 @@ public class BEContact : Mappable {
       return nil
     }
     
+    guard gender != "Unknown" else {
+      return nil
+    }
+    
     return (self.gender == "Male")
   }
   
@@ -65,6 +69,14 @@ public class BEContact : Mappable {
   
   public func isPushNotificationOptin() -> Bool {
     return pushNotificationOptin != 0
+  }
+  
+  public func isInboxMessageOptin() -> Bool {
+    return inboxMessageOptin != 0
+  }
+  
+  public func isTextOptin() -> Bool {
+    return textOptin != 0
   }
   
   public func mapping(map: Map) {

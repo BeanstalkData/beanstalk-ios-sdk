@@ -57,7 +57,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       }
     }
     
-    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
+    request.normalize()
     
     controller?.showProgress("Registering User")
     apiService.createLoyaltyAccount(request, handler: { (result) in
@@ -67,7 +67,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
         controller?.showMessage(result.error!)
         handler(false)
       } else {
-        self.auth(controller, email : request.email!, password: request.password!, contactClass: contactClass, handler: handler)
+        self.auth(controller, email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
       }
     })
   }
@@ -80,7 +80,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       }
     }
     
-    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
+    request.normalize()
     
     controller?.showProgress("Registering User")
     if request.isNovadine() {
@@ -91,11 +91,11 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
           controller?.showMessage(result.error!)
           handler(false)
         } else {
-          self.auth(controller, email : request.email!, password: request.password!, contactClass: contactClass, handler: handler)
+          self.auth(controller, email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
         }
       })
     } else {
-      apiService.checkContactsByEmailExisted(request.email!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
+      apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
         
         if result.isFailure {
           controller?.hideProgress()
@@ -104,7 +104,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
         } else {
           var updateExisted = result.value!
           
-          self.apiService.checkContactsByPhoneExisted(request.phone!, prospectTypes: [], handler: { (result) in
+          self.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
             
             if result.isFailure {
               controller?.hideProgress()
@@ -121,18 +121,18 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
                   handler(false)
                 } else {
                     if !updateExisted {
-                      self.apiService.createUser(request.email!, password: request.password!, contactId: result.value!, handler: { (result) in
+                      self.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: result.value!, handler: { (result) in
                         
                         if result.isFailure {
                           controller?.hideProgress()
                           controller?.showMessage(result.error!)
                           handler(false)
                         } else {
-                          self.auth(controller, email: request.email!, password: request.password!, contactClass: contactClass, handler: handler)
+                          self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
                         }
                       })
                     } else {
-                      self.auth(controller, email: request.email!, password: request.password!, contactClass: contactClass, handler: handler)
+                      self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
                     }
                 }
               })
@@ -334,7 +334,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       }
     }
     
-    request.set(phone: request.phone?.formatPhoneNumberToNationalSignificant())
+    request.normalize()
     
     controller?.showProgress("Updating Profile")
     apiService.updateContact(original, request: request, handler: { (result) in
@@ -601,28 +601,28 @@ public extension UIViewController {
   func validate(request : ContactRequest) -> Bool{
     if request.origin == nil {
       // Validate create contact request
-      guard (request.firstName != nil && !(request.firstName?.isEmpty)!) else{
+      guard (request.getFirstName() != nil &&  !(request.getFirstName()?.isEmpty)!) else{
         self.showMessage("Registration Error", message: "Enter First Name")
         return false
       }
-      guard (request.lastName != nil && !(request.lastName?.isEmpty)!) else{
+      guard (request.getLastName() != nil && !(request.getLastName()?.isEmpty)!) else{
         self.showMessage("Registration Error", message: "Enter Last Name")
         return false
       }
-      guard (request.phone != nil && (request.phone?.isValidPhone())!) else{
+      guard (request.getPhone() != nil && (request.getPhone()?.isValidPhone())!) else{
         self.showMessage("Registration Error", message: "Please enter a valid phone number")
         return false
       }
-      guard (request.zipCode != nil && (request.zipCode?.isValidZipCode())!) else{
+      guard (request.getZipCode() != nil && (request.getZipCode()?.isValidZipCode())!) else{
         self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
         return false
       }
       if !request.isNovadine(){
-        guard (request.email != nil && (request.email?.isValidEmail())!) else{
+        guard (request.getEmail() != nil && (request.getEmail()?.isValidEmail())!) else{
           self.showMessage("Registration Error", message: "Enter Valid Email")
           return false
         }
-        guard (request.password != nil && !(request.password?.isEmpty)!) else{
+        guard (request.getPassword() != nil && !(request.getPassword()?.isEmpty)!) else{
           self.showMessage("Registration Error", message: "Enter Password")
           return false
         }
