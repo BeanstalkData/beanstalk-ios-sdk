@@ -214,26 +214,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     if (isOnline()) {
       
       let params = Mapper().toJSON(request)
-/*
-      let params = [
-        "FirstName": request.firstName!,
-        "LastName": request.lastName!,
-        "ZipCode" : request.zipCode!,
-        "Email" : request.email!,
-        "Password": request.password!,
-        "CellNumber" : request.phone!,
-        "Birthday" : request.birthdate!,
-        "Gender" : request.gender,
-        "custom_PreferredReward" : request.preferredReward!,
-        "Email_Optin": request.emailOptIn ? "true" :"false",
-        "Txt_Optin": request.txtOptIn ? "true" :"false",
-        "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
-        "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
-        "custom_Novadine_User" : request.novadine ? "1" :"0",
-        "Source" : "iosapp",
-        "Prospect" : "loyalty"
-      ]
-      */
+      
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject(completionHandler: { (response : Response<BELoyaltyUser, NSError>) in
@@ -259,26 +240,8 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   func createContact(request : ContactRequest, handler: (Result<String, ApiError>) -> Void) {
     if (isOnline()) {
       
-      let params = Mapper().toJSON(request)
-/*
-      let params = [
-        "FirstName": request.firstName!,
-        "LastName": request.lastName!,
-        "ZipCode" : request.zipCode!,
-        "Email" : request.email!,
-        "Cell_Number" : request.phone!,
-        "Birthday" : request.birthdate!,
-        "Gender" : request.gender,
-        "custom_PreferredReward" : request.preferredReward!,
-        "Email_Optin": request.emailOptIn ? "true" :"false",
-        "Txt_Optin": request.txtOptIn ? "true" :"false",
-        "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
-        "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
-        "custom_Novadine_User" : request.novadine ? "1" :"0",
-        "Source" : "iosapp",
-        "Prospect" : "loyalty"
-      ]
-*/
+      var params = Mapper().toJSON(request)
+      params["Cell_Number"] = params["CellNumber"]
       
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())

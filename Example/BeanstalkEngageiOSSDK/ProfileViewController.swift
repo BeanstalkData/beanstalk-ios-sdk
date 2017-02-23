@@ -50,7 +50,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
     self.updateContactRequest = updateRequest
     
     self.nameLabel.text = self.contact?.getFullName()
-    self.emailLabel.text = updateRequest.email
+    self.emailLabel.text = updateRequest.getEmail()
     
     if self.contact?.gender == "Male" {
       self.genderSegment.selectedSegmentIndex = 0
