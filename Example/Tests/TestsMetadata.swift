@@ -20,7 +20,7 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
   }
   
   internal func getRegisteredUser1Email() -> String {
-    return "test@email.com"
+    return "test104@email.com"
   }
   
   internal func getRegisteredUser1Password() -> String {
@@ -38,7 +38,7 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     contact.prospect = "loyalty"
     contact.gender = "Male"
     contact.birthday = "1996-01-18"
-    contact.phone = "8774655554"
+    contact.phone = "8774655523"
     contact.textOptin = 0
     contact.emailOptin = 0
     contact.pushNotificationOptin = 0

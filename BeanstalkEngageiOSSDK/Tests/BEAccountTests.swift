@@ -206,7 +206,7 @@ public class BEAccountTests: BEBaseTestCase {
     request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
     request.set(textOptin: (contact.textOptin != 0))
 //    request.set(preferredReward: "")
-    request.set(male: contact.isMale())
+    request.set(gender: contact.gender)
     
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
       
@@ -240,7 +240,7 @@ public class BEAccountTests: BEBaseTestCase {
     request.set(pushNotificationOptin: (contact.pushNotificationOptin != 0))
     request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
     request.set(textOptin: (contact.textOptin != 0))
-    request.set(male: contact.isMale())
+    request.set(gender: contact.gender)
     
     coreServiceHandler.registerAccount(request) { (result) in
       
@@ -326,7 +326,7 @@ public class BEAccountTests: BEBaseTestCase {
             request.set(zipCode: contact!.zipCode! + "1")
             request.set(birthday: contact!.birthday)
             request.set(emailOptin: (contact!.emailOptin != 0))
-            request.set(male: contact!.isMale())
+            request.set(gender: contact!.gender)
             
             coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
               XCTAssert(result, "Update contact request finished with error")
@@ -336,11 +336,11 @@ public class BEAccountTests: BEBaseTestCase {
                   XCTAssert(contact != nil, "Get contact request finished with error")
                   
                   if contact != nil {
-                    XCTAssert(contact!.firstName == request.firstName, "Contact object is invalid")
-                    XCTAssert(contact!.lastName == request.lastName, "Contact object is invalid")
-                    XCTAssert(contact!.phone == request.origin!.phone, "Contact object is invalid")
-                    XCTAssert(contact!.email == request.email, "Contact object is invalid")
-                    XCTAssert(contact!.zipCode == request.zipCode, "Contact object is invalid")
+                    XCTAssert(contact!.firstName == request.getFirstName(), "Contact object is invalid")
+                    XCTAssert(contact!.lastName == request.getLastName(), "Contact object is invalid")
+                    XCTAssert(contact!.phone == request.getPhone(), "Contact object is invalid")
+                    XCTAssert(contact!.email == request.getEmail(), "Contact object is invalid")
+                    XCTAssert(contact!.zipCode == request.getZipCode(), "Contact object is invalid")
                     XCTAssert(contact!.birthday == request.origin!.birthday, "Contact object is invalid")
                     XCTAssert(contact!.emailOptin == request.origin!.emailOptin, "Contact object is invalid")
                     XCTAssert(contact!.gender == request.origin!.gender, "Contact object is invalid")
@@ -355,7 +355,7 @@ public class BEAccountTests: BEBaseTestCase {
                     request.set(zipCode: user1Contact.zipCode)
                     request.set(birthday: user1Contact.birthday)
                     request.set(emailOptin: (user1Contact.emailOptin != 0))
-                    request.set(male: user1Contact.isMale())
+                    request.set(gender: user1Contact.gender)
                     
                     coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
                       XCTAssert(result, "Update contact request finished with error")
