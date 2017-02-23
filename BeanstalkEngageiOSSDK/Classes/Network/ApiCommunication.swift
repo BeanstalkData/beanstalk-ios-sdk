@@ -223,8 +223,8 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "Password": request.password!,
         "CellNumber" : request.phone!,
         "Birthday" : request.birthdate!,
+        "Gender" : request.gender,
         "custom_PreferredReward" : request.preferredReward!,
-        "Gender" : request.male ? "Male" : "Female",
         "Email_Optin": request.emailOptIn ? "true" :"false",
         "Txt_Optin": request.txtOptIn ? "true" :"false",
         "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
@@ -260,6 +260,25 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
     if (isOnline()) {
       
       let params = Mapper().toJSON(request)
+/*
+      let params = [
+        "FirstName": request.firstName!,
+        "LastName": request.lastName!,
+        "ZipCode" : request.zipCode!,
+        "Email" : request.email!,
+        "Cell_Number" : request.phone!,
+        "Birthday" : request.birthdate!,
+        "Gender" : request.gender,
+        "custom_PreferredReward" : request.preferredReward!,
+        "Email_Optin": request.emailOptIn ? "true" :"false",
+        "Txt_Optin": request.txtOptIn ? "true" :"false",
+        "PushNotification_Optin": request.pushNotificationOptin ? "true" :"false",
+        "InboxMessage_Optin": request.inboxMessageOptin ? "true" :"false",
+        "custom_Novadine_User" : request.novadine ? "1" :"0",
+        "Source" : "iosapp",
+        "Prospect" : "loyalty"
+      ]
+*/
       
       SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
         .validate(getDefaultErrorHandler())
@@ -437,8 +456,6 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
         "key": self.apiKey,
         "q": contactId
       ]
-      
-      print(contactClass)
       
       let map = Map(mappingType: .FromJSON, JSONDictionary: ["24": "23"])
       var tmp: ContactClass? = ContactClass(map)
