@@ -7,7 +7,12 @@
 
 import Foundation
 
-public enum ApiError: ErrorType {
+public protocol BEErrorType: ErrorType {
+  func errorTitle() -> String?
+  func errorMessage() -> String?
+}
+
+public enum ApiError: BEErrorType {
   
   case Unknown()
   
@@ -133,7 +138,7 @@ public enum ApiError: ErrorType {
     return errorMessage
   }
   
-  private func getErrorMessageFromReason(reason: Any?, defaultMessage: String) -> String? {
+  public func getErrorMessageFromReason(reason: Any?, defaultMessage: String) -> String? {
     var errorMessage: String? = defaultMessage
     
     if let reasonError = reason as? ApiError {
