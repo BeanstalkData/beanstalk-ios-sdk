@@ -99,7 +99,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
         
         if result.isFailure {
           controller?.hideProgress()
-          controller?.showMessage(.UserEmailExists(reason: result.error!))
+          controller?.showMessage(ApiError.UserEmailExists(reason: result.error!))
           handler(false)
         } else {
           var updateExisted = result.value!
@@ -108,7 +108,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
             
             if result.isFailure {
               controller?.hideProgress()
-              controller?.showMessage(.UserPhoneExists(reason: result.error!))
+              controller?.showMessage(ApiError.UserPhoneExists(reason: result.error!))
               handler(false)
             } else {
               updateExisted = updateExisted || result.value!
@@ -257,7 +257,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.ResetPasswordError(reason: result.error!))
+        controller?.showMessage(ApiError.ResetPasswordError(reason: result.error!))
       } else {
         controller?.showMessage("Password reset", message: result.value!)
       }
@@ -300,7 +300,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.UserEmailExists(reason: result.error!))
+        controller?.showMessage(ApiError.UserEmailExists(reason: result.error!))
         handler(nil)
       } else {
         handler(result.value!)
@@ -316,7 +316,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.ProfileError(reason: result.error!))
+        controller?.showMessage(ApiError.ProfileError(reason: result.error!))
         handler(nil)
       } else {
         self.session.setContact(result.value!)
@@ -341,7 +341,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.UpdateProfileError(reason: result.error!))
+        controller?.showMessage(ApiError.UpdateProfileError(reason: result.error!))
         handler(false)
       } else {
         handler(true)
@@ -366,7 +366,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.UpdatePasswordError(reason: result.error!))
+        controller?.showMessage(ApiError.UpdatePasswordError(reason: result.error!))
         handler(false)
       } else {
         handler(true)
@@ -443,7 +443,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.GiftCardsError(reason: result.error!))
+        controller?.showMessage(ApiError.GiftCardsError(reason: result.error!))
         handler(result.isSuccess, [])
       } else {
         let cards = result.value!
@@ -470,7 +470,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.PaymentError(reason: result.error!))
+        controller?.showMessage(ApiError.PaymentError(reason: result.error!))
         let data = self.getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
         handler(data.0, data.1)
       } else {
@@ -542,7 +542,7 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
       controller?.hideProgress()
       
       if result.isFailure {
-        controller?.showMessage(.FindStoresError(reason: result.error!))
+        controller?.showMessage(ApiError.FindStoresError(reason: result.error!))
         handler(success: false, stores: [])
       } else {
         handler(success: true, stores: result.value!)

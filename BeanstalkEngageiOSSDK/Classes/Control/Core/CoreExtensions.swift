@@ -74,7 +74,7 @@ extension String {
 
 extension UIViewController {
   
-  public func showMessage(error: ApiError) {
+  public func showMessage(error: BEErrorType) {
     var title = error.errorTitle()
     var message = error.errorMessage()
     self.showMessage(title, message: message)

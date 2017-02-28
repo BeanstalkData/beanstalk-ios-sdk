@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol CoreProtocol {
-  func showMessage(error: ApiError)
+  func showMessage(error: BEErrorType)
   func showMessage(title: String?, message : String?)
   func showProgress(message: String)
   func hideProgress()
