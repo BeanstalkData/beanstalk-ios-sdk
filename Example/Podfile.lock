@@ -3,30 +3,30 @@ PODS:
   - AlamofireObjectMapper (3.0.2):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - BeanstalkEngageiOSSDK (0.3.16):
-    - BeanstalkEngageiOSSDK/Core (= 0.3.16)
-  - BeanstalkEngageiOSSDK/Control (0.3.16):
+  - BeanstalkEngageiOSSDK (0.3.32):
+    - BeanstalkEngageiOSSDK/Core (= 0.3.32)
+  - BeanstalkEngageiOSSDK/Control (0.3.32):
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - libPhoneNumber-iOS (~> 0.8)
     - PKHUD (~> 3.2.1)
-  - BeanstalkEngageiOSSDK/Core (0.3.16):
+  - BeanstalkEngageiOSSDK/Core (0.3.32):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Model (0.3.16):
+  - BeanstalkEngageiOSSDK/Model (0.3.32):
     - AlamofireObjectMapper (~> 3.0.0)
-  - BeanstalkEngageiOSSDK/Network (0.3.16):
+  - BeanstalkEngageiOSSDK/Network (0.3.32):
     - Alamofire (~> 3.5.1)
     - BeanstalkEngageiOSSDK/Model
     - Timberjack
-  - BeanstalkEngageiOSSDK/Testing (0.3.16):
+  - BeanstalkEngageiOSSDK/Testing (0.3.32):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - CCTestingUserDefaults
   - CCTestingUserDefaults (0.1.2)
-  - libPhoneNumber-iOS (0.9.2)
+  - libPhoneNumber-iOS (0.9.4)
   - ObjectMapper (1.5.0)
   - PKHUD (3.2.1)
   - Timberjack (0.0.2)
@@ -42,9 +42,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
-  BeanstalkEngageiOSSDK: e826d244029f1557e0f8ddf0ef8fb0edd4385700
+  BeanstalkEngageiOSSDK: e55f599b37e46c844d1dbe9f77a76f4869919d6b
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
-  libPhoneNumber-iOS: a8bffdec18c37728360f6771fe021302f1e0b497
+  libPhoneNumber-iOS: 63bab980d1fc9783d82d955800ac9d7c1d81fde3
   ObjectMapper: 386645adca9d9d23b95eda43090b09d66444cf14
   PKHUD: 001c11518f125a273ddf026bcc64918423744ea2
   Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42

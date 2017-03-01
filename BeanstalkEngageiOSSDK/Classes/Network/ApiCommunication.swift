@@ -11,8 +11,30 @@ import Alamofire
 import AlamofireObjectMapper
 import Timberjack
 
-public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
-  let BASE_URL    = "https://proc.beanstalkdata.com"
+public struct BEApiResponder: Equatable, WeakResponderHolder {
+  public weak var responder: AnyObject?
+  
+  public let networkStatusChanged: ((isOnline: Bool) -> Void)?
+  
+  //MARK: -
+  
+  public func isEmpty() -> Bool {
+    return (self.responder == nil)
+  }
+  
+  public init(responder: AnyObject?, networkStatusChanged: ((isOnline: Bool) -> Void)? = nil) {
+    self.responder = responder
+    self.networkStatusChanged = networkStatusChanged
+  }
+}
+
+public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
+  return left.responder === right.responder
+}
+
+public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
+  private let beanstalUrl = "proc.beanstalkdata.com"
+  private let BASE_URL: String
   private let apiKey: String
   
   internal let reachabilityManager: Alamofire.NetworkReachabilityManager
@@ -20,9 +42,26 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager> {
   internal var dataGenerator: MockDataGenerator?
   
   public required init(apiKey: String) {
+    self.BASE_URL = "https://" + beanstalUrl
     self.apiKey = apiKey
     
-    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: BASE_URL)!
+    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: beanstalUrl)!
+    
+    super.init()
+    
+    weak var weakSelf = self
+    self.reachabilityManager.listener = { status in
+      print("Network Status Changed: \(status)")
+      weakSelf?.notifyNetworkReachabilityObservers()
+    }
+    self.reachabilityManager.startListening()
+  }
+  
+  private func notifyNetworkReachabilityObservers() {
+    let isOnline = self.isOnline()
+    self.enumerateObservers { (i) in
+      i.networkStatusChanged?(isOnline: isOnline)
+    }
   }
   
   public func isOnline() -> Bool {

@@ -15,7 +15,7 @@ import BeanstalkEngageiOSSDK
 
 public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
-public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
+public class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespondersHolder {
   let apiService: ApiCommunication<SessionManager>
   let session: BESession
   
@@ -47,6 +47,14 @@ public class CoreServiceT <SessionManager: HTTPAlamofireManager> {
   
   public func isOnline() -> Bool {
     return self.apiService.isOnline()
+  }
+  
+  public func addResponder(responder: BEApiResponder) {
+    self.apiService.addResponder(responder)
+  }
+  
+  public func removeResponder(responder: BEApiResponder) {
+    self.apiService.addResponder(responder)
   }
   
   public func registerLoyaltyAccount <ContactClass: BEContact> (controller: RegistrationProtocol?, request: ContactRequest, contactClass: ContactClass.Type, handler: (Bool) -> Void){
