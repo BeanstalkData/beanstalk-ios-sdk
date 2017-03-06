@@ -14,7 +14,7 @@ class UserProgressViewController: BaseViewController, CoreProtocol {
     @IBOutlet var progressTextLabel: UILabel!
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.loadProgress()

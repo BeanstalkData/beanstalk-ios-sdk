@@ -10,10 +10,34 @@ import Foundation
 import XCTest
 
 import ObjectMapper
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class BEGiftCardsTests: BEBaseTestCase {
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class BEGiftCardsTests: BEBaseTestCase {
   
-  public func giftCardsTest() {
+  open func giftCardsTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -30,13 +54,13 @@ public class BEGiftCardsTests: BEBaseTestCase {
     }
   }
   
-  public func giftCardParsingTest() {
-    let JSON: [String: AnyObject] = [
-      "status":true,"success":["code":2,"message":["response":["success":true,"cards":[["Id":7,"contactId":8554570,"customerId":171,"cardNumber":"6276000001329907735","pin":695,"expirationDate":"Jan  1 1900 12:00:00:000AM","active":1]]]]]
+  open func giftCardParsingTest() {
+    let JSON: [String: Any] = [
+      "status":true, "success":["code":2,"message":["response":["success":true,"cards":[["Id":7,"contactId":8554570,"customerId":171,"cardNumber":"6276000001329907735","pin":695,"expirationDate":"Jan  1 1900 12:00:00:000AM","active":1]]]]]
     ]
     
-    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
-    var giftCardsResponce = GCResponse(map)
+    let map = Map(mappingType: .fromJSON, JSON: JSON)
+    var giftCardsResponce = GCResponse(map: map)
     
     XCTAssert(giftCardsResponce?.failed() == false, "Gift card responce object is invalid")
     XCTAssert(giftCardsResponce?.getCards()?.count == 1, "Gift card responce objects count is invalid")
@@ -52,18 +76,18 @@ public class BEGiftCardsTests: BEBaseTestCase {
     }
   }
 
-  public func giftCardBalanceParsingTest() {
-    let JSON: [String: AnyObject] = [
+  open func giftCardBalanceParsingTest() {
+    let JSON: [String: Any] = [
       "status":true,"success":["code":2,"message":["response":["balanceInquiryReturn":["authorizationCode":"006035","balanceAmount":["amount":60.35,"currency":"USD"],"card":["cardCurrency":"840","cardNumber":"6276000001329907735","pinNumber":"0695    ","cardExpiration": NSNull(),"cardTrackOne": NSNull(),"cardTrackTwo": NSNull(),"eovDate":"20500101T0500Z"],"conversionRate":"1.000000","returnCode":["returnCode":"01","returnDescription":"Approval"],"stan":"176149","transactionID":""]]]]
     ]
     
-    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
-    var giftCardBalanceResponce = GCBResponse(map)
+    let map = Map(mappingType: .fromJSON, JSON: JSON)
+    var giftCardBalanceResponce = GCBResponse(map: map)
     
     XCTAssert(giftCardBalanceResponce?.getCardBalance() == "$60.35", "Gift card balance objects count is invalid")
   }
   
-  public func giftCardStartPaymentTest(cardId: String?, coupons: [BECoupon], handler: (String, String) -> Void) {
+  open func giftCardStartPaymentTest(_ cardId: String?, coupons: [BECoupon], handler: @escaping (String, String) -> Void) {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     

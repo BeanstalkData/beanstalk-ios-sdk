@@ -15,7 +15,7 @@ class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewData
     @IBOutlet var tableView: UITableView!
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if self.giftCards == nil {
@@ -44,25 +44,25 @@ class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewData
     
     //MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
     
     //MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let rewardsCount = self.giftCards?.count {
             return rewardsCount
         }
         
         return 0
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "cell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath as IndexPath)
         
         if let giftCard = self.giftCards?[indexPath.row] {
             if let numberLabel = cell.contentView.viewWithTag(1) as? UILabel {

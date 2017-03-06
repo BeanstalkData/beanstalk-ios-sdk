@@ -6,12 +6,12 @@ import Timberjack
 
 public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager>
 
-public class BEBaseTestCase: BEAsyncTestCase {
+open class BEBaseTestCase: BEAsyncTestCase {
   
   var beanstalkCoreService: CoreServiceTest?
   var session: BESession?
   
-  override public func setUp() {
+  override open func setUp() {
     super.setUp()
     
     Timberjack.register()
@@ -20,13 +20,13 @@ public class BEBaseTestCase: BEAsyncTestCase {
     self.session = self.beanstalkCoreService?.getSession()
   }
   
-  override public func tearDown() {
+  override open func tearDown() {
     Timberjack.unregister()
     
     super.tearDown()
   }
   
-  public func createCoreService() -> CoreServiceTest? {
+  open func createCoreService() -> CoreServiceTest? {
     if let _ = getMetadata() {
       let session = BESession(userDefaults: BETestUserDefaults())
       let beanstalkCoreService = CoreServiceTest(apiKey: getMetadata()!.getBeanstalkApiKey(), session: session)
@@ -37,27 +37,27 @@ public class BEBaseTestCase: BEAsyncTestCase {
     return nil
   }
   
-  public func getCoreService() -> CoreServiceTest? {
+  open func getCoreService() -> CoreServiceTest? {
     XCTAssert(beanstalkCoreService != nil)
     return beanstalkCoreService
   }
   
-  public func getSession() -> BESession? {
+  open func getSession() -> BESession? {
     XCTAssert(session != nil)
     return session
   }
   
   // override in inherited class
-  public func getMetadata() -> BEBaseTestsMetadataProtocol? {
+  open func getMetadata() -> BEBaseTestsMetadataProtocol? {
     return nil
   }
 }
 
-public class BETestUserDefaults: BEUserDefaults {
+open class BETestUserDefaults: BEUserDefaults {
   
-  let userTransientDefaults = NSUserDefaults.transientDefaults()
+  let userTransientDefaults = UserDefaults.transient()
   
-  override public func getTransientDefaults() -> NSUserDefaults {
-    return userTransientDefaults
+  override open func getTransientDefaults() -> UserDefaults {
+    return userTransientDefaults!
   }
 }

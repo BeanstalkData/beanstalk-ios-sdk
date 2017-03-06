@@ -12,49 +12,49 @@ import BeanstalkEngageiOSSDK
 
 
 class BaseViewController: UIViewController {
-    var coreService: ApiService?
+  var coreService: ApiService?
+  
+  var completionBlock: ((_ success: Bool) -> Void)?
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
-    var completionBlock: ((success: Bool) -> Void)?
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            UIKeyboardWillShowNotification,
-            object: nil,
-            queue: nil) { (notification) in
-                self.keyboardWillChange(notification)
-        }
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            UIKeyboardWillHideNotification,
-            object: nil,
-            queue: nil) { (notification) in
-                self.keyboardWillHide(notification)
-        }
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            UIKeyboardWillChangeFrameNotification,
-            object: nil,
-            queue: nil) { (notification) in
-                self.keyboardWillChange(notification)
-        }
+    NotificationCenter.default.addObserver(
+      forName: NSNotification.Name.UIKeyboardWillShow,
+      object: nil,
+      queue: nil) { (notification) in
+        self.keyboardWillChange(notification: notification)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.addObserver(
+      forName: NSNotification.Name.UIKeyboardWillHide,
+      object: nil,
+      queue: nil) { (notification) in
+        self.keyboardWillHide(notification: notification)
     }
     
-    
-    //MARK: - Keyboard
-    
-    internal func keyboardWillChange(notification: NSNotification) {
-        
+    NotificationCenter.default.addObserver(
+      forName: NSNotification.Name.UIKeyboardWillShow,
+      object: nil,
+      queue: nil) { (notification) in
+        self.keyboardWillChange(notification: notification)
     }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
     
-    internal func keyboardWillHide(notification: NSNotification) {
-        
-    }
+    NotificationCenter.default.removeObserver(self)
+  }
+  
+  
+  //MARK: - Keyboard
+  
+  internal func keyboardWillChange(notification: Notification) {
+    
+  }
+  
+  internal func keyboardWillHide(notification: Notification) {
+    
+  }
 }

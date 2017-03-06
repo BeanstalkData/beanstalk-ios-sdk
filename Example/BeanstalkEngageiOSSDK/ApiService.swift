@@ -15,23 +15,23 @@ class ApiService: CoreService {
     super.init(apiKey: apiKey, session: session)
   }
   
-  func registerLoyaltyAccount (controller: RegistrationProtocol?, request: ContactRequest, handler: (Bool) -> Void) {
+  func registerMyLoyaltyAccount (_ controller: RegistrationProtocol?, request: ContactRequest, handler: @escaping (Bool) -> Void) {
     registerLoyaltyAccount(controller, request: request, contactClass: ContactModel.self, handler: handler)
   }
   
-  func register (controller : RegistrationProtocol?, request : ContactRequest, handler : (Bool) -> Void) {
+  func registerMe (_ controller : RegistrationProtocol?, request : ContactRequest, handler : @escaping (Bool) -> Void) {
     register(controller, request : request, contactClass: ContactModel.self, handler : handler)
   }
   
-  func autoSignIn(controller: AuthenticationProtocol?, handler : ((success: Bool) -> Void)) {
+  func autoSignInMe(_ controller: AuthenticationProtocol?, handler : @escaping ((_ success: Bool) -> Void)) {
     autoSignIn(controller, contactClass: ContactModel.self, handler : handler)
   }
   
-  func authenticate(controller: AuthenticationProtocol?, email: String?, password: String?, handler : (success: Bool, additionalInfo : Bool) -> Void ) {
+  func authenticateMe(_ controller: AuthenticationProtocol?, email: String?, password: String?, handler : @escaping (_ success: Bool, _ additionalInfo : Bool) -> Void ) {
     authenticate(controller, email: email, password: password, contactClass: ContactModel.self, handler : handler)
   }
   
-  func getContact(controller : CoreProtocol?, handler : (BEContact?) -> Void) {
+  func getMyContact(_ controller : CoreProtocol?, handler : @escaping (BEContact?) -> Void) {
     getContact(controller, contactClass: ContactModel.self, handler : handler)
   }
 }

@@ -14,7 +14,7 @@ import Timberjack
 public struct BEApiResponder: Equatable, WeakResponderHolder {
   public weak var responder: AnyObject?
   
-  public let networkStatusChanged: ((isOnline: Bool) -> Void)?
+  public let networkStatusChanged: ((_ isOnline: Bool) -> Void)?
   
   //MARK: -
   
@@ -22,7 +22,7 @@ public struct BEApiResponder: Equatable, WeakResponderHolder {
     return (self.responder == nil)
   }
   
-  public init(responder: AnyObject?, networkStatusChanged: ((isOnline: Bool) -> Void)? = nil) {
+  public init(responder: AnyObject?, networkStatusChanged: ((_ isOnline: Bool) -> Void)? = nil) {
     self.responder = responder
     self.networkStatusChanged = networkStatusChanged
   }
@@ -32,10 +32,10 @@ public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
   return left.responder === right.responder
 }
 
-public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
-  private let beanstalUrl = "proc.beanstalkdata.com"
-  private let BASE_URL: String
-  private let apiKey: String
+open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
+  fileprivate let beanstalUrl = "proc.beanstalkdata.com"
+  fileprivate let BASE_URL: String
+  fileprivate let apiKey: String
   
   internal let reachabilityManager: Alamofire.NetworkReachabilityManager
   
@@ -57,40 +57,45 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
     self.reachabilityManager.startListening()
   }
   
-  private func notifyNetworkReachabilityObservers() {
+  fileprivate func notifyNetworkReachabilityObservers() {
     let isOnline = self.isOnline()
     self.enumerateObservers { (i) in
-      i.networkStatusChanged?(isOnline: isOnline)
+      i.networkStatusChanged?(isOnline)
     }
   }
   
-  public func isOnline() -> Bool {
+  open func isOnline() -> Bool {
     return self.reachabilityManager.isReachable
   }
   
-  func checkContactsByEmailExisted(email: String, prospectTypes: [ProspectType], handler: (Result<Bool, ApiError>) -> Void) {
+  func checkContactsByEmailExisted(_ email: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
     if (isOnline()) {
       let params = ["type": "email",
                     "key": self.apiKey,
                     "q": email
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if response.result.isSuccess {
             if response.result.value == Optional("null") {
-              handler(.Success(false))
+              handler(.success(false))
             } else{
-              let responseData = response.result.value?.dataUsingEncoding(NSUTF8StringEncoding)
+              let responseData = response.result.value?.data(using: String.Encoding.utf8)
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions(rawValue: 0))
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
               } catch { }
               
-              guard let data = jsonResponse as? [AnyObject] where data.count >= 1 else {
-                handler(.Success(false))
+              guard let data = jsonResponse as? [AnyObject] else {
+                handler(.success(false))
+                return
+              }
+                
+              guard data.count >= 1 else {
+                handler(.success(false))
                 return
               }
               
@@ -126,46 +131,46 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
                   
                   // if both email and prospect satusfies - contact exists
                   if emailEquals && prospectEquals {
-                    handler(.Success(true))
+                    handler(.success(true))
                     return
                   }
                 }
               }
               
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func checkContactsByPhoneExisted(phone: String, prospectTypes: [ProspectType], handler: (Result<Bool, ApiError>) -> Void) {
+  func checkContactsByPhoneExisted(_ phone: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
     if (isOnline()) {
       let params = ["type": "cell_number",
                     "key": self.apiKey,
                     "q": phone
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if response.result.isSuccess {
             if response.result.value == Optional("null") {
-              handler(.Success(false))
+              handler(.success(false))
             }else{
-              let responseData = response.result.value?.dataUsingEncoding(NSUTF8StringEncoding)
+              let responseData = response.result.value?.data(using: String.Encoding.utf8)
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions(rawValue: 0))
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
               } catch { }
               
-              guard let data = jsonResponse as? [AnyObject] where data.count >= 1 else {
-                handler(.Success(false))
+              guard let data = jsonResponse as? [AnyObject], data.count >= 1 else {
+                handler(.success(false))
                 return
               }
               
@@ -201,120 +206,120 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
                   
                   // if both email and prospect satusfies - contact exists
                   if phoneEquals && prospectEquals {
-                    handler(.Success(true))
+                    handler(.success(true))
                     return
                   }
                 }
               }
               
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
   //TODO: fix this method
-  func checkContactIsNovadine(email: String, handler: (Result<Bool, ApiError>) -> Void) {
+  func checkContactIsNovadine(_ email: String, handler: @escaping (Result<Bool>) -> Void) {
     if (isOnline()) {
       let params = ["type": "email",
                     "key": self.apiKey,
                     "q": email
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
             if (response.result.value != nil) {
               if response.result.value == Optional("null"){
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }else {
-                handler(.Success(false))
+                handler(.success(false))
               }
             }else{
-              handler(.Failure(.DataSerialization(reason : "Bad request!")))
+              handler(.failure(ApiError.dataSerialization(reason : "Bad request!")))
             }
           } else{
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
 
   
-  func createLoyaltyAccount (request : ContactRequest, handler: (Result<BELoyaltyUser?, ApiError>) -> Void) {
+  func createLoyaltyAccount (_ request : ContactRequest, handler: @escaping (Result<BELoyaltyUser?>) -> Void) {
     if (isOnline()) {
       
       let params = Mapper().toJSON(request)
       
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
-        .responseObject(completionHandler: { (response : Response<BELoyaltyUser, NSError>) in
+        .responseObject(completionHandler: { (response : DataResponse<BELoyaltyUser>) in
           if (response.result.isSuccess) {
             if response.result.value != nil {
-              handler(.Success(response.result.value))
+              handler(.success(response.result.value))
             } else {
-              handler(.Failure(.RegistrationFailed(reason : nil)))
+              handler(.failure(ApiError.registrationFailed(reason : nil)))
             }
           } else {
             if (response.response?.statusCode == 200) {
-              handler(.Failure(.RegistrationFailed(reason : nil)))
+              handler(.failure(ApiError.registrationFailed(reason : nil)))
             } else {
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
         })
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func createContact(request : ContactRequest, handler: (Result<String, ApiError>) -> Void) {
+  func createContact(_ request : ContactRequest, handler: @escaping (Result<String>) -> Void) {
     if (isOnline()) {
       
       var params = Mapper().toJSON(request)
       params["Cell_Number"] = params["CellNumber"]
       
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseJSON {
           response in
           if (response.result.isSuccess) {
             if response.result.value != nil {
-              guard let data = response.result.value as? [String] where
+              guard let data = response.result.value as? [String],
                 data.count == 2 else{
-                  handler(.Failure(.RegistrationFailed(reason : nil)))
+                  handler(.failure(ApiError.registrationFailed(reason : nil)))
                   return
               }
               if "Add" == data[1]{
-                handler(.Success(data[0]))
+                handler(.success(data[0]))
               } else if "Update" == data[1]{
-                handler(.Success(data[0]))
+                handler(.success(data[0]))
               }
             } else {
-              handler(.Failure(.RegistrationFailed(reason : nil)))
+              handler(.failure(ApiError.registrationFailed(reason : nil)))
             }
           } else {
             if (response.response?.statusCode == 200) {
-              handler(.Failure(.RegistrationFailed(reason : nil)))
+              handler(.failure(ApiError.registrationFailed(reason : nil)))
             } else {
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func createUser(email: String, password: String, contactId: String, handler: (Result<AnyObject?, ApiError>) -> Void) {
+  func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
    
     if (isOnline()) {
       let params = ["email": email,
@@ -322,30 +327,30 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
                     "key": self.apiKey,
                     "contact": contactId
       ]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addUser/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/addUser/", method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
             if (response.result.value != nil) {
               if response.result.value == Optional("Success"){
-                handler(.Success(nil))
+                handler(.success(nil))
               }else {
-                handler(.Failure(.RegistrationFailed(reason : nil)))
+                handler(.failure(ApiError.registrationFailed(reason : nil)))
               }
             }else{
-              handler(.Failure(.RegistrationFailed(reason : nil)))
+              handler(.failure(ApiError.registrationFailed(reason : nil)))
             }
           } else{
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func authenticateUser(email: String, password: String, handler: (Result<AuthenticateResponse, ApiError>) -> Void) {
+  func authenticateUser(_ email: String, password: String, handler: @escaping (Result<AuthenticateResponse>) -> Void) {
     
     if (isOnline()) {
       let params = ["email": email,
@@ -353,171 +358,170 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
                     "key": self.apiKey,
                     "time": "-1"
       ]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/authenticateUser/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/authenticateUser/", method: .post, parameters: params)
         .validate(getErrorHandler("Login failed. Please try again."))
         .responseString { response in
           if (response.result.isSuccess) {
-            let responseData = response.result.value?.dataUsingEncoding(NSUTF8StringEncoding)
+            let responseData = response.result.value?.data(using: String.Encoding.utf8)
             var jsonResponse : AnyObject? = nil
             
             do {
-              jsonResponse = try NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions(rawValue: 0))
+              jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
             } catch { }
-            guard let data = jsonResponse as? [AnyObject] where data.count == 2 else {
-              handler(.Failure(.AuthenticatFailed(reason: response.result.value)))
+            guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
+              handler(.failure(ApiError.authenticatFailed(reason: response.result.value)))
               return
             }
             let authResponse = AuthenticateResponse()
             authResponse.contactId = String(data[0] as! Int)
             authResponse.token = data[1] as? String
-            handler(.Success(authResponse))
+            handler(.success(authResponse))
           } else{
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-       handler(.Failure(.NetworkConnectionError()))
+       handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func checkUserSession(contactId: String, token : String, handler: (Result<AnyObject?, ApiError>) -> Void) {
+  func checkUserSession(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
     
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/checkSession/",
-        parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/checkSession/", method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
             if response.result.value == Optional("valid"){
-              handler(.Success(nil))
+              handler(.success(nil))
             }else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func resetPassword(email: String, handler: (Result<String?, ApiError>) -> Void) {
+  func resetPassword(_ email: String, handler: @escaping (Result<String?>) -> Void) {
     
     if (isOnline()) {
       let params = ["user": email]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
-            if response.result.value?.characters.count > 0 {
-              handler(.Failure(.ResetPasswordError(reason: response.result.value)))
+            if (response.result.value?.characters.count)! > 0 {
+              handler(.failure(ApiError.resetPasswordError(reason: response.result.value)))
             } else {
-              handler(.Success(response.result.value))
+              handler(.success(response.result.value))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func logoutUser(contactId: String, token : String, handler: (Result<AnyObject?, ApiError>) -> Void) {
+  func logoutUser(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/logoutUser/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/logoutUser/", method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
             if response.result.value == Optional("error") ||
               response.result.value == Optional("logged out"){
-              handler(.Success(nil))
+              handler(.success(nil))
             }else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getContact <ContactClass: Mappable> (contactId: String, contactClass: ContactClass.Type, handler: (Result<ContactClass?, ApiError>) -> Void) {
+  func getContact <ContactClass: Mappable> (_ contactId: String, contactClass: ContactClass.Type, handler: @escaping (Result<ContactClass?>) -> Void) {
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
         "q": contactId
       ]
       
-      let map = Map(mappingType: .FromJSON, JSONDictionary: ["24": "23"])
-      var tmp: ContactClass? = ContactClass(map)
+      let map = Map(mappingType: .fromJSON, JSON: ["24": "23"])
+      var tmp: ContactClass? = ContactClass(map: map)
       print(tmp.debugDescription)
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/contacts", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
-          (response : Response<[ContactClass], NSError>) in
+          (response : DataResponse<[ContactClass]>) in
           if (response.result.isSuccess) {
-            if let data = response.result.value  where data.count == 1 {
-              handler(.Success(data[0]))
+            if let data = response.result.value, data.count == 1 {
+              handler(.success(data[0]))
             }else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func updateContact(original: BEContact, request : ContactRequest, handler: (Result<AnyObject?, ApiError>) -> Void)  {
+  func updateContact(_ original: BEContact, request : ContactRequest, handler: @escaping (Result<AnyObject?>) -> Void)  {
     
     if (isOnline()) {
       
       let params = Mapper().toJSON(request)
       
       if params.count <= 1{
-        handler(.Failure(.MissingParameterError()))
+        handler(.failure(ApiError.missingParameterError()))
       } else {
-        SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/addContact/?key=" + self.apiKey, parameters: params)
+        SessionManagerClass.getSharedInstance().request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
           .validate(getDefaultErrorHandler())
           .responseJSON {
             response in
             if (response.result.isSuccess) {
               if response.result.value != nil {
-                guard let data = response.result.value as? [String] where
+                guard let data = response.result.value as? [String],
                   data.count == 1 else{
-                    handler(.Failure(.DataSerialization(reason : "Failed deserialization!")))
+                    handler(.failure(ApiError.dataSerialization(reason : "Failed deserialization!")))
                     return
                 }
-                handler(.Success(nil))
+                handler(.success(nil))
               }else{
-                handler(.Failure(.DataSerialization(reason : "Bad request!")))
+                handler(.failure(ApiError.dataSerialization(reason : "Bad request!")))
               }
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
         }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func updatePassword(password : String, contactId : String, token: String, handler : (Result<AnyObject?, ApiError>)->Void){
+  func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<AnyObject?>)->Void){
    
     if (isOnline()) {
       let params = ["token": token,
@@ -525,127 +529,127 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
                     "key": self.apiKey,
                     "contact": contactId
       ]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/?function=updatePassword", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/?function=updatePassword", method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
           if (response.result.isSuccess) {
             if (response.result.value != nil) {
               if response.result.value == Optional("success"){
-                handler(.Success(nil))
+                handler(.success(nil))
               } else {
-                handler(.Failure(.DataSerialization(reason : "No data available!")))
+                handler(.failure(ApiError.dataSerialization(reason : "No data available!")))
               }
             } else{
-              handler(.Failure(.DataSerialization(reason : "No data available!")))
+              handler(.failure(ApiError.dataSerialization(reason : "No data available!")))
             }
           } else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getUserOffers <CouponClass: BECoupon> (contactId : String, couponClass: CouponClass.Type, handler : (Result<[BECoupon], ApiError>)->Void){
+  func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>)->Void){
     
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
         "Card": contactId
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdLoyalty/getOffersM.php", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/getOffersM.php", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<CouponResponse<CouponClass>, NSError>) in
+          (response : DataResponse<CouponResponse<CouponClass>>) in
           if self.dataGenerator != nil {
             let coupons: [BECoupon] = (self.dataGenerator!.getUserOffers().coupons != nil) ? self.dataGenerator!.getUserOffers().coupons! : []
-            handler(.Success(coupons))
+            handler(.success(coupons))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
                 let coupons: [BECoupon] = (data.coupons != nil) ? data.coupons! : []
-                handler(.Success(coupons))
+                handler(.success(coupons))
               }else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.Success([]))
+              handler(.success([]))
             } else {
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getProgress(contactId : String, handler : (Result<Double?, ApiError>)->Void){
+  func getProgress(_ contactId : String, handler : @escaping (Result<Double?>)->Void){
     
     if (isOnline()) {
       let params = [
         "contact": contactId
       ]
-      SessionManagerClass.getSharedInstance().request(.POST, BASE_URL + "/bsdLoyalty/getProgress.php?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/getProgress.php?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<RewardsCountResponse, NSError>) in
+          (response : DataResponse<RewardsCountResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(self.dataGenerator!.getUserProgress().getCount()))
+            handler(.success(self.dataGenerator!.getUserProgress().getCount()))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
-                handler(.Success(data.getCount()))
+                handler(.success(data.getCount()))
               } else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             } else {
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getGiftCards <GiftCardClass: BEGiftCard> (contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : (Result<[BEGiftCard], ApiError>) -> Void) {
+  func getGiftCards <GiftCardClass: BEGiftCard> (_ contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : @escaping (Result<[BEGiftCard]>) -> Void) {
     
     if (isOnline()) {
       let params = [
         "contactId" : contactId,
         "token" : token
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/list?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/list?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<GCResponse<GiftCardClass>, NSError>) in
+          (response : DataResponse<GCResponse<GiftCardClass>>) in
           if self.dataGenerator != nil {
-            handler(.Success(self.dataGenerator!.getUserGiftCards().getCards()!))
+            handler(.success(self.dataGenerator!.getUserGiftCards().getCards()!))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
-                handler(.Success(data.getCards() != nil ? data.getCards()! : []))
+                handler(.success(data.getCards() != nil ? data.getCards()! : []))
               } else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             } else {
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getGiftCardBalance(contactId: String, token : String, number : String, handler : (Result<String?, ApiError>) -> Void){
+  func getGiftCardBalance(_ contactId: String, token : String, number : String, handler : @escaping (Result<String?>) -> Void){
     
     if (isOnline()) {
       let params = [
@@ -653,33 +657,33 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "token" : token,
         "cardNumber" : number
       ]
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<GCBResponse, NSError>) in
+          (response : DataResponse<GCBResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(self.dataGenerator!.getUserGiftCardBalance().getCardBalance()))
+            handler(.success(self.dataGenerator!.getUserGiftCardBalance().getCardBalance()))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
-                handler(.Success(data.getCardBalance()))
+                handler(.success(data.getCardBalance()))
               } else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             }else if response.response?.statusCode == 200 {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else{
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func startPayment(contactId: String, token: String, paymentId: String?, coupons: String, handler : (Result<String?, ApiError>)->Void){
+  func startPayment(_ contactId: String, token: String, paymentId: String?, coupons: String, handler : @escaping (Result<String?>)->Void){
     
     if (isOnline()) {
       var params = [
@@ -695,35 +699,35 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
       } else {
         params["coupons"] = ""
       }
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdPayment/startPayment", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<PaymentResponse, NSError>) in
+          (response : DataResponse<PaymentResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(self.dataGenerator!.getUserPayment().token))
+            handler(.success(self.dataGenerator!.getUserPayment().token))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
-                handler(.Success(data.token))
+                handler(.success(data.token))
               } else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.Success(nil))
+              handler(.success(nil))
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else{
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
   //MARK: - Locations
   
-  func getStoresAtLocation <StoreClass: BEStore> (longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : (Result<[BEStore]?, ApiError>) -> Void) {
+  func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : @escaping (Result<[BEStore]?>) -> Void) {
     
     if (isOnline()) {
       
@@ -740,29 +744,29 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         params["token"] = token!
       }
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdStores/locate?key=" + self.apiKey, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdStores/locate?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<StoresResponse<StoreClass>, NSError>) in
+          (response : DataResponse<StoresResponse<StoreClass>>) in
           
           if (response.result.isSuccess) {
             if let data = response.result.value {
               if (data.failed()) {
-                handler(.Failure(.DataSerialization(reason: "Bad request!")))
+                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
               } else {
-                handler(.Success(data.getStores()))
+                handler(.success(data.getStores()))
               }
             } else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           } else if response.response?.statusCode == 200 {
-            handler(.Success(nil))
+            handler(.success(nil))
           } else{
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
@@ -771,7 +775,7 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
   
   // TODO: fix it
   
-  func pushNotificationEnroll(contactId: String, deviceToken: String, handler : (Result<AnyObject?, ApiError>)->Void) {
+  func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<AnyObject?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -781,40 +785,40 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "platform" : "iOS"
       ]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotificationEnroll", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
-        .responseObject { (response : Response<PushNotificationResponse, NSError>) in
+        .responseObject { (response : DataResponse<PushNotificationResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
             return
           }
           
           if (response.result.isSuccess) {
             if let result = response.result.value {
               if (result.failed()) {
-                handler(.Failure(.DataSerialization(reason: "Bad request!")))
+                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
               } else {
-                handler(.Success(deviceToken))
+                handler(.success(nil))
               }
             }
             else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           }
           else if response.response?.statusCode == 200 {
-            handler(.Success(nil))
+            handler(.success(nil))
           }
           else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
   // TODO: fix it
-  func pushNotificationDelete(contactId: String, handler : (Result<AnyObject?, ApiError>)->Void) {
+  func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<AnyObject?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -822,74 +826,74 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "key" : self.apiKey
       ]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotificationDelete", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
-        .responseObject { (response : Response<PushNotificationResponse, NSError>) in
+        .responseObject { (response : DataResponse<PushNotificationResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
             return
           }
           
           if (response.result.isSuccess) {
             if let result = response.result.value {
               if (result.failed()) {
-                handler(.Failure(.DataSerialization(reason: "Bad request!")))
+                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
               } else {
-                handler(.Success("success"))
+                handler(.success(nil))
               }
             }
             else {
-              handler(.Failure(.Unknown()))
+              handler(.failure(ApiError.unknown()))
             }
           }
           else if response.response?.statusCode == 200 {
-            handler(.Success(nil))
+            handler(.success(nil))
           }
           else {
-            handler(.Failure(.Network(error: response.result.error)))
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getPushNotificationMessages(contactId: String, maxResults: Int, handler : (Result<[BEPushNotificationMessage]?, ApiError>)->Void) {
+  func getPushNotificationMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result<[BEPushNotificationMessage]?>)->Void) {
     
     if (isOnline()) {
       let params = [
         "contact_id" : contactId,
         "key" : self.apiKey,
-        "max_results": NSNumber(integer: maxResults)
-      ]
+        "max_results": NSNumber(value: maxResults as Int)
+      ] as [String : Any]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/getMessages", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<PushNotificationMessagesResponse, NSError>) in
+          (response : DataResponse<PushNotificationMessagesResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
           } else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.Success(result.getMessages()))
+                handler(.success(result.getMessages()))
               }else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             }else if response.response?.statusCode == 200 {
-              handler(.Success(nil))
+              handler(.success(nil))
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getPushNotificationMessage(messageId: String, action: PushNotificationStatus, handler : (Result<[BEPushNotificationMessage]?, ApiError>)->Void) {
+  func getPushNotificationMessage(_ messageId: String, action: PushNotificationStatus, handler : @escaping (Result<[BEPushNotificationMessage]?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -898,34 +902,34 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "action": action.rawValue
       ]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/updateStatus", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<PushNotificationResponse, NSError>) in
+          (response : DataResponse<PushNotificationResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
             return
           } else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.Success(result.getMessages()))
+                handler(.success(result.getMessages()))
               }else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             }else if response.response?.statusCode == 200 {
-              handler(.Success(nil))
+              handler(.success(nil))
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     }  else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
-  func getPushNotificationMessage(messageId: String, handler : (Result<BEPushNotificationMessage?, ApiError>)->Void) {
+  func getPushNotificationMessage(_ messageId: String, handler : @escaping (Result<BEPushNotificationMessage?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -933,36 +937,36 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "key" : self.apiKey
       ]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/pushNotification/getMessageById", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<PushNotificationMessagesResponse, NSError>) in
+          (response : DataResponse<PushNotificationMessagesResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
           } else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.Success(result.getMessages()?.first))
+                handler(.success(result.getMessages()?.first))
               }else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             }else if response.response?.statusCode == 200 {
-              handler(.Success(nil))
+              handler(.success(nil))
             }
             else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
   
   //MARK: - Tracking
   
-  func trackTransaction(contactId: String, userName: String, transactionData: AnyObject, handler: (Result<AnyObject?, ApiError>)->Void) {
+  func trackTransaction(_ contactId: String, userName: String, transactionData: AnyObject, handler: @escaping (Result<AnyObject?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -970,43 +974,43 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
         "userName" : userName,
         "key" : self.apiKey,
         "details" : transactionData
-      ]
+      ] as [String : Any]
       
-      SessionManagerClass.getSharedInstance().request(.GET, BASE_URL + "/bsdTransactions/add/", parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : Response<TrackTransactionResponse, NSError>) in
+          (response : DataResponse<TrackTransactionResponse>) in
           if self.dataGenerator != nil {
-            handler(.Success(nil))
+            handler(.success(nil))
           } else {
             if (response.result.isSuccess) {
               if let _ = response.result.value {
-                handler(.Success(nil))
+                handler(.success(nil))
               } else {
-                handler(.Failure(.Unknown()))
+                handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.Success(nil))
+              handler(.success(nil))
             } else{
-              handler(.Failure(.Network(error: response.result.error)))
+              handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
     } else {
-      handler(.Failure(.NetworkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
   
   //MARK: - Private
   
-  private func getErrorHandler(defaultMessage: String) -> Request.Validation {
-    let validation : Request.Validation = { (urlRequest, ulrResponse) -> Request.ValidationResult in
+  fileprivate func getErrorHandler(_ defaultMessage: String) -> DataRequest.Validation {
+    let validation : DataRequest.Validation = { (urlRequest, ulrResponse, data) -> Request.ValidationResult in
       
       let acceptableStatusCodes: Range<Int> = 200..<300
       if acceptableStatusCodes.contains(ulrResponse.statusCode) {
         
-        return .Success
+        return .success
       } else {
         
         var failureReason = defaultMessage
@@ -1018,49 +1022,52 @@ public class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERes
           
         }
         
-        let error = NSError(
-          domain: Error.Domain,
-          code: Error.Code.StatusCodeValidationFailed.rawValue,
-          userInfo: [
-            NSLocalizedFailureReasonErrorKey: failureReason,
-            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
-          ]
-        )
+        //TODO: Create corresponding error
+//        let error = NSError(
+//          domain: Error.domain,
+//          code: Error.Code.StatusCodeValidationFailed.rawValue,
+//          userInfo: [
+//            NSLocalizedFailureReasonErrorKey: failureReason,
+//            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
+//          ]
+//        )
         
-        return .Failure(error)
+        let error = ApiError.unacceptableStatusCodeError(reason: failureReason, statusCode: ulrResponse.statusCode)
+        
+        return .failure(error)
       }
     }
     
     return validation
   }
   
-  private func getDefaultErrorHandler() -> Request.Validation {
+  fileprivate func getDefaultErrorHandler() -> DataRequest.Validation {
     return getErrorHandler("Got error while processing your request.");
   }
 }
 
-public class HTTPAlamofireManager: Alamofire.Manager {
-  public class func getSharedInstance() -> Alamofire.Manager {
-    return Alamofire.Manager.sharedInstance
+open class HTTPAlamofireManager: Alamofire.SessionManager {
+  open class func getSharedInstance() -> Alamofire.SessionManager {
+    return Alamofire.SessionManager.default
   }
   
-  public class func defaultSessionConfiguration() -> NSURLSessionConfiguration {
-    return NSURLSessionConfiguration.defaultSessionConfiguration()
+  open class func defaultSessionConfiguration() -> URLSessionConfiguration {
+    return URLSessionConfiguration.default
   }
 }
 
-public class HTTPTimberjackManager: HTTPAlamofireManager {
-  static internal let shared: Alamofire.Manager = {
+open class HTTPTimberjackManager: HTTPAlamofireManager {
+  static internal let shared: Alamofire.SessionManager = {
     let configuration = HTTPTimberjackManager.defaultSessionConfiguration()
     let manager = HTTPTimberjackManager(configuration: configuration)
     return manager
   }()
   
-  public override class func getSharedInstance() -> Alamofire.Manager {
+  open override class func getSharedInstance() -> Alamofire.SessionManager {
     return shared
   }
   
-  public override class func defaultSessionConfiguration() -> NSURLSessionConfiguration {
+  open override class func defaultSessionConfiguration() -> URLSessionConfiguration {
     return Timberjack.defaultSessionConfiguration()
   }
 }
@@ -1073,5 +1080,5 @@ public enum ProspectType: String {
 func ==(left: ProspectType, right: String) -> Bool {
   let strValue = left.rawValue
   
-  return strValue.caseInsensitiveCompare(right) == NSComparisonResult.OrderedSame
+  return strValue.caseInsensitiveCompare(right) == ComparisonResult.orderedSame
 }

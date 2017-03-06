@@ -8,24 +8,24 @@
 import Foundation
 
 public protocol CoreProtocol {
-  func showMessage(error: BEErrorType)
-  func showMessage(title: String?, message : String?)
-  func showProgress(message: String)
+  func showMessage(_ error: BEErrorType)
+  func showMessage(_ title: String?, message : String?)
+  func showProgress(_ message: String)
   func hideProgress()
 }
 
 public protocol RegistrationProtocol :CoreProtocol {
-  func validate(request: ContactRequest) -> Bool
+  func validate(_ request: ContactRequest) -> Bool
 }
 
 public protocol EditProfileProtocol :CoreProtocol {
-  func validate(request: ContactRequest) -> Bool
+  func validate(_ request: ContactRequest) -> Bool
 }
 
 public protocol UpdatePasswordProtocol :CoreProtocol {
-  func validate(password: String?, confirmPassword: String?) -> Bool
+  func validate(_ password: String?, confirmPassword: String?) -> Bool
 }
 
 public protocol AuthenticationProtocol :CoreProtocol {
-  func validate(email: String?, password: String?) -> Bool
+  func validate(_ email: String?, password: String?) -> Bool
 }

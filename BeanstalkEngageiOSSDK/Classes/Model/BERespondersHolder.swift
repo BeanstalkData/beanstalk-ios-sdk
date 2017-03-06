@@ -12,35 +12,35 @@ public protocol BEAbstractRespondersHolder {
   
   associatedtype I
   
-  func addResponder(responder: I)
-  func removeResponder(responder: I)
+  func addResponder(_ responder: I)
+  func removeResponder(_ responder: I)
 }
 
 public protocol WeakResponderHolder {
   func isEmpty() -> Bool
 }
 
-public class BERespondersHolder <I where I: Equatable, I: WeakResponderHolder>: BEAbstractRespondersHolder {
-  private var responders = [I]()
+open class BERespondersHolder <I>: BEAbstractRespondersHolder where I: Equatable, I: WeakResponderHolder {
+  fileprivate var responders = [I]()
   
   public init() {
   }
   
   //MARK: - Public
   
-  public func addResponder(responder: I) {
-    if !self.responders.contains({ $0 == responder }) {
-      self.responders.insert(responder, atIndex: 0)
+  open func addResponder(_ responder: I) {
+    if !self.responders.contains(where: { $0 == responder }) {
+      self.responders.insert(responder, at: 0)
     }
   }
   
-  public func removeResponder(responder: I) {
-    if let index = self.responders.indexOf({ $0 == responder }) {
-      self.responders.removeAtIndex(index)
+  open func removeResponder(_ responder: I) {
+    if let index = self.responders.index(where: { $0 == responder }) {
+      self.responders.remove(at: index)
     }
   }
   
-  public func enumerateResponders(handler: (I) -> Bool?) {
+  open func enumerateResponders(_ handler: (I) -> Bool?) {
     self.removeEmptyResponders()
     
     for responder in self.responders {
@@ -52,7 +52,7 @@ public class BERespondersHolder <I where I: Equatable, I: WeakResponderHolder>: 
     }
   }
   
-  public func enumerateObservers(handler: (I) -> Void) {
+  open func enumerateObservers(_ handler: (I) -> Void) {
     self.removeEmptyResponders()
     
     for responder in self.responders {
@@ -62,13 +62,13 @@ public class BERespondersHolder <I where I: Equatable, I: WeakResponderHolder>: 
   
   //MARK: - Private
   
-  private func removeEmptyResponders() {
+  fileprivate func removeEmptyResponders() {
     let emptyResponders = self.responders.filter() { $0.isEmpty() }
     
     if (emptyResponders.count > 0) {
       for emptyResponder in emptyResponders {
-        if let index = self.responders.indexOf({ $0 == emptyResponder }) {
-          self.responders.removeAtIndex(index)
+        if let index = self.responders.index(where: { $0 == emptyResponder }) {
+          self.responders.remove(at: index)
         }
       }
     }

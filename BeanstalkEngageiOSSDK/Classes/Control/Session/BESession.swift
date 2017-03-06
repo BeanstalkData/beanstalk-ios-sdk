@@ -8,19 +8,19 @@
 
 import Foundation
 
-public class BESession {
+open class BESession {
   
-  private let userDefaults: BEUserDefaults
+  fileprivate let userDefaults: BEUserDefaults
   
   public init(userDefaults: BEUserDefaults = BEUserDefaults()) {
     self.userDefaults = userDefaults
   }
   
-  public func getUserDefaults() -> BEUserDefaults {
+  open func getUserDefaults() -> BEUserDefaults {
     return self.userDefaults
   }
   
-  public func clearSession() {
+  open func clearSession() {
     setContact(nil)
     setAuthToke(nil)
     saveDefaultCard(nil)
@@ -28,12 +28,12 @@ public class BESession {
     setRegisteredAPNSToken(nil)
   }
   
-  public func clearApnsTokens() {
+  open func clearApnsTokens() {
     setAPNSToken(nil)
     setRegisteredAPNSToken(nil)
   }
   
-  public func getContactId() -> String? {
+  open func getContactId() -> String? {
     let prefs = self.userDefaults.getTransientDefaults()
     
     var contact = BEContact(storage: prefs)
@@ -45,7 +45,7 @@ public class BESession {
     return String(contact!.contactId!)
   }
   
-  public func getContact <ContactClass: BEContact> () -> ContactClass? {
+  open func getContact <ContactClass: BEContact> () -> ContactClass? {
     let prefs = self.userDefaults.getTransientDefaults()
     
     var contact = ContactClass(storage: prefs)
@@ -53,7 +53,7 @@ public class BESession {
     return contact
   }
   
-  public func setContact(contact: BEContact?) {
+  open func setContact(_ contact: BEContact?) {
     let prefs = self.userDefaults.getTransientDefaults()
     if contact != nil {
       contact?.save(prefs)
@@ -62,52 +62,52 @@ public class BESession {
     }
   }
   
-  public func getAuthToken() -> String? {
+  open func getAuthToken() -> String? {
     let prefs = self.userDefaults.getTransientDefaults()
-    return prefs.objectForKey(DataKeys.TOKEN_KEY) as? String
+    return prefs.object(forKey: DataKeys.TOKEN_KEY) as? String
   }
   
-  public func setAuthToke(token: String?) {
+  open func setAuthToke(_ token: String?) {
     let prefs = self.userDefaults.getTransientDefaults()
     if token != nil {
-      prefs.setObject(token, forKey: DataKeys.TOKEN_KEY)
+      prefs.set(token, forKey: DataKeys.TOKEN_KEY)
     } else {
-      prefs.removeObjectForKey(DataKeys.TOKEN_KEY)
+      prefs.removeObject(forKey: DataKeys.TOKEN_KEY)
     }
     prefs.synchronize()
   }
   
-  public func getAPNSToken() -> String? {
+  open func getAPNSToken() -> String? {
     let prefs = self.userDefaults.getTransientDefaults()
-    return prefs.objectForKey(DataKeys.DEVICE_TOKEN) as? String
+    return prefs.object(forKey: DataKeys.DEVICE_TOKEN) as? String
   }
   
-  public func setAPNSToken(apnsToken: String?) {
+  open func setAPNSToken(_ apnsToken: String?) {
     let prefs = self.userDefaults.getTransientDefaults()
     if (apnsToken != nil) {
-      prefs.setObject(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
+      prefs.set(apnsToken, forKey: DataKeys.DEVICE_TOKEN)
     } else {
-      prefs.removeObjectForKey(DataKeys.DEVICE_TOKEN)
+      prefs.removeObject(forKey: DataKeys.DEVICE_TOKEN)
     }
     prefs.synchronize()
   }
   
-  public func getRegisteredAPNSToken() -> String? {
+  open func getRegisteredAPNSToken() -> String? {
     let prefs = self.userDefaults.getTransientDefaults()
-    return prefs.objectForKey(DataKeys.REGISTERED_DEVICE_TOKEN) as? String
+    return prefs.object(forKey: DataKeys.REGISTERED_DEVICE_TOKEN) as? String
   }
   
-  public func setRegisteredAPNSToken(apnsToken: String?) {
+  open func setRegisteredAPNSToken(_ apnsToken: String?) {
     let prefs = self.userDefaults.getTransientDefaults()
     if apnsToken != nil {
-      prefs.setObject(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
+      prefs.set(apnsToken, forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
     } else {
-      prefs.removeObjectForKey(DataKeys.REGISTERED_DEVICE_TOKEN)
+      prefs.removeObject(forKey: DataKeys.REGISTERED_DEVICE_TOKEN)
     }
     prefs.synchronize()
   }
   
-  public func getDefaultCard() -> BEGiftCard? {
+  open func getDefaultCard() -> BEGiftCard? {
     let prefs = self.userDefaults.getTransientDefaults()
     var giftCard = BEGiftCard(storage: prefs)
     
@@ -118,7 +118,7 @@ public class BESession {
     return giftCard
   }
   
-  public func saveDefaultCard(card : BEGiftCard?){
+  open func saveDefaultCard(_ card : BEGiftCard?){
     let prefs = self.userDefaults.getTransientDefaults()
     if (card != nil) {
       card?.save(prefs)
@@ -127,14 +127,14 @@ public class BESession {
     }
   }
   
-  public func getRewards() -> [BECoupon]? {
+  open func getRewards() -> [BECoupon]? {
     let prefs = self.userDefaults.getTransientDefaults()
     var rewards = BECoupon.initList(prefs)
     
     return rewards
   }
   
-  public func saveRewards(rewards : [BECoupon]?){
+  open func saveRewards(_ rewards : [BECoupon]?){
     let prefs = self.userDefaults.getTransientDefaults()
     if (rewards != nil) {
       BECoupon.saveList(rewards!, storage: prefs)
@@ -144,9 +144,9 @@ public class BESession {
   }
 }
 
-public class BEUserDefaults: NSUserDefaults {
-  public func getTransientDefaults() -> NSUserDefaults {
-    return NSUserDefaults.standardUserDefaults()
+open class BEUserDefaults: UserDefaults {
+  open func getTransientDefaults() -> UserDefaults {
+    return UserDefaults.standard
   }
 }
 

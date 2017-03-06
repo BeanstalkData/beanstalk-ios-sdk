@@ -7,32 +7,56 @@
 
 import Foundation
 import ObjectMapper
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class RewardsCountResponse : Mappable {
-  private var categories : [Category]?
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class RewardsCountResponse : Mappable {
+  fileprivate var categories : [Category]?
   
   //for mocks only
   init(categories : [Category]){
     self.categories = categories
   }
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     categories <- map["Category"]
   }
   
   func getCount() -> Double {
     if categories != nil && categories?.count > 0 {
-      return Double(categories!.reduce(0,combine:  {$0 + $1.count!}))
+      return Double(categories!.reduce(0,{$0 + $1.count!}))
     }
     return 0.0
   }
 }
 
-public class Category : Mappable {
+open class Category : Mappable {
   var name: String?
   var count: Int?
   
@@ -41,11 +65,11 @@ public class Category : Mappable {
     self.count = count;
   }
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     name <- map["Name"]
     
     //        if map["Count"] is String {

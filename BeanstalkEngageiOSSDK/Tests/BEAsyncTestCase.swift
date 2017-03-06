@@ -9,30 +9,30 @@
 import UIKit
 import XCTest
 
-public class BEAsyncTestCase: XCTestCase {
+open class BEAsyncTestCase: XCTestCase {
 
-  private let kAsyncTimeout = NSTimeInterval(30)
-  private var expectation: XCTestExpectation!
+  fileprivate let kAsyncTimeout = TimeInterval(30)
+  fileprivate var expectation: XCTestExpectation!
   
-  public func prepare() {
-    expectation = self.expectationWithDescription("BEAsyncTestCase_expectation")
+  open func prepare() {
+    expectation = XCTestExpectation()
   }
   
-  public func fullfill() {
+  open func fullfill() {
     self.expectation.fulfill()
   }
   
-  public func wait(timeout: NSTimeInterval) -> Bool {
+  open func wait(_ timeout: TimeInterval) -> Bool {
     var error: NSError?
-    waitForExpectationsWithTimeout(kAsyncTimeout, handler: { err in
-      error = err
+    waitForExpectations(timeout: kAsyncTimeout, handler: { err in
+      error = err as NSError?
       XCTAssertNil(err)
     })
     
     return (error == nil)
   }
   
-  public func wait() -> Bool {
+  open func wait() -> Bool {
     return self.wait(kAsyncTimeout)
   }
 }

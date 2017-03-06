@@ -9,7 +9,7 @@ import Foundation
 import ObjectMapper
 
 
-public class CouponResponse <CouponClass: BECoupon> : Mappable {
+open class CouponResponse <CouponClass: BECoupon> : Mappable {
   var coupons: [CouponClass]?
   
   //for mocks only
@@ -17,11 +17,11 @@ public class CouponResponse <CouponClass: BECoupon> : Mappable {
     self.coupons = coupons
   }
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     coupons <- map["Coupon"]
   }
 }

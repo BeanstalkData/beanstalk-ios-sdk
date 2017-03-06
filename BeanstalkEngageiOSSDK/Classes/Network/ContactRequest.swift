@@ -9,26 +9,50 @@
 import Foundation
 
 import ObjectMapper
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class ContactRequest: Mappable{
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class ContactRequest: Mappable{
   
-  private var contactId: Int?
-  private var firstName : String?
-  private var lastName : String?
-  private var phone: String?
-  private var email: String?
-  private var password : String?
-  private var zipCode : String?
-  private var birthday: String?
-  private var gender: String?
-  private var emailOptin: Bool?
-  private var textOptin: Bool?
-  private var pushNotificationOptin: Bool?
-  private var inboxMessageOptin: Bool?
-  private var novadine: String?
-  private var prospect : String?
+  fileprivate var contactId: Int?
+  fileprivate var firstName : String?
+  fileprivate var lastName : String?
+  fileprivate var phone: String?
+  fileprivate var email: String?
+  fileprivate var password : String?
+  fileprivate var zipCode : String?
+  fileprivate var birthday: String?
+  fileprivate var gender: String?
+  fileprivate var emailOptin: Bool?
+  fileprivate var textOptin: Bool?
+  fileprivate var pushNotificationOptin: Bool?
+  fileprivate var inboxMessageOptin: Bool?
+  fileprivate var novadine: String?
+  fileprivate var prospect : String?
   
-  public private(set) var origin: BEContact?
+  open fileprivate(set) var origin: BEContact?
   
   public init(origin: BEContact? = nil, prospect: String = "loyalty") {
     self.origin = origin
@@ -36,23 +60,23 @@ public class ContactRequest: Mappable{
     self.prospect = prospect
   }
   
-  public required init?(_ map: Map) {
+  public required init?(map: Map) {
   }
   
-  public func set(password password: String?) {
+  open func set(password: String?) {
     self.password = password
   }
   
-  public func getPassword() -> String? {
+  open func getPassword() -> String? {
     return self.password
   }
   
-  public func set(firstName firstName: String?) {
+  open func set(firstName: String?) {
     guard firstName?.characters.count > 0 else {
       return
     }
 
-    guard origin?.firstName?.caseInsensitiveCompare(firstName!) != NSComparisonResult.OrderedSame else {
+    guard origin?.firstName?.caseInsensitiveCompare(firstName!) != ComparisonResult.orderedSame else {
       self.firstName = nil
       return
     }
@@ -60,19 +84,19 @@ public class ContactRequest: Mappable{
     self.firstName = firstName
   }
   
-  public func getFirstName() -> String? {
+  open func getFirstName() -> String? {
     guard self.firstName == nil else {
       return self.firstName
     }
     return self.origin?.firstName
   }
   
-  public func set(lastName lastName: String?) {
+  open func set(lastName: String?) {
     guard lastName?.characters.count > 0 else {
       return
     }
     
-    guard origin?.lastName?.caseInsensitiveCompare(lastName!) != NSComparisonResult.OrderedSame else {
+    guard origin?.lastName?.caseInsensitiveCompare(lastName!) != ComparisonResult.orderedSame else {
       self.lastName = nil
       return
     }
@@ -80,19 +104,19 @@ public class ContactRequest: Mappable{
     self.lastName = lastName
   }
   
-  public func getLastName() -> String? {
+  open func getLastName() -> String? {
     guard self.lastName == nil else {
       return self.lastName
     }
     return self.origin?.lastName
   }
   
-  public func set(zipCode zipCode: String?) {
+  open func set(zipCode: String?) {
     guard zipCode != nil else {
       return
     }
     
-    guard origin?.zipCode?.caseInsensitiveCompare(zipCode!) != NSComparisonResult.OrderedSame else {
+    guard origin?.zipCode?.caseInsensitiveCompare(zipCode!) != ComparisonResult.orderedSame else {
       self.zipCode = nil
       return
     }
@@ -100,19 +124,19 @@ public class ContactRequest: Mappable{
     self.zipCode = zipCode
   }
   
-  public func getZipCode() -> String? {
+  open func getZipCode() -> String? {
     guard self.zipCode == nil else {
       return self.zipCode
     }
     return self.origin?.zipCode
   }
   
-  public func set(email email: String?) {
+  open func set(email: String?) {
     guard email?.characters.count > 0 else {
       return
     }
     
-    guard origin?.email?.caseInsensitiveCompare(email!) != NSComparisonResult.OrderedSame else {
+    guard origin?.email?.caseInsensitiveCompare(email!) != ComparisonResult.orderedSame else {
       self.email = nil
       return
     }
@@ -120,7 +144,7 @@ public class ContactRequest: Mappable{
     self.email = email
   }
   
-  public func getEmail() -> String? {
+  open func getEmail() -> String? {
     guard self.email == nil else {
       return self.email
     }
@@ -128,12 +152,12 @@ public class ContactRequest: Mappable{
   }
 
   
-  public func set(phone phone: String?) {
+  open func set(phone: String?) {
     guard phone?.characters.count > 0 else {
       return
     }
     
-    guard origin?.phone?.caseInsensitiveCompare(phone!) != NSComparisonResult.OrderedSame else {
+    guard origin?.phone?.caseInsensitiveCompare(phone!) != ComparisonResult.orderedSame else {
       self.phone = nil
       return
     }
@@ -141,19 +165,19 @@ public class ContactRequest: Mappable{
     self.phone = phone
   }
   
-  public func getPhone() -> String? {
+  open func getPhone() -> String? {
     guard self.phone == nil else {
       return self.phone
     }
     return self.origin?.phone
   }
   
-  public func set(birthday birthday: String?) {
+  open func set(birthday: String?) {
     guard birthday != nil else {
       return
     }
     
-    guard origin?.birthday?.caseInsensitiveCompare(birthday!) != NSComparisonResult.OrderedSame else {
+    guard origin?.birthday?.caseInsensitiveCompare(birthday!) != ComparisonResult.orderedSame else {
       self.birthday = nil
       return
     }
@@ -161,19 +185,19 @@ public class ContactRequest: Mappable{
     self.birthday = birthday
   }
   
-  public func getBirthday() -> String? {
+  open func getBirthday() -> String? {
     guard self.birthday == nil else {
       return self.birthday
     }
     return self.origin?.birthday
   }
   
-  public func set(gender gender: String?) {
+  open func set(gender: String?) {
     guard gender != nil else {
       return
     }
     
-    guard origin?.gender?.caseInsensitiveCompare(gender!) != NSComparisonResult.OrderedSame else {
+    guard origin?.gender?.caseInsensitiveCompare(gender!) != ComparisonResult.orderedSame else {
       self.gender = nil
       return
     }
@@ -181,7 +205,7 @@ public class ContactRequest: Mappable{
     self.gender = gender
   }
   
-  public func getGender() -> String? {
+  open func getGender() -> String? {
     guard self.gender == nil else {
       return self.gender
     }
@@ -189,7 +213,7 @@ public class ContactRequest: Mappable{
   }
 
   
-  public func set(emailOptin emailOptin: Bool?) {
+  open func set(emailOptin: Bool?) {
     guard emailOptin != nil else {
       return
     }
@@ -202,14 +226,14 @@ public class ContactRequest: Mappable{
     self.emailOptin = emailOptin
   }
   
-  public func isEmailOptin() -> Bool? {
+  open func isEmailOptin() -> Bool? {
     guard self.emailOptin == nil else {
       return self.emailOptin
     }
     return self.origin?.isEmailOptin()
   }
   
-  public func set(textOptin textOptin: Bool?) {
+  open func set(textOptin: Bool?) {
     guard textOptin != nil else {
       return
     }
@@ -222,14 +246,14 @@ public class ContactRequest: Mappable{
     self.textOptin = textOptin
   }
   
-  public func isTextOptin() -> Bool? {
+  open func isTextOptin() -> Bool? {
     guard self.textOptin == nil else {
       return self.textOptin
     }
     return self.origin?.isTextOptin()
   }
   
-  public func set(pushNotificationOptin pushNotificationOptin: Bool?) {
+  open func set(pushNotificationOptin: Bool?) {
     guard pushNotificationOptin != nil else {
       return
     }
@@ -242,14 +266,14 @@ public class ContactRequest: Mappable{
     self.pushNotificationOptin = pushNotificationOptin
   }
   
-  public func isPushNotificationOptin() -> Bool? {
+  open func isPushNotificationOptin() -> Bool? {
     guard self.pushNotificationOptin == nil else {
       return self.pushNotificationOptin
     }
     return self.origin?.isPushNotificationOptin()
   }
   
-  public func set(inboxMessageOptin inboxMessageOptin: Bool?) {
+  open func set(inboxMessageOptin: Bool?) {
     guard inboxMessageOptin != nil else {
       return
     }
@@ -262,14 +286,14 @@ public class ContactRequest: Mappable{
     self.inboxMessageOptin = inboxMessageOptin
   }
   
-  public func isInboxMessageOptin() -> Bool? {
+  open func isInboxMessageOptin() -> Bool? {
     guard self.inboxMessageOptin == nil else {
       return self.inboxMessageOptin
     }
     return self.origin?.isInboxMessageOptin()
   }
   
-  public func set(novadine novadine: Bool?) {
+  open func set(novadine: Bool?) {
     guard novadine != nil else {
       return
     }
@@ -282,11 +306,11 @@ public class ContactRequest: Mappable{
     self.novadine = (novadine! ? "1" : "0")
   }
   
-  public func isNovadine() -> Bool {
+  open func isNovadine() -> Bool {
     return self.novadine == "1"
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     
     contactId <- map["ContactID"]
     password <- map["Password"]
@@ -305,7 +329,7 @@ public class ContactRequest: Mappable{
     novadine <- map["custom_Novadine_User"]
   }
 
-  public func normalize() {
+  open func normalize() {
     self.set(phone: self.phone?.formatPhoneNumberToNationalSignificant())
   }
 }

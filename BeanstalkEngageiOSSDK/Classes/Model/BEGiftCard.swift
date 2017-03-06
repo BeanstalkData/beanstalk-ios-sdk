@@ -11,14 +11,14 @@ import Foundation
 
 import ObjectMapper
 
-public class BEGiftCard : Mappable {
-  public static let kDefaultBalance = "$0.00"
-  private static let kId = "BEGiftCard" + "_id"
-  private static let kNumber = "BEGiftCard" + "_number"
-  private static let kBalance = "BEGiftCard" + "_balance"
-  public var id: String?
-  public var number: String?
-  public var balance: String?
+open class BEGiftCard : Mappable {
+  open static let kDefaultBalance = "$0.00"
+  fileprivate static let kId = "BEGiftCard" + "_id"
+  fileprivate static let kNumber = "BEGiftCard" + "_number"
+  fileprivate static let kBalance = "BEGiftCard" + "_balance"
+  open var id: String?
+  open var number: String?
+  open var balance: String?
   
   public init(id: String, number : String, balance : String){
     self.id = id
@@ -26,11 +26,11 @@ public class BEGiftCard : Mappable {
     self.balance = balance
   }
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     id <- map["Id"]
     if id == nil {
       var numberId: NSNumber?
@@ -44,40 +44,40 @@ public class BEGiftCard : Mappable {
     balance <- map["balance"]
   }
   
-  init?(storage : NSUserDefaults){
-    id = storage.objectForKey(BEGiftCard.kId) as? String
+  init?(storage : UserDefaults){
+    id = storage.object(forKey: BEGiftCard.kId) as? String
     if id == nil {
       return nil
     }
-    number = storage.objectForKey(BEGiftCard.kNumber) as? String
-    balance = storage.objectForKey(BEGiftCard.kBalance) as? String
+    number = storage.object(forKey: BEGiftCard.kNumber) as? String
+    balance = storage.object(forKey: BEGiftCard.kBalance) as? String
   }
   
-  class func clear(storage : NSUserDefaults) {
-    storage.setObject(nil, forKey: BEGiftCard.kId)
-    storage.setObject(nil, forKey: BEGiftCard.kNumber)
-    storage.setObject(nil, forKey: BEGiftCard.kBalance)
+  class func clear(_ storage : UserDefaults) {
+    storage.set(nil, forKey: BEGiftCard.kId)
+    storage.set(nil, forKey: BEGiftCard.kNumber)
+    storage.set(nil, forKey: BEGiftCard.kBalance)
     
     storage.synchronize()
   }
   
-  func save(storage : NSUserDefaults) {
-    storage.setObject(id, forKey: BEGiftCard.kId)
-    storage.setObject(number, forKey: BEGiftCard.kNumber)
-    storage.setObject(balance, forKey: BEGiftCard.kBalance)
+  func save(_ storage : UserDefaults) {
+    storage.set(id, forKey: BEGiftCard.kId)
+    storage.set(number, forKey: BEGiftCard.kNumber)
+    storage.set(balance, forKey: BEGiftCard.kBalance)
     
     storage.synchronize()
   }
   
-  public func getDisplayNumber() -> String {
+  open func getDisplayNumber() -> String {
     if number != nil && number!.characters.count > 4{
-      return "XXXXXXXXXXXX\(number!.substringFromIndex(number!.endIndex.advancedBy(-4)))"
+      return "XXXXXXXXXXXX\(number!.substring(from: number!.characters.index(number!.endIndex, offsetBy: -4)))"
     }else {
       return "XXXXXXXXXXXXXXXX"
     }
   }
   
-  public func getDisplayBalanse() -> String {
+  open func getDisplayBalanse() -> String {
     if balance == nil{
       return BEGiftCard.kDefaultBalance
     }else {

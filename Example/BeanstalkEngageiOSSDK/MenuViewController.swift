@@ -26,26 +26,26 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
     self.updateAuthStatus()
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    super.prepareForSegue(segue, sender: sender)
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
     
-    if let vc = segue.destinationViewController as? BaseViewController {
+    if let vc = segue.destination as? BaseViewController {
       vc.coreService = self.coreService
     }
     
-    if let vc = segue.destinationViewController as? RegisterViewController {
+    if let vc = segue.destination as? RegisterViewController {
       vc.completionBlock = { (success) in
         if success {
-          self.navigationController?.popToRootViewControllerAnimated(true)
+          self.navigationController?.popToRootViewController(animated: true)
         }
         
         self.updateAuthStatus()
       }
     }
-    else if let vc = segue.destinationViewController as? SignInViewController {
+    else if let vc = segue.destination as? SignInViewController {
       vc.completionBlock = { (success) in
         if success {
-          self.navigationController?.popToRootViewControllerAnimated(true)
+          self.navigationController?.popToRootViewController(animated: true)
         }
         
         self.updateAuthStatus()
@@ -59,32 +59,32 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   @IBAction func signOutAction() {
     let alert = UIAlertController(title: "Sign Out",
                                   message: "Would you like to Sign Out?",
-                                  preferredStyle: .Alert)
-    alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-    alert.addAction(UIAlertAction(title: "Sign Out", style: .Default, handler: { (_) in
+                                  preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    alert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: { (_) in
       self.coreService.logout(self, handler: { (success) in
         self.updateAuthStatus()
       })
     }))
-    self.presentViewController(alert, animated: true, completion: nil)
+    self.present(alert, animated: true, completion: nil)
   }
   
   @IBAction func resetPasswordAction() {
     let alert = UIAlertController(title: "Reset Password",
                                   message: "",
-                                  preferredStyle: .Alert)
-    alert.addTextFieldWithConfigurationHandler { (tf) in
+                                  preferredStyle: .alert)
+    alert.addTextField { (tf) in
       
     }
     
     alert.addAction(UIAlertAction(
       title: "Cancel",
-      style: .Cancel,
+      style: .cancel,
       handler: nil))
     
     alert.addAction(UIAlertAction(
       title: "Reset",
-      style: .Default,
+      style: .default,
       handler: { (_) in
         if let email = alert.textFields?.first?.text {
           self.coreService.resetPassword(self, email: email, handler: { (success) in
@@ -93,7 +93,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
         }
     }))
     
-    self.presentViewController(alert, animated: true, completion: nil)
+    self.present(alert, animated: true, completion: nil)
   }
   
   
@@ -102,12 +102,12 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   private func updateAuthStatus() {
     let isAuthenticated = self.coreService.isAuthenticated()
     
-    self.registerButton.enabled = !isAuthenticated
-    self.signInButton.enabled = !isAuthenticated
-    self.signOutButton.enabled = isAuthenticated
-    self.profileButton.enabled = isAuthenticated
-    self.availableRewardsButton.enabled = isAuthenticated
-    self.userProgressButton.enabled = isAuthenticated
-    self.giftCardsButton.enabled = isAuthenticated
+    self.registerButton.isEnabled = !isAuthenticated
+    self.signInButton.isEnabled = !isAuthenticated
+    self.signOutButton.isEnabled = isAuthenticated
+    self.profileButton.isEnabled = isAuthenticated
+    self.availableRewardsButton.isEnabled = isAuthenticated
+    self.userProgressButton.isEnabled = isAuthenticated
+    self.giftCardsButton.isEnabled = isAuthenticated
   }
 }

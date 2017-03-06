@@ -14,22 +14,22 @@ public protocol GiftCardBalanceResponse {
 }
 
 
-public class GCBResponse: Mappable, GiftCardBalanceResponse {
-  private var status: Bool?
+open class GCBResponse: Mappable, GiftCardBalanceResponse {
+  fileprivate var status: Bool?
   
-  private var response: GCBDataResponse?
+  fileprivate var response: GCBDataResponse?
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     status <- map["status"]
     response <- map["success"]
   }
   
   
-  public func getCardBalance() -> String {
+  open func getCardBalance() -> String {
     guard let amount = response?.message?.response?.cardBalance?.balanceAmount?.amount else {
       return BEGiftCard.kDefaultBalance
     }
@@ -39,43 +39,43 @@ public class GCBResponse: Mappable, GiftCardBalanceResponse {
 }
 
 
-public class GCBDataResponse: Mappable {
+open class GCBDataResponse: Mappable {
   var code: Int?
   var message: GCBDataMessage?
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
     
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     code <- map["code"]
     message <- map["message"]
   }
 }
 
 
-public class GCBDataMessage: Mappable {
+open class GCBDataMessage: Mappable {
   var response: GCBMResponse?
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
     
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     response <- map["response"]
   }
 }
 
 
-public class GCBMResponse: Mappable {
+open class GCBMResponse: Mappable {
   var message: String?
   var cardBalance: BEGiftCardBalance?
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
     
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     message <- map["message"]
     cardBalance <- map["balanceInquiryReturn"]
   }

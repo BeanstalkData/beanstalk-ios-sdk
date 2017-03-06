@@ -10,20 +10,20 @@ import Foundation
 
 import ObjectMapper
 
-public class BECoupon : NSObject, NSCoding, Mappable {
-  private static let kOriginalDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-  private static let kDisplayDateFormat = "MM/dd/yyyy"
+open class BECoupon : NSObject, NSCoding, Mappable {
+  fileprivate static let kOriginalDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+  fileprivate static let kDisplayDateFormat = "MM/dd/yyyy"
   
-  private static let kObject = "BECoupon" + "_object"
-  private static let kNumber = "BECoupon" + "_number"
-  private static let kExpiration = "BECoupon" + "_expiration"
-  private static let kText = "BECoupon" + "_text"
-  private static let kImageUrl = "BECoupon" + "_imageUrl"
+  fileprivate static let kObject = "BECoupon" + "_object"
+  fileprivate static let kNumber = "BECoupon" + "_number"
+  fileprivate static let kExpiration = "BECoupon" + "_expiration"
+  fileprivate static let kText = "BECoupon" + "_text"
+  fileprivate static let kImageUrl = "BECoupon" + "_imageUrl"
   
-  public var number: String?
-  public var expiration: String?
-  public var text: String?
-  public var imageUrl: String?
+  open var number: String?
+  open var expiration: String?
+  open var text: String?
+  open var imageUrl: String?
   
   //for mocks only
   init(imageUrl: String) {
@@ -31,11 +31,11 @@ public class BECoupon : NSObject, NSCoding, Mappable {
     self.imageUrl = imageUrl
   }
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
     super.init()
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     number <- map["CouponNo"]
     expiration <- map["ExpirationDate"]
     text <- map["CouponText"]
@@ -43,24 +43,24 @@ public class BECoupon : NSObject, NSCoding, Mappable {
   }
   
   
-  public func getDisplayExpiration(formatter: NSDateFormatter) -> String? {
+  open func getDisplayExpiration(_ formatter: DateFormatter) -> String? {
     guard let expirationString = self.expiration else {
       return nil
     }
     
     formatter.dateFormat = BECoupon.kOriginalDateFormat
-    if let date = formatter.dateFromString(expirationString) {
+    if let date = formatter.date(from: expirationString) {
       formatter.dateFormat = BECoupon.kDisplayDateFormat
       
-      return formatter.stringFromDate(date)
+      return formatter.string(from: date)
     }
     
     return nil
   }
   
-  public func getImageURL() -> NSURL? {
+  open func getImageURL() -> URL? {
     if let imageUrlString = self.imageUrl {
-      if let URL = NSURL(string: imageUrlString) {
+      if let URL = URL(string: imageUrlString) {
         return URL
       }
     }
@@ -70,11 +70,11 @@ public class BECoupon : NSObject, NSCoding, Mappable {
   
   //MARK: - Persistence store -
   
-  class public func initList(storage : NSUserDefaults) -> [BECoupon] {
+  class open func initList(_ storage : UserDefaults) -> [BECoupon] {
     
     var couponList: [BECoupon]?
-    if let list = storage.objectForKey(BECoupon.kObject) as? NSData {
-      couponList = NSKeyedUnarchiver.unarchiveObjectWithData(list) as? [BECoupon]
+    if let list = storage.object(forKey: BECoupon.kObject) as? Data {
+      couponList = NSKeyedUnarchiver.unarchiveObject(with: list) as? [BECoupon]
     }
     
     if couponList == nil {
@@ -84,30 +84,30 @@ public class BECoupon : NSObject, NSCoding, Mappable {
     return couponList!
   }
   
-  class public func clearList(storage : NSUserDefaults) {
-    storage.setObject(nil, forKey: BECoupon.kObject)
+  class open func clearList(_ storage : UserDefaults) {
+    storage.set(nil, forKey: BECoupon.kObject)
     
     storage.synchronize()
   }
   
-  class public func saveList(list : [BECoupon], storage : NSUserDefaults) {
-    storage.setObject(NSKeyedArchiver.archivedDataWithRootObject(list), forKey: BECoupon.kObject)
+  class open func saveList(_ list : [BECoupon], storage : UserDefaults) {
+    storage.set(NSKeyedArchiver.archivedData(withRootObject: list), forKey: BECoupon.kObject)
     
     storage.synchronize()
   }
   
   //MARK: - NSCoding -
   required public init(coder aDecoder: NSCoder) {
-    self.number = aDecoder.decodeObjectForKey(BECoupon.kNumber) as? String
-    self.expiration = aDecoder.decodeObjectForKey(BECoupon.kExpiration) as? String
-    self.text = aDecoder.decodeObjectForKey(BECoupon.kText) as? String
-    self.imageUrl = aDecoder.decodeObjectForKey(BECoupon.kImageUrl) as? String
+    self.number = aDecoder.decodeObject(forKey: BECoupon.kNumber) as? String
+    self.expiration = aDecoder.decodeObject(forKey: BECoupon.kExpiration) as? String
+    self.text = aDecoder.decodeObject(forKey: BECoupon.kText) as? String
+    self.imageUrl = aDecoder.decodeObject(forKey: BECoupon.kImageUrl) as? String
   }
   
-  public func encodeWithCoder(aCoder: NSCoder) {
-    aCoder.encodeObject(number, forKey: BECoupon.kNumber)
-    aCoder.encodeObject(expiration, forKey: BECoupon.kExpiration)
-    aCoder.encodeObject(text, forKey: BECoupon.kText)
-    aCoder.encodeObject(imageUrl, forKey: BECoupon.kImageUrl)
+  open func encode(with aCoder: NSCoder) {
+    aCoder.encode(number, forKey: BECoupon.kNumber)
+    aCoder.encode(expiration, forKey: BECoupon.kExpiration)
+    aCoder.encode(text, forKey: BECoupon.kText)
+    aCoder.encode(imageUrl, forKey: BECoupon.kImageUrl)
   }
 }

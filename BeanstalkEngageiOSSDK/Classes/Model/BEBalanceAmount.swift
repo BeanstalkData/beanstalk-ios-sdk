@@ -10,14 +10,14 @@ import Foundation
 
 import ObjectMapper
 
-public class BEBalanceAmount: Mappable {
+open class BEBalanceAmount: Mappable {
   var amount: Double?
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     amount <- map["amount"]
   }
 }

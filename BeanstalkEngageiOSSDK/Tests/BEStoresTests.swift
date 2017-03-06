@@ -10,9 +10,9 @@ import Foundation
 import CoreLocation
 import XCTest
 
-public class BEStoresTests: BEBaseTestCase {
+open class BEStoresTests: BEBaseTestCase {
   
-  public func allStoresTest <StoreClass: BEStore> (storeClass: StoreClass.Type) -> [BEStore]? {
+  open func allStoresTest <StoreClass: BEStore> (_ storeClass: StoreClass.Type) -> [BEStore]? {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -38,7 +38,7 @@ public class BEStoresTests: BEBaseTestCase {
     return storesResult
   }
   
-  public func allStoresAtLocationTest <StoreClass: BEStore> (storeClass: StoreClass.Type) -> [BEStore]? {
+  open func allStoresAtLocationTest <StoreClass: BEStore> (_ storeClass: StoreClass.Type) -> [BEStore]? {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()

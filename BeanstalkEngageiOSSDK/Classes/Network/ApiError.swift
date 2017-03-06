@@ -7,35 +7,37 @@
 
 import Foundation
 
-public protocol BEErrorType: ErrorType {
+public protocol BEErrorType: Error {
   func errorTitle() -> String?
   func errorMessage() -> String?
 }
 
 public enum ApiError: BEErrorType {
   
-  case Unknown()
+  case unknown()
   
-  case DataSerialization(reason: String)
-  case MissingParameterError()
+  case dataSerialization(reason: String)
+  case missingParameterError()
   
-  case Network(error: NSError?)
-  case NetworkConnectionError()
+  case network(error: Error?)
+  case networkConnectionError()
   
-  case AuthenticatFailed(reason: Any?)
-  case RegistrationFailed(reason: Any?)
-  case UserEmailExists(reason: Any?)
-  case UserPhoneExists(reason: Any?)
+  case authenticatFailed(reason: Any?)
+  case registrationFailed(reason: Any?)
+  case userEmailExists(reason: Any?)
+  case userPhoneExists(reason: Any?)
   
-  case ProfileError(reason: Any?)
-  case UpdateProfileError(reason: Any?)
-  case UpdatePasswordError(reason: Any?)
-  case ResetPasswordError(reason: Any?)
+  case profileError(reason: Any?)
+  case updateProfileError(reason: Any?)
+  case updatePasswordError(reason: Any?)
+  case resetPasswordError(reason: Any?)
   
-  case GiftCardsError(reason: Any?)
-  case PaymentError(reason: Any?)
+  case giftCardsError(reason: Any?)
+  case paymentError(reason: Any?)
   
-  case FindStoresError(reason: Any?)
+  case findStoresError(reason: Any?)
+  
+  case unacceptableStatusCodeError(reason: String?, statusCode: Int)
   
   //MARK: error title / message
   
@@ -43,41 +45,41 @@ public enum ApiError: BEErrorType {
     var errorTitle: String?
     
     switch self {
-    case .Unknown:
+    case .unknown:
       errorTitle = "Bad request"
-    case .DataSerialization(let reason):
+    case .dataSerialization(let reason):
       errorTitle = "Bad request"
-    case .MissingParameterError:
+    case ApiError.missingParameterError:
       errorTitle = "Invalid request"
-    case .Network(let error):
+    case .network(let error):
       errorTitle = "Bad request"
-    case .NetworkConnectionError:
+    case .networkConnectionError:
       errorTitle = "Connection Failed"
     
-    case .AuthenticatFailed(let reason):
+    case .authenticatFailed(let reason):
       errorTitle = "Login Failed"
-    case .RegistrationFailed(let reason):
+    case ApiError.registrationFailed(let reason):
       errorTitle = "Registration Error"
-    case .UserEmailExists(let reason):
+    case .userEmailExists(let reason):
       errorTitle = "Registration Error"
-    case .UserPhoneExists(let reason):
+    case .userPhoneExists(let reason):
       errorTitle = "Registration Error"
       
-    case .ProfileError(let reason):
+    case .profileError(let reason):
       errorTitle = "Profile Error"
-    case .UpdateProfileError(let reason):
+    case .updateProfileError(let reason):
       errorTitle = "Update Profile Error"
-    case .UpdatePasswordError(let reason):
+    case .updatePasswordError(let reason):
       errorTitle = "Password Update"
-    case .ResetPasswordError(let reason):
+    case .resetPasswordError(let reason):
       errorTitle = "Password reset"
       
-    case .GiftCardsError(let reason):
+    case .giftCardsError(let reason):
       errorTitle = "Cards Error"
-    case .PaymentError(let reason):
+    case .paymentError(let reason):
       errorTitle = "Payment Error"
       
-    case .FindStoresError(let reason):
+    case .findStoresError(let reason):
       errorTitle = "Find Stores Error"
       
     default:
@@ -92,43 +94,46 @@ public enum ApiError: BEErrorType {
     var errorMessage: String?
     
     switch self {
-    case .Unknown:
+    case .unknown:
       errorMessage = "Sorry, an error occurred while processing your request"
-    case .DataSerialization(let reason):
+    case .dataSerialization(let reason):
       errorMessage = reason
-    case .MissingParameterError:
+    case ApiError.missingParameterError:
       errorMessage = "Please verify parameter(s)"
-    case .Network(let error):
+    case .network(let error):
       errorMessage = (error != nil ? error!.localizedDescription : "Sorry, an error occurred while processing your request")
-    case .NetworkConnectionError:
+    case .networkConnectionError:
       errorMessage = "Connection unavailable"
     
-    case .AuthenticatFailed(let reason):
+    case .authenticatFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
-    case .RegistrationFailed(let reason):
+    case ApiError.registrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
       break
-    case .UserEmailExists(let reason):
+    case .userEmailExists(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it.")
-    case .UserPhoneExists(let reason):
+    case .userPhoneExists(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "This phone is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it.")
       
-    case .ProfileError(let reason):
+    case .profileError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to retrieve profile")
-    case .UpdateProfileError(let reason):
+    case .updateProfileError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Update Failed!")
-    case .UpdatePasswordError(let reason):
+    case .updatePasswordError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to update password")
-    case .ResetPasswordError(let reason):
+    case .resetPasswordError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to reset password")
       
-    case .GiftCardsError(let reason):
+    case .giftCardsError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error Retrieving Cards Information")
-    case .PaymentError(let reason):
+    case .paymentError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error generating barcode. Please try again later.")
      
-    case .FindStoresError(let reason):
+    case .findStoresError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error Retrieving Stores Information")
+      
+    case .unacceptableStatusCodeError(let reason, let statusCode):
+      errorMessage = reason
       
     default:
       errorMessage = "Sorry, an error occurred while processing your request"
@@ -138,12 +143,12 @@ public enum ApiError: BEErrorType {
     return errorMessage
   }
   
-  public func getErrorMessageFromReason(reason: Any?, defaultMessage: String) -> String? {
+  public func getErrorMessageFromReason(_ reason: Any?, defaultMessage: String) -> String? {
     var errorMessage: String? = defaultMessage
     
     if let reasonError = reason as? ApiError {
       switch reasonError {
-      case .Unknown:
+      case .unknown:
         break
       default:
         errorMessage = reasonError.errorMessage()

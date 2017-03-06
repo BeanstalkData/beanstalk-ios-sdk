@@ -18,7 +18,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   @IBOutlet var genderSegment: UISegmentedControl!
   
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     if self.contact == nil {
@@ -35,7 +35,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   //MARK: - Private
   
   func loadProfile() {
-    self.coreService?.getContact(self, handler: { (contact) in
+    self.coreService?.getMyContact(self, handler: { (contact) in
       if contact != nil {
         self.contact = contact as? ContactModel
         

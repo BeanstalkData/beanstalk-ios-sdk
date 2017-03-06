@@ -9,18 +9,18 @@
 import Foundation
 import XCTest
 
-public class BESessionTests: BEBaseTestCase {
+open class BESessionTests: BEBaseTestCase {
   
-  public override func setUp() {
+  open override func setUp() {
     super.setUp()
   }
   
-  public override func tearDown() {
+  open override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
   }
   
-  public func userSessionTest() {
+  open func userSessionTest() {
     
     self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
     self.getSession()?.setAuthToke("12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
@@ -46,7 +46,7 @@ public class BESessionTests: BEBaseTestCase {
     XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil)
   }
   
-  public func clearSessionTest() {
+  open func clearSessionTest() {
     self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
     self.getSession()?.setAuthToke("12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
     self.getSession()?.setAPNSToken(getMetadata()!.getValidAPNSToken())
@@ -70,7 +70,7 @@ public class BESessionTests: BEBaseTestCase {
     XCTAssert(self.getSession()?.getDefaultCard() == nil)
   }
   
-  public func giftCardSessionTest() {
+  open func giftCardSessionTest() {
     
     self.getSession()?.saveDefaultCard(getMetadata()!.getRegisteredUser1GiftCard())
     
@@ -87,7 +87,7 @@ public class BESessionTests: BEBaseTestCase {
     XCTAssert(giftCardNil == nil)
   }
   
-  public func contactSessionTest() {
+  open func contactSessionTest() {
     
     self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
     

@@ -1,34 +1,34 @@
 PODS:
-  - Alamofire (3.5.1)
-  - AlamofireObjectMapper (3.0.2):
-    - Alamofire (~> 3.2)
-    - ObjectMapper (~> 1.0)
-  - BeanstalkEngageiOSSDK (0.3.32):
-    - BeanstalkEngageiOSSDK/Core (= 0.3.32)
-  - BeanstalkEngageiOSSDK/Control (0.3.32):
+  - Alamofire (4.4.0)
+  - AlamofireObjectMapper (4.1.0):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 2.0)
+  - BeanstalkEngageiOSSDK (0.5.0):
+    - BeanstalkEngageiOSSDK/Core (= 0.5.0)
+  - BeanstalkEngageiOSSDK/Control (0.5.0):
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-    - libPhoneNumber-iOS (~> 0.8)
-    - PKHUD (~> 3.2.1)
-  - BeanstalkEngageiOSSDK/Core (0.3.32):
+    - libPhoneNumber-iOS
+    - PKHUD (~> 4.2.0)
+  - BeanstalkEngageiOSSDK/Core (0.5.0):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Model (0.3.32):
-    - AlamofireObjectMapper (~> 3.0.0)
-  - BeanstalkEngageiOSSDK/Network (0.3.32):
-    - Alamofire (~> 3.5.1)
+  - BeanstalkEngageiOSSDK/Model (0.5.0):
+    - AlamofireObjectMapper (~> 4.1.0)
+  - BeanstalkEngageiOSSDK/Network (0.5.0):
+    - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Model
     - Timberjack
-  - BeanstalkEngageiOSSDK/Testing (0.3.32):
+  - BeanstalkEngageiOSSDK/Testing (0.5.0):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - CCTestingUserDefaults
   - CCTestingUserDefaults (0.1.2)
   - libPhoneNumber-iOS (0.9.4)
-  - ObjectMapper (1.5.0)
-  - PKHUD (3.2.1)
+  - ObjectMapper (2.2.5)
+  - PKHUD (4.2.0)
   - Timberjack (0.0.2)
 
 DEPENDENCIES:
@@ -40,13 +40,13 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
-  AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
-  BeanstalkEngageiOSSDK: e55f599b37e46c844d1dbe9f77a76f4869919d6b
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  BeanstalkEngageiOSSDK: 89d634a33451d663ff19bef7421a2f912221429c
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
   libPhoneNumber-iOS: 63bab980d1fc9783d82d955800ac9d7c1d81fde3
-  ObjectMapper: 386645adca9d9d23b95eda43090b09d66444cf14
-  PKHUD: 001c11518f125a273ddf026bcc64918423744ea2
+  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
   Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42
 
 PODFILE CHECKSUM: 0c7326b5737c456c5f74d86a3eb1761658735544

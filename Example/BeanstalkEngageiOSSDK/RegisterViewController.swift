@@ -35,19 +35,19 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     self.passwordTextField.text = ""
     self.confirmPasswordTextField.text = ""
     self.zipCodeTextField.text = ""
-    self.optEmailCheckBox.on = false
+    self.optEmailCheckBox.isOn = false
     self.genderSegmentView.selectedSegmentIndex = 0
     
-    self.selectedDate = self.dateInPast(21)!
+    self.selectedDate = self.dateInPast(yearsAgo: 21)!
   }
   
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(
       title: "Register",
-      style: .Plain,
+      style: .plain,
       target: self,
       action: #selector(register))
   }
@@ -61,17 +61,17 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     let request = ContactRequest()
     request.set(firstName: self.firstNameTextField.text)
     request.set(lastName: self.lastNameTextField.text)
-    request.set(phone: self.phoneTextField.text?.stringByReplacingOccurrencesOfString("-", withString: ""))
+    request.set(phone: self.phoneTextField.text?.replacingOccurrences(of: "-", with: ""))
     request.set(email: self.emailTextField.text)
     request.set(password: self.passwordTextField.text)
     request.set(zipCode: self.zipCodeTextField.text)
-    request.set(birthday: self.getFormatedDate(self.selectedDate, dateFormat: "yyyy-MM-dd"))
-    request.set(emailOptin: self.optEmailCheckBox.on)
+    request.set(birthday: self.getFormatedDate(date: self.selectedDate, dateFormat: "yyyy-MM-dd"))
+    request.set(emailOptin: self.optEmailCheckBox.isOn)
 //    request.set(preferredReward: "")
     request.set(gender: self.genderSegmentView.selectedSegmentIndex == 0 ? "Male" : "Female")
     
-    self.coreService?.register(self, request: request, handler: { (success) in
-      self.completionBlock?(success: success)
+    self.coreService?.registerMe(self, request: request, handler: { (success) in
+      self.completionBlock?(success)
     })
     
     //        self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
@@ -83,7 +83,7 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
   
   //MARK: - UITextFieldDelegate
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     
     return false
@@ -95,19 +95,19 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
   private func getFormatedDate(date: NSDate, dateFormat: String) -> String {
     var formatedString: String!
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = dateFormat
-    formatedString = dateFormatter.stringFromDate(date)
+    formatedString = dateFormatter.string(from: date as Date)
     
     return formatedString
   }
   
-  override internal func keyboardWillChange(notification: NSNotification) {
-    var scrollInsets = UIEdgeInsetsZero
+  override internal func keyboardWillChange(notification: Notification) {
+    var scrollInsets = UIEdgeInsets.zero
     
     if let endFrameInfo = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-      let endFrame = endFrameInfo.CGRectValue()
-      let converted = self.view.convertRect(endFrame, fromView: UIApplication.sharedApplication().keyWindow!)
+      let endFrame = endFrameInfo.cgRectValue
+      let converted = self.view.convert(endFrame, from: UIApplication.shared.keyWindow!)
       
       scrollInsets.bottom = converted.height
     }
@@ -116,9 +116,9 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     self.scrollView.scrollIndicatorInsets = scrollInsets
   }
   
-  override internal func keyboardWillHide(notification: NSNotification) {
-    self.scrollView.contentInset = UIEdgeInsetsZero
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero
+  override internal func keyboardWillHide(notification: Notification) {
+    self.scrollView.contentInset = UIEdgeInsets.zero
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
   }
   
   //MARK: - Private
@@ -126,14 +126,14 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
   private func dateInPast(yearsAgo: Int) -> NSDate? {
     let currentDate = NSDate()
     
-    let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
     
-    if let dateComponents = calendar?.components([.Year, .Month, .Day], fromDate: currentDate) {
-      dateComponents.year = dateComponents.year - yearsAgo
+    if var dateComponents = calendar?.components([.year, .month, .day], from: currentDate as Date) {
+      dateComponents.year = dateComponents.year! - yearsAgo
       
-      let date = calendar?.dateFromComponents(dateComponents)
+      let date = calendar?.date(from: dateComponents)
       
-      return date
+      return date as NSDate?
     }
     
     return nil

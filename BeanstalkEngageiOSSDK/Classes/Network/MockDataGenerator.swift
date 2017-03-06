@@ -17,25 +17,25 @@ class MockDataGenerator {
   
   func getUserOffers () -> CouponResponse<BECoupon> {
     
-    let  formatter = NSDateFormatter()
+    let  formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    let today = NSDate()
+    let today = Date()
     
-    let calendar = NSCalendar.currentCalendar()
+    let calendar = Calendar.current
     
-    let items = [Int](count: 10, repeatedValue: 0)
+    let items = [Int](repeating: 0, count: 10)
     
     let coupons = items.map({ (item)-> BECoupon in
       let c = BECoupon(imageUrl: urls[item % urls.count])
       c.text = "Description text \(item)"
       c.number = "\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)\(item)"
       
-      let date = calendar.dateByAddingUnit(
-        .Day,
+      let date = (calendar as NSCalendar).date(
+        byAdding: .day,
         value: 1,
-        toDate: today,
-        options: NSCalendarOptions(rawValue: 0))
-      c.expiration = formatter.stringFromDate(date!)
+        to: today,
+        options: NSCalendar.Options(rawValue: 0))
+      c.expiration = formatter.string(from: date!)
       return c
     })
     return CouponResponse(coupons: coupons)
@@ -43,7 +43,7 @@ class MockDataGenerator {
   
   func getUserProgress() -> RewardsCountResponse {
     
-    let items = [Int](count: 4, repeatedValue: 0)
+    let items = [Int](repeating: 0, count: 4)
     
     let coupons = items.map({ (item)->Category in
       let c = Category(count : 1)
@@ -71,7 +71,7 @@ class MockDataGenerator {
 
 private class DummyStoresResponse: StoresResponseProtocol {
   
-  private var stores : [BEStore]
+  fileprivate var stores : [BEStore]
   
   init(){
     self.stores = Array()
@@ -134,10 +134,10 @@ private class DummyStoresResponse: StoresResponseProtocol {
 
 private class DummyGCResponse : GiftCardsResponse{
   
-  private let cards : [BEGiftCard]
+  fileprivate let cards : [BEGiftCard]
   
   init(count : Int){
-    let items  = [Int](count: 4, repeatedValue: 0)
+    let items  = [Int](repeating: 0, count: 4)
     self.cards = items.map({ (item) -> BEGiftCard in
       let c = BEGiftCard(id : "\(arc4random())",
         number: "\(arc4random())\(arc4random())" ,
@@ -157,7 +157,7 @@ private class DummyGCResponse : GiftCardsResponse{
 
 private class DummyGCBResponse : GiftCardBalanceResponse{
   
-  private let balance : String
+  fileprivate let balance : String
   init(){
     self.balance = String(format: "$%.2f", Double(arc4random_uniform(500)))
   }

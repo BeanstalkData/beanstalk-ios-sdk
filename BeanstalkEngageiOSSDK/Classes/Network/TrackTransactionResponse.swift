@@ -9,12 +9,12 @@ import Foundation
 
 import ObjectMapper
 
-public class TrackTransactionResponse : Mappable {
-  required public init?(_ map: Map) {
+open class TrackTransactionResponse : Mappable {
+  required public init?(map: Map) {
     
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     
   }
 }

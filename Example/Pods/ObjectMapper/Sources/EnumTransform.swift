@@ -1,12 +1,12 @@
 //
-//  URLTransform.swift
+//  EnumTransform.swift
 //  ObjectMapper
 //
-//  Created by Tristan Himmelman on 2014-10-27.
+//  Created by Kaan Dedeoglu on 3/20/15.
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2015 Hearst
+//  Copyright (c) 2014-2016 Hearst
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,23 +28,22 @@
 
 import Foundation
 
-public class URLTransform: TransformType {
-	public typealias Object = NSURL
-	public typealias JSON = String
-
+open class EnumTransform<T: RawRepresentable>: TransformType {
+	public typealias Object = T
+	public typealias JSON = T.RawValue
+	
 	public init() {}
-
-	public func transformFromJSON(value: AnyObject?) -> NSURL? {
-		if let URLString = value as? String,
-			let escapedURLString = URLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()){
-			return NSURL(string: escapedURLString)
+	
+	open func transformFromJSON(_ value: Any?) -> T? {
+		if let raw = value as? T.RawValue {
+			return T(rawValue: raw)
 		}
 		return nil
 	}
-
-	public func transformToJSON(value: NSURL?) -> String? {
-		if let URL = value {
-			return URL.absoluteString
+	
+	open func transformToJSON(_ value: T?) -> T.RawValue? {
+		if let obj = value {
+			return obj.rawValue
 		}
 		return nil
 	}

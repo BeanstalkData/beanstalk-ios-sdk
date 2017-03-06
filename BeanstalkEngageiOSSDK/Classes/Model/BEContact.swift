@@ -10,48 +10,48 @@ import Foundation
 
 import ObjectMapper
 
-public class BEContact : Mappable {
+open class BEContact : Mappable {
   
-  private static let kId = "BEContact" + "_id"
-  private static let kFirstName = "BEContact" + "_firstName"
-  private static let kLastName = "BEContact" + "_lastName"
-  private static let kZipCode = "BEContact" + "_zipCode"
-  private static let kEmail = "BEContact" + "_email"
-  private static let kProspect = "BEContact" + "_prospect"
-  private static let kGender = "BEContact" + "_gender"
-  private static let kBirthday = "BEContact" + "_birthday"
-  private static let kFKey = "BEContact" + "_fKey"
-  private static let kPhone = "BEContact" + "_phone"
-  private static let kTextOptin = "BEContact" + "_textOptin"
-  private static let kEmailOptin = "BEContact" + "_emailOptin"
-  private static let kPushNotificationOptin = "BEContact" + "_pushNotificationOptin"
-  private static let kInboxMessageOptin = "BEContact" + "_inboxMessageOptin"
-  private static let kNovadine = "BEContact" + "_novadine"
+  fileprivate static let kId = "BEContact" + "_id"
+  fileprivate static let kFirstName = "BEContact" + "_firstName"
+  fileprivate static let kLastName = "BEContact" + "_lastName"
+  fileprivate static let kZipCode = "BEContact" + "_zipCode"
+  fileprivate static let kEmail = "BEContact" + "_email"
+  fileprivate static let kProspect = "BEContact" + "_prospect"
+  fileprivate static let kGender = "BEContact" + "_gender"
+  fileprivate static let kBirthday = "BEContact" + "_birthday"
+  fileprivate static let kFKey = "BEContact" + "_fKey"
+  fileprivate static let kPhone = "BEContact" + "_phone"
+  fileprivate static let kTextOptin = "BEContact" + "_textOptin"
+  fileprivate static let kEmailOptin = "BEContact" + "_emailOptin"
+  fileprivate static let kPushNotificationOptin = "BEContact" + "_pushNotificationOptin"
+  fileprivate static let kInboxMessageOptin = "BEContact" + "_inboxMessageOptin"
+  fileprivate static let kNovadine = "BEContact" + "_novadine"
   
-  public var contactId: Int?
-  public var firstName: String?
-  public var lastName : String?
-  public var zipCode : String?
-  public var email : String?
-  public var prospect : String?
-  public var gender: String?
-  public var birthday : String?
-  public var fKey : String?
-  public var phone : String?
-  public var textOptin = 0
-  public var emailOptin = 0
-  public var pushNotificationOptin = 0
-  public var inboxMessageOptin = 0
-  public var novadine = false
+  open var contactId: Int?
+  open var firstName: String?
+  open var lastName : String?
+  open var zipCode : String?
+  open var email : String?
+  open var prospect : String?
+  open var gender: String?
+  open var birthday : String?
+  open var fKey : String?
+  open var phone : String?
+  open var textOptin = 0
+  open var emailOptin = 0
+  open var pushNotificationOptin = 0
+  open var inboxMessageOptin = 0
+  open var novadine = false
   
   required public init() {
     
   }
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
   }
   
-  public func isMale() -> Bool? {
+  open func isMale() -> Bool? {
     guard gender != nil else {
       return nil
     }
@@ -63,23 +63,23 @@ public class BEContact : Mappable {
     return (self.gender == "Male")
   }
   
-  public func isEmailOptin() -> Bool {
+  open func isEmailOptin() -> Bool {
     return emailOptin != 0
   }
   
-  public func isPushNotificationOptin() -> Bool {
+  open func isPushNotificationOptin() -> Bool {
     return pushNotificationOptin != 0
   }
   
-  public func isInboxMessageOptin() -> Bool {
+  open func isInboxMessageOptin() -> Bool {
     return inboxMessageOptin != 0
   }
   
-  public func isTextOptin() -> Bool {
+  open func isTextOptin() -> Bool {
     return textOptin != 0
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     contactId <- map["contactId"]
     firstName <- map["contactFirstName"]
     lastName <- map["contactLastName"]
@@ -99,74 +99,74 @@ public class BEContact : Mappable {
   
   // MARK: - Persistence store -
   
-  required public init?(storage : NSUserDefaults){
-    contactId = storage.objectForKey(BEContact.kId) as? Int
+  required public init?(storage : UserDefaults){
+    contactId = storage.object(forKey: BEContact.kId) as? Int
     if contactId == nil {
       return nil
     }
     
-    firstName = storage.objectForKey(BEContact.kFirstName) as? String
-    lastName = storage.objectForKey(BEContact.kLastName) as? String
-    zipCode = storage.objectForKey(BEContact.kZipCode) as? String
-    email = storage.objectForKey(BEContact.kEmail) as? String
-    prospect = storage.objectForKey(BEContact.kProspect) as? String
-    gender = storage.objectForKey(BEContact.kGender) as? String
-    birthday = storage.objectForKey(BEContact.kBirthday) as? String
-    fKey = storage.objectForKey(BEContact.kFKey) as? String
-    phone = storage.objectForKey(BEContact.kPhone) as? String
-    if let textOptin = storage.objectForKey(BEContact.kTextOptin) as? Int {
+    firstName = storage.object(forKey: BEContact.kFirstName) as? String
+    lastName = storage.object(forKey: BEContact.kLastName) as? String
+    zipCode = storage.object(forKey: BEContact.kZipCode) as? String
+    email = storage.object(forKey: BEContact.kEmail) as? String
+    prospect = storage.object(forKey: BEContact.kProspect) as? String
+    gender = storage.object(forKey: BEContact.kGender) as? String
+    birthday = storage.object(forKey: BEContact.kBirthday) as? String
+    fKey = storage.object(forKey: BEContact.kFKey) as? String
+    phone = storage.object(forKey: BEContact.kPhone) as? String
+    if let textOptin = storage.object(forKey: BEContact.kTextOptin) as? Int {
       self.textOptin = textOptin
     }
-    if let emailOptin = storage.objectForKey(BEContact.kEmailOptin) as? Int {
+    if let emailOptin = storage.object(forKey: BEContact.kEmailOptin) as? Int {
       self.emailOptin = emailOptin
     }
-    if let pushNotificationOptin = storage.objectForKey(BEContact.kPushNotificationOptin) as? Int {
+    if let pushNotificationOptin = storage.object(forKey: BEContact.kPushNotificationOptin) as? Int {
       self.pushNotificationOptin = pushNotificationOptin
     }
-    if let inboxMessageOptin = storage.objectForKey(BEContact.kInboxMessageOptin) as? Int {
+    if let inboxMessageOptin = storage.object(forKey: BEContact.kInboxMessageOptin) as? Int {
       self.inboxMessageOptin = inboxMessageOptin
     }
-    if let novadine = storage.objectForKey(BEContact.kNovadine) as? Bool {
+    if let novadine = storage.object(forKey: BEContact.kNovadine) as? Bool {
       self.novadine = novadine
     }
   }
   
-  class func clear(storage : NSUserDefaults) {
-    storage.setObject(nil, forKey: BEContact.kId)
-    storage.setObject(nil, forKey: BEContact.kFirstName)
-    storage.setObject(nil, forKey: BEContact.kLastName)
-    storage.setObject(nil, forKey: BEContact.kZipCode)
-    storage.setObject(nil, forKey: BEContact.kEmail)
-    storage.setObject(nil, forKey: BEContact.kProspect)
-    storage.setObject(nil, forKey: BEContact.kGender)
-    storage.setObject(nil, forKey: BEContact.kBirthday)
-    storage.setObject(nil, forKey: BEContact.kFKey)
-    storage.setObject(nil, forKey: BEContact.kPhone)
-    storage.setObject(nil, forKey: BEContact.kTextOptin)
-    storage.setObject(nil, forKey: BEContact.kEmailOptin)
-    storage.setObject(nil, forKey: BEContact.kPushNotificationOptin)
-    storage.setObject(nil, forKey: BEContact.kInboxMessageOptin)
-    storage.setObject(nil, forKey: BEContact.kNovadine)
+  class func clear(_ storage : UserDefaults) {
+    storage.set(nil, forKey: BEContact.kId)
+    storage.set(nil, forKey: BEContact.kFirstName)
+    storage.set(nil, forKey: BEContact.kLastName)
+    storage.set(nil, forKey: BEContact.kZipCode)
+    storage.set(nil, forKey: BEContact.kEmail)
+    storage.set(nil, forKey: BEContact.kProspect)
+    storage.set(nil, forKey: BEContact.kGender)
+    storage.set(nil, forKey: BEContact.kBirthday)
+    storage.set(nil, forKey: BEContact.kFKey)
+    storage.set(nil, forKey: BEContact.kPhone)
+    storage.set(nil, forKey: BEContact.kTextOptin)
+    storage.set(nil, forKey: BEContact.kEmailOptin)
+    storage.set(nil, forKey: BEContact.kPushNotificationOptin)
+    storage.set(nil, forKey: BEContact.kInboxMessageOptin)
+    storage.set(nil, forKey: BEContact.kNovadine)
     
     storage.synchronize()
   }
   
-  func save(storage : NSUserDefaults) {
-    storage.setObject(contactId, forKey: BEContact.kId)
-    storage.setObject(firstName, forKey: BEContact.kFirstName)
-    storage.setObject(lastName, forKey: BEContact.kLastName)
-    storage.setObject(zipCode, forKey: BEContact.kZipCode)
-    storage.setObject(email, forKey: BEContact.kEmail)
-    storage.setObject(prospect, forKey: BEContact.kProspect)
-    storage.setObject(gender, forKey: BEContact.kGender)
-    storage.setObject(birthday, forKey: BEContact.kBirthday)
-    storage.setObject(fKey, forKey: BEContact.kFKey)
-    storage.setObject(phone, forKey: BEContact.kPhone)
-    storage.setObject(textOptin, forKey: BEContact.kTextOptin)
-    storage.setObject(emailOptin, forKey: BEContact.kEmailOptin)
-    storage.setObject(pushNotificationOptin, forKey: BEContact.kPushNotificationOptin)
-    storage.setObject(inboxMessageOptin, forKey: BEContact.kInboxMessageOptin)
-    storage.setObject(novadine, forKey: BEContact.kNovadine)
+  func save(_ storage : UserDefaults) {
+    storage.set(contactId, forKey: BEContact.kId)
+    storage.set(firstName, forKey: BEContact.kFirstName)
+    storage.set(lastName, forKey: BEContact.kLastName)
+    storage.set(zipCode, forKey: BEContact.kZipCode)
+    storage.set(email, forKey: BEContact.kEmail)
+    storage.set(prospect, forKey: BEContact.kProspect)
+    storage.set(gender, forKey: BEContact.kGender)
+    storage.set(birthday, forKey: BEContact.kBirthday)
+    storage.set(fKey, forKey: BEContact.kFKey)
+    storage.set(phone, forKey: BEContact.kPhone)
+    storage.set(textOptin, forKey: BEContact.kTextOptin)
+    storage.set(emailOptin, forKey: BEContact.kEmailOptin)
+    storage.set(pushNotificationOptin, forKey: BEContact.kPushNotificationOptin)
+    storage.set(inboxMessageOptin, forKey: BEContact.kInboxMessageOptin)
+    storage.set(novadine, forKey: BEContact.kNovadine)
     
     storage.synchronize()
   }

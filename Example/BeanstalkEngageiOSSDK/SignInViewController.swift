@@ -17,7 +17,7 @@ class SignInViewController: BaseViewController, AuthenticationProtocol, UITextFi
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Sign In",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(signIn))
     }
@@ -29,8 +29,8 @@ class SignInViewController: BaseViewController, AuthenticationProtocol, UITextFi
         
         if let email = self.emailTextField.text {
             if let password = self.passwordTextField.text {
-                self.coreService?.authenticate(self, email: email, password: password, handler: { (success, additionalInfo) in
-                    self.completionBlock?(success: success)
+                self.coreService?.authenticateMe(self, email: email, password: password, handler: { (success, additionalInfo) in
+                    self.completionBlock?(success)
                 })
             }
         }
@@ -39,7 +39,7 @@ class SignInViewController: BaseViewController, AuthenticationProtocol, UITextFi
     
     //MARK: - UITextFieldDelegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         return false

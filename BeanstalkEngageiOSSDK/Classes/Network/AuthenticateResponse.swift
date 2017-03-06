@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AuthenticateResponse  {
+open class AuthenticateResponse  {
   var contactId : String?
   var token : String?
 }

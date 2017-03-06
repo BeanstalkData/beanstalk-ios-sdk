@@ -16,7 +16,7 @@ class ContactRequest: BeanstalkEngageiOSSDK.ContactRequest {
   internal var preferredReward : String?
   
   override internal func mapping(map: Map) {
-    super.mapping(map)
+    super.mapping(map: map)
     
     preferredReward <- map["custom_PreferredReward"]
   }

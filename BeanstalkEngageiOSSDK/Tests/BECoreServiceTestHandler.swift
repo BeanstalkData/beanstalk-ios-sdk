@@ -10,23 +10,23 @@ import Foundation
 import CoreLocation
 import XCTest
 
-public class BECoreServiceTestHandler {
+open class BECoreServiceTestHandler {
   
   let testCase: BEBaseTestCase
   
-  public class func create(testCase: BEBaseTestCase) -> BECoreServiceTestHandler{
+  open class func create(_ testCase: BEBaseTestCase) -> BECoreServiceTestHandler{
     let coreServiceTestHandler = BECoreServiceTestHandler(testCase: testCase)
     
     return coreServiceTestHandler
   }
   
-  private init(testCase: BEBaseTestCase) {
+  fileprivate init(testCase: BEBaseTestCase) {
     self.testCase = testCase
   }
   
   /* User */
   
-  public func autoSignIn(handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func autoSignIn(_ handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -43,7 +43,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func signIn(email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func signIn(_ email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -61,7 +61,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func signOut(handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func signOut(_ handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -79,7 +79,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func resetPassword(email: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func resetPassword(_ email: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -97,7 +97,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func updatePassword(password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func updatePassword(_ password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -114,7 +114,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func registerLoyaltyAccount(request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func registerLoyaltyAccount(_ request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -132,7 +132,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func registerAccount(request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func registerAccount(_ request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -150,7 +150,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func getContact(handler : (BEContact?) -> Void) -> BECoreServiceTestHandler? {
+  open func getContact(_ handler : (BEContact?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -167,7 +167,7 @@ public class BECoreServiceTestHandler {
     return self
   }
 
-  public func updateContact(contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func updateContact(_ contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -186,7 +186,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
+  open func getContact <ContactClass: BEContact> (_ contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -205,13 +205,13 @@ public class BECoreServiceTestHandler {
   
   // Rewards
   
-  public func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler : (Bool, [CouponClass]) -> Void) -> BECoreServiceTestHandler? {
+  open func getAvailableRewards <CouponClass: BECoupon> (_ couponClass: CouponClass.Type, handler : (Bool, [CouponClass]) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var resultStatus = false
     var resultCoupons: [CouponClass] = []
-    self.testCase.getCoreService()?.getAvailableRewards(nil, couponClass: couponClass, handler: { (success, result) in
+    self.testCase.getCoreService()?.getAvailableRewardsForCouponClass(nil, couponClass: couponClass, handler: { (success, result) in
       resultStatus = success
       if let coupons = result as? [CouponClass] {
         resultCoupons = coupons
@@ -226,7 +226,7 @@ public class BECoreServiceTestHandler {
     return self
   }
 
-  public func getProgress (handler : (Bool, Int, String) -> Void) -> BECoreServiceTestHandler? {
+  open func getProgress (_ handler : (Bool, Int, String) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -250,13 +250,13 @@ public class BECoreServiceTestHandler {
   
   // Gift cards
   
-  public func getGiftCards <GiftCardClass: BEGiftCard> (giftCardClass: GiftCardClass.Type, handler : (Bool, [GiftCardClass]) -> Void) -> BECoreServiceTestHandler? {
+  open func getGiftCards <GiftCardClass: BEGiftCard> (_ giftCardClass: GiftCardClass.Type, handler : (Bool, [GiftCardClass]) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var resultStatus = false
     var resultGiftCards: [GiftCardClass] = []
-    self.testCase.getCoreService()?.getGiftCards(nil, giftCardClass: giftCardClass, handler: { (success, result) in
+    self.testCase.getCoreService()?.getGiftCardsForGiftCardClass(nil, giftCardClass: giftCardClass, handler: { (success, result) in
       resultStatus = success
       if let giftCards = result as? [GiftCardClass] {
         resultGiftCards = giftCards
@@ -272,7 +272,7 @@ public class BECoreServiceTestHandler {
     return self
   }
   
-  public func startPayment (cardId: String?, coupons: [BECoupon], handler : (String, String) -> Void) -> BECoreServiceTestHandler? {
+  open func startPayment (_ cardId: String?, coupons: [BECoupon], handler : (String, String) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -295,12 +295,12 @@ public class BECoreServiceTestHandler {
   
   // Stores
   
-  public func getStoresAtLocation <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
+  open func getStoresAtLocation <StoreClass: BEStore> (_ coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
     self.testCase.prepare()
     
     var locationStatus = false
     var locationStores: [BEStore]? = nil
-    self.testCase.getCoreService()?.getStoresAtLocation(nil, coordinate: coordinate, storeClass: storeClass, handler: { (success, stores) in
+    self.testCase.getCoreService()?.getStoresAtLocationForStoreClass(nil, coordinate: coordinate, storeClass: storeClass, handler: { (success, stores) in
       
       locationStatus = success
       locationStores = stores

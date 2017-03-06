@@ -10,14 +10,14 @@ import Foundation
 
 import ObjectMapper
 
-public class BEGiftCardBalance: Mappable {
+open class BEGiftCardBalance: Mappable {
   var balanceAmount: BEBalanceAmount?
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     balanceAmount <- map["balanceAmount"]
   }
 }

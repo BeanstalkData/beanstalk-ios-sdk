@@ -9,7 +9,7 @@ import Foundation
 
 import ObjectMapper
 
-public class PaymentResponse : Mappable {
+open class PaymentResponse : Mappable {
   var token : String?
   
   //for mocks only
@@ -17,11 +17,11 @@ public class PaymentResponse : Mappable {
     self.token = token
   }
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     token <- map["paymentToken"]
   }
 }

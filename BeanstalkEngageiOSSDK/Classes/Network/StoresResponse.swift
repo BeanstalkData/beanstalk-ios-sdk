@@ -14,21 +14,21 @@ public protocol StoresResponseProtocol {
   func getStores() -> [BEStore]?
 }
 
-public class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtocol {
-  private var status : Bool?
+open class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtocol {
+  fileprivate var status : Bool?
   
   var stores : [StoreClass]?
   
-  required public init?(_ map: Map) {
+  required public init?(map: Map) {
     
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     status <- map["status"]
     stores <- map["stores"]
   }
   
-  public func failed() -> Bool{
+  open func failed() -> Bool{
     if status == nil || !(status!) {
       return true
     }
@@ -36,7 +36,7 @@ public class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProto
     return false
   }
   
-  public func getStores() -> [BEStore]?{
+  open func getStores() -> [BEStore]?{
     return stores
   }
 }

@@ -3,9 +3,9 @@ import XCTest
 
 import ObjectMapper
 
-public class BEAccountTests: BEBaseTestCase {
+open class BEAccountTests: BEBaseTestCase {
     
-  public func loginRegisteredUserTest() {
+  open func loginRegisteredUserTest() {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -23,7 +23,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func autoLoginRegisteredUserTest() {
+  open func autoLoginRegisteredUserTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -50,7 +50,7 @@ public class BEAccountTests: BEBaseTestCase {
     })
   }
 
-  public func autoLoginUnRegisteredUserTest() {
+  open func autoLoginUnRegisteredUserTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -69,7 +69,7 @@ public class BEAccountTests: BEBaseTestCase {
     })
   }
 
-  public func loginRegisteredUserWithValidPushTest() {
+  open func loginRegisteredUserWithValidPushTest() {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -95,7 +95,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func loginRegisteredUserWithInvalidPushTest() {
+  open func loginRegisteredUserWithInvalidPushTest() {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -122,7 +122,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func resetPasswordTest() {
+  open func resetPasswordTest() {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.resetPassword("invalidEmail@InvalidEmail.com") { (result) in
@@ -134,7 +134,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func updatePasswordTest() {
+  open func updatePasswordTest() {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
@@ -159,23 +159,23 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func loyaltyAccountParsingTest() {
+  open func loyaltyAccountParsingTest() {
     let JSON: [String: AnyObject] = [
-      "giftCardTrack2" : ";5022111100001111222=12344321111111?",
-      "contactId" : "12341234",
-      "sessionToken" : "42f5481997c18f778c973170c3ad4317f7eeb830",
-      "giftCardNumber" : "5022111100001111222",
-      "giftCardRegistrationStatus" : true,
+      "giftCardTrack2" : ";5022111100001111222=12344321111111?" as AnyObject,
+      "contactId" : "12341234" as AnyObject,
+      "sessionToken" : "42f5481997c18f778c973170c3ad4317f7eeb830" as AnyObject,
+      "giftCardNumber" : "5022111100001111222" as AnyObject,
+      "giftCardRegistrationStatus" : true as AnyObject,
       "giftCardPin" : NSNull()
     ]
     
     self.loyaltyAccountParsingTest(JSON)
   }
   
-  public func loyaltyAccountParsingTest(JSON: [String: AnyObject]) {
-    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
+  open func loyaltyAccountParsingTest(_ JSON: [String: AnyObject]) {
+    let map = Map(mappingType: .fromJSON, JSON: JSON)
     
-    var loyaltyAccount = BELoyaltyUser(map)
+    var loyaltyAccount = BELoyaltyUser(map: map)
     
     XCTAssert(loyaltyAccount!.contactId == JSON["contactId"] as? String, "Loyalty account object is invalid")
     XCTAssert(loyaltyAccount!.sessionToken == JSON["sessionToken"] as? String, "Loyalty account object is invalid")
@@ -185,7 +185,7 @@ public class BEAccountTests: BEBaseTestCase {
     XCTAssert(loyaltyAccount!.giftCardTrack2 == JSON["giftCardTrack2"] as? String, "Loyalty account object is invalid")
   }
   
-  public func registerLoyaltyAccountTest() {
+  open func registerLoyaltyAccountTest() {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -220,7 +220,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func registerAccountTest() {
+  open func registerAccountTest() {
     
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
@@ -254,7 +254,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func getContactTest<ContactClass: BEContact>(contactClass: ContactClass.Type) {
+  open func getContactTest<ContactClass: BEContact>(_ contactClass: ContactClass.Type) {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -302,7 +302,7 @@ public class BEAccountTests: BEBaseTestCase {
     }
   }
   
-  public func updateContactTest<ContactClass: BEContact>(contactClass: ContactClass.Type) {
+  open func updateContactTest<ContactClass: BEContact>(_ contactClass: ContactClass.Type) {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     

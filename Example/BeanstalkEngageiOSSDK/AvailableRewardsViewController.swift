@@ -15,7 +15,7 @@ class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableV
     @IBOutlet var tableView: UITableView!
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if self.rewards == nil {
@@ -44,14 +44,14 @@ class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableV
     
     //MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
     
     //MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let rewardsCount = self.rewards?.count {
             return rewardsCount
         }
@@ -59,10 +59,10 @@ class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableV
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "cell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
         if let coupon = self.rewards?[indexPath.row] {
             if let titleLabel = cell.contentView.viewWithTag(1) as? UILabel {

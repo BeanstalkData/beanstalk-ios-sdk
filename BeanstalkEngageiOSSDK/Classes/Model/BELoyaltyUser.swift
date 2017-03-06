@@ -10,19 +10,19 @@ import Foundation
 
 import ObjectMapper
 
-public class BELoyaltyUser : Mappable {
-  public var contactId: String?
-  public var sessionToken: String?
-  public var giftCardNumber : String?
-  public var giftCardPin : String?
-  public var giftCardRegistrationStatus : Bool?
-  public var giftCardTrack2 : String?
+open class BELoyaltyUser : Mappable {
+  open var contactId: String?
+  open var sessionToken: String?
+  open var giftCardNumber : String?
+  open var giftCardPin : String?
+  open var giftCardRegistrationStatus : Bool?
+  open var giftCardTrack2 : String?
   
-  required public init?(_ map: Map) {
-    self.mapping(map)
+  required public init?(map: Map) {
+    self.mapping(map: map)
   }
   
-  public func mapping(map: Map) {
+  open func mapping(map: Map) {
     contactId <- map["contactId"]
     sessionToken <- map["sessionToken"]
     giftCardNumber <- map["giftCardNumber"]

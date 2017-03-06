@@ -10,10 +10,34 @@ import Foundation
 import XCTest
 
 import ObjectMapper
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class BERewardsTests: BEBaseTestCase {
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class BERewardsTests: BEBaseTestCase {
   
-  public func availableRewardsTest() {
+  open func availableRewardsTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -30,8 +54,8 @@ public class BERewardsTests: BEBaseTestCase {
     }
   }
   
-  public func rewardParsingTest() {
-    let JSON: [String: AnyObject] = [
+  open func rewardParsingTest() {
+    let JSON: [String: Any] = [
       "Coupon":[
         [
           "CouponNo":"Registration Free Side Item_31609_4642",
@@ -50,8 +74,8 @@ public class BERewardsTests: BEBaseTestCase {
       ]
     ]
   
-    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
-    var couponResponce = CouponResponse(map)
+    let map = Map(mappingType: .fromJSON, JSON: JSON)
+    var couponResponce = CouponResponse(map: map)
     
     XCTAssert(couponResponce?.coupons?.count == 1, "Coupon objects count is invalid")
     
@@ -62,12 +86,12 @@ public class BERewardsTests: BEBaseTestCase {
       XCTAssert(coupon?.expiration == "2012-11-19T00:00:00", "Coupon object is invalid")
       XCTAssert(coupon?.text == "Free Side Item", "Coupon object is invalid")
       XCTAssert(coupon?.imageUrl == "https://s3.amazonaws.com/beanstalkloyalty_images/209/10011.png", "Coupon object is invalid")
-      XCTAssert(coupon?.getDisplayExpiration(NSDateFormatter()) == "11/19/2012", "Coupon object formatting is invalid")
+      XCTAssert(coupon?.getDisplayExpiration(DateFormatter()) == "11/19/2012", "Coupon object formatting is invalid")
       XCTAssert(coupon?.getImageURL()?.absoluteString == "https://s3.amazonaws.com/beanstalkloyalty_images/209/10011.png",  "Coupon object formatting is invalid")
     }
   }
   
-  public func rewardsProgressTest() {
+  open func rewardsProgressTest() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     
@@ -84,11 +108,11 @@ public class BERewardsTests: BEBaseTestCase {
     }
   }
   
-  public func rewardsCountParsingTest() {
-    let JSON: [String: AnyObject] = ["Category":[["Name":"Orders","Count":"1"]]]
+  open func rewardsCountParsingTest() {
+    let JSON: [String: Any] = ["Category":[["Name":"Orders","Count":"1"]]]
     
-    let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
-    var rewardsCountResponce = RewardsCountResponse(map)
+    let map = Map(mappingType: .fromJSON, JSON: JSON)
+    var rewardsCountResponce = RewardsCountResponse(map: map)
     
     XCTAssert(rewardsCountResponce?.getCount() == 1, "Rewards count is invalid")
   }
