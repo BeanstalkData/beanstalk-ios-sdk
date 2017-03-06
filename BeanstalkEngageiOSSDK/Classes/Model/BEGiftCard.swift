@@ -27,7 +27,6 @@ open class BEGiftCard : Mappable {
   }
   
   required public init?(map: Map) {
-    self.mapping(map: map)
   }
   
   open func mapping(map: Map) {

@@ -14,7 +14,6 @@ open class BEGiftCardBalance: Mappable {
   var balanceAmount: BEBalanceAmount?
   
   required public init?(map: Map) {
-    self.mapping(map: map)
   }
   
   open func mapping(map: Map) {

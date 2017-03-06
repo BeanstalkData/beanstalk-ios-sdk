@@ -13,10 +13,9 @@ import ObjectMapper
 open class BEPushNotificationMessage {
   
   required public init?(map: Map) {
-    self.mapping(map: map)
   }
   
-  open func mapping(map: Map) {
-    
+  public func mapping(map: Map) {
+
   }
 }

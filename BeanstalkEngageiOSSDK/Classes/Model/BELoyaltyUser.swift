@@ -19,7 +19,6 @@ open class BELoyaltyUser : Mappable {
   open var giftCardTrack2 : String?
   
   required public init?(map: Map) {
-    self.mapping(map: map)
   }
   
   open func mapping(map: Map) {

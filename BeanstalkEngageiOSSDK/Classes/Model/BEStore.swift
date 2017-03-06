@@ -10,7 +10,7 @@ import Foundation
 
 import ObjectMapper
 
-open class BEStore : Mappable {
+open class BEStore : NSObject, NSCoding, Mappable {
   fileprivate static let kId = "BEStore_id"
   fileprivate static let kCustomerId = "BEStore_customerId"
   fileprivate static let kDate = "BEStore_date"
@@ -61,11 +61,13 @@ open class BEStore : Mappable {
   //  public var regionName: String?
   
   public init(id: String){
+    super.init()
+    
     self.id = id
   }
   
   required public init?(map: Map) {
-    self.mapping(map: map)
+    super.init()
   }
   
   open func getStoreName() -> String {
@@ -124,5 +126,40 @@ open class BEStore : Mappable {
     //  subVenue <- map["SubVenue"]
     //  region <- map["Region"]
     //  regionName <- map["RegionName"]
+  }
+  
+  //MARK: - NSCoding -
+  required public init(coder aDecoder: NSCoder) {
+    self.id = aDecoder.decodeObject(forKey: BEStore.kId) as? String
+    self.customerId = aDecoder.decodeObject(forKey: BEStore.kCustomerId) as? String
+    self.openDate = aDecoder.decodeObject(forKey: BEStore.kDate) as? Date
+    self.storeId = aDecoder.decodeObject(forKey: BEStore.kStoreId) as? String
+    self.country = aDecoder.decodeObject(forKey: BEStore.kCountry) as? String
+    self.address1 = aDecoder.decodeObject(forKey: BEStore.kAddress1) as? String
+    self.city = aDecoder.decodeObject(forKey: BEStore.kCity) as? String
+    self.state = aDecoder.decodeObject(forKey: BEStore.kState) as? String
+    self.zip = aDecoder.decodeObject(forKey: BEStore.kZip) as? Int
+    self.phone = aDecoder.decodeObject(forKey: BEStore.kPhone) as? String
+    self.longitude = aDecoder.decodeObject(forKey: BEStore.kLongitude) as? String
+    self.latitude = aDecoder.decodeObject(forKey: BEStore.kLatitude) as? String
+    self.geoEnabled = aDecoder.decodeObject(forKey: BEStore.kGeoEnabled) as? Bool
+    self.paymentLoyaltyParticipation = aDecoder.decodeObject(forKey: BEStore.kPaymentLoyaltyParticipation) as? Bool
+  }
+  
+  public func encode(with aCoder: NSCoder) {
+    aCoder.encode(id, forKey: BEStore.kId)
+    aCoder.encode(customerId, forKey: BEStore.kCustomerId)
+    aCoder.encode(openDate, forKey: BEStore.kDate)
+    aCoder.encode(storeId, forKey: BEStore.kStoreId)
+    aCoder.encode(country, forKey: BEStore.kCountry)
+    aCoder.encode(address1, forKey: BEStore.kAddress1)
+    aCoder.encode(city, forKey: BEStore.kCity)
+    aCoder.encode(state, forKey: BEStore.kState)
+    aCoder.encode(zip, forKey: BEStore.kZip)
+    aCoder.encode(phone, forKey: BEStore.kPhone)
+    aCoder.encode(longitude, forKey: BEStore.kLongitude)
+    aCoder.encode(latitude, forKey: BEStore.kLatitude)
+    aCoder.encode(geoEnabled, forKey: BEStore.kGeoEnabled)
+    aCoder.encode(paymentLoyaltyParticipation, forKey: BEStore.kPaymentLoyaltyParticipation)
   }
 }
