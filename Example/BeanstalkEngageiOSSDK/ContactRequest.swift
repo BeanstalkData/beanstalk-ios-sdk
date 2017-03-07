@@ -12,7 +12,7 @@ import ObjectMapper
 
 import BeanstalkEngageiOSSDK
 
-class ContactRequest: BeanstalkEngageiOSSDK.ContactRequest {
+class CustomContactRequest: BeanstalkEngageiOSSDK.ContactRequest {
   internal var preferredReward : String?
   
   override internal func mapping(map: Map) {

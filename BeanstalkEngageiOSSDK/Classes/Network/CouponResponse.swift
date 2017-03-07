@@ -18,7 +18,7 @@ open class CouponResponse <CouponClass: BECoupon> : Mappable {
   }
   
   required public init?(map: Map) {
-    self.mapping(map: map)
+    
   }
   
   open func mapping(map: Map) {

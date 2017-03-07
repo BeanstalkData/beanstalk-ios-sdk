@@ -61,6 +61,7 @@ open class BEGiftCardsTests: BEBaseTestCase {
     
     let map = Map(mappingType: .fromJSON, JSON: JSON)
     var giftCardsResponce = GCResponse(map: map)
+    giftCardsResponce?.mapping(map: map)
     
     XCTAssert(giftCardsResponce?.failed() == false, "Gift card responce object is invalid")
     XCTAssert(giftCardsResponce?.getCards()?.count == 1, "Gift card responce objects count is invalid")
@@ -83,6 +84,7 @@ open class BEGiftCardsTests: BEBaseTestCase {
     
     let map = Map(mappingType: .fromJSON, JSON: JSON)
     var giftCardBalanceResponce = GCBResponse(map: map)
+    giftCardBalanceResponce?.mapping(map: map)
     
     XCTAssert(giftCardBalanceResponce?.getCardBalance() == "$60.35", "Gift card balance objects count is invalid")
   }

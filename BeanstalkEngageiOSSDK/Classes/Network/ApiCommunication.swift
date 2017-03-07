@@ -465,6 +465,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       
       let map = Map(mappingType: .fromJSON, JSON: ["24": "23"])
       var tmp: ContactClass? = ContactClass(map: map)
+      tmp?.mapping(map: map)
       print(tmp.debugDescription)
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters: params)
@@ -624,6 +625,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "contactId" : contactId,
         "token" : token
       ]
+      
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/list?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {

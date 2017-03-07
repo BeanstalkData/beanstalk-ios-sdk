@@ -83,7 +83,7 @@ class AccountTests: BEAccountTests {
           
           if contact != nil {
             
-            let request = ContactRequest(origin: contact!)
+            let request = CustomContactRequest(origin: contact!)
             request.preferredReward = "testRewards"
             
             coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
@@ -106,7 +106,7 @@ class AccountTests: BEAccountTests {
                   }
                   
                   let user1Contact = self.getMetadata()!.getRegisteredUser1Contact()
-                  let request = ContactRequest(origin: user1Contact)
+                  let request = CustomContactRequest(origin: user1Contact)
                   request.preferredReward = ""
                   
                   coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in

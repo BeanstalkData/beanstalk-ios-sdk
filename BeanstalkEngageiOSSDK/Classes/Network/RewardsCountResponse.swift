@@ -41,7 +41,7 @@ open class RewardsCountResponse : Mappable {
   }
   
   required public init?(map: Map) {
-    self.mapping(map: map)
+    
   }
   
   open func mapping(map: Map) {
@@ -66,7 +66,7 @@ open class Category : Mappable {
   }
   
   required public init?(map: Map) {
-    self.mapping(map: map)
+    
   }
   
   open func mapping(map: Map) {

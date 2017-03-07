@@ -15,7 +15,7 @@ open class BEAsyncTestCase: XCTestCase {
   fileprivate var expectation: XCTestExpectation!
   
   open func prepare() {
-    expectation = XCTestExpectation()
+    expectation = expectation(description: "BEAsyncTestCase_expectation")
   }
   
   open func fullfill() {
