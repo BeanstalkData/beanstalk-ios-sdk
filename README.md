@@ -5,7 +5,7 @@
 
 - iOS 8.0+
 - Xcode 8.1+
-- Swift 2.3
+- Swift 3.0
 
 ## Installation
 
@@ -26,14 +26,14 @@ platform :ios, '8.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'BeanstalkEngageiOSSDK'
+pod 'BeanstalkEngageiOSSDK', :git => 'git@github.com:BeanstalkData/beanstalk-ios-sdk.git', :tag => '0.5.1'
 end
 ```
 
 Then, run the following command:
 
 ```bash
-$ pod install
+$ pod update
 ```
 
 ## Usage

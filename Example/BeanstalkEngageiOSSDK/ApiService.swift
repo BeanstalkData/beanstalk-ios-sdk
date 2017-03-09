@@ -27,7 +27,7 @@ class ApiService: CoreService {
     autoSignIn(controller, contactClass: ContactModel.self, handler : handler)
   }
   
-  func authenticateMe(_ controller: AuthenticationProtocol?, email: String?, password: String?, handler : @escaping (_ success: Bool, _ additionalInfo : Bool) -> Void ) {
+  func authenticateMe(_ controller: AuthenticationProtocol?, email: String?, password: String?, handler : @escaping (_ success: Bool) -> Void ) {
     authenticate(controller, email: email, password: password, contactClass: ContactModel.self, handler : handler)
   }
   

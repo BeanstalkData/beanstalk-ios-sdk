@@ -91,64 +91,52 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     request.normalize()
     
     controller?.showProgress("Registering User")
-    if request.isNovadine() {
-      apiService.createContact(request, handler: { (result) in
+    
+    apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
+      
+      if result.isFailure {
         controller?.hideProgress()
+        controller?.showMessage(ApiError.userEmailExists(reason: result.error! as! BEErrorType))
+        handler(false)
+      } else {
+        var updateExisted = result.value!
         
-        if result.isFailure {
-          controller?.showMessage(result.error! as! BEErrorType)
-          handler(false)
-        } else {
-          self.auth(controller, email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
-        }
-      })
-    } else {
-      apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
-        
-        if result.isFailure {
-          controller?.hideProgress()
-          controller?.showMessage(ApiError.userEmailExists(reason: result.error! as! BEErrorType))
-          handler(false)
-        } else {
-          var updateExisted = result.value!
+        self.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
           
-          self.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
+          if result.isFailure {
+            controller?.hideProgress()
+            controller?.showMessage(ApiError.userPhoneExists(reason: result.error! as! BEErrorType))
+            handler(false)
+          } else {
+            updateExisted = updateExisted || result.value!
             
-            if result.isFailure {
-              controller?.hideProgress()
-              controller?.showMessage(ApiError.userPhoneExists(reason: result.error! as! BEErrorType))
-              handler(false)
-            } else {
-              updateExisted = updateExisted || result.value!
+            self.apiService.createContact(request, handler: { (result) in
               
-              self.apiService.createContact(request, handler: { (result) in
-                
-                if result.isFailure {
-                  controller?.hideProgress()
-                  controller?.showMessage(result.error! as! BEErrorType)
-                  handler(false)
+              if result.isFailure {
+                controller?.hideProgress()
+                controller?.showMessage(result.error! as! BEErrorType)
+                handler(false)
+              } else {
+                if !updateExisted {
+                  self.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: result.value!, handler: { (result) in
+                    
+                    if result.isFailure {
+                      controller?.hideProgress()
+                      controller?.showMessage(result.error! as! BEErrorType)
+                      handler(false)
+                    } else {
+                      self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
+                    }
+                  })
                 } else {
-                  if !updateExisted {
-                    self.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: result.value!, handler: { (result) in
-                      
-                      if result.isFailure {
-                        controller?.hideProgress()
-                        controller?.showMessage(result.error! as! BEErrorType)
-                        handler(false)
-                      } else {
-                        self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
-                      }
-                    })
-                  } else {
-                    self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
-                  }
+                  self.auth(controller, email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
                 }
-              })
-            }
-          })
-        }
-      })
-    }
+              }
+            })
+          }
+        })
+      }
+    })
   }
   
   open func autoSignIn <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool) -> Void)) {
@@ -180,34 +168,32 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
-  open func authenticate <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, email: String?, password: String?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool, _ additionalInfo : Bool) -> Void)) {
+  open func authenticate <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, email: String?, password: String?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool) -> Void)) {
     if controller != nil {
       guard controller!.validate(email, password: password) else {
-        handler(false, false)
+        handler(false)
         return
       }
     }
     
     self.p_isAuthenticateInProgress = true
     controller?.showProgress("Attempting to Login")
-    apiService.checkContactIsNovadine(email!, handler: { (result) in
-      let isNovadineContact = (result.value != nil) ? result.value! : false
-      self.apiService.authenticateUser(email!, password: password!, handler: { (result) in
-        controller?.hideProgress()
-        
-        if result.isFailure {
+    
+    self.apiService.authenticateUser(email!, password: password!, handler: { (result) in
+      controller?.hideProgress()
+      
+      if result.isFailure {
+        self.p_isAuthenticateInProgress = false
+        controller?.showMessage(result.error! as! BEErrorType)
+        handler(false)
+      } else {
+        let contactId = result.value!.contactId
+        let token = result.value!.token
+        self.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
           self.p_isAuthenticateInProgress = false
-          controller?.showMessage(result.error! as! BEErrorType)
-          handler(false, isNovadineContact)
-        } else {
-          let contactId = result.value!.contactId
-          let token = result.value!.token
-          self.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
-            self.p_isAuthenticateInProgress = false
-            handler(result, isNovadineContact)
-          })
-        }
-      })
+          handler(result)
+        })
+      }
     })
   }
   
@@ -624,16 +610,6 @@ public extension UIViewController {
       guard (request.getZipCode() != nil && (request.getZipCode()?.isValidZipCode())!) else{
         self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
         return false
-      }
-      if !request.isNovadine(){
-        guard (request.getEmail() != nil && (request.getEmail()?.isValidEmail())!) else{
-          self.showMessage("Registration Error", message: "Enter Valid Email")
-          return false
-        }
-        guard (request.getPassword() != nil && !(request.getPassword()?.isEmpty)!) else{
-          self.showMessage("Registration Error", message: "Enter Password")
-          return false
-        }
       }
     }
     

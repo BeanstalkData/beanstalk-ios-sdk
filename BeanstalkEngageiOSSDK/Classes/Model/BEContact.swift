@@ -26,7 +26,6 @@ open class BEContact : Mappable {
   fileprivate static let kEmailOptin = "BEContact" + "_emailOptin"
   fileprivate static let kPushNotificationOptin = "BEContact" + "_pushNotificationOptin"
   fileprivate static let kInboxMessageOptin = "BEContact" + "_inboxMessageOptin"
-  fileprivate static let kNovadine = "BEContact" + "_novadine"
   
   open var contactId: Int?
   open var firstName: String?
@@ -42,7 +41,6 @@ open class BEContact : Mappable {
   open var emailOptin = 0
   open var pushNotificationOptin = 0
   open var inboxMessageOptin = 0
-  open var novadine = false
   
   required public init() {
     
@@ -94,7 +92,6 @@ open class BEContact : Mappable {
     emailOptin <- map["Email_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
-    novadine <- map["Novadine_User"]
   }
   
   // MARK: - Persistence store -
@@ -126,9 +123,6 @@ open class BEContact : Mappable {
     if let inboxMessageOptin = storage.object(forKey: BEContact.kInboxMessageOptin) as? Int {
       self.inboxMessageOptin = inboxMessageOptin
     }
-    if let novadine = storage.object(forKey: BEContact.kNovadine) as? Bool {
-      self.novadine = novadine
-    }
   }
   
   class func clear(_ storage : UserDefaults) {
@@ -146,7 +140,6 @@ open class BEContact : Mappable {
     storage.set(nil, forKey: BEContact.kEmailOptin)
     storage.set(nil, forKey: BEContact.kPushNotificationOptin)
     storage.set(nil, forKey: BEContact.kInboxMessageOptin)
-    storage.set(nil, forKey: BEContact.kNovadine)
     
     storage.synchronize()
   }
@@ -166,7 +159,6 @@ open class BEContact : Mappable {
     storage.set(emailOptin, forKey: BEContact.kEmailOptin)
     storage.set(pushNotificationOptin, forKey: BEContact.kPushNotificationOptin)
     storage.set(inboxMessageOptin, forKey: BEContact.kInboxMessageOptin)
-    storage.set(novadine, forKey: BEContact.kNovadine)
     
     storage.synchronize()
   }

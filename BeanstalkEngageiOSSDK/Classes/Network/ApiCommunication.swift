@@ -223,37 +223,6 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  //TODO: fix this method
-  func checkContactIsNovadine(_ email: String, handler: @escaping (Result<Bool>) -> Void) {
-    if (isOnline()) {
-      let params = ["type": "email",
-                    "key": self.apiKey,
-                    "q": email
-      ]
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
-        .validate(getDefaultErrorHandler())
-        .responseString {
-          response in
-          if (response.result.isSuccess) {
-            if (response.result.value != nil) {
-              if response.result.value == Optional("null"){
-                handler(.failure(ApiError.unknown()))
-              }else {
-                handler(.success(false))
-              }
-            }else{
-              handler(.failure(ApiError.dataSerialization(reason : "Bad request!")))
-            }
-          } else{
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
-      handler(.failure(ApiError.networkConnectionError()))
-    }
-  }
-
-  
   func createLoyaltyAccount (_ request : ContactRequest, handler: @escaping (Result<BELoyaltyUser?>) -> Void) {
     if (isOnline()) {
       

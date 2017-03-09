@@ -49,7 +49,6 @@ open class ContactRequest: Mappable{
   fileprivate var textOptin: Bool?
   fileprivate var pushNotificationOptin: Bool?
   fileprivate var inboxMessageOptin: Bool?
-  fileprivate var novadine: String?
   fileprivate var prospect : String?
   
   open fileprivate(set) var origin: BEContact?
@@ -293,23 +292,6 @@ open class ContactRequest: Mappable{
     return self.origin?.isInboxMessageOptin()
   }
   
-  open func set(novadine: Bool?) {
-    guard novadine != nil else {
-      return
-    }
-    
-    guard origin?.novadine != novadine! else {
-      self.novadine = nil
-      return
-    }
-    
-    self.novadine = (novadine! ? "1" : "0")
-  }
-  
-  open func isNovadine() -> Bool {
-    return self.novadine == "1"
-  }
-  
   open func mapping(map: Map) {
     
     contactId <- map["ContactID"]
@@ -326,7 +308,6 @@ open class ContactRequest: Mappable{
     textOptin <- map["Txt_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
-    novadine <- map["custom_Novadine_User"]
   }
 
   open func normalize() {

@@ -108,7 +108,6 @@ open class BESessionTests: BEBaseTestCase {
     XCTAssert(contact?.emailOptin == getMetadata()!.getRegisteredUser1Contact().emailOptin)
     XCTAssert(contact?.pushNotificationOptin == getMetadata()!.getRegisteredUser1Contact().pushNotificationOptin)
     XCTAssert(contact?.inboxMessageOptin == getMetadata()!.getRegisteredUser1Contact().inboxMessageOptin)
-    XCTAssert(contact?.novadine == getMetadata()!.getRegisteredUser1Contact().novadine)
     
     self.getSession()?.setContact(nil)
     let contactNill = self.getSession()?.getContact()

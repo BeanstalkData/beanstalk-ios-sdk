@@ -27,15 +27,15 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.firstNameTextField.text = "John"
-    self.lastNameTextField.text = "Appleseed"
-    self.phoneTextField.text = "+1234567890"
+//    self.firstNameTextField.text = "John"
+//    self.lastNameTextField.text = "Appleseed"
+//    self.phoneTextField.text = "+1234567890"
     self.emailTextField.text = ""
     self.confirmEmailTextField.text = ""
     self.passwordTextField.text = ""
     self.confirmPasswordTextField.text = ""
     self.zipCodeTextField.text = ""
-    self.optEmailCheckBox.isOn = false
+    self.optEmailCheckBox.isOn = true
     self.genderSegmentView.selectedSegmentIndex = 0
     
     self.selectedDate = self.dateInPast(yearsAgo: 21)!
@@ -67,17 +67,16 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     request.set(zipCode: self.zipCodeTextField.text)
     request.set(birthday: self.getFormatedDate(date: self.selectedDate, dateFormat: "yyyy-MM-dd"))
     request.set(emailOptin: self.optEmailCheckBox.isOn)
-//    request.set(preferredReward: "")
     request.set(gender: self.genderSegmentView.selectedSegmentIndex == 0 ? "Male" : "Female")
     
     self.coreService?.registerMe(self, request: request, handler: { (success) in
       self.completionBlock?(success)
     })
     
-    //        self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
-    //            success in
-    //            self.completionBlock?(success: success)
-    //        })
+//    self.coreService?.registerLoyaltyAccount(self, request: request, handler: {
+//        success in
+//        self.completionBlock?(success: success)
+//    })
   }
   
   
