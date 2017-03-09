@@ -16,7 +16,16 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   @IBOutlet var nameLabel: UILabel!
   @IBOutlet var emailLabel: UILabel!
   @IBOutlet var genderSegment: UISegmentedControl!
+  @IBOutlet var pushNotificationsSwitch: UISwitch!
   
+  var pushNotificationEnrollment: PushNotificationEnrollmentController?
+  
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    self.pushNotificationEnrollment = AppDelegate.pushNotificationsEnrollment()
+  }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -52,15 +61,32 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
     self.nameLabel.text = self.contact?.getFullName()
     self.emailLabel.text = updateRequest.getEmail()
     
-    if self.contact?.gender == "Male" {
+    if self.updateContactRequest?.getGender() == "Male" {
       self.genderSegment.selectedSegmentIndex = 0
     }
-    else if self.contact?.gender == "Female" {
+    else if self.updateContactRequest?.getGender() == "Female" {
       self.genderSegment.selectedSegmentIndex = 1
     }
     else {
       self.genderSegment.selectedSegmentIndex = 2
     }
+    
+    var pushEnabled = false
+    
+    if let pushOn = self.updateContactRequest?.isPushNotificationOptin() {
+      if let inboxOn = self.updateContactRequest?.isInboxMessageOptin() {
+        pushEnabled = pushOn && inboxOn
+      }
+    }
+    self.pushNotificationsSwitch.isOn = pushEnabled
+    
+    self.pushNotificationsSwitch.isEnabled = self.pushNotificationEnrollment != nil
+  }
+  
+  private func showPushNotificationsError(error: ApiError) {
+    self.showMessage("Push Notifications Error", message: error.errorMessage())
+    
+    self.loadProfile()
   }
   
   
@@ -74,6 +100,67 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
       self.updateContactRequest?.set(gender: "Female")
     default:
       self.updateContactRequest?.set(gender: "Unknown")
+    }
+  }
+  
+  @IBAction func pushNotificationsAction() {
+    weak var weakSelft = self
+    
+    guard let pushEnrollment = weakSelft?.pushNotificationEnrollment else {
+      return
+    }
+    
+    if self.pushNotificationsSwitch.isOn {
+      // turn ON
+      
+      let sendToken = {
+        pushEnrollment.sendDeviceTokenAndUpdateContact({ (success) in
+          if success {
+            weakSelft?.showMessage("Push Notifications Enabled", message: nil)
+            weakSelft?.loadProfile()
+          }
+          else {
+            weakSelft?.showPushNotificationsError(error: ApiError.updateProfileError(reason: "Failed to enable push notifications"))
+          }
+        })
+      }
+      
+      if pushEnrollment.isRegisteredForPushNotifications() { // already granted
+        if pushEnrollment.isDeviceTokenRequested() {
+          // send token
+          
+          sendToken()
+        }
+        else {
+          // request token
+          
+          pushEnrollment.requestPushNotificationPermissions({ (isGranted, error) -> (Void) in
+            if isGranted {
+              sendToken()
+            }
+            else {
+              weakSelft?.showPushNotificationsError(error: ApiError.updateProfileError(reason: "Failed to enable push notifications"))
+            }
+          })
+        }
+      }
+      else { // not granted yet or denied
+        pushEnrollment.requestPushNotificationPermissions({ (isGranted, error) -> (Void) in
+          if isGranted {
+            sendToken()
+          }
+          else {
+            weakSelft?.showPushNotificationsError(error: ApiError.updateProfileError(reason: "Failed to enable push notifications"))
+          }
+        })
+      }
+    }
+    else {
+      // turn OFF
+      
+      pushEnrollment.unregisterForPushNotification({ (error) in
+        weakSelft?.loadProfile()
+      })
     }
   }
   

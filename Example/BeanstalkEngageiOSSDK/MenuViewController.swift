@@ -17,11 +17,13 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   @IBOutlet var userProgressButton: UIButton!
   @IBOutlet var giftCardsButton: UIButton!
   
+  var coreService: ApiService?
   
-  let coreService = ApiService(apiKey: "1234-4321-ABCD-DCBA", session: BESession())
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.coreService = AppDelegate.apiService()
     
     self.updateAuthStatus()
   }
@@ -62,7 +64,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
                                   preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     alert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: { (_) in
-      self.coreService.logout(self, handler: { (success) in
+      self.coreService?.logout(self, handler: { (success) in
         self.updateAuthStatus()
       })
     }))
@@ -87,7 +89,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
       style: .default,
       handler: { (_) in
         if let email = alert.textFields?.first?.text {
-          self.coreService.resetPassword(self, email: email, handler: { (success) in
+          self.coreService?.resetPassword(self, email: email, handler: { (success) in
             
           })
         }
@@ -100,7 +102,11 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   //MARK: - Private
   
   private func updateAuthStatus() {
-    let isAuthenticated = self.coreService.isAuthenticated()
+    var isAuthenticated = false
+    
+    if let isAuth = self.coreService?.isAuthenticated() {
+      isAuthenticated = isAuth
+    }
     
     self.registerButton.isEnabled = !isAuthenticated
     self.signInButton.isEnabled = !isAuthenticated
