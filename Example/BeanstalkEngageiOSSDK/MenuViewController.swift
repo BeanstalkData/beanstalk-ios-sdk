@@ -36,7 +36,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
     if let vc = segue.destination as? RegisterViewController {
       vc.completionBlock = { (success) in
         if success {
-          self.navigationController?.popToRootViewController(animated: true)
+          _ = self.navigationController?.popToRootViewController(animated: true)
         }
         
         self.updateAuthStatus()
@@ -45,7 +45,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
     else if let vc = segue.destination as? SignInViewController {
       vc.completionBlock = { (success) in
         if success {
-          self.navigationController?.popToRootViewController(animated: true)
+          _ = self.navigationController?.popToRootViewController(animated: true)
         }
         
         self.updateAuthStatus()

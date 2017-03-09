@@ -42,7 +42,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func signIn(_ email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func signIn(_ email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -166,7 +166,7 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  open func updateContact(_ contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func updateContact(_ contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -185,7 +185,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func getContact <ContactClass: BEContact> (_ contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func getContact <ContactClass: BEContact> (_ contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
