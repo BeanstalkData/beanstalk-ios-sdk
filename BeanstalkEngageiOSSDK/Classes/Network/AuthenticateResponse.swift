@@ -1,9 +1,8 @@
 //
 //  AuthenticateResponse.swift
-//  Pods
+//  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 1/17/17.
-//
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation

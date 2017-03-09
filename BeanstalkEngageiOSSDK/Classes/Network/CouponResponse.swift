@@ -2,7 +2,7 @@
 //  CouponResponse.swift
 //  BeanstalkEngageiOSSDK
 //
-//  2016 Heartland Commerce, Inc. All rights reserved.
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation

@@ -1,9 +1,8 @@
 //
 //  BECoreServiceTestHandler.swift
-//  Pods
+//  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 1/4/17.
-//
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation
@@ -48,7 +47,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signInStatus = false
-    self.testCase.getCoreService()?.authenticate(nil, email: email, password: password, contactClass: BEContact.self, handler: { (success, additionalInfo) in
+    self.testCase.getCoreService()?.authenticate(nil, email: email, password: password, contactClass: BEContact.self, handler: { (success) in
       
       signInStatus = success
       self.testCase .fullfill()

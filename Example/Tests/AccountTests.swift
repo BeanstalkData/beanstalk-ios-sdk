@@ -2,8 +2,7 @@
 //  AccountTests.swift
 //  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 1/19/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import XCTest

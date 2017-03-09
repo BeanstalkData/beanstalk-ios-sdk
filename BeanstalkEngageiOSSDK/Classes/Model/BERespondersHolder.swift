@@ -1,9 +1,8 @@
 //
 //  BERespondersHolder.swift
-//  Gauge
+//  BeanstalkEngageiOSSDK
 //
-//  Created by Dmytro Nadtochyy on 22.07.16.
-//  Copyright © 2016 Dev-Pro. All rights reserved.
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation

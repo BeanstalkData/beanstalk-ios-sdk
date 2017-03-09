@@ -2,8 +2,7 @@
 //  ContactModel.swift
 //  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 2/7/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation

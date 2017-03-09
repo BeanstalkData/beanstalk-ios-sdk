@@ -1,9 +1,8 @@
 //
 //  BEAsyncTestCase.swift
-//  Pods
+//  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 1/4/17.
-//
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import UIKit
