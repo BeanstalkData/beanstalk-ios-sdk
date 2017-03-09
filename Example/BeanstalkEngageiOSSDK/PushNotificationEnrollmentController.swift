@@ -174,9 +174,6 @@ final class PushNotificationEnrollmentController: NSObject {
   
   func didRegisterForRemoteNotificationsWithDeviceToken(_ deviceToken: Data) {
     let tokenString = deviceToken.map { String(format: "%02hhx", $0) }.joined()
-      .replacingOccurrences(of: "<", with: "")
-      .replacingOccurrences(of: ">", with: "")
-      .replacingOccurrences(of: " ", with: "")
     
     self.deviceToken = tokenString
     self.session.setAPNSToken(tokenString)
