@@ -44,7 +44,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   //MARK: - Private
   
   func loadProfile() {
-    self.coreService?.getMyContact(self, handler: { (contact) in
+    self.coreService?.getMyContact(self, handler: { (success, contact) in
       if contact != nil {
         self.contact = contact as? ContactModel
         

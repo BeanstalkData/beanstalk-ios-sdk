@@ -302,7 +302,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
-  open func getContact <ContactClass: BEContact> (_ controller : CoreProtocol?, contactClass: ContactClass.Type, handler : @escaping (BEContact?) -> Void) {
+  open func getContact <ContactClass: BEContact> (_ controller : CoreProtocol?, contactClass: ContactClass.Type, handler : @escaping (Bool, BEContact?) -> Void) {
     let contactId = session.getContactId()!
     
     controller?.showProgress("Retrieving Profile")
@@ -311,10 +311,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       
       if result.isFailure {
         controller?.showMessage(ApiError.profileError(reason: result.error! as! BEErrorType))
-        handler(nil)
+        handler(result.isSuccess, nil)
       } else {
         self.session.setContact(result.value!)
-        handler(result.value!)
+        handler(result.isSuccess, result.value!)
       }
     })
   }
@@ -609,6 +609,14 @@ public extension UIViewController {
       }
       guard (request.getZipCode() != nil && (request.getZipCode()?.isValidZipCode())!) else{
         self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
+        return false
+      }
+      guard (request.getEmail() != nil && (request.getEmail()?.isValidEmail())!) else{
+        self.showMessage("Registration Error", message: "Enter Valid Email")
+        return false
+      }
+      guard (request.getPassword() != nil && !(request.getPassword()?.isEmpty)!) else{
+        self.showMessage("Registration Error", message: "Enter Password")
         return false
       }
     }

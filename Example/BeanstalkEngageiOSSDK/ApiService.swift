@@ -30,7 +30,7 @@ class ApiService: CoreService {
     authenticate(controller, email: email, password: password, contactClass: ContactModel.self, handler : handler)
   }
   
-  func getMyContact(_ controller : CoreProtocol?, handler : @escaping (BEContact?) -> Void) {
+  func getMyContact(_ controller : CoreProtocol?, handler : @escaping (Bool, BEContact?) -> Void) {
     getContact(controller, contactClass: ContactModel.self, handler : handler)
   }
 }

@@ -98,7 +98,7 @@ final class PushNotificationEnrollmentController: NSObject {
   }
   
   func updateContactForPushNotifications(_ completionHandler: @escaping (_ success: Bool) -> Void) {
-    self.coreService.getMyContact(nil, handler: { (contact) in
+    self.coreService.getMyContact(nil, handler: { (success, contact) in
       if let cont = contact {
         let updateRequest = ContactRequest(origin: cont)
         
