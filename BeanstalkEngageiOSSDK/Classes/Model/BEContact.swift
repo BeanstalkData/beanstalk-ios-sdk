@@ -124,7 +124,7 @@ open class BEContact : Mappable {
     }
   }
   
-  public class func clear(_ storage : UserDefaults) {
+  open class func clear(_ storage : UserDefaults) {
     storage.set(nil, forKey: BEContact.kId)
     storage.set(nil, forKey: BEContact.kFirstName)
     storage.set(nil, forKey: BEContact.kLastName)
@@ -143,7 +143,7 @@ open class BEContact : Mappable {
     storage.synchronize()
   }
   
-  public func save(_ storage : UserDefaults) {
+  open func save(_ storage : UserDefaults) {
     storage.set(contactId, forKey: BEContact.kId)
     storage.set(firstName, forKey: BEContact.kFirstName)
     storage.set(lastName, forKey: BEContact.kLastName)
