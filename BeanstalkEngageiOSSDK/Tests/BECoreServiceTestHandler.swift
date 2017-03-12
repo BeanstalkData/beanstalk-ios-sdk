@@ -191,7 +191,7 @@ open class BECoreServiceTestHandler {
     
     var contact: ContactClass?
     self.testCase.getCoreService()?.getContact(nil, contactClass: contactClass, handler: { (success,result) in
-      contact = result as? ContactClass
+      contact = result
       self.testCase .fullfill()
     })
     

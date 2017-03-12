@@ -206,7 +206,6 @@ open class BEAccountTests: BEBaseTestCase {
     request.set(pushNotificationOptin: (contact.pushNotificationOptin != 0))
     request.set(inboxMessageOptin: (contact.inboxMessageOptin != 0))
     request.set(textOptin: (contact.textOptin != 0))
-//    request.set(preferredReward: "")
     request.set(gender: contact.gender)
     
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
