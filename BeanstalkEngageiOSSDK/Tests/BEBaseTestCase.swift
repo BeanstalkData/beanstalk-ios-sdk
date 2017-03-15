@@ -2,7 +2,6 @@ import UIKit
 import XCTest
 import BeanstalkEngageiOSSDK
 import CCTestingUserDefaults
-import Timberjack
 
 public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager>
 

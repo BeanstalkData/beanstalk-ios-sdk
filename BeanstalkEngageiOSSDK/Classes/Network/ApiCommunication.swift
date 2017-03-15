@@ -9,7 +9,6 @@ import Foundation
 import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
-import Timberjack
 
 public struct BEApiResponder: Equatable, WeakResponderHolder {
   public weak var responder: AnyObject?

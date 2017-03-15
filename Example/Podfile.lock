@@ -3,33 +3,33 @@ PODS:
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - BeanstalkEngageiOSSDK (0.5.0):
-    - BeanstalkEngageiOSSDK/Core (= 0.5.0)
-  - BeanstalkEngageiOSSDK/Control (0.5.0):
+  - BeanstalkEngageiOSSDK (0.5.1):
+    - BeanstalkEngageiOSSDK/Core (= 0.5.1)
+  - BeanstalkEngageiOSSDK/Control (0.5.1):
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - libPhoneNumber-iOS
     - PKHUD (~> 4.2.0)
-  - BeanstalkEngageiOSSDK/Core (0.5.0):
+  - BeanstalkEngageiOSSDK/Core (0.5.1):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Model (0.5.0):
+  - BeanstalkEngageiOSSDK/Model (0.5.1):
     - AlamofireObjectMapper (~> 4.1.0)
-  - BeanstalkEngageiOSSDK/Network (0.5.0):
+  - BeanstalkEngageiOSSDK/Network (0.5.1):
     - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Model
-    - Timberjack
-  - BeanstalkEngageiOSSDK/Testing (0.5.0):
+    - BeanstalkEngageiOSSDK/Vendor
+  - BeanstalkEngageiOSSDK/Testing (0.5.1):
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - CCTestingUserDefaults
+  - BeanstalkEngageiOSSDK/Vendor (0.5.1)
   - CCTestingUserDefaults (0.1.2)
   - libPhoneNumber-iOS (0.9.4)
   - ObjectMapper (2.2.5)
   - PKHUD (4.2.0)
-  - Timberjack (0.0.2)
 
 DEPENDENCIES:
   - BeanstalkEngageiOSSDK (from `../`)
@@ -42,13 +42,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  BeanstalkEngageiOSSDK: 89d634a33451d663ff19bef7421a2f912221429c
+  BeanstalkEngageiOSSDK: d75ae94d4b9681096ad5e2c09c9f46a849d54d4b
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
   libPhoneNumber-iOS: 63bab980d1fc9783d82d955800ac9d7c1d81fde3
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
   PKHUD: 48af884cf00c2213b0313b739d914e6cab1c0f5e
-  Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42
 
-PODFILE CHECKSUM: 0c7326b5737c456c5f74d86a3eb1761658735544
+PODFILE CHECKSUM: 5d5dc150e838a79cf8d1277d2fab9f203f059a63
 
 COCOAPODS: 1.2.0.beta.1

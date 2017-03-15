@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.5.0"
+    "tag": "0.5.1"
   },
   "platforms": {
     "ios": "8.0"
@@ -49,11 +49,11 @@
         "BeanstalkEngageiOSSDK/Model": [
 
         ],
+        "BeanstalkEngageiOSSDK/Vendor": [
+
+        ],
         "Alamofire": [
           "~> 4.4.0"
-        ],
-        "Timberjack": [
-
         ]
       }
     },
@@ -93,6 +93,10 @@
         ]
       },
       "frameworks": "XCTest"
+    },
+    {
+      "name": "Vendor",
+      "source_files": "BeanstalkEngageiOSSDK/Classes/Vendor/**/*"
     }
   ]
 }

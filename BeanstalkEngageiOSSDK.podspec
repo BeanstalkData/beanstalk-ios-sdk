@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.5.1'
+  s.version          = '0.5.5'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -27,9 +27,9 @@ Pod::Spec.new do |s|
     ns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Network/**/*'
 
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
+    ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
     ns.dependency 'Alamofire', '~> 4.4.0'
-    ns.dependency 'Timberjack'
   end
 
   s.subspec 'Control' do |cns|
@@ -52,6 +52,10 @@ Pod::Spec.new do |s|
     ts.dependency 'CCTestingUserDefaults'
 
     ts.framework = 'XCTest'
+  end
+
+  s.subspec 'Vendor' do |cns|
+    cns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Vendor/**/*'
   end
 
 end
