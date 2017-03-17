@@ -67,7 +67,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     return self.reachabilityManager.isReachable
   }
   
-  func checkContactsByEmailExisted(_ email: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
+  open func checkContactsByEmailExisted(_ email: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
     if (isOnline()) {
       let params = ["type": "email",
                     "key": self.apiKey,
@@ -147,7 +147,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func checkContactsByPhoneExisted(_ phone: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
+  open func checkContactsByPhoneExisted(_ phone: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
     if (isOnline()) {
       let params = ["type": "cell_number",
                     "key": self.apiKey,
@@ -222,7 +222,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func createLoyaltyAccount (_ request : ContactRequest, handler: @escaping (Result<BELoyaltyUser?>) -> Void) {
+  open func createLoyaltyAccount (_ request : ContactRequest, handler: @escaping (Result<BELoyaltyUser?>) -> Void) {
     if (isOnline()) {
       
       let params = Mapper().toJSON(request)
@@ -249,7 +249,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func createContact(_ request : ContactRequest, handler: @escaping (Result<String>) -> Void) {
+  open func createContact(_ request : ContactRequest, handler: @escaping (Result<String>) -> Void) {
     if (isOnline()) {
       
       var params = Mapper().toJSON(request)
@@ -287,7 +287,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
    
     if (isOnline()) {
       let params = ["email": email,
@@ -318,7 +318,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func authenticateUser(_ email: String, password: String, handler: @escaping (Result<AuthenticateResponse>) -> Void) {
+  open func authenticateUser(_ email: String, password: String, handler: @escaping (Result<AuthenticateResponse>) -> Void) {
     
     if (isOnline()) {
       let params = ["email": email,
@@ -353,7 +353,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func checkUserSession(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func checkUserSession(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
     
     if (isOnline()) {
       let params = ["contact": contactId,
@@ -377,7 +377,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func resetPassword(_ email: String, handler: @escaping (Result<String?>) -> Void) {
+  open func resetPassword(_ email: String, handler: @escaping (Result<String?>) -> Void) {
     
     if (isOnline()) {
       let params = ["user": email]
@@ -400,7 +400,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func logoutUser(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func logoutUser(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
@@ -424,7 +424,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getContact <ContactClass: Mappable> (_ contactId: String, contactClass: ContactClass.Type, handler: @escaping (Result<ContactClass?>) -> Void) {
+  open func getContact <ContactClass: Mappable> (_ contactId: String, contactClass: ContactClass.Type, handler: @escaping (Result<ContactClass?>) -> Void) {
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
@@ -455,7 +455,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func updateContact(_ original: BEContact, request : ContactRequest, handler: @escaping (Result<AnyObject?>) -> Void)  {
+  open func updateContact(_ original: BEContact, request : ContactRequest, handler: @escaping (Result<AnyObject?>) -> Void)  {
     
     if (isOnline()) {
       
@@ -490,7 +490,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<AnyObject?>)->Void){
+  open func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<AnyObject?>)->Void){
    
     if (isOnline()) {
       let params = ["token": token,
@@ -521,7 +521,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>)->Void){
+  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>)->Void){
     
     if (isOnline()) {
       let params = [
@@ -555,7 +555,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getProgress(_ contactId : String, handler : @escaping (Result<Double?>)->Void){
+  open func getProgress(_ contactId : String, handler : @escaping (Result<Double?>)->Void){
     
     if (isOnline()) {
       let params = [
@@ -586,7 +586,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getGiftCards <GiftCardClass: BEGiftCard> (_ contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : @escaping (Result<[BEGiftCard]>) -> Void) {
+  open func getGiftCards <GiftCardClass: BEGiftCard> (_ contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : @escaping (Result<[BEGiftCard]>) -> Void) {
     
     if (isOnline()) {
       let params = [
@@ -619,7 +619,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getGiftCardBalance(_ contactId: String, token : String, number : String, handler : @escaping (Result<String?>) -> Void){
+  open func getGiftCardBalance(_ contactId: String, token : String, number : String, handler : @escaping (Result<String?>) -> Void){
     
     if (isOnline()) {
       let params = [
@@ -653,7 +653,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func startPayment(_ contactId: String, token: String, paymentId: String?, coupons: String, handler : @escaping (Result<String?>)->Void){
+  open func startPayment(_ contactId: String, token: String, paymentId: String?, coupons: String, handler : @escaping (Result<String?>)->Void){
     
     if (isOnline()) {
       var params = [
@@ -697,7 +697,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Locations
   
-  func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : @escaping (Result<[BEStore]?>) -> Void) {
+  open func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : @escaping (Result<[BEStore]?>) -> Void) {
     
     if (isOnline()) {
       
@@ -743,9 +743,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Push Notifications
   
-  // TODO: fix it
-  
-  func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<AnyObject?>)->Void) {
+  public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<AnyObject?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -788,7 +786,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   // TODO: fix it
-  func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<AnyObject?>)->Void) {
+  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<AnyObject?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -828,29 +826,32 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getPushNotificationMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result<[BEPushNotificationMessage]?>)->Void) {
+  public func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result <[BEPushNotificationMessage]?>) -> Void) {
     
     if (isOnline()) {
-      let params = [
-        "contact_id" : contactId,
+      let params: [String: Any] = [
+        "contactId" : contactId,
         "key" : self.apiKey,
-        "max_results": NSNumber(value: maxResults as Int)
-      ] as [String : Any]
+        "maxResults": NSNumber(value: maxResults)
+      ]
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
-        .responseObject {
-          (response : DataResponse<PushNotificationMessagesResponse>) in
+        .responseArray {
+          (response : DataResponse <[BEPushNotificationMessage]>) in
           if self.dataGenerator != nil {
             handler(.success(nil))
-          } else {
+          }
+          else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.success(result.getMessages()))
-              }else {
+                handler(.success(result))
+              }
+              else {
                 handler(.failure(ApiError.unknown()))
               }
-            }else if response.response?.statusCode == 200 {
+            }
+            else if response.response?.statusCode == 200 {
               handler(.success(nil))
             }
             else{
@@ -863,13 +864,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getPushNotificationMessage(_ messageId: String, action: PushNotificationStatus, handler : @escaping (Result<[BEPushNotificationMessage]?>)->Void) {
+  public func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (Result <AnyObject?>) -> Void) {
     
     if (isOnline()) {
       let params = [
         "message_id" : messageId,
         "key" : self.apiKey,
-        "action": action.rawValue
+        "action": status.rawValue
       ]
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
@@ -882,7 +883,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           } else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.success(result.getMessages()))
+                handler(.success(result))
               }else {
                 handler(.failure(ApiError.unknown()))
               }
@@ -899,7 +900,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  func getPushNotificationMessage(_ messageId: String, handler : @escaping (Result<BEPushNotificationMessage?>)->Void) {
+  public func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (Result <BEPushNotificationMessage?>) -> Void) {
     
     if (isOnline()) {
       let params = [
@@ -910,13 +911,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
-          (response : DataResponse<PushNotificationMessagesResponse>) in
+          (response : DataResponse<BEPushNotificationMessage>) in
           if self.dataGenerator != nil {
             handler(.success(nil))
           } else {
             if (response.result.isSuccess) {
               if let result = response.result.value {
-                handler(.success(result.getMessages()?.first))
+                handler(.success(result))
               }else {
                 handler(.failure(ApiError.unknown()))
               }

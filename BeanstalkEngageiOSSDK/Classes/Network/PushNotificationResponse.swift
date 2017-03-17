@@ -6,20 +6,15 @@
 //
 
 import Foundation
-
 import ObjectMapper
 
-enum PushNotificationStatus: String {
-  case Read = "READ"
-  case Unread = "UNREAD"
-  case Delete = "DELETED"
+
+public enum PushNotificationStatus: String {
+  case read = "READ"
+  case unread = "UNREAD"
+  case deleted = "DELETED"
 }
 
-/*
- {
- "status": "success"
- }
- */
 
 open class PushNotificationResponse : Mappable {
  
@@ -91,20 +86,3 @@ open class PushNotificationResponse : Mappable {
     }
  }
  */
-
-open class PushNotificationMessagesResponse : Mappable {
-  
-  var messages : [BEPushNotificationMessage]?
-  
-  required public init?(map: Map) {
-    
-  }
-  
-  open func mapping(map: Map) {
-    
-  }
-  
-  open func getMessages() -> [BEPushNotificationMessage]? {
-    return messages
-  }
-}

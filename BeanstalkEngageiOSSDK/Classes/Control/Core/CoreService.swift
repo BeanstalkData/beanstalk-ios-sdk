@@ -16,7 +16,7 @@ import BeanstalkEngageiOSSDK
 public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
 open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespondersHolder {
-  let apiService: ApiCommunication<SessionManager>
+  public let apiService: ApiCommunication<SessionManager>
   let session: BESession
   
   fileprivate var p_isAuthenticateInProgress = false
@@ -39,7 +39,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     self.session.clearSession()
   }
   
-  open func isAuthenticated() ->Bool{
+  open func isAuthenticated() -> Bool{
     let contactId = session.getContactId()
     let token = session.getAuthToken()
     return contactId != nil && token != nil
@@ -319,6 +319,18 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  open func createContact(_ request : ContactRequest, shouldValidate: Bool, handler : @escaping (_ contactId: String?, _ error: ApiError?) -> Void) {
+    request.normalize()
+    
+    apiService.createContact(request) { (result) in
+      if result.isFailure {
+        handler(nil, result.error as? ApiError)
+      } else {
+        handler(result.value, nil)
+      }
+    }
+  }
+  
   open func updateContact(_ controller : EditProfileProtocol?, original: BEContact, request : ContactRequest, handler : @escaping (Bool) -> Void){
     
     if controller != nil {
@@ -519,6 +531,53 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
     
     self.session.setRegisteredAPNSToken(nil)
+  }
+  
+  open func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: ApiError?) -> Void) {
+    if let contactId = self.session.getContactId() {
+      apiService.pushNotificationGetMessages(contactId, maxResults: maxResults, handler: { (result) in
+        if result.isFailure {
+          handler(nil, result.error as! ApiError?)
+        }
+        else if result.value! != nil {
+          handler(result.value!, nil)
+        }
+        else {
+          handler(nil, ApiError.unknown())
+        }
+      })
+    }
+    else {
+      handler(nil, ApiError.unknown())
+    }
+  }
+  
+  open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: ApiError?) -> Void) {
+    apiService.pushNotificationUpdateStatus(messageId, status: status) { (result) in
+      if result.isFailure {
+        handler(false, result.error as! ApiError?)
+      }
+      else if result.isSuccess {
+        handler(true, nil)
+      }
+      else {
+        handler(false, ApiError.unknown())
+      }
+    }
+  }
+  
+  open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: ApiError?) -> Void) {
+    apiService.pushNotificationGetMessageById(messageId) { (result) in
+      if result.isFailure {
+        handler(nil, result.error as! ApiError?)
+      }
+      else if result.value! != nil {
+        handler(result.value!, nil)
+      }
+      else {
+        handler(nil, ApiError.unknown())
+      }
+    }
   }
   
   //MARK: - Locations
