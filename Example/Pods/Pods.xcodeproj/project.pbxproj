@@ -18,6 +18,8 @@
 		0804F0A648D2E29D576AD1A6B5BA305C /* PKHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8E497475545777110341B13C12992 /* PKHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		095BCC082DB6864AC4D543CDDD906AC4 /* NBPhoneMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = F188E60983A64C6AE1CB093A564CDC8E /* NBPhoneMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		096D6F50790C0C86FCA1D4E275C53E35 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321CF2EA9812F254838170E79D78F377 /* AlamofireObjectMapper.framework */; };
+		0AB991EA1E803B4000BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
+		0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
 		0BF98D6E0D1AE4D4920B66715DB9E1D4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793CFDC1C320CA1541CA571B9B53E80 /* Alamofire.framework */; };
 		0DF54EF6561E1295B8765B88B6579241 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E32A6D55C072AC65FEB19879C340 /* FromJSON.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBB0C5AD45A7E5D0BF0C5F6A7E4BC2 /* Timeline.swift */; };
@@ -401,6 +403,7 @@
 		079C970460206BFC03C7BF1E9BE7F6DE /* libPhoneNumber-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libPhoneNumber-iOS.xcconfig"; sourceTree = "<group>"; };
 		089D85DAB6E1B37DCA60E756F1F1D289 /* NBPhoneNumber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumber.h; path = libPhoneNumber/NBPhoneNumber.h; sourceTree = "<group>"; };
 		0928780CDCA88F721D9188C903A7B65F /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BESessionProtocol.swift; sourceTree = "<group>"; };
 		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
 		0B421C6840921ADE9AD67D0551EAEC8A /* NBMetadataCoreTestMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataCoreTestMapper.h; path = libPhoneNumber/NBMetadataCoreTestMapper.h; sourceTree = "<group>"; };
 		0BF1F7D23952BC51F821E87E39F5542D /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
@@ -726,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				664FEB5DDE8036DF029EA312C52C317A /* BESession.swift */,
+				0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -1712,6 +1716,7 @@
 				C98061C9EEA3417DF9B1A0E9A6EDB2F9 /* CoreProtocol.swift in Sources */,
 				6EF54DFB5DB670114E85412AE34E5322 /* CoreService.swift in Sources */,
 				93327D2CE9DF27730FB20B2CAEE2BE4F /* CouponResponse.swift in Sources */,
+				0AB991EA1E803B4000BFDBA7 /* BESessionProtocol.swift in Sources */,
 				04AACA432FA4D3C071F29A8411AB5880 /* GiftCardsResponse.swift in Sources */,
 				023115B28456E35580F55C36F28D5817 /* MockDataGenerator.swift in Sources */,
 				58EB74A84113CB85613880A6236C1D26 /* PaymentResponse.swift in Sources */,
@@ -1787,6 +1792,7 @@
 				6D3A772D53E05BC5CAE9003DAAB67127 /* ApiCommunication.swift in Sources */,
 				22EDDCBF7FB74904C88A8F1C1EE37761 /* ApiError.swift in Sources */,
 				EFEBC97634F4CEC9B32BB5470BACD362 /* AuthenticateResponse.swift in Sources */,
+				0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */,
 				29E6814E6C203637E69F658286A4BD9C /* BEAccountTests.swift in Sources */,
 				3CB3C73392EE7DEFDDE70752072BF376 /* BeanstalkEngageiOSSDK.common-Testing-dummy.m in Sources */,
 				F364ACA09686734B2614144C193B5921 /* BEAsyncTestCase.swift in Sources */,

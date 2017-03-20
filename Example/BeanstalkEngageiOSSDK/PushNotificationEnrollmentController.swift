@@ -15,7 +15,7 @@ typealias PushNotificationsRequestBlock = (_ isGranted: Bool, _ error: NSError?)
 
 final class PushNotificationEnrollmentController: NSObject {
   let coreService: ApiService
-  let session: BESession
+  let session: BESessionProtocol
   
   fileprivate var authorizationRequestedPreviously: Bool {
     set (newValue) {
@@ -36,7 +36,7 @@ final class PushNotificationEnrollmentController: NSObject {
   var pushNotificationInfo: Dictionary<NSObject, AnyObject>?
   
   
-  init(beanstalkCoreService: ApiService, session: BESession) {
+  init(beanstalkCoreService: ApiService, session: BESessionProtocol) {
     self.coreService = beanstalkCoreService
     self.session = session
     

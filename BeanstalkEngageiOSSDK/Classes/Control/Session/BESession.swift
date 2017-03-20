@@ -7,7 +7,10 @@
 
 import Foundation
 
-open class BESession {
+/**
+ Default impletementation of BESessionProtocol that saves data to BEUserDefaults
+ */
+open class BESession: BESessionProtocol {
   
   fileprivate let userDefaults: BEUserDefaults
   
@@ -37,11 +40,11 @@ open class BESession {
     
     var contact = BEContact(storage: prefs)
     
-    guard contact?.contactId != nil else {
+    guard let contactId = contact?.contactId else {
       return nil
     }
     
-    return String(contact!.contactId!)
+    return String(contactId)
   }
   
   open func getContact <ContactClass: BEContact> () -> ContactClass? {

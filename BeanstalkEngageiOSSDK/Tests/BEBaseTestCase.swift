@@ -8,7 +8,7 @@ public typealias CoreServiceTest = CoreServiceT<HTTPTimberjackManager>
 open class BEBaseTestCase: BEAsyncTestCase {
   
   var beanstalkCoreService: CoreServiceTest?
-  var session: BESession?
+  var session: BESessionProtocol?
   
   override open func setUp() {
     super.setUp()
@@ -41,7 +41,7 @@ open class BEBaseTestCase: BEAsyncTestCase {
     return beanstalkCoreService
   }
   
-  open func getSession() -> BESession? {
+  open func getSession() -> BESessionProtocol? {
     XCTAssert(session != nil)
     return session
   }

@@ -17,7 +17,7 @@ public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
 open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespondersHolder {
   public let apiService: ApiCommunication<SessionManager>
-  let session: BESession
+  let session: BESessionProtocol
   
   fileprivate var p_isAuthenticateInProgress = false
   open var isAuthenticateInProgress: Bool {
@@ -26,12 +26,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
-  public required init(apiKey: String, session: BESession) {
+  public required init(apiKey: String, session: BESessionProtocol) {
     self.apiService = ApiCommunication(apiKey: apiKey)
     self.session = session
   }
   
-  open func getSession() -> BESession? {
+  open func getSession() -> BESessionProtocol? {
     return session
   }
   

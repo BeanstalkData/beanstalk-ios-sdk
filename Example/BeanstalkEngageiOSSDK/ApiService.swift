@@ -10,7 +10,7 @@ import BeanstalkEngageiOSSDK
 
 class ApiService: CoreService {
   
-  required init(apiKey: String, session: BESession) {
+  required init(apiKey: String, session: BESessionProtocol) {
     super.init(apiKey: apiKey, session: session)
   }
   
