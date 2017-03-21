@@ -225,7 +225,8 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   open func createLoyaltyAccount (_ request : ContactRequest, handler: @escaping (Result<BELoyaltyUser?>) -> Void) {
     if (isOnline()) {
       
-      let params = Mapper().toJSON(request)
+      var params = Mapper().toJSON(request)
+      params["Source"] = "iosapp"
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/addPaymentLoyaltyAccount/?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
