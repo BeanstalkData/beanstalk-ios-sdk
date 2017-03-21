@@ -254,6 +254,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       
       var params = Mapper().toJSON(request)
       params["Cell_Number"] = params["CellNumber"]
+      params["Source"] = "iosapp"
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
