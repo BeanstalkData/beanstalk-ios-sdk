@@ -459,11 +459,11 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
-  open func startPayment(_ controller : CoreProtocol?, cardId : String?, coupons: [BECoupon], handler : @escaping (String, String)->Void){
+  open func startPayment(_ controller : CoreProtocol?, cardId : String?, coupons: [BECoupon], handler : @escaping (BarCodeInfo)->Void){
     
     if cardId == nil && coupons.count == 0 {
       let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
-      handler(data.0, data.1)
+      handler(data)
       return
     }
     
@@ -478,12 +478,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       if result.isFailure {
         controller?.showMessage(ApiError.paymentError(reason: result.error! as! BEErrorType))
         let data = self.getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
-        handler(data.0, data.1)
+        handler(data)
       } else {
         let cards = result.value!
         
         let data = self.getBarCodeInfo(result.value!, cardId: cardId, coupons: coupons)
-        handler(data.0, data.1)
+        handler(data)
       }
     })
   }
@@ -628,26 +628,26 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   //    })
   //  }
   
-  fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> (String, String){
-    var content = ""
-    var display = ""
+  fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> BarCodeInfo {
     if data == nil || data!.characters.count == 0{
       let contactId = session.getContactId()!
-      content = contactId
-      display = "Member ID: \(content)"
-    }else {
-      content = data!
+      
+      return BarCodeInfo.memberId(value: contactId)
+    }
+    else {
+      let content = data!
+      
       if cardId == nil && coupons.count > 0 {
-        display = "Rewards Token: \(content)"
-      } else if cardId != nil  && coupons.count == 0 {
-        display = "Pay Token: \(content)"
-      }else {
-        display = "Rewards and Pay Token: \(content)"
+        return BarCodeInfo.rewardsToken(value: content)
+      }
+      else if cardId != nil  && coupons.count == 0 {
+        return BarCodeInfo.payToken(value: content)
+      }
+      else {
+        return BarCodeInfo.rewardsAndPayToken(value: content)
       }
     }
-    return (content, display)
   }
-  
 }
 
 public extension UIViewController {
@@ -706,4 +706,12 @@ public extension UIViewController {
     }
     return true
   }
+}
+
+
+public enum BarCodeInfo {
+  case memberId (value: String)
+  case rewardsToken (value: String)
+  case payToken (value: String)
+  case rewardsAndPayToken (value: String)
 }

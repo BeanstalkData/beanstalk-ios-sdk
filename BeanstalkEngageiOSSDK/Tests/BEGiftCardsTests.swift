@@ -88,7 +88,7 @@ open class BEGiftCardsTests: BEBaseTestCase {
     XCTAssert(giftCardBalanceResponce?.getCardBalance() == "$60.35", "Gift card balance objects count is invalid")
   }
   
-  open func giftCardStartPaymentTest(_ cardId: String?, coupons: [BECoupon], handler: @escaping (String, String) -> Void) {
+  open func giftCardStartPaymentTest(_ cardId: String?, coupons: [BECoupon], handler: @escaping (BarCodeInfo) -> Void) {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
     

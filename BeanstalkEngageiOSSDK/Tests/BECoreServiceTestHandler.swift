@@ -271,23 +271,21 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func startPayment (_ cardId: String?, coupons: [BECoupon], handler : (String, String) -> Void) -> BECoreServiceTestHandler? {
+  open func startPayment (_ cardId: String?, coupons: [BECoupon], handler : (BarCodeInfo) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
-    var contentText = ""
-    var displayText = ""
-    self.testCase.getCoreService()?.startPayment(nil, cardId: cardId, coupons: coupons, handler: { (content, display) in
+    var barCodeInfo = BarCodeInfo.memberId(value: "")
+    self.testCase.getCoreService()?.startPayment(nil, cardId: cardId, coupons: coupons, handler: { (info) in
       
-      contentText = content
-      displayText = display
+      barCodeInfo = info
       
       self.testCase .fullfill()
     })
     
     self.testCase.wait()
     
-    handler(contentText, displayText)
+    handler(barCodeInfo)
     
     return self
   }

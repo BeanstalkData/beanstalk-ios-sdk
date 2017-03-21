@@ -30,9 +30,14 @@ class GiftCardsTests: BEGiftCardsTests {
   }
   
   func testGiftCardStartPayment() {
-    giftCardStartPaymentTest(nil, coupons: []){ (contectText, dispalyText) in
-      XCTAssert(contectText == self.getSession()?.getContactId(), "Gift card start payment failed")
-      XCTAssert(dispalyText == "Member ID: "+(self.getSession()?.getContactId())!, "Gift card start payment failed")
+    giftCardStartPaymentTest(nil, coupons: []){ (barCodeInfo) in
+      switch barCodeInfo {
+      case .memberId (let value):
+        XCTAssert(value == (self.getSession()?.getContactId())!, "Gift card start payment failed")
+        break
+      default:
+        XCTAssert(false, "Gift card start payment failed")
+      }
     }
   }
 }
