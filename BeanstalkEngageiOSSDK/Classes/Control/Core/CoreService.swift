@@ -632,19 +632,19 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     if data == nil || data!.characters.count == 0{
       let contactId = session.getContactId()!
       
-      return BarCodeInfo.memberId(value: contactId)
+      return BarCodeInfo(data: contactId, type: .memberId)
     }
     else {
       let content = data!
       
       if cardId == nil && coupons.count > 0 {
-        return BarCodeInfo.rewardsToken(value: content)
+        return BarCodeInfo(data: content, type: .rewardsToken)
       }
       else if cardId != nil  && coupons.count == 0 {
-        return BarCodeInfo.payToken(value: content)
+        return BarCodeInfo(data: content, type: .payToken)
       }
       else {
-        return BarCodeInfo.rewardsAndPayToken(value: content)
+        return BarCodeInfo(data: content, type: .rewardsAndPayToken)
       }
     }
   }
@@ -709,9 +709,14 @@ public extension UIViewController {
 }
 
 
-public enum BarCodeInfo {
-  case memberId (value: String)
-  case rewardsToken (value: String)
-  case payToken (value: String)
-  case rewardsAndPayToken (value: String)
+public struct BarCodeInfo {
+  public let data: String
+  public let type: BarCodeInfoType
+  
+  public enum BarCodeInfoType {
+    case memberId
+    case rewardsToken
+    case payToken
+    case rewardsAndPayToken
+  }
 }

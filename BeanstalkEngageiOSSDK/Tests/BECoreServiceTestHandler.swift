@@ -275,7 +275,7 @@ open class BECoreServiceTestHandler {
     
     self.testCase.prepare()
     
-    var barCodeInfo = BarCodeInfo.memberId(value: "")
+    var barCodeInfo = BarCodeInfo(data: "", type: .memberId)
     self.testCase.getCoreService()?.startPayment(nil, cardId: cardId, coupons: coupons, handler: { (info) in
       
       barCodeInfo = info
