@@ -402,37 +402,24 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
-  open func getUserProgress(_ controller : CoreProtocol?, handler : @escaping (Bool, Int, String)->Void){
+  open func getUserProgress(_ controller : CoreProtocol?, handler : @escaping (Double?, ApiError?)->Void){
     let contactId = session.getContactId()!
     
     controller?.showProgress("Getting Rewards")
     apiService.getProgress(contactId, handler : { (result) in
       controller?.hideProgress()
       
-      let resultStatus = result.isSuccess
-      let required = 8
-      var progressValue = 0;
-      var progressText = "Only \(required) more purchases until your next TC reward!"
+      var progressValue: Double?
+      var error: ApiError?
       
       if result.isFailure {
-        //Check it
-      } else {
-        let rewardValue = result.value! == nil ? 0 : Int(result.value!!)
-        if (rewardValue > 0 && rewardValue % required == 0) {
-          progressValue = required;
-        } else {
-          progressValue = rewardValue % required;
-        }
-        
-        let remainingCountUntilReward = required - progressValue;
-        if (progressValue == 8) {
-          progressText = "Congrats !! you have a TC reward!"
-        } else {
-          progressText = "Only \(remainingCountUntilReward) more purchases until your next TC reward!"
-        }
+        error = result.error as? ApiError
+      }
+      else {
+        progressValue = result.value
       }
       
-      handler(resultStatus, progressValue, progressText)
+      handler(progressValue, error)
     })
   }
   

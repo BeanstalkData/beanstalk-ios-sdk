@@ -225,24 +225,23 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  open func getProgress (_ handler : (Bool, Int, String) -> Void) -> BECoreServiceTestHandler? {
+  open func getProgress (_ handler : (Double?, ApiError?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
-    var resultStatus = false
-    var resultCount = 0
-    var resultText = ""
-    self.testCase.getCoreService()?.getUserProgress(nil, handler: { (success, count, text) in
-      resultStatus = success
-      resultCount = count
-      resultText = text
+    var value: Double?
+    var apiError: ApiError?
+    
+    self.testCase.getCoreService()?.getUserProgress(nil, handler: { (progresValue, error) in
+      value = progresValue
+      apiError = error
       
       self.testCase .fullfill()
     })
     
     self.testCase.wait()
     
-    handler(resultStatus, resultCount, resultText)
+    handler(value, apiError)
     
     return self
   }

@@ -13,11 +13,11 @@ open class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
         coreServiceHandler.signOut() { (result) in
-          XCTAssert(result, "Logout request finished with error");
+          XCTAssert(result, "Logout request finished with error")
         }
       }
     }
@@ -30,19 +30,19 @@ open class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.autoSignIn( { result in
-      XCTAssert(!result, "Unexpected Auto Login status, should be false");
+      XCTAssert(!result, "Unexpected Auto Login status, should be false")
       
       coreServiceHandler.signIn(self.getMetadata()!.getRegisteredUser1Email(), password: self.getMetadata()!.getRegisteredUser1Password()) { (result) in
-        XCTAssert(result, "Login request finished with error");
+        XCTAssert(result, "Login request finished with error")
         
         coreServiceHandler.autoSignIn( { result in
-          XCTAssert(result, "Unexpected Auto Login status, should be true");
+          XCTAssert(result, "Unexpected Auto Login status, should be true")
           
           coreServiceHandler.signOut() { result in
-            XCTAssert(result, "Logout request finished with error");
+            XCTAssert(result, "Logout request finished with error")
             
             coreServiceHandler.autoSignIn( { result in
-              XCTAssert(!result, "Unexpected Auto Login status, should be false");
+              XCTAssert(!result, "Unexpected Auto Login status, should be false")
             })
           }
         })
@@ -57,13 +57,13 @@ open class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.autoSignIn( { result in
-      XCTAssert(!result, "Unexpected Auto Login status, should be false");
+      XCTAssert(!result, "Unexpected Auto Login status, should be false")
       
       coreServiceHandler.signIn("invalid@email.com", password: "123456789") { (result) in
-        XCTAssert(!result, "Unexpected Login request state, should be false");
+        XCTAssert(!result, "Unexpected Login request state, should be false")
         
         coreServiceHandler.autoSignIn( { result in
-          XCTAssert(!result, "Unexpected Auto Login status, should be false");
+          XCTAssert(!result, "Unexpected Auto Login status, should be false")
         })
       }
     })
@@ -82,7 +82,7 @@ open class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after login")
       
@@ -108,7 +108,7 @@ open class BEAccountTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       XCTAssert(self.getSession()?.getAPNSToken() == pushToken, "Invalid APNS token after login")
       XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil, "Invalid APNS token after login")
@@ -210,11 +210,11 @@ open class BEAccountTests: BEBaseTestCase {
     
     coreServiceHandler.registerLoyaltyAccount(request) { (result) in
       
-      XCTAssert(result, "Register Loyalty Account request finished with error");
+      XCTAssert(result, "Register Loyalty Account request finished with error")
       
       if (result) {
         coreServiceHandler.signOut() { (result) in
-          XCTAssert(result, "Logout request finished with error");
+          XCTAssert(result, "Logout request finished with error")
         }
       }
     }
@@ -244,11 +244,11 @@ open class BEAccountTests: BEBaseTestCase {
     
     coreServiceHandler.registerAccount(request) { (result) in
       
-      XCTAssert(result, "Register Account request finished with error");
+      XCTAssert(result, "Register Account request finished with error")
       
       if (result) {
         coreServiceHandler.signOut() { (result) in
-          XCTAssert(result, "Logout request finished with error");
+          XCTAssert(result, "Logout request finished with error")
         }
       }
     }

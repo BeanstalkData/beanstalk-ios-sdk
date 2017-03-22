@@ -43,7 +43,7 @@ open class BEGiftCardsTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
         coreServiceHandler.getGiftCards(BEGiftCard.self, handler: { (success, giftCards) in
@@ -95,7 +95,7 @@ open class BEGiftCardsTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       coreServiceHandler.startPayment(cardId, coupons: coupons, handler: handler)
     }

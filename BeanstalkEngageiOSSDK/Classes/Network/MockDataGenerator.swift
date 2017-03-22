@@ -13,7 +13,8 @@ class MockDataGenerator {
     "http://d1ivierdlu2fd9.cloudfront.net/260/30152.png",
     "http://d1ivierdlu2fd9.cloudfront.net/260/30153.png",
     "http://d1ivierdlu2fd9.cloudfront.net/260/30154.png",
-    "http://d1ivierdlu2fd9.cloudfront.net/260/30155.png"];
+    "http://d1ivierdlu2fd9.cloudfront.net/260/30155.png"
+  ]
   
   func getUserOffers () -> CouponResponse<BECoupon> {
     
@@ -57,7 +58,7 @@ class MockDataGenerator {
   }
   
   func getUserGiftCardBalance() -> GiftCardBalanceResponse{
-    return DummyGCBResponse();
+    return DummyGCBResponse()
   }
   
   func getUserPayment() -> PaymentResponse {
@@ -163,6 +164,6 @@ private class DummyGCBResponse : GiftCardBalanceResponse{
   }
   
   func getCardBalance() -> String {
-    return balance;
+    return balance
   }
 }

@@ -21,7 +21,7 @@ open class BEStoresTests: BEBaseTestCase {
     var storesResult: [BEStore]? = nil
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
         var coordinate = self.getMetadata()!.getInvalidLocationCoordinate()
@@ -47,7 +47,7 @@ open class BEStoresTests: BEBaseTestCase {
     var storesResult: [BEStore]? = nil
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
         var coordinate = self.getMetadata()!.getValidLocationCoordinate()

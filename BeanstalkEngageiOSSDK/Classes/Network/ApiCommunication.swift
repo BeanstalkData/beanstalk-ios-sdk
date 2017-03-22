@@ -557,7 +557,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getProgress(_ contactId : String, handler : @escaping (Result<Double?>)->Void){
+  open func getProgress(_ contactId: String, handler: @escaping (Result<Double>) -> Void) {
     
     if (isOnline()) {
       let params = [
@@ -1015,7 +1015,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   fileprivate func getDefaultErrorHandler() -> DataRequest.Validation {
-    return getErrorHandler("Got error while processing your request.");
+    return getErrorHandler("Got error while processing your request.")
   }
 }
 

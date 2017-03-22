@@ -62,7 +62,7 @@ open class Category : Mappable {
   
   //for mocks only
   init(count: Int){
-    self.count = count;
+    self.count = count
   }
   
   required public init?(map: Map) {

@@ -47,10 +47,12 @@ public enum ApiError: BEErrorType {
     switch self {
     case .unknown:
       errorTitle = "Bad request"
+      
     case .dataSerialization(let reason):
       errorTitle = "Bad request"
-    case ApiError.missingParameterError:
+    case .missingParameterError:
       errorTitle = "Invalid request"
+      
     case .network(let error):
       errorTitle = "Bad request"
     case .networkConnectionError:
@@ -58,7 +60,7 @@ public enum ApiError: BEErrorType {
     
     case .authenticatFailed(let reason):
       errorTitle = "Login Failed"
-    case ApiError.registrationFailed(let reason):
+    case .registrationFailed(let reason):
       errorTitle = "Registration Error"
     case .userEmailExists(let reason):
       errorTitle = "Registration Error"
@@ -82,9 +84,8 @@ public enum ApiError: BEErrorType {
     case .findStoresError(let reason):
       errorTitle = "Find Stores Error"
       
-    default:
+    case .unacceptableStatusCodeError(let reason, let statusCode):
       errorTitle = "Bad request"
-      break;
     }
     
     return errorTitle
@@ -98,7 +99,7 @@ public enum ApiError: BEErrorType {
       errorMessage = "Sorry, an error occurred while processing your request"
     case .dataSerialization(let reason):
       errorMessage = reason
-    case ApiError.missingParameterError:
+    case .missingParameterError:
       errorMessage = "Please verify parameter(s)"
     case .network(let error):
       errorMessage = (error != nil ? error!.localizedDescription : "Sorry, an error occurred while processing your request")
@@ -107,7 +108,7 @@ public enum ApiError: BEErrorType {
     
     case .authenticatFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
-    case ApiError.registrationFailed(let reason):
+    case .registrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
       break
     case .userEmailExists(let reason):
@@ -134,10 +135,6 @@ public enum ApiError: BEErrorType {
       
     case .unacceptableStatusCodeError(let reason, let statusCode):
       errorMessage = reason
-      
-    default:
-      errorMessage = "Sorry, an error occurred while processing your request"
-      break
     }
     
     return errorMessage

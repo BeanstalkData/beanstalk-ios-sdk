@@ -43,7 +43,7 @@ open class BERewardsTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
         coreServiceHandler.getAvailableRewards(BECoupon.self) { (success, coupons) in
@@ -98,11 +98,11 @@ open class BERewardsTests: BEBaseTestCase {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
     coreServiceHandler.signIn(getMetadata()!.getRegisteredUser1Email(), password: getMetadata()!.getRegisteredUser1Password()) { (result) in
-      XCTAssert(result, "Login request finished with error");
+      XCTAssert(result, "Login request finished with error")
       
       if (result) {
-        coreServiceHandler.getProgress({ (success, count, text) in
-          XCTAssert(success, "Failed to get users' progress")
+        coreServiceHandler.getProgress({ (value, error) in
+          XCTAssert(value != nil, "Failed to get users' progress: \(error?.errorTitle()) - \(error?.errorMessage())")
         })
       }
     }

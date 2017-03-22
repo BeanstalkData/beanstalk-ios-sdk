@@ -10,23 +10,29 @@ import BeanstalkEngageiOSSDK
 
 
 class UserProgressViewController: BaseViewController, CoreProtocol {
-    @IBOutlet var progressValueLabel: UILabel!
-    @IBOutlet var progressTextLabel: UILabel!
+  @IBOutlet var progressValueLabel: UILabel!
+  @IBOutlet var progressTextLabel: UILabel!
+  
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.loadProgress()
-    }
-    
-    
-    //MARK: - Private
-    
-    func loadProgress() {
-        self.coreService?.getUserProgress(self, handler: { (success, progressValue, progressText) in
-            self.progressValueLabel.text = "\(progressValue)"
-            self.progressTextLabel.text = progressText
-        })
-    }
+    self.loadProgress()
+  }
+  
+  
+  //MARK: - Private
+  
+  func loadProgress() {
+    self.coreService?.getUserProgress(self, handler: { (progressValue, error) in
+      if let value = progressValue {
+        self.progressValueLabel.text = "\(Int(value))"
+        self.progressTextLabel.text = nil
+      }
+      else {
+        self.progressValueLabel.text = error?.errorTitle()
+        self.progressTextLabel.text = error?.errorMessage()
+      }
+    })
+  }
 }
