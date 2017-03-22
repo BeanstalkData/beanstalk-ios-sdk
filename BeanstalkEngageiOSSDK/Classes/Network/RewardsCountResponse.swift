@@ -58,10 +58,10 @@ open class RewardsCountResponse : Mappable {
 
 open class Category : Mappable {
   var name: String?
-  var count: Int?
+  var count: Double?
   
   //for mocks only
-  init(count: Int){
+  init(count: Double){
     self.count = count
   }
   
@@ -72,14 +72,19 @@ open class Category : Mappable {
   open func mapping(map: Map) {
     name <- map["Name"]
     
-    //        if map["Count"] is String {
-    //            count <- map["Count"]
-    //        } else if map["Count"] is Int {
-    //            count <- map["Count"]
-    //        }
+    var dblCount: Double = 0
+    var strCount: String = "0"
+    dblCount <- map["Count"]
+    strCount <- map["Count"]
     
-    var c: String = "0"
-    c <- map["Count"]
-    count = Int(c)
+    if dblCount != 0 {
+      count = dblCount
+    }
+    else if strCount != "0" {
+      count = Double(strCount)
+    }
+    else {
+      count = 0
+    }
   }
 }
