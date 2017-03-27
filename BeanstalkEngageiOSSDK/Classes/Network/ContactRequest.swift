@@ -40,6 +40,7 @@ open class ContactRequest: Mappable{
   fileprivate var lastName : String?
   fileprivate var phone: String?
   fileprivate var email: String?
+  fileprivate var fKey: String?
   fileprivate var password : String?
   fileprivate var zipCode : String?
   fileprivate var birthday: String?
@@ -147,6 +148,26 @@ open class ContactRequest: Mappable{
       return self.email
     }
     return self.origin?.email
+  }
+  
+  open func set(fKey: String?) {
+    guard fKey?.characters.count > 0 else {
+      return
+    }
+    
+    guard origin?.fKey?.caseInsensitiveCompare(fKey!) != ComparisonResult.orderedSame else {
+      self.fKey = nil
+      return
+    }
+    
+    self.fKey = fKey
+  }
+  
+  open func getFKey() -> String? {
+    guard self.fKey == nil else {
+      return self.fKey
+    }
+    return self.origin?.fKey
   }
 
   
@@ -299,6 +320,7 @@ open class ContactRequest: Mappable{
     lastName <- map["LastName"]
     zipCode <- map["ZipCode"]
     email <- map["Email"]
+    fKey <- map["FKey"]
     prospect <- map["Prospect"]
     phone <- map["CellNumber"]
     birthday <- map["Birthday"]
