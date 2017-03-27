@@ -20,6 +20,8 @@
 		096D6F50790C0C86FCA1D4E275C53E35 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321CF2EA9812F254838170E79D78F377 /* AlamofireObjectMapper.framework */; };
 		0AB991EA1E803B4000BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
 		0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
+		0AB9926C1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */; };
+		0AB9926D1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */; };
 		0BF98D6E0D1AE4D4920B66715DB9E1D4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793CFDC1C320CA1541CA571B9B53E80 /* Alamofire.framework */; };
 		0DF54EF6561E1295B8765B88B6579241 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E32A6D55C072AC65FEB19879C340 /* FromJSON.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBB0C5AD45A7E5D0BF0C5F6A7E4BC2 /* Timeline.swift */; };
@@ -404,6 +406,7 @@
 		089D85DAB6E1B37DCA60E756F1F1D289 /* NBPhoneNumber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumber.h; path = libPhoneNumber/NBPhoneNumber.h; sourceTree = "<group>"; };
 		0928780CDCA88F721D9188C903A7B65F /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BESessionProtocol.swift; sourceTree = "<group>"; };
+		0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactResponse.swift; sourceTree = "<group>"; };
 		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
 		0B421C6840921ADE9AD67D0551EAEC8A /* NBMetadataCoreTestMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataCoreTestMapper.h; path = libPhoneNumber/NBMetadataCoreTestMapper.h; sourceTree = "<group>"; };
 		0BF1F7D23952BC51F821E87E39F5542D /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
@@ -1189,6 +1192,7 @@
 				5C5FD8E89114F7C1984611B5E96240F1 /* CardBalanceResponse.swift */,
 				8885F6337257B711B15210CEF002A2E0 /* ContactRequest.swift */,
 				DE68E397FB3C0C14EF96B1F4834E656D /* CouponResponse.swift */,
+				0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */,
 				D2E183EBA12E6C9813D9A4DC18D14926 /* GiftCardsResponse.swift */,
 				2AB363C3E0EF5937FAE2219119FCC1EA /* MockDataGenerator.swift */,
 				B4CC9698E66D9A881CDA90FD95441037 /* PaymentResponse.swift */,
@@ -1723,6 +1727,7 @@
 				04A306920ED9092C272C8870C75A28DB /* PushNotificationResponse.swift in Sources */,
 				5256449C6BFB9EE9B6E56F5E3E6FEF3E /* RewardsCountResponse.swift in Sources */,
 				21AF75C666640ECEB1832E4F4935E30C /* StoresResponse.swift in Sources */,
+				0AB9926C1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */,
 				FA709D1B7A524BB252FA46AF0E321DAC /* Timberjack.swift in Sources */,
 				B4295053652C23F12F7DDDB6C241D234 /* TrackTransactionResponse.swift in Sources */,
 			);
@@ -1822,6 +1827,7 @@
 				5321BEA437FD3E88A17131F304102BAC /* GiftCardsResponse.swift in Sources */,
 				6DE2691CBA0F9579E6A0C5BC729C6574 /* MockDataGenerator.swift in Sources */,
 				AF8D0450469074AF838562F11019F132 /* PaymentResponse.swift in Sources */,
+				0AB9926D1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */,
 				562A57DBF2AB56515038AE34476D5ED4 /* PushNotificationResponse.swift in Sources */,
 				87855639B12C15E4CF960B3350CD2C17 /* RewardsCountResponse.swift in Sources */,
 				E9B64E5E86D42F79A266DF4C932F318C /* StoresResponse.swift in Sources */,

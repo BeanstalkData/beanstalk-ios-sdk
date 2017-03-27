@@ -250,42 +250,95 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func createContact(_ request : ContactRequest, handler: @escaping (Result<String>) -> Void) {
-    if (isOnline()) {
-      
-      var params = Mapper().toJSON(request)
-      params["Cell_Number"] = params["CellNumber"]
-      params["Source"] = "iosapp"
-      
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseJSON {
-          response in
-          if (response.result.isSuccess) {
-            if response.result.value != nil {
-              guard let data = response.result.value as? [String],
-                data.count == 2 else{
-                  handler(.failure(ApiError.registrationFailed(reason : nil)))
-                  return
-              }
-              if "Add" == data[1]{
-                handler(.success(data[0]))
-              } else if "Update" == data[1]{
-                handler(.success(data[0]))
-              }
-            } else {
-              handler(.failure(ApiError.registrationFailed(reason : nil)))
-            }
-          } else {
-            if (response.response?.statusCode == 200) {
-              handler(.failure(ApiError.registrationFailed(reason : nil)))
-            } else {
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
-          }
-      }
-    } else {
+  /**
+   Create contact request.
+   
+   - Note: Current server API returns only *contactId* on create request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *contactId* will be available.
+   
+   - parameters:
+      - request: Contact request.
+      - contactClass: Contact class.
+      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   */
+  open func createContact <ContactClass: Mappable> (
+    _ request : ContactRequest,
+    contactClass: ContactClass.Type,
+    fetchContact: Bool = false,
+    handler: @escaping (_ result: Result<CreateContactResponse <ContactClass>>) -> Void) {
+    
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    var params = Mapper().toJSON(request)
+    params["Cell_Number"] = params["CellNumber"]
+    params["Source"] = "iosapp"
+    
+    SessionManagerClass.getSharedInstance()
+      .request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseJSON { response in
+        
+        // check for successful request
+        guard response.result.isSuccess else {
+          if (response.response?.statusCode == 200) {
+            handler(.failure(ApiError.createContactFailed(reason : "Failed with status 200")))
+          } else {
+            handler(.failure(ApiError.network(error: response.result.error)))
+          }
+          return
+        }
+        
+        // check for response value
+        guard let data = response.result.value as? [String], data.count == 2 else {
+          handler(.failure(ApiError.createContactFailed(reason : "Incorrect response data")))
+          return
+        }
+        
+        // check for response contact id
+        var newContactId: String? = nil
+        
+        if "Add" == data[1]{
+          newContactId = data[0]
+        } else if "Update" == data[1]{
+          newContactId = data[0]
+        }
+        
+        guard let contactId = newContactId else {
+          handler(.failure(ApiError.createContactFailed(reason : "Failed to parse contact id")))
+          return
+        }
+        
+        // fetch contact model if requested
+        
+        if fetchContact {
+          self.getContact(contactId, contactClass: contactClass, handler: { (result) in
+            if result.isFailure {
+              let createContactResponse = CreateContactResponse <ContactClass>(
+                contactId: contactId,
+                contact: nil,
+                fetchContactRequested: fetchContact
+              )
+              handler(.success(createContactResponse))
+            } else {
+              let createContactResponse = CreateContactResponse <ContactClass>(
+                contactId: contactId,
+                contact: result.value,
+                fetchContactRequested: fetchContact
+              )
+              handler(.success(createContactResponse))
+            }
+          })
+        }
+        else {
+          let createContactResponse = CreateContactResponse <ContactClass>(
+            contactId: contactId,
+            contact: nil,
+            fetchContactRequested: fetchContact
+          )
+          handler(.success(createContactResponse))
+        }
     }
   }
   
@@ -426,7 +479,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getContact <ContactClass: Mappable> (_ contactId: String, contactClass: ContactClass.Type, handler: @escaping (Result<ContactClass?>) -> Void) {
+  open func getContact <ContactClass: Mappable> (_ contactId: String, contactClass: ContactClass.Type, handler: @escaping (Result<ContactClass>) -> Void) {
     if (isOnline()) {
       let params = [
         "key": self.apiKey,
@@ -523,7 +576,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>)->Void){
+  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>) -> Void){
     
     if (isOnline()) {
       let params = [

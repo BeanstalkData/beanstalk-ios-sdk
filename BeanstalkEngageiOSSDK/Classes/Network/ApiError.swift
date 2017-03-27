@@ -22,6 +22,7 @@ public enum ApiError: BEErrorType {
   case network(error: Error?)
   case networkConnectionError()
   
+  case createContactFailed(reason: Any)
   case authenticatFailed(reason: Any?)
   case registrationFailed(reason: Any?)
   case userEmailExists(reason: Any?)
@@ -58,6 +59,8 @@ public enum ApiError: BEErrorType {
     case .networkConnectionError:
       errorTitle = "Connection Failed"
     
+    case .createContactFailed(let reason):
+      errorTitle = "Create Contact Failed"
     case .authenticatFailed(let reason):
       errorTitle = "Login Failed"
     case .registrationFailed(let reason):
@@ -106,11 +109,12 @@ public enum ApiError: BEErrorType {
     case .networkConnectionError:
       errorMessage = "Connection unavailable"
     
+    case .createContactFailed(let reason):
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
     case .authenticatFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .registrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
-      break
     case .userEmailExists(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it.")
     case .userPhoneExists(let reason):

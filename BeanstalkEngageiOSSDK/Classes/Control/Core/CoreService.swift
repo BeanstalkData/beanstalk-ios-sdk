@@ -110,7 +110,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
           } else {
             updateExisted = updateExisted || result.value!
             
-            self.apiService.createContact(request, handler: { (result) in
+            self.apiService.createContact(request, contactClass: contactClass, handler: { (result) in
               
               if result.isFailure {
                 controller?.hideProgress()
@@ -118,7 +118,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
                 handler(false)
               } else {
                 if !updateExisted {
-                  self.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: result.value!, handler: { (result) in
+                  let contactId = result.value!.contactId
+                  self.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: contactId, handler: { (result) in
                     
                     if result.isFailure {
                       controller?.hideProgress()
@@ -319,14 +320,36 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
-  open func createContact(_ request : ContactRequest, shouldValidate: Bool, handler : @escaping (_ contactId: String?, _ error: ApiError?) -> Void) {
+  /**
+   Creates contact of provided class and persists it in session.
+   
+   - Note: Current server API returns only *contactId* on create request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *contactId* will be available.
+   
+   - parameters:
+      - request: Contact request.
+      - contactClass: Contact class.
+      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   */
+  open func createContact <ContactClass: BEContact> (
+    _ request : ContactRequest,
+    contactClass: ContactClass.Type,
+    fetchContact: Bool = false,
+    handler : @escaping (_ contactId: String?, _ contact: ContactClass?, _ error: ApiError?) -> Void) {
+    
     request.normalize()
     
-    apiService.createContact(request) { (result) in
+    apiService.createContact(request, contactClass: contactClass, fetchContact: fetchContact) { (result) in
       if result.isFailure {
-        handler(nil, result.error as? ApiError)
+        handler(nil, nil, result.error as? ApiError)
       } else {
-        handler(result.value, nil)
+        let contactId = result.value?.contactId
+        let contact = result.value?.contact
+        
+        if fetchContact {
+          self.session.setContact(contact)
+        }
+        
+        handler(contactId, contact, nil)
       }
     }
   }
