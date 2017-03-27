@@ -504,7 +504,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     if let contactId = self.session.getContactId() {
       apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (result) in
         if result.isFailure {
-          handler(false, result.error as! ApiError?)
+          handler(false, result.error as? ApiError)
         }
         else if result.value! != nil {
           self.session.setRegisteredAPNSToken(deviceToken)
@@ -512,12 +512,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
           handler(true, nil)
         }
         else {
-          handler(false, nil)
+          handler(false, ApiError.unknown())
         }
       })
     }
     else {
-      handler(false, nil)
+      handler(false, ApiError.unknown())
     }
   }
   

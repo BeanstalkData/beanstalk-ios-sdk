@@ -798,7 +798,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Push Notifications
   
-  public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<AnyObject?>)->Void) {
+  public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<Any?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -812,7 +812,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .validate(getDefaultErrorHandler())
         .responseObject { (response : DataResponse<PushNotificationResponse>) in
           if self.dataGenerator != nil {
-            handler(.success(nil))
+            handler(.success("success"))
             return
           }
           
@@ -821,7 +821,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               if (result.failed()) {
                 handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
               } else {
-                handler(.success(nil))
+                handler(.success("success"))
               }
             }
             else {
@@ -829,7 +829,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             }
           }
           else if response.response?.statusCode == 200 {
-            handler(.success(nil))
+            handler(.success("success"))
           }
           else {
             handler(.failure(ApiError.network(error: response.result.error)))
