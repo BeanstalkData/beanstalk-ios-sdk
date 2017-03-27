@@ -314,21 +314,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         if fetchContact {
           self.getContact(contactId, contactClass: contactClass, handler: { (result) in
-            if result.isFailure {
-              let createContactResponse = CreateContactResponse <ContactClass>(
-                contactId: contactId,
-                contact: nil,
-                fetchContactRequested: fetchContact
-              )
-              handler(.success(createContactResponse))
-            } else {
-              let createContactResponse = CreateContactResponse <ContactClass>(
-                contactId: contactId,
-                contact: result.value,
-                fetchContactRequested: fetchContact
-              )
-              handler(.success(createContactResponse))
-            }
+            let createContactResponse = CreateContactResponse <ContactClass>(
+              contactId: contactId,
+              contact: result.value,
+              fetchContactRequested: fetchContact
+            )
+            
+            handler(.success(createContactResponse))
           })
         }
         else {
