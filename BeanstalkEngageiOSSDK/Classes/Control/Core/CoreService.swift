@@ -59,7 +59,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   open func registerLoyaltyAccount <ContactClass: BEContact> (_ controller: RegistrationProtocol?, request: ContactRequest, contactClass: ContactClass.Type, handler: @escaping (Bool) -> Void){
     if (controller != nil) {
-      guard controller!.validate(request) else{
+      guard controller!.validate(request) else {
         handler(false)
         return
       }
@@ -82,7 +82,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   open func register <ContactClass: BEContact> (_ controller : RegistrationProtocol?, request : ContactRequest, contactClass: ContactClass.Type, handler : @escaping (Bool) -> Void) {
     if (controller != nil) {
-      guard controller!.validate(request) else{
+      guard controller!.validate(request) else {
         handler(false)
         return
       }
@@ -242,7 +242,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   open func resetPassword(_ controller: AuthenticationProtocol?, email : String?, handler : @escaping (_ success: Bool) -> Void) {
     if controller != nil {
-      guard controller!.validate(email, password: "123456") else{
+      guard controller!.validate(email, password: "123456") else {
         handler(false)
         return
       }
@@ -357,7 +357,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   open func updateContact(_ controller : EditProfileProtocol?, original: BEContact, request : ContactRequest, handler : @escaping (Bool) -> Void){
     
     if controller != nil {
-      guard controller!.validate(request) else{
+      guard controller!.validate(request) else {
         handler(false)
         return
       }
@@ -381,7 +381,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   open func updatePassword(_ controller : UpdatePasswordProtocol?, password: String?, confirmPassword: String?, handler : @escaping (Bool) -> Void){
     
     if controller != nil {
-      guard controller!.validate(password, confirmPassword: confirmPassword) else{
+      guard controller!.validate(password, confirmPassword: confirmPassword) else {
         handler(false)
         return
       }
@@ -526,18 +526,20 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       apiService.pushNotificationDelete(contactId, handler: { (result) in
         
         if result.isFailure {
-          handler(false, result.error as! ApiError?)
+          handler(false, result.error as? ApiError)
         }
         else if result.value! != nil {
+          self.session.setRegisteredAPNSToken(nil)
+          
           handler(true, nil)
         }
         else {
-          handler(false, nil)
+          handler(false, ApiError.unknown())
         }
       })
     }
     else {
-      handler(false, nil)
+      handler(false, ApiError.unknown())
     }
     
     self.session.setRegisteredAPNSToken(nil)
@@ -632,7 +634,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   //      }
   //      if index == cards.count-1 {
   //        handler(cards)
-  //      }else {
+  //      } else {
   //        self.getBalanceForCard(controller, contactId: contactId, token: token, index: index + 1, cards: cards, handler: handler)
   //      }
   //    })
@@ -664,27 +666,27 @@ public extension UIViewController {
   func validate(_ request : ContactRequest) -> Bool{
     if request.origin == nil {
       // Validate create contact request
-      guard (request.getFirstName() != nil &&  !(request.getFirstName()?.isEmpty)!) else{
+      guard (request.getFirstName() != nil &&  !(request.getFirstName()?.isEmpty)!) else {
         self.showMessage("Registration Error", message: "Enter First Name")
         return false
       }
-      guard (request.getLastName() != nil && !(request.getLastName()?.isEmpty)!) else{
+      guard (request.getLastName() != nil && !(request.getLastName()?.isEmpty)!) else {
         self.showMessage("Registration Error", message: "Enter Last Name")
         return false
       }
-      guard (request.getPhone() != nil && (request.getPhone()?.isValidPhone())!) else{
+      guard (request.getPhone() != nil && (request.getPhone()?.isValidPhone())!) else {
         self.showMessage("Registration Error", message: "Please enter a valid phone number")
         return false
       }
-      guard (request.getZipCode() != nil && (request.getZipCode()?.isValidZipCode())!) else{
+      guard (request.getZipCode() != nil && (request.getZipCode()?.isValidZipCode())!) else {
         self.showMessage("Registration Error", message: "Enter 5 Digit Zipcode")
         return false
       }
-      guard (request.getEmail() != nil && (request.getEmail()?.isValidEmail())!) else{
+      guard (request.getEmail() != nil && (request.getEmail()?.isValidEmail())!) else {
         self.showMessage("Registration Error", message: "Enter Valid Email")
         return false
       }
-      guard (request.getPassword() != nil && !(request.getPassword()?.isEmpty)!) else{
+      guard (request.getPassword() != nil && !(request.getPassword()?.isEmpty)!) else {
         self.showMessage("Registration Error", message: "Enter Password")
         return false
       }
@@ -694,11 +696,11 @@ public extension UIViewController {
   }
   
   func validate(_ email : String?, password : String?) -> Bool {
-    guard (email?.isValidEmail())! else{
+    guard (email?.isValidEmail())! else {
       self.showMessage("Login Error", message: "Enter Valid Email")
       return false
     }
-    guard !(password?.isEmpty)! else{
+    guard !(password?.isEmpty)! else {
       self.showMessage("Login Error", message: "Enter Password")
       return false
     }
@@ -706,11 +708,11 @@ public extension UIViewController {
   }
   
   func validate(_ password : String?, confirmPassword : String?) -> Bool {
-    guard !(password?.isEmpty)! else{
+    guard !(password?.isEmpty)! else {
       self.showMessage("Update Error", message: "Enter Password")
       return false
     }
-    guard password == confirmPassword else{
+    guard password == confirmPassword else {
       self.showMessage("Update Error", message: "Passwords do not match")
       return false
     }

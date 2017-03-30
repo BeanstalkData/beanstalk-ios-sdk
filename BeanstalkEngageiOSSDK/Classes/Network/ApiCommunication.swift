@@ -80,7 +80,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if response.result.isSuccess {
             if response.result.value == Optional("null") {
               handler(.success(false))
-            } else{
+            } else {
               let responseData = response.result.value?.data(using: String.Encoding.utf8)
               var jsonResponse : AnyObject? = nil
               
@@ -92,7 +92,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                 handler(.success(false))
                 return
               }
-                
+              
               guard data.count >= 1 else {
                 handler(.success(false))
                 return
@@ -160,7 +160,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if response.result.isSuccess {
             if response.result.value == Optional("null") {
               handler(.success(false))
-            }else{
+            } else {
               let responseData = response.result.value?.data(using: String.Encoding.utf8)
               var jsonResponse : AnyObject? = nil
               
@@ -335,7 +335,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
-   
+    
     if (isOnline()) {
       let params = ["email": email,
                     "password": password,
@@ -350,13 +350,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             if (response.result.value != nil) {
               if response.result.value == Optional("Success"){
                 handler(.success(nil))
-              }else {
+              } else {
                 handler(.failure(ApiError.registrationFailed(reason : nil)))
               }
-            }else{
+            } else {
               handler(.failure(ApiError.registrationFailed(reason : nil)))
             }
-          } else{
+          } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
@@ -391,12 +391,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             authResponse.contactId = String(data[0] as! Int)
             authResponse.token = data[1] as? String
             handler(.success(authResponse))
-          } else{
+          } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
-       handler(.failure(ApiError.networkConnectionError()))
+      handler(.failure(ApiError.networkConnectionError()))
     }
   }
   
@@ -412,7 +412,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if response.result.value == Optional("valid"){
               handler(.success(nil))
-            }else {
+            } else {
               handler(.failure(ApiError.unknown()))
             }
           } else {
@@ -459,7 +459,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             if response.result.value == Optional("error") ||
               response.result.value == Optional("logged out"){
               handler(.success(nil))
-            }else {
+            } else {
               handler(.failure(ApiError.unknown()))
             }
           } else {
@@ -490,7 +490,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if let data = response.result.value, data.count == 1 {
               handler(.success(data[0]))
-            }else {
+            } else {
               handler(.failure(ApiError.unknown()))
             }
           } else {
@@ -518,16 +518,16 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             if (response.result.isSuccess) {
               if response.result.value != nil {
                 guard let data = response.result.value as? [String],
-                  data.count == 1 else{
+                  data.count == 1 else {
                     handler(.failure(ApiError.dataSerialization(reason : "Failed deserialization!")))
                     return
                 }
                 handler(.success(nil))
-              }else{
+              } else {
                 handler(.failure(ApiError.dataSerialization(reason : "Bad request!")))
               }
             }
-            else{
+            else {
               handler(.failure(ApiError.network(error: response.result.error)))
             }
         }
@@ -538,7 +538,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   open func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<AnyObject?>)->Void){
-   
+    
     if (isOnline()) {
       let params = ["token": token,
                     "password": password,
@@ -556,7 +556,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               } else {
                 handler(.failure(ApiError.dataSerialization(reason : "No data available!")))
               }
-            } else{
+            } else {
               handler(.failure(ApiError.dataSerialization(reason : "No data available!")))
             }
           } else {
@@ -587,7 +587,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               if let data = response.result.value {
                 let coupons: [BECoupon] = (data.coupons != nil) ? data.coupons! : []
                 handler(.success(coupons))
-              }else {
+              } else {
                 handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
@@ -687,15 +687,15 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               } else {
                 handler(.failure(ApiError.unknown()))
               }
-            }else if response.response?.statusCode == 200 {
+            } else if response.response?.statusCode == 200 {
               handler(.failure(ApiError.unknown()))
             }
-            else{
+            else {
               handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
-    } else{
+    } else {
       handler(.failure(ApiError.networkConnectionError()))
     }
   }
@@ -732,12 +732,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             } else if response.response?.statusCode == 200 {
               handler(.success(nil))
             }
-            else{
+            else {
               handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
       }
-    } else{
+    } else {
       handler(.failure(ApiError.networkConnectionError()))
     }
   }
@@ -778,7 +778,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             }
           } else if response.response?.statusCode == 200 {
             handler(.success(nil))
-          } else{
+          } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
@@ -803,6 +803,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : DataResponse<PushNotificationResponse>) in
+          
           if self.dataGenerator != nil {
             handler(.success("success"))
             return
@@ -815,15 +816,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               } else {
                 handler(.success("success"))
               }
-            }
-            else {
+            } else {
               handler(.failure(ApiError.unknown()))
             }
-          }
-          else if response.response?.statusCode == 200 {
+          } else if response.response?.statusCode == 200 {
             handler(.success("success"))
-          }
-          else {
+          } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
@@ -832,8 +830,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  // TODO: fix it
-  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<AnyObject?>)->Void) {
+  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<Any?>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -844,6 +841,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : DataResponse<PushNotificationResponse>) in
+          
           if self.dataGenerator != nil {
             handler(.success(nil))
             return
@@ -854,17 +852,14 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               if (result.failed()) {
                 handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
               } else {
-                handler(.success(nil))
+                handler(.success("success"))
               }
-            }
-            else {
+            } else {
               handler(.failure(ApiError.unknown()))
             }
-          }
-          else if response.response?.statusCode == 200 {
-            handler(.success(nil))
-          }
-          else {
+          } else if response.response?.statusCode == 200 {
+            handler(.success("success"))
+          } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
@@ -886,24 +881,22 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .validate(getDefaultErrorHandler())
         .responseArray {
           (response : DataResponse <[BEPushNotificationMessage]>) in
+          
           if self.dataGenerator != nil {
             handler(.success(nil))
+            return
           }
-          else {
-            if (response.result.isSuccess) {
-              if let result = response.result.value {
-                handler(.success(result))
-              }
-              else {
-                handler(.failure(ApiError.unknown()))
-              }
+          
+          if (response.result.isSuccess) {
+            if let result = response.result.value {
+              handler(.success(result))
+            } else {
+              handler(.failure(ApiError.unknown()))
             }
-            else if response.response?.statusCode == 200 {
-              handler(.success(nil))
-            }
-            else{
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
+          } else if response.response?.statusCode == 200 {
+            handler(.success(nil))
+          } else {
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
@@ -924,25 +917,25 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<PushNotificationResponse>) in
+          
           if self.dataGenerator != nil {
             handler(.success(nil))
             return
+          }
+          
+          if (response.result.isSuccess) {
+            if let result = response.result.value {
+              handler(.success(result))
+            } else {
+              handler(.failure(ApiError.unknown()))
+            }
+          } else if response.response?.statusCode == 200 {
+            handler(.success(nil))
           } else {
-            if (response.result.isSuccess) {
-              if let result = response.result.value {
-                handler(.success(result))
-              }else {
-                handler(.failure(ApiError.unknown()))
-              }
-            }else if response.response?.statusCode == 200 {
-              handler(.success(nil))
-            }
-            else{
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
-    }  else {
+    } else {
       handler(.failure(ApiError.networkConnectionError()))
     }
   }
@@ -959,21 +952,22 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<BEPushNotificationMessage>) in
+          
           if self.dataGenerator != nil {
             handler(.success(nil))
+            return
+          }
+          
+          if (response.result.isSuccess) {
+            if let result = response.result.value {
+              handler(.success(result))
+            } else {
+              handler(.failure(ApiError.unknown()))
+            }
+          } else if response.response?.statusCode == 200 {
+            handler(.success(nil))
           } else {
-            if (response.result.isSuccess) {
-              if let result = response.result.value {
-                handler(.success(result))
-              }else {
-                handler(.failure(ApiError.unknown()))
-              }
-            }else if response.response?.statusCode == 200 {
-              handler(.success(nil))
-            }
-            else{
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
+            handler(.failure(ApiError.network(error: response.result.error)))
           }
       }
     } else {
@@ -992,7 +986,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "userName" : userName,
         "key" : self.apiKey,
         "details" : transactionData
-      ] as [String : Any]
+        ] as [String : Any]
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
@@ -1009,7 +1003,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               }
             } else if response.response?.statusCode == 200 {
               handler(.success(nil))
-            } else{
+            } else {
               handler(.failure(ApiError.network(error: response.result.error)))
             }
           }
