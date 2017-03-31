@@ -16,6 +16,7 @@
 		0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC13FCB1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift */; };
 		0AC13FCE1E71901700D4B17D /* ProfileUpdateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC13FCD1E71901700D4B17D /* ProfileUpdateValidator.swift */; };
 		0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */; };
+		0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C1E1E8D64D0004DE357 /* ContactManagementViewController.swift */; };
 		0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB99941DC381C200EE9200 /* UserProgressViewController.swift */; };
 		0AFB99971DC3B7F400EE9200 /* GiftCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB99961DC3B7F400EE9200 /* GiftCardsViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		0AC13FCD1E71901700D4B17D /* ProfileUpdateValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUpdateValidator.swift; sourceTree = "<group>"; };
 		0AC13FCF1E71923500D4B17D /* BeanstalkEngageiOSSDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeanstalkEngageiOSSDK_Example.entitlements; sourceTree = SOURCE_ROOT; };
 		0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationMessagesTableViewController.swift; sourceTree = "<group>"; };
+		0AFA7C1E1E8D64D0004DE357 /* ContactManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManagementViewController.swift; sourceTree = "<group>"; };
 		0AFB99941DC381C200EE9200 /* UserProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProgressViewController.swift; sourceTree = "<group>"; };
 		0AFB99961DC3B7F400EE9200 /* GiftCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftCardsViewController.swift; sourceTree = "<group>"; };
 		1A78645877142EFB4A3A3A44 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				0A6696E31DC3654600E51E82 /* AvailableRewardsViewController.swift */,
 				0AB1DAEF1DBE22EA00B65DC7 /* BaseViewController.swift */,
+				0AFA7C1E1E8D64D0004DE357 /* ContactManagementViewController.swift */,
 				0AFB99961DC3B7F400EE9200 /* GiftCardsViewController.swift */,
 				0AB1DAE51DB50B6400B65DC7 /* MenuViewController.swift */,
 				0A6696E11DC2454200E51E82 /* ProfileViewController.swift */,
@@ -479,6 +482,7 @@
 				0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */,
 				0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */,
 				0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */,
+				0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */,
 				89ACF7F01E4F215300F8B67A /* ApiService.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				0AC13FCE1E71901700D4B17D /* ProfileUpdateValidator.swift in Sources */,

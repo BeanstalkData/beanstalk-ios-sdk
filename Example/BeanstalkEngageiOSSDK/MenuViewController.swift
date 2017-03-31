@@ -16,6 +16,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   @IBOutlet var availableRewardsButton: UIButton!
   @IBOutlet var userProgressButton: UIButton!
   @IBOutlet var giftCardsButton: UIButton!
+  @IBOutlet var contactManagementButton: UIButton!
   
   var coreService: ApiService?
   

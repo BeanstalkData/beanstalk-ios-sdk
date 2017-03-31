@@ -94,6 +94,13 @@
                                     <action selector="resetPasswordAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="r6S-G3-ow7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbU-an-frI">
+                                <rect key="frame" x="113.5" y="324" width="149" height="30"/>
+                                <state key="normal" title="Contact Management"/>
+                                <connections>
+                                    <segue destination="dNs-ue-rNY" kind="show" id="bBp-O1-Im2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -104,6 +111,7 @@
                             <constraint firstItem="iVR-HE-R9j" firstAttribute="top" secondItem="9wx-nb-jBG" secondAttribute="bottom" constant="8" id="SzP-9G-uYp"/>
                             <constraint firstItem="E22-pW-IJS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vlo-Zb-LMD"/>
                             <constraint firstItem="iVR-HE-R9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WXb-Do-Ysb"/>
+                            <constraint firstItem="BbU-an-frI" firstAttribute="centerX" secondItem="iVR-HE-R9j" secondAttribute="centerX" id="ew0-c7-dgI"/>
                             <constraint firstItem="fl4-QA-07R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="g2x-Bg-r52"/>
                             <constraint firstItem="4yI-D0-5a9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iO0-QR-yx3"/>
                             <constraint firstItem="9wx-nb-jBG" firstAttribute="top" secondItem="avf-pm-cm4" secondAttribute="bottom" constant="8" id="iht-iX-GMW"/>
@@ -112,6 +120,7 @@
                             <constraint firstItem="sUc-Oa-rTy" firstAttribute="top" secondItem="NP0-xr-AHM" secondAttribute="bottom" constant="8" id="pnO-tm-cIc"/>
                             <constraint firstItem="NP0-xr-AHM" firstAttribute="top" secondItem="E22-pW-IJS" secondAttribute="bottom" constant="8" id="skT-q9-e8f"/>
                             <constraint firstItem="4yI-D0-5a9" firstAttribute="top" secondItem="fl4-QA-07R" secondAttribute="bottom" constant="8" id="thJ-vZ-EmO"/>
+                            <constraint firstItem="BbU-an-frI" firstAttribute="top" secondItem="iVR-HE-R9j" secondAttribute="bottom" constant="8" id="v1w-eV-qYG"/>
                             <constraint firstItem="9wx-nb-jBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zcz-dV-xGd"/>
                         </constraints>
                     </view>
@@ -129,6 +138,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-38" y="34"/>
+        </scene>
+        <!--Empty Contact-->
+        <scene sceneID="ewf-IS-Syd">
+            <objects>
+                <viewController id="dNs-ue-rNY" customClass="ContactManagementViewController" customModule="BeanstalkEngageiOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a4X-Gk-ysD"/>
+                        <viewControllerLayoutGuide type="bottom" id="uIX-g3-x32"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kot-ON-hnY">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact ID: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3Q-ci-YmI">
+                                <rect key="frame" x="142" y="8" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2p-kT-aon">
+                                <rect key="frame" x="16" y="50" width="152" height="30"/>
+                                <state key="normal" title="Create Empty Contact"/>
+                                <connections>
+                                    <action selector="onCreateContactAction" destination="dNs-ue-rNY" eventType="touchUpInside" id="uHC-6h-InQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91A-zW-5V5">
+                                <rect key="frame" x="256" y="50" width="103" height="30"/>
+                                <state key="normal" title="Delete Contact"/>
+                                <connections>
+                                    <action selector="onDeleteContactAction" destination="dNs-ue-rNY" eventType="touchUpInside" id="Jag-tf-OCb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="B2p-kT-aon" firstAttribute="leading" secondItem="kot-ON-hnY" secondAttribute="leadingMargin" id="436-dc-quh"/>
+                            <constraint firstItem="B2p-kT-aon" firstAttribute="top" secondItem="Q3Q-ci-YmI" secondAttribute="bottom" constant="21" id="D0g-2R-fEU"/>
+                            <constraint firstItem="91A-zW-5V5" firstAttribute="centerY" secondItem="B2p-kT-aon" secondAttribute="centerY" id="LBn-Lj-NwU"/>
+                            <constraint firstItem="Q3Q-ci-YmI" firstAttribute="top" secondItem="a4X-Gk-ysD" secondAttribute="bottom" constant="8" id="NPu-j1-sx3"/>
+                            <constraint firstItem="Q3Q-ci-YmI" firstAttribute="centerX" secondItem="kot-ON-hnY" secondAttribute="centerX" id="pRi-XC-hH8"/>
+                            <constraint firstItem="91A-zW-5V5" firstAttribute="trailing" secondItem="kot-ON-hnY" secondAttribute="trailingMargin" id="qmj-iz-YD2"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Empty Contact" id="dXT-wQ-RBW"/>
+                    <connections>
+                        <outlet property="contactIdLabel" destination="Q3Q-ci-YmI" id="Y9d-NG-bE4"/>
+                        <outlet property="createContactButton" destination="B2p-kT-aon" id="RCU-mP-jAW"/>
+                        <outlet property="deleteContactButton" destination="91A-zW-5V5" id="N7P-gy-Qe8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cES-qf-5zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-685"/>
         </scene>
         <!--Info-->
         <scene sceneID="fRm-2b-bnH">
@@ -528,7 +591,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VKA-Jy-xGf" id="riE-Bo-F5e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-oJ-gLp">
@@ -854,7 +917,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPn-Id-eO9" id="Dam-NW-qyV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEh-5H-HDA">
@@ -928,7 +991,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ekx-7H-A9L" id="Rjm-fs-e6A">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HL-Y9-7E4">

@@ -22,6 +22,10 @@
 		0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
 		0AB9926C1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */; };
 		0AB9926D1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */; };
+		0AFA7C191E8D5F2B004DE357 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C181E8D5F2B004DE357 /* ServerResponse.swift */; };
+		0AFA7C1A1E8D5F2B004DE357 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C181E8D5F2B004DE357 /* ServerResponse.swift */; };
+		0AFA7C1C1E8D5FBE004DE357 /* ServerErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C1B1E8D5FBE004DE357 /* ServerErrorResponse.swift */; };
+		0AFA7C1D1E8D5FBE004DE357 /* ServerErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C1B1E8D5FBE004DE357 /* ServerErrorResponse.swift */; };
 		0BF98D6E0D1AE4D4920B66715DB9E1D4 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5793CFDC1C320CA1541CA571B9B53E80 /* Alamofire.framework */; };
 		0DF54EF6561E1295B8765B88B6579241 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E32A6D55C072AC65FEB19879C340 /* FromJSON.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBB0C5AD45A7E5D0BF0C5F6A7E4BC2 /* Timeline.swift */; };
@@ -407,6 +411,8 @@
 		0928780CDCA88F721D9188C903A7B65F /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BESessionProtocol.swift; sourceTree = "<group>"; };
 		0AB9926B1E892F7800BFDBA7 /* CreateContactResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateContactResponse.swift; sourceTree = "<group>"; };
+		0AFA7C181E8D5F2B004DE357 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
+		0AFA7C1B1E8D5FBE004DE357 /* ServerErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerErrorResponse.swift; sourceTree = "<group>"; };
 		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
 		0B421C6840921ADE9AD67D0551EAEC8A /* NBMetadataCoreTestMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataCoreTestMapper.h; path = libPhoneNumber/NBMetadataCoreTestMapper.h; sourceTree = "<group>"; };
 		0BF1F7D23952BC51F821E87E39F5542D /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
@@ -1198,6 +1204,8 @@
 				B4CC9698E66D9A881CDA90FD95441037 /* PaymentResponse.swift */,
 				95CC0BFAD5B353A047871182667E8B40 /* PushNotificationResponse.swift */,
 				47E65BB0499DAFEB885EC146542AD524 /* RewardsCountResponse.swift */,
+				0AFA7C1B1E8D5FBE004DE357 /* ServerErrorResponse.swift */,
+				0AFA7C181E8D5F2B004DE357 /* ServerResponse.swift */,
 				6AD90DF3526FC8F0839722B3BDE630A0 /* StoresResponse.swift */,
 				58925ECBC170E0487771FD1DD21F0394 /* TrackTransactionResponse.swift */,
 			);
@@ -1713,6 +1721,7 @@
 				078B80DB34ACA696C20136B144B0FAA9 /* BEPushNotificationMessage.swift in Sources */,
 				7F1A8AF064C19439BD0BABAC0FEC1578 /* BERespondersHolder.swift in Sources */,
 				822A6DFB812DB51A4008038DB75D26CC /* BESession.swift in Sources */,
+				0AFA7C1C1E8D5FBE004DE357 /* ServerErrorResponse.swift in Sources */,
 				718DD483C935CC7233CB9C44FADFE77F /* BEStore.swift in Sources */,
 				337C560E95FB554E8941233A402145F7 /* CardBalanceResponse.swift in Sources */,
 				73B00BBB23852F5E80DB96D8CD631927 /* ContactRequest.swift in Sources */,
@@ -1725,6 +1734,7 @@
 				023115B28456E35580F55C36F28D5817 /* MockDataGenerator.swift in Sources */,
 				58EB74A84113CB85613880A6236C1D26 /* PaymentResponse.swift in Sources */,
 				04A306920ED9092C272C8870C75A28DB /* PushNotificationResponse.swift in Sources */,
+				0AFA7C191E8D5F2B004DE357 /* ServerResponse.swift in Sources */,
 				5256449C6BFB9EE9B6E56F5E3E6FEF3E /* RewardsCountResponse.swift in Sources */,
 				21AF75C666640ECEB1832E4F4935E30C /* StoresResponse.swift in Sources */,
 				0AB9926C1E892F7800BFDBA7 /* CreateContactResponse.swift in Sources */,
@@ -1797,6 +1807,7 @@
 				6D3A772D53E05BC5CAE9003DAAB67127 /* ApiCommunication.swift in Sources */,
 				22EDDCBF7FB74904C88A8F1C1EE37761 /* ApiError.swift in Sources */,
 				EFEBC97634F4CEC9B32BB5470BACD362 /* AuthenticateResponse.swift in Sources */,
+				0AFA7C1D1E8D5FBE004DE357 /* ServerErrorResponse.swift in Sources */,
 				0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */,
 				29E6814E6C203637E69F658286A4BD9C /* BEAccountTests.swift in Sources */,
 				3CB3C73392EE7DEFDDE70752072BF376 /* BeanstalkEngageiOSSDK.common-Testing-dummy.m in Sources */,
@@ -1823,6 +1834,7 @@
 				9866836E68DC49D0EBF7705A96EDD101 /* CoreExtensions.swift in Sources */,
 				DEDB47E930AECBC0990C8960CC4E6DEF /* CoreProtocol.swift in Sources */,
 				464AD053F91C334AAC862F24B47FBFB0 /* CoreService.swift in Sources */,
+				0AFA7C1A1E8D5F2B004DE357 /* ServerResponse.swift in Sources */,
 				8A8C2AA5ADD374EB3A6DB4A2B4ED026C /* CouponResponse.swift in Sources */,
 				5321BEA437FD3E88A17131F304102BAC /* GiftCardsResponse.swift in Sources */,
 				6DE2691CBA0F9579E6A0C5BC729C6574 /* MockDataGenerator.swift in Sources */,

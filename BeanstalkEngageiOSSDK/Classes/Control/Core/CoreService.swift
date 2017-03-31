@@ -378,6 +378,28 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Deletes contact from server and clears from session.
+   
+   - parameters:
+      - contactId: Contact ID.
+   */
+  open func deleteContact(
+    contactId: String,
+    handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    apiService.deleteContact(contactId: contactId) { (result) in
+      if result.isFailure {
+        handler(false, result.error as? BEErrorType)
+      }
+      else {
+        self.clearSession()
+        
+        handler(true, nil)
+      }
+    }
+  }
+  
   open func updatePassword(_ controller : UpdatePasswordProtocol?, password: String?, confirmPassword: String?, handler : @escaping (Bool) -> Void){
     
     if controller != nil {

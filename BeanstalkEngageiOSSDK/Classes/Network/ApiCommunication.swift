@@ -334,6 +334,44 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  /**
+   Delete contact request.
+   
+   - parameters:
+      - contactId: Contact ID.
+   */
+  open func deleteContact(
+    contactId: String,
+    handler : @escaping (_ result: Result <Any>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    var params = [
+      "ContactID": contactId,
+      "key": self.apiKey
+    ]
+    
+    SessionManagerClass.getSharedInstance()
+      .request(BASE_URL + "/deleteContact/", method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject { (dataResponse : DataResponse<ServerResponse>) in
+        
+        // check for successful request
+        
+        guard self.handle(
+          serverResponse: dataResponse,
+          onFailError: ApiError.deleteContactFailed(reason: nil),
+          serverErrorHandler: handler) else {
+            return
+        }
+        
+        handler(.success("success"))
+    }
+  }
+  
   open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
     
     if (isOnline()) {
@@ -342,6 +380,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                     "key": self.apiKey,
                     "contact": contactId
       ]
+      
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/addUser/", method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
@@ -1055,6 +1094,29 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   fileprivate func getDefaultErrorHandler() -> DataRequest.Validation {
     return getErrorHandler("Got error while processing your request.")
+  }
+  
+  fileprivate func handle(
+    serverResponse: DataResponse<ServerResponse>,
+    onFailError: ApiError,
+    serverErrorHandler: (_ result: Result<Any>) -> Void) -> Bool {
+    
+    guard serverResponse.result.isSuccess else {
+      serverErrorHandler(.failure(ApiError.network(error: serverResponse.result.error)))
+      return false
+    }
+    
+    guard let response = serverResponse.result.value else {
+      serverErrorHandler(.failure(ApiError.dataSerialization(reason: "Failed to parse response")))
+      return false
+    }
+    
+    guard response.isSuccess() else {
+      serverErrorHandler(.failure(onFailError))
+      return false
+    }
+    
+    return true
   }
 }
 
