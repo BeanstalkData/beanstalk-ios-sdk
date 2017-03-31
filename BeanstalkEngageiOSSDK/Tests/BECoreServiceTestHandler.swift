@@ -166,16 +166,15 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  @discardableResult open func updateContact(_ contact: BEContact, request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func updateContact(request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var updateStatus = false
-    self.testCase.getCoreService()?.updateContact(nil, original: contact, request : request, handler : { result in
-
-      updateStatus = result
-
-      self.testCase .fullfill()
+    self.testCase.getCoreService()?.updateContact(request: request, contactClass: BEContact.self, handler: { (success, _, error) in
+      updateStatus = success
+      
+      self.testCase.fullfill()
     })
     
     self.testCase.wait()

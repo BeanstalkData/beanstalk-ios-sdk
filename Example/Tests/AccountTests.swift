@@ -85,7 +85,7 @@ class AccountTests: BEAccountTests {
             let request = CustomContactRequest(origin: contact!)
             request.preferredReward = "testRewards"
             
-            coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+            coreServiceHandler.updateContact(request: request, handler: { (result) in
               XCTAssert(result, "Update contact request finished with error")
               
               if result {
@@ -108,7 +108,7 @@ class AccountTests: BEAccountTests {
                   let request = CustomContactRequest(origin: user1Contact)
                   request.preferredReward = ""
                   
-                  coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+                  coreServiceHandler.updateContact(request: request, handler: { (result) in
                     XCTAssert(result, "Update contact request finished with error")
                     
                     if result {

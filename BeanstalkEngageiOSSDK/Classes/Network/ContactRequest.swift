@@ -62,6 +62,15 @@ open class ContactRequest: Mappable{
   public required init?(map: Map) {
   }
   
+  open func getContactId() -> String? {
+    if let cId = self.contactId {
+      return String(cId)
+    }
+    else {
+      return nil
+    }
+  }
+  
   open func set(password: String?) {
     self.password = password
   }

@@ -264,7 +264,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     _ request : ContactRequest,
     contactClass: ContactClass.Type,
     fetchContact: Bool = false,
-    handler: @escaping (_ result: Result<CreateContactResponse <ContactClass>>) -> Void) {
+    handler: @escaping (_ result: Result<ContactRequestResponse <ContactClass>>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -314,7 +314,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         if fetchContact {
           self.getContact(contactId, contactClass: contactClass, handler: { (result) in
-            let createContactResponse = CreateContactResponse <ContactClass>(
+            let createContactResponse = ContactRequestResponse <ContactClass>(
               contactId: contactId,
               contact: result.value,
               fetchContactRequested: fetchContact
@@ -324,11 +324,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           })
         }
         else {
-          let createContactResponse = CreateContactResponse <ContactClass>(
+          let createContactResponse = ContactRequestResponse <ContactClass>(
             contactId: contactId,
             contact: nil,
             fetchContactRequested: fetchContact
           )
+          
           handler(.success(createContactResponse))
         }
     }
@@ -369,6 +370,79 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         handler(.success("success"))
+    }
+  }
+  
+  /**
+   Update contact request.
+   
+   - Note: Current server API returns only *success* on update request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *success* will be available.
+   
+   - parameters:
+      - request: Contact request.
+      - contactClass: Contact class.
+      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   */
+  open func updateContact <ContactClass: Mappable> (
+    request : ContactRequest,
+    contactClass: ContactClass.Type,
+    fetchContact: Bool = false,
+    handler: @escaping (_ result: Result<ContactRequestResponse <ContactClass>>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    var params = Mapper().toJSON(request)
+    params["Cell_Number"] = params["CellNumber"]
+    params["Source"] = "iosapp"
+    
+    SessionManagerClass.getSharedInstance()
+      .request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseJSON { response in
+        
+        // check for successful request
+        guard response.result.isSuccess else {
+          if (response.response?.statusCode == 200) {
+            handler(.failure(ApiError.createContactFailed(reason : "Failed with status 200")))
+          } else {
+            handler(.failure(ApiError.network(error: response.result.error)))
+          }
+          return
+        }
+        
+        // check for response value
+        guard let data = response.result.value as? [String], data.count >= 1 else {
+          handler(.failure(ApiError.updateContactFailed(reason : "Incorrect response data")))
+          return
+        }
+        
+        let contactId = data[0]
+        
+        // fetch contact model if requested
+        
+        if fetchContact {
+          self.getContact(contactId, contactClass: contactClass, handler: { (result) in
+            let createContactResponse = ContactRequestResponse <ContactClass>(
+              contactId: contactId,
+              contact: result.value,
+              fetchContactRequested: fetchContact
+            )
+            
+            handler(.success(createContactResponse))
+          })
+        }
+        else {
+          let createContactResponse = ContactRequestResponse <ContactClass>(
+            contactId: contactId,
+            contact: nil,
+            fetchContactRequested: fetchContact
+          )
+          
+          handler(.success(createContactResponse))
+        }
     }
   }
   
@@ -535,41 +609,6 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
-      }
-    } else {
-      handler(.failure(ApiError.networkConnectionError()))
-    }
-  }
-  
-  open func updateContact(_ original: BEContact, request : ContactRequest, handler: @escaping (Result<AnyObject?>) -> Void)  {
-    
-    if (isOnline()) {
-      
-      let params = Mapper().toJSON(request)
-      
-      if params.count <= 1{
-        handler(.failure(ApiError.missingParameterError()))
-      } else {
-        SessionManagerClass.getSharedInstance().request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
-          .validate(getDefaultErrorHandler())
-          .responseJSON {
-            response in
-            if (response.result.isSuccess) {
-              if response.result.value != nil {
-                guard let data = response.result.value as? [String],
-                  data.count == 1 else {
-                    handler(.failure(ApiError.dataSerialization(reason : "Failed deserialization!")))
-                    return
-                }
-                handler(.success(nil))
-              } else {
-                handler(.failure(ApiError.dataSerialization(reason : "Bad request!")))
-              }
-            }
-            else {
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
-        }
       }
     } else {
       handler(.failure(ApiError.networkConnectionError()))

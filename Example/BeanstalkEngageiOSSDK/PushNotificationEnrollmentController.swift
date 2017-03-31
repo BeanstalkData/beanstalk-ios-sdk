@@ -105,13 +105,10 @@ final class PushNotificationEnrollmentController: NSObject {
         updateRequest.set(pushNotificationOptin: true)
         updateRequest.set(inboxMessageOptin: true)
         
-        let validator = ProfileUpdateValidator()
-        
         self.coreService.updateContact(
-          validator,
-          original: cont,
           request: updateRequest,
-          handler: { (success) in
+          contactClass: ContactModel.self,
+          handler: { (success, _, error) in
             completionHandler(success)
           }
         )

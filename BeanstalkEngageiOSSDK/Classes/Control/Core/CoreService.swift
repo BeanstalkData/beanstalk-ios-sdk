@@ -354,28 +354,38 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
-  open func updateContact(_ controller : EditProfileProtocol?, original: BEContact, request : ContactRequest, handler : @escaping (Bool) -> Void){
-    
-    if controller != nil {
-      guard controller!.validate(request) else {
-        handler(false)
-        return
-      }
-    }
+  /**
+   Update contact and persist it in session.
+   
+   - Note: Current server API returns only *success* on update request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is updated but *getContact()* request failed, so only *success* will be available.
+   
+   - parameters:
+      - request: Contact request.
+      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   */
+  open func updateContact <ContactClass: BEContact> (
+    request : ContactRequest,
+    contactClass : ContactClass.Type,
+    fetchContact : Bool = false,
+    handler : @escaping (_ success : Bool, _ contact : ContactClass?, _ error : BEErrorType?) -> Void) {
     
     request.normalize()
     
-    controller?.showProgress("Updating Profile")
-    apiService.updateContact(original, request: request, handler: { (result) in
-      controller?.hideProgress()
-      
+    apiService.updateContact(request: request, contactClass: contactClass, fetchContact: fetchContact) { (result) in
       if result.isFailure {
-        controller?.showMessage(ApiError.updateProfileError(reason: result.error! as! BEErrorType))
-        handler(false)
+        handler(false, nil, result.error as? BEErrorType)
       } else {
-        handler(true)
+        let contactId = request.getContactId()
+        var contact: ContactClass?
+        
+        if let fetchedContact = result.value?.contact {
+          contact = fetchedContact
+          self.session.setContact(fetchedContact)
+        }
+        
+        handler(true, contact, nil)
       }
-    })
+    }
   }
   
   /**

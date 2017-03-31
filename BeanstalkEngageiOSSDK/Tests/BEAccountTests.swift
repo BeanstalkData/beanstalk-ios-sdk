@@ -328,7 +328,7 @@ open class BEAccountTests: BEBaseTestCase {
             request.set(emailOptin: (contact!.emailOptin != 0))
             request.set(gender: contact!.gender)
             
-            coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+            coreServiceHandler.updateContact(request: request, handler: { (result) in
               XCTAssert(result, "Update contact request finished with error")
               
               if result {
@@ -357,7 +357,7 @@ open class BEAccountTests: BEBaseTestCase {
                     request.set(emailOptin: (user1Contact.emailOptin != 0))
                     request.set(gender: user1Contact.gender)
                     
-                    coreServiceHandler.updateContact(contact!, request: request, handler: { (result) in
+                    coreServiceHandler.updateContact(request: request, handler: { (result) in
                       XCTAssert(result, "Update contact request finished with error")
                       
                       if result {

@@ -177,14 +177,30 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   }
   
   @IBAction func saveContactAction() {
-    if let cont = self.contact {
-      if let upd = self.updateContactRequest {
-        self.coreService?.updateContact(self, original: cont, request: upd, handler: { (success) in
-          if success {
-            self.loadProfile()
-          }
-        })
-      }
+    guard let request = self.updateContactRequest else {
+      return
     }
+    
+    weak var weakSelf = self
+    self.showProgress("Updating Profile")
+    self.coreService?.updateContact(
+      request: request,
+      contactClass: ContactModel.self,
+      fetchContact: true,
+      handler: { (success, fetchedContact, error) in
+        weakSelf?.hideProgress()
+        
+        if success {
+          if let contact = fetchedContact {
+            weakSelf?.contact = contact
+            
+            weakSelf?.updateProfile()
+          } else {
+            weakSelf?.loadProfile()
+          }
+        } else {
+          weakSelf?.showMessage(error?.errorTitle(), message: error?.errorMessage())
+        }
+    })
   }
 }
