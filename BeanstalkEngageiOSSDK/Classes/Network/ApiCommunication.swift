@@ -275,6 +275,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     params["Cell_Number"] = params["CellNumber"]
     params["Source"] = "iosapp"
     
+    weak var weakSelf = self
     SessionManagerClass.getSharedInstance()
       .request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
@@ -313,7 +314,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         // fetch contact model if requested
         
         if fetchContact {
-          self.getContact(contactId, contactClass: contactClass, handler: { (result) in
+          weakSelf?.getContact(contactId, contactClass: contactClass, handler: { (result) in
             let createContactResponse = ContactRequestResponse <ContactClass>(
               contactId: contactId,
               contact: result.value,
@@ -355,6 +356,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       "key": self.apiKey
     ]
     
+    weak var weakSelf = self
     SessionManagerClass.getSharedInstance()
       .request(BASE_URL + "/deleteContact/", method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
@@ -362,10 +364,10 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         // check for successful request
         
-        guard self.handle(
+        guard weakSelf?.handle(
           serverResponse: dataResponse,
           onFailError: ApiError.deleteContactFailed(reason: nil),
-          serverErrorHandler: handler) else {
+          serverErrorHandler: handler) ?? true else {
             return
         }
         
@@ -398,6 +400,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     params["Cell_Number"] = params["CellNumber"]
     params["Source"] = "iosapp"
     
+    weak var weakSelf = self
     SessionManagerClass.getSharedInstance()
       .request(BASE_URL + "/addContact/?key=" + self.apiKey, method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
@@ -424,7 +427,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         // fetch contact model if requested
         
         if fetchContact {
-          self.getContact(contactId, contactClass: contactClass, handler: { (result) in
+          weakSelf?.getContact(contactId, contactClass: contactClass, handler: { (result) in
             let createContactResponse = ContactRequestResponse <ContactClass>(
               contactId: contactId,
               contact: result.value,
@@ -653,13 +656,18 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "key": self.apiKey,
         "Card": contactId
       ]
+      
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/getOffersM.php", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<CouponResponse<CouponClass>>) in
-          if self.dataGenerator != nil {
-            let coupons: [BECoupon] = (self.dataGenerator!.getUserOffers().coupons != nil) ? self.dataGenerator!.getUserOffers().coupons! : []
-            handler(.success(coupons))
+          if weakSelf?.dataGenerator != nil {
+            var coupons: [BECoupon]? = weakSelf?.dataGenerator!.getUserOffers().coupons
+            if coupons == nil {
+              coupons = []
+            }
+            handler(.success(coupons!))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
@@ -686,12 +694,18 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       let params = [
         "contact": contactId
       ]
+      
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/getProgress.php?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<RewardsCountResponse>) in
-          if self.dataGenerator != nil {
-            handler(.success(self.dataGenerator!.getUserProgress().getCount()))
+          if weakSelf?.dataGenerator != nil {
+            var count: Double? = weakSelf?.dataGenerator!.getUserProgress().getCount()
+            if count == nil {
+              count = 0
+            }
+            handler(.success(count!))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
@@ -719,12 +733,17 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "token" : token
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/list?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<GCResponse<GiftCardClass>>) in
-          if self.dataGenerator != nil {
-            handler(.success(self.dataGenerator!.getUserGiftCards().getCards()!))
+          if weakSelf?.dataGenerator != nil {
+            var cards = weakSelf?.dataGenerator!.getUserGiftCards().getCards()
+            if cards == nil {
+              cards = []
+            }
+            handler(.success(cards!))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
@@ -752,12 +771,14 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "token" : token,
         "cardNumber" : number
       ]
+      
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<GCBResponse>) in
-          if self.dataGenerator != nil {
-            handler(.success(self.dataGenerator!.getUserGiftCardBalance().getCardBalance()))
+          if weakSelf?.dataGenerator != nil {
+            handler(.success(weakSelf?.dataGenerator!.getUserGiftCardBalance().getCardBalance()))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
@@ -794,12 +815,14 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       } else {
         params["coupons"] = ""
       }
+      
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<PaymentResponse>) in
-          if self.dataGenerator != nil {
-            handler(.success(self.dataGenerator!.getUserPayment().token))
+          if weakSelf?.dataGenerator != nil {
+            handler(.success(weakSelf?.dataGenerator!.getUserPayment().token))
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
@@ -878,11 +901,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "platform" : "iOS"
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : DataResponse<PushNotificationResponse>) in
           
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success("success"))
             return
           }
@@ -916,11 +940,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "key" : self.apiKey
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject { (response : DataResponse<PushNotificationResponse>) in
           
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success(nil))
             return
           }
@@ -955,12 +980,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "maxResults": NSNumber(value: maxResults)
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
           (response : DataResponse <[BEPushNotificationMessage]>) in
           
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success(nil))
             return
           }
@@ -991,12 +1017,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "action": status.rawValue
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<PushNotificationResponse>) in
           
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success(nil))
             return
           }
@@ -1026,12 +1053,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "key" : self.apiKey
       ]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<BEPushNotificationMessage>) in
           
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success(nil))
             return
           }
@@ -1066,11 +1094,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         "details" : transactionData
         ] as [String : Any]
       
+      weak var weakSelf = self
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<TrackTransactionResponse>) in
-          if self.dataGenerator != nil {
+          if weakSelf?.dataGenerator != nil {
             handler(.success(nil))
           } else {
             if (response.result.isSuccess) {
