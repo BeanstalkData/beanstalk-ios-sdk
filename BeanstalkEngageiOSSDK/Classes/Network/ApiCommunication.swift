@@ -344,7 +344,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    */
   open func deleteContact(
     contactId: String,
-    handler : @escaping (_ result: Result <Any>) -> Void) {
+    handler : @escaping (_ result: Result<Any>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -449,7 +449,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<Any>) -> Void) {
     
     if (isOnline()) {
       let params = ["email": email,
@@ -465,7 +465,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if (response.result.value != nil) {
               if response.result.value == Optional("Success"){
-                handler(.success(nil))
+                handler(.success("success"))
               } else {
                 handler(.failure(ApiError.registrationFailed(reason : nil)))
               }
@@ -516,7 +516,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func checkUserSession(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func checkUserSession(_ contactId: String, token : String, handler: @escaping (Result<Any>) -> Void) {
     
     if (isOnline()) {
       let params = ["contact": contactId,
@@ -527,7 +527,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           response in
           if (response.result.isSuccess) {
             if response.result.value == Optional("valid"){
-              handler(.success(nil))
+              handler(.success("valid"))
             } else {
               handler(.failure(ApiError.unknown()))
             }
@@ -563,7 +563,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func logoutUser(_ contactId: String, token : String, handler: @escaping (Result<AnyObject?>) -> Void) {
+  open func logoutUser(_ contactId: String, token : String, handler: @escaping (Result<Any>) -> Void) {
     if (isOnline()) {
       let params = ["contact": contactId,
                     "token" : token]
@@ -574,7 +574,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if response.result.value == Optional("error") ||
               response.result.value == Optional("logged out"){
-              handler(.success(nil))
+              handler(.success("logged out"))
             } else {
               handler(.failure(ApiError.unknown()))
             }
@@ -618,7 +618,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<AnyObject?>)->Void){
+  open func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<Any>)->Void){
     
     if (isOnline()) {
       let params = ["token": token,
@@ -633,7 +633,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if (response.result.value != nil) {
               if response.result.value == Optional("success"){
-                handler(.success(nil))
+                handler(.success("success"))
               } else {
                 handler(.failure(ApiError.dataSerialization(reason : "No data available!")))
               }
@@ -831,7 +831,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                 handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.success(nil))
+              handler(.failure(ApiError.unknown()))
             }
             else {
               handler(.failure(ApiError.network(error: response.result.error)))
@@ -878,7 +878,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               handler(.failure(ApiError.unknown()))
             }
           } else if response.response?.statusCode == 200 {
-            handler(.success(nil))
+            handler(.success([]))
           } else {
             handler(.failure(ApiError.network(error: response.result.error)))
           }
@@ -893,198 +893,203 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<Any?>)->Void) {
     
-    if (isOnline()) {
-      let params = [
-        "contact_id" : contactId,
-        "deviceToken" : deviceToken,
-        "key" : self.apiKey,
-        "platform" : "iOS"
-      ]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseObject { (response : DataResponse<PushNotificationResponse>) in
-          
-          if weakSelf?.dataGenerator != nil {
-            handler(.success("success"))
-            return
-          }
-          
-          if (response.result.isSuccess) {
-            if let result = response.result.value {
-              if (result.failed()) {
-                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
-              } else {
-                handler(.success("success"))
-              }
-            } else {
-              handler(.failure(ApiError.unknown()))
-            }
-          } else if response.response?.statusCode == 200 {
-            handler(.success("success"))
-          } else {
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contact_id" : contactId,
+      "deviceToken" : deviceToken,
+      "key" : self.apiKey,
+      "platform" : "iOS"
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject { (response : DataResponse<PushNotificationResponse>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.success("success"))
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let result = response.result.value {
+            if (result.failed()) {
+              handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+            } else {
+              handler(.success("success"))
+            }
+          } else {
+            handler(.failure(ApiError.unknown()))
+          }
+        } else if response.response?.statusCode == 200 {
+          handler(.success("success"))
+        } else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+        }
     }
   }
   
-  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<Any?>)->Void) {
+  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<Any>)->Void) {
     
-    if (isOnline()) {
-      let params = [
-        "contact_id" : contactId,
-        "key" : self.apiKey
-      ]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseObject { (response : DataResponse<PushNotificationResponse>) in
-          
-          if weakSelf?.dataGenerator != nil {
-            handler(.success(nil))
-            return
-          }
-          
-          if (response.result.isSuccess) {
-            if let result = response.result.value {
-              if (result.failed()) {
-                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
-              } else {
-                handler(.success("success"))
-              }
-            } else {
-              handler(.failure(ApiError.unknown()))
-            }
-          } else if response.response?.statusCode == 200 {
-            handler(.success("success"))
-          } else {
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contact_id" : contactId,
+      "key" : self.apiKey
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject { (response : DataResponse<PushNotificationResponse>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.success("success"))
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let result = response.result.value {
+            if (result.failed()) {
+              handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+            } else {
+              handler(.success("success"))
+            }
+          } else {
+            handler(.failure(ApiError.unknown()))
+          }
+        } else if response.response?.statusCode == 200 {
+          handler(.success("success"))
+        } else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+        }
     }
   }
   
-  public func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result <[BEPushNotificationMessage]?>) -> Void) {
+  public func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result<[BEPushNotificationMessage]>) -> Void) {
     
-    if (isOnline()) {
-      let params: [String: Any] = [
-        "contactId" : contactId,
-        "key" : self.apiKey,
-        "maxResults": NSNumber(value: maxResults)
-      ]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseArray {
-          (response : DataResponse <[BEPushNotificationMessage]>) in
-          
-          if weakSelf?.dataGenerator != nil {
-            handler(.success(nil))
-            return
-          }
-          
-          if (response.result.isSuccess) {
-            if let result = response.result.value {
-              handler(.success(result))
-            } else {
-              handler(.failure(ApiError.unknown()))
-            }
-          } else if response.response?.statusCode == 200 {
-            handler(.success(nil))
-          } else {
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params: [String: Any] = [
+      "contactId" : contactId,
+      "key" : self.apiKey,
+      "maxResults": NSNumber(value: maxResults)
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseArray {
+        (response : DataResponse <[BEPushNotificationMessage]>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.success([]))
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let result = response.result.value {
+            handler(.success(result))
+          } else {
+            handler(.failure(ApiError.unknown()))
+          }
+        } else if response.response?.statusCode == 200 {
+          handler(.success([]))
+        } else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+        }
     }
   }
   
-  public func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (Result <AnyObject?>) -> Void) {
+  public func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (Result<Any>) -> Void) {
     
-    if (isOnline()) {
-      let params = [
-        "message_id" : messageId,
-        "key" : self.apiKey,
-        "action": status.rawValue
-      ]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseObject {
-          (response : DataResponse<PushNotificationResponse>) in
-          
-          if weakSelf?.dataGenerator != nil {
-            handler(.success(nil))
-            return
-          }
-          
-          if (response.result.isSuccess) {
-            if let result = response.result.value {
-              handler(.success(result))
-            } else {
-              handler(.failure(ApiError.unknown()))
-            }
-          } else if response.response?.statusCode == 200 {
-            handler(.success(nil))
-          } else {
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "message_id" : messageId,
+      "key" : self.apiKey,
+      "action": status.rawValue
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject {
+        (response : DataResponse<PushNotificationResponse>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.success("success"))
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let result = response.result.value {
+            handler(.success(result))
+          } else {
+            handler(.failure(ApiError.unknown()))
+          }
+        } else if response.response?.statusCode == 200 {
+          handler(.success("success"))
+        } else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+        }
     }
   }
   
-  public func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (Result <BEPushNotificationMessage?>) -> Void) {
+  public func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (Result<BEPushNotificationMessage>) -> Void) {
     
-    if (isOnline()) {
-      let params = [
-        "msg_id" : messageId,
-        "key" : self.apiKey
-      ]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseObject {
-          (response : DataResponse<BEPushNotificationMessage>) in
-          
-          if weakSelf?.dataGenerator != nil {
-            handler(.success(nil))
-            return
-          }
-          
-          if (response.result.isSuccess) {
-            if let result = response.result.value {
-              handler(.success(result))
-            } else {
-              handler(.failure(ApiError.unknown()))
-            }
-          } else if response.response?.statusCode == 200 {
-            handler(.success(nil))
-          } else {
-            handler(.failure(ApiError.network(error: response.result.error)))
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "msg_id" : messageId,
+      "key" : self.apiKey
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject {
+        (response : DataResponse<BEPushNotificationMessage>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        if (response.result.isSuccess) {
+          if let result = response.result.value {
+            handler(.success(result))
+          } else {
+            handler(.failure(ApiError.unknown()))
+          }
+        } else if response.response?.statusCode == 200 {
+          handler(.failure(ApiError.unknown()))
+        } else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+        }
     }
   }
   
   
   //MARK: - Tracking
   
-  func trackTransaction(_ contactId: String, userName: String, transactionData: AnyObject, handler: @escaping (Result<AnyObject?>)->Void) {
+  func trackTransaction(_ contactId: String, userName: String, transactionData: AnyObject, handler: @escaping (Result<Any>)->Void) {
     
     if (isOnline()) {
       let params = [
@@ -1100,16 +1105,16 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .responseObject {
           (response : DataResponse<TrackTransactionResponse>) in
           if weakSelf?.dataGenerator != nil {
-            handler(.success(nil))
+            handler(.success("success"))
           } else {
             if (response.result.isSuccess) {
-              if let _ = response.result.value {
-                handler(.success(nil))
+              if let result = response.result.value {
+                handler(.success(result))
               } else {
                 handler(.failure(ApiError.unknown()))
               }
             } else if response.response?.statusCode == 200 {
-              handler(.success(nil))
+              handler(.success("success"))
             } else {
               handler(.failure(ApiError.network(error: response.result.error)))
             }

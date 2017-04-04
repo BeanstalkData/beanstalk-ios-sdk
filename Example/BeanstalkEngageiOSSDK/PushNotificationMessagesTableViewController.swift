@@ -40,10 +40,10 @@ class PushNotificationMessagesTableViewController: UITableViewController, CorePr
         weakSelf?.hideProgress()
         
         if let err = error {
-          self.showMessage(err)
+          weakSelf?.showMessage(err)
         }
         else {
-          self.messages = messages
+          weakSelf?.messages = messages
         }
       })
     }

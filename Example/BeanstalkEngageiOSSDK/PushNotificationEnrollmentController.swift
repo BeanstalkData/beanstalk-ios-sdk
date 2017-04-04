@@ -61,7 +61,7 @@ final class PushNotificationEnrollmentController: NSObject {
     self.requestPushNotificationPermissions(true)
   }
   
-  func unregisterForPushNotification(_ completionHandler: @escaping (_ error: ApiError?) -> Void) {
+  func unregisterForPushNotification(_ completionHandler: @escaping (_ error: BEErrorType?) -> Void) {
     if self.coreService.isAuthenticated() {
       weak var weakSelf = self
       
@@ -85,7 +85,7 @@ final class PushNotificationEnrollmentController: NSObject {
     return self.deviceToken != nil
   }
   
-  func sendDeviceToken(_ completionHandler: @escaping (_ error: ApiError?) -> Void) {
+  func sendDeviceToken(_ completionHandler: @escaping (_ error: BEErrorType?) -> Void) {
     if !self.isDeviceTokenRequested() || !self.coreService.isAuthenticated() {
       return
     }

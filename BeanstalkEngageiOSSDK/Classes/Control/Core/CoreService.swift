@@ -556,96 +556,98 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   //MARK: - Push Notifications
   
-  open func pushNotificationEnroll(_ deviceToken: String, handler: @escaping (_ success: Bool, _ error: ApiError?) -> Void) {
-    if let contactId = self.session.getContactId() {
-      weak var weakSelf = self
-      apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (result) in
-        if result.isFailure {
-          handler(false, result.error as? ApiError)
-        }
-        else if result.value! != nil {
-          weakSelf?.session.setRegisteredAPNSToken(deviceToken)
-          
-          handler(true, nil)
-        }
-        else {
-          handler(false, ApiError.unknown())
-        }
-      })
-    }
-    else {
+  open func pushNotificationEnroll(_ deviceToken: String, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
       handler(false, ApiError.unknown())
-    }
-  }
-  
-  open func pushNotificationDelete(_ handler: @escaping (_ success: Bool, _ error: ApiError?) -> Void) {
-    if let contactId = self.session.getContactId() {
-      weak var weakSelf = self
-      apiService.pushNotificationDelete(contactId, handler: { (result) in
-        
-        if result.isFailure {
-          handler(false, result.error as? ApiError)
-        }
-        else if result.value! != nil {
-          weakSelf?.session.setRegisteredAPNSToken(nil)
-          
-          handler(true, nil)
-        }
-        else {
-          handler(false, ApiError.unknown())
-        }
-      })
-    }
-    else {
-      handler(false, ApiError.unknown())
+      return
     }
     
-    self.session.setRegisteredAPNSToken(nil)
-  }
-  
-  open func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: ApiError?) -> Void) {
-    if let contactId = self.session.getContactId() {
-      apiService.pushNotificationGetMessages(contactId, maxResults: maxResults, handler: { (result) in
-        if result.isFailure {
-          handler(nil, result.error as! ApiError?)
-        }
-        else if result.value! != nil {
-          handler(result.value!, nil)
-        }
-        else {
-          handler(nil, ApiError.unknown())
-        }
-      })
-    }
-    else {
-      handler(nil, ApiError.unknown())
-    }
-  }
-  
-  open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: ApiError?) -> Void) {
-    apiService.pushNotificationUpdateStatus(messageId, status: status) { (result) in
-      if result.isFailure {
-        handler(false, result.error as! ApiError?)
-      }
-      else if result.isSuccess {
+    weak var weakSelf = self
+    apiService.pushNotificationEnroll(contactId, deviceToken: deviceToken, handler: { (result) in
+      
+      if result.isSuccess {
+        weakSelf?.session.setRegisteredAPNSToken(deviceToken)
+        
         handler(true, nil)
       }
       else {
-        handler(false, ApiError.unknown())
+        handler(false, result.error as? BEErrorType)
+      }
+    })
+  }
+  
+  open func pushNotificationDelete(_ handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false, ApiError.unknown())
+      return
+    }
+    
+    weak var weakSelf = self
+    apiService.pushNotificationDelete(contactId, handler: { (result) in
+      
+      if result.isSuccess {
+        weakSelf?.session.setRegisteredAPNSToken(nil)
+        
+        handler(true, nil)
+      }
+      else {
+        handler(false, result.error as? BEErrorType)
+      }
+    })
+  }
+  
+  open func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.unknown())
+      return
+    }
+    
+    apiService.pushNotificationGetMessages(contactId, maxResults: maxResults, handler: { (result) in
+      
+      if result.isSuccess {
+        handler(result.value, nil)
+      }
+      else {
+        handler(nil, result.error as? BEErrorType)
+      }
+    })
+  }
+  
+  open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false, ApiError.unknown())
+      return
+    }
+    
+    apiService.pushNotificationUpdateStatus(messageId, status: status) { (result) in
+      
+      if result.isSuccess {
+        handler(true, nil)
+      }
+      else {
+        handler(false, result.error as? BEErrorType)
       }
     }
   }
   
-  open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: ApiError?) -> Void) {
+  open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.unknown())
+      return
+    }
+    
     apiService.pushNotificationGetMessageById(messageId) { (result) in
-      if result.isFailure {
-        handler(nil, result.error as! ApiError?)
-      }
-      else if result.value! != nil {
-        handler(result.value!, nil)
+      
+      if result.isSuccess {
+        handler(result.value, nil)
       }
       else {
-        handler(nil, ApiError.unknown())
+        handler(nil, result.error as? BEErrorType)
       }
     }
   }

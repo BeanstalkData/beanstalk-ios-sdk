@@ -36,7 +36,7 @@ open class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtoco
     return false
   }
   
-  open func getStores() -> [BEStore]?{
+  open func getStores() -> [BEStore]? {
     return stores
   }
 }
