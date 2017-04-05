@@ -25,6 +25,8 @@ public enum ApiError: BEErrorType {
   case createContactFailed(reason: Any)
   case deleteContactFailed(reason: Any?)
   case updateContactFailed(reason: Any)
+  case fetchContactFailed(reason: Any)
+  
   case authenticatFailed(reason: Any?)
   case registrationFailed(reason: Any?)
   case userEmailExists(reason: Any?)
@@ -67,6 +69,9 @@ public enum ApiError: BEErrorType {
       errorTitle = "Delete Contact Failed"
     case .updateContactFailed(let reason):
       errorTitle = "Update Contact Failed"
+    case .fetchContactFailed(let reason):
+      errorTitle = "Fetch Contact Failed"
+      
     case .authenticatFailed(let reason):
       errorTitle = "Login Failed"
     case .registrationFailed(let reason):
@@ -121,6 +126,9 @@ public enum ApiError: BEErrorType {
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to delete contact")
     case .updateContactFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
+    case .fetchContactFailed(let reason):
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to fetch contact")
+      
     case .authenticatFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .registrationFailed(let reason):

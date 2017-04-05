@@ -250,6 +250,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  
+  //MARK: - Contact
+  
   /**
    Create contact request.
    
@@ -448,6 +451,104 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
     }
   }
+  
+  open func fetchContactBy <ContactClass: Mappable> (
+    fetchField: ContactFetchField,
+    fieldValue: String,
+    prospectTypes: [ProspectType],
+    contactClass: ContactClass.Type,
+    handler: @escaping (Result<ContactClass?>) -> Void
+    ) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "type": fetchField.requestValue(),
+      "key": self.apiKey,
+      "q": fieldValue
+    ]
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+      .validate(getDefaultErrorHandler())
+      .responseString {
+        response in
+        
+        guard response.result.isSuccess else {
+          if (response.response?.statusCode == 200) {
+            handler(.failure(ApiError.fetchContactFailed(reason : "Failed with status 200")))
+          } else {
+            handler(.failure(ApiError.network(error: response.result.error)))
+          }
+          return
+        }
+        
+        if response.result.value == Optional("null") {
+          handler(.success(nil))
+          return
+        }
+        
+        let responseData = response.result.value?.data(using: String.Encoding.utf8)
+        var jsonResponse : AnyObject? = nil
+        
+        do {
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+        } catch { }
+        
+        guard let data = jsonResponse as? [[String : Any]], data.count >= 1 else {
+          handler(.success(nil))
+          return
+        }
+        
+        for contactData in data {
+          var fieldEquals = false
+          var prospectEquals = true
+          
+          
+          // check for email equals
+          guard let contactFieldValue = contactData[fetchField.fieldName()] as? String else {
+            continue
+          }
+          
+          if contactFieldValue == fieldValue {
+            fieldEquals = true
+            
+            // check for required prospect type
+            if let prospect = contactData["Prospect"] as? String {
+              // we need initial 'false' if desired prospect type specified
+              var contactProspectEquals = (prospectTypes.count == 0)
+              
+              for prospectType in prospectTypes {
+                if prospectType == prospect {
+                  contactProspectEquals = true
+                  break
+                }
+              }
+              
+              prospectEquals = contactProspectEquals
+            }
+          }
+          
+          // if both email and prospect satusfies - contact exists
+          if fieldEquals && prospectEquals {
+            let map = Map(mappingType: .fromJSON, JSON: contactData)
+            
+            var contact = ContactClass(map: map)
+            contact?.mapping(map: map)
+            
+            handler(.success(contact))
+            return
+          }
+        }
+        
+        handler(.success(nil))
+    }
+  }
+  
+  
+  //MARK: -
   
   open func createUser(_ email: String, password: String, contactId: String, handler: @escaping (Result<Any>) -> Void) {
     
@@ -1228,4 +1329,18 @@ func ==(left: ProspectType, right: String) -> Bool {
   let strValue = left.rawValue
   
   return strValue.caseInsensitiveCompare(right) == ComparisonResult.orderedSame
+}
+
+public enum ContactFetchField: String {
+  case phoneNumber = "cell_number"
+  case email = "email"
+  case fKey = "fkey"
+  
+  public func requestValue() -> String {
+    return self.rawValue
+  }
+  
+  public func fieldName() -> String {
+    return self.rawValue
+  }
 }
