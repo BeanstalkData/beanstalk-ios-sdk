@@ -452,12 +452,28 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  /** Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).
+   
+   ## Note ##
+   Currently it checks for exact match, i.e.
+   ````
+   isEqual = (fieldValue == contact[fetchField])
+   ````
+   
+   - Parameter fetchField: Field by which fetch will be performed.
+   - Parameter fieldValue: Fetch field value, i.e. query string.
+   - Parameter prospectTypes: Prospect types list. Contact with specified prospect value will be evaluated only. If empty, prospect will be ignored. Default is *empty*.
+   - Parameter contactClass: Contact model class.
+   - Parameter handler: Completion handler.
+   - Parameter result: Result with contact model, no contact model or error if occur.
+   */
+  
   open func fetchContactBy <ContactClass: Mappable> (
     fetchField: ContactFetchField,
     fieldValue: String,
-    prospectTypes: [ProspectType],
+    prospectTypes: [ProspectType] = [],
     contactClass: ContactClass.Type,
-    handler: @escaping (Result<ContactClass?>) -> Void
+    handler: @escaping (_ result: Result<ContactClass?>) -> Void
     ) {
     
     guard isOnline() else {
@@ -1341,6 +1357,13 @@ public enum ContactFetchField: String {
   }
   
   public func fieldName() -> String {
-    return self.rawValue
+    switch self {
+    case .phoneNumber:
+      return "Cell_Number"
+    case .email:
+      return "contactEmail"
+    case .fKey:
+      return "FKey"
+    }
   }
 }

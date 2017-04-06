@@ -331,6 +331,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  
+  //MARK: - Contact
+  
   /**
    Creates contact of provided class and persists it in session.
    
@@ -415,14 +418,61 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.deleteContact(contactId: contactId) { (result) in
       if result.isFailure {
         handler(false, result.error as? BEErrorType)
-      }
-      else {
+      } else {
         weakSelf?.clearSession()
         
         handler(true, nil)
       }
     }
   }
+  
+  /** Fetches contact by specific field. Completion handler returns contact (if found) or error (if occur).
+   
+   ## Note ##
+   Currently it checks for exact match, i.e. 
+   ````
+   isEqual = (fieldValue == contact[fetchField])
+   ````
+   
+   - Parameter fetchField: Field by which fetch will be performed.
+   - Parameter fieldValue: Fetch field value, i.e. query string.
+   - Parameter prospectTypes: Prospect types list. Contact with specified prospect value will be evaluated only. If empty, prospect will be ignored. Default is *empty*.
+   - Parameter contactClass: Contact model class.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter contact: Contact model if found.
+   - Parameter error: Error if occur.
+   */
+  
+  open func fetchContactBy <ContactClass: BEContact> (
+    fetchField: ContactFetchField,
+    fieldValue: String,
+    prospectTypes: [ProspectType] = [],
+    contactClass: ContactClass.Type,
+    handler: @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void
+    ) {
+    
+    weak var weakSelf = self
+    apiService.fetchContactBy(
+      fetchField: fetchField,
+      fieldValue: fieldValue,
+      prospectTypes: prospectTypes,
+      contactClass: contactClass,
+      handler: { (result) in
+        
+        if result.isFailure {
+          handler(false, nil, result.error as? BEErrorType)
+        } else {
+          if let contact = result.value {
+            handler(true, contact, nil)
+          } else {
+            handler(true, nil, nil)
+          }
+        }
+    })
+  }
+  
+  //MARK: -
   
   open func updatePassword(_ controller : UpdatePasswordProtocol?, password: String?, confirmPassword: String?, handler : @escaping (Bool) -> Void){
     
