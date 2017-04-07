@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- Default impletementation of BESessionProtocol that saves data to BEUserDefaults
+ Default implementation of BESessionProtocol. Persists session-related data to user defaults.
  */
 open class BESession: BESessionProtocol {
   

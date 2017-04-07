@@ -1,0 +1,1 @@
+jazzy --podspec BeanstalkEngageiOSSDK.podspec --skip-undocumented --hide-documentation-coverage --clean --theme fullwidth

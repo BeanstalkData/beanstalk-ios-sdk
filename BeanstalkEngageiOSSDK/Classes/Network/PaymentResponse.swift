@@ -6,9 +6,11 @@
 //
 
 import Foundation
-
 import ObjectMapper
 
+/**
+ Response model for payment request.
+ */
 open class PaymentResponse : Mappable {
   var token : String?
   

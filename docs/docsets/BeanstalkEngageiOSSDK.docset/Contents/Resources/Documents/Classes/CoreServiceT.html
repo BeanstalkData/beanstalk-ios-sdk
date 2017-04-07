@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CoreServiceT Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/CoreServiceT" class="dashAnchor"></a>
+
+    <a title="CoreServiceT Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          BeanstalkEngageiOSSDK Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">BeanstalkEngageiOSSDK Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      CoreServiceT Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ApiCommunication.html">ApiCommunication</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK20AuthenticateResponse">AuthenticateResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEBalanceAmount.html">BEBalanceAmount</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEContact.html">BEContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BECoupon.html">BECoupon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCard.html">BEGiftCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCardBalance.html">BEGiftCardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BELoyaltyUser.html">BELoyaltyUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BESession.html">BESession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEStore.html">BEStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ContactRequest.html">ContactRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CoreServiceT.html">CoreServiceT</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CouponResponse.html">CouponResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCBResponse.html">GCBResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCResponse.html">GCResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PaymentResponse.html">PaymentResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PushNotificationResponse.html">PushNotificationResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RewardsCountResponse.html">RewardsCountResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerErrorResponse.html">ServerErrorResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerResponse.html">ServerResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StoresResponse.html">StoresResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TrackTransactionResponse.html">TrackTransactionResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ApiError.html">ApiError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BEErrorType.html">BEErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK23GiftCardBalanceResponse">GiftCardBalanceResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK17GiftCardsResponse">GiftCardsResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:V21BeanstalkEngageiOSSDK22ContactRequestResponse">ContactRequestResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>CoreServiceT</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CoreServiceT</span> <span class="o">&lt;</span><span class="kt">SessionManager</span><span class="p">:</span> <span class="kt">HTTPAlamofireManager</span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">BEAbstractRespondersHolder</span></code></pre>
+
+                </div>
+              </div>
+            <p>Main core model interface. Contains ApiCommunication as property. All request performed through ApiCommunication.
+Manages auth state of user and persists session-related data to provided session entity (BESessionProtocol).</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10getSessionFT_GSqPS_17BESessionProtocol__"></a>
+                    <a name="//apple_ref/swift/Method/getSession()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10getSessionFT_GSqPS_17BESessionProtocol__">getSession()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns current session model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getSession</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/BESessionProtocol.html">BESessionProtocol</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12clearSessionFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/clearSession()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12clearSessionFT_T_">clearSession()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calls clearSession on session model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">clearSession</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT15isAuthenticatedFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/isAuthenticated()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT15isAuthenticatedFT_Sb">isAuthenticated()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks whether is user contact Id and access token available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">isAuthenticated</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT8isOnlineFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/isOnline()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT8isOnlineFT_Sb">isOnline()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks whether is server reachable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">isOnline</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22registerLoyaltyAccountuRd__CS_9BEContactrFTGSqPS_20RegistrationProtocol__7requestCS_14ContactRequest12contactClassMqd__7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/registerLoyaltyAccount(_:request:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22registerLoyaltyAccountuRd__CS_9BEContactrFTGSqPS_20RegistrationProtocol__7requestCS_14ContactRequest12contactClassMqd__7handlerFSbT__T_">registerLoyaltyAccount(_:request:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs create loyalty user request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">registerLoyaltyAccount</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">RegistrationProtocol</span><span class="p">?,</span> <span class="nv">request</span><span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span> <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT8registeruRd__CS_9BEContactrFTGSqPS_20RegistrationProtocol__7requestCS_14ContactRequest12contactClassMqd__7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/register(_:request:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT8registeruRd__CS_9BEContactrFTGSqPS_20RegistrationProtocol__7requestCS_14ContactRequest12contactClassMqd__7handlerFSbT__T_">register(_:request:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs register user request with checks for already existed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">register</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt">RegistrationProtocol</span><span class="p">?,</span> <span class="nv">request</span> <span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span> <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10autoSignInuRd__CS_9BEContactrFTGSqPS_22AuthenticationProtocol__12contactClassMqd__7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/autoSignIn(_:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10autoSignInuRd__CS_9BEContactrFTGSqPS_22AuthenticationProtocol__12contactClassMqd__7handlerFSbT__T_">autoSignIn(_:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks user session.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">autoSignIn</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">AuthenticationProtocol</span><span class="p">?,</span> <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12authenticateuRd__CS_9BEContactrFTGSqPS_22AuthenticationProtocol__5emailGSqSS_8passwordGSqSS_12contactClassMqd__7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/authenticate(_:email:password:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12authenticateuRd__CS_9BEContactrFTGSqPS_22AuthenticationProtocol__5emailGSqSS_8passwordGSqSS_12contactClassMqd__7handlerFSbT__T_">authenticate(_:email:password:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Authenticates user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">authenticate</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">AuthenticationProtocol</span><span class="p">?,</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13resetPasswordFTGSqPS_22AuthenticationProtocol__5emailGSqSS_7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/resetPassword(_:email:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13resetPasswordFTGSqPS_22AuthenticationProtocol__5emailGSqSS_7handlerFSbT__T_">resetPassword(_:email:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs reset password request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">resetPassword</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">AuthenticationProtocol</span><span class="p">?,</span> <span class="nv">email</span> <span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT6logoutFTGSqPS_12CoreProtocol__7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/logout(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT6logoutFTGSqPS_12CoreProtocol__7handlerFSbT__T_">logout(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logouts user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">logout</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT27checkContactsByEmailExistedFTGSqPS_12CoreProtocol__5emailSS13prospectTypesGSaOS_12ProspectType_7handlerFGSqSb_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/checkContactsByEmailExisted(_:email:prospectTypes:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT27checkContactsByEmailExistedFTGSqPS_12CoreProtocol__5emailSS13prospectTypesGSaOS_12ProspectType_7handlerFGSqSb_T__T_">checkContactsByEmailExisted(_:email:prospectTypes:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks user exists by email.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">checkContactsByEmailExisted</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span>
+    <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">prospectTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt">ProspectType</span><span class="p">],</span>
+    <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10getContactuRd__CS_9BEContactrFTGSqPS_12CoreProtocol__12contactClassMqd__7handlerFTSbGSqqd____T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getContact(_:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT10getContactuRd__CS_9BEContactrFTGSqPS_12CoreProtocol__12contactClassMqd__7handlerFTSbGSqqd____T__T_">getContact(_:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Requests contact model from server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">getContact</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="kt">ContactClass</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Contact"></a>
+                <a name="//apple_ref/swift/Section/Contact" class="dashAnchor"></a>
+                <a href="#/Contact">
+                  <h3 class="section-name">Contact</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13createContactuRd__CS_9BEContactrFTCS_14ContactRequest12contactClassMqd__12fetchContactSb7handlerFTGSqSS_GSqqd___GSqOS_8ApiError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/createContact(_:contactClass:fetchContact:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13createContactuRd__CS_9BEContactrFTCS_14ContactRequest12contactClassMqd__12fetchContactSb7handlerFTGSqSS_GSqqd___GSqOS_8ApiError__T__T_">createContact(_:contactClass:fetchContact:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates contact of provided class and persists it in session.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Current server API returns only <em>contactId</em> on create request. So in order to return contact model (if requested) - <em>getContact()</em> request is performed. There might be situations (bad network conditions, etc.) when contact is created but <em>getContact()</em> request failed, so only <em>contactId</em> will be available.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">createContact</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span>
+    <span class="n">_</span> <span class="nv">request</span> <span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span>
+    <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+    <span class="nv">fetchContact</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">contact</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Enums/ApiError.html">ApiError</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact request.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactClass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact class.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fetchContact</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact model will be fetched by . Default is .</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13updateContactuRd__CS_9BEContactrFT7requestCS_14ContactRequest12contactClassMqd__12fetchContactSb7handlerFTSbGSqqd___GSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/updateContact(request:contactClass:fetchContact:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13updateContactuRd__CS_9BEContactrFT7requestCS_14ContactRequest12contactClassMqd__12fetchContactSb7handlerFTSbGSqqd___GSqPS_11BEErrorType___T__T_">updateContact(request:contactClass:fetchContact:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update contact and persist it in session.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Current server API returns only <em>success</em> on update request. So in order to return contact model (if requested) - <em>getContact()</em> request is performed. There might be situations (bad network conditions, etc.) when contact is updated but <em>getContact()</em> request failed, so only <em>success</em> will be available.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">updateContact</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span>
+    <span class="nv">request</span> <span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span>
+    <span class="nv">contactClass</span> <span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+    <span class="nv">fetchContact</span> <span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span> <span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">contact</span> <span class="p">:</span> <span class="kt">ContactClass</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact request.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fetchContact</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact model will be fetched by . Default is .</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13deleteContactFT9contactIdSS7handlerFTSbGSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/deleteContact(contactId:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT13deleteContactFT9contactIdSS7handlerFTSbGSqPS_11BEErrorType___T__T_">deleteContact(contactId:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes contact from server and clears from session.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">deleteContact</span><span class="p">(</span>
+    <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT14fetchContactByuRd__CS_9BEContactrFT10fetchFieldOS_17ContactFetchField10fieldValueSS13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFTSbGSqqd___GSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/fetchContactBy(fetchField:fieldValue:prospectTypes:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT14fetchContactByuRd__CS_9BEContactrFT10fetchFieldOS_17ContactFetchField10fieldValueSS13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFTSbGSqqd___GSqPS_11BEErrorType___T__T_">fetchContactBy(fetchField:fieldValue:prospectTypes:contactClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches contact by specific field. Completion handler returns contact (if found) or error (if occur).</p>
+
+<p>## Note ##
+ Currently it checks for exact match, i.e.
+ <code>
+ isEqual = (fieldValue == contact[fetchField])
+</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">fetchContactBy</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">(</span>
+    <span class="nv">fetchField</span><span class="p">:</span> <span class="kt">ContactFetchField</span><span class="p">,</span>
+    <span class="nv">fieldValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">prospectTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt">ProspectType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">contact</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+    <span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fetchField</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Field by which fetch will be performed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fieldValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Fetch field value, i.e. query string.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>prospectTypes</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Prospect types list. Contact with specified prospect value will be evaluated only. If empty, prospect will be ignored. Default is .</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactClass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact model class.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>handler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion handler.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether is request was successful.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contact</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact model if found.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Error if occur.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT14updatePasswordFTGSqPS_22UpdatePasswordProtocol__8passwordGSqSS_15confirmPasswordGSqSS_7handlerFSbT__T_"></a>
+                    <a name="//apple_ref/swift/Method/updatePassword(_:password:confirmPassword:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT14updatePasswordFTGSqPS_22UpdatePasswordProtocol__8passwordGSqSS_15confirmPasswordGSqSS_7handlerFSbT__T_">updatePassword(_:password:confirmPassword:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">updatePassword</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt">UpdatePasswordProtocol</span><span class="p">?,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">confirmPassword</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT19getAvailableRewardsFTGSqPS_12CoreProtocol__7handlerFTSbGSaCS_8BECoupon__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getAvailableRewards(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT19getAvailableRewardsFTGSqPS_12CoreProtocol__7handlerFTSbGSaCS_8BECoupon__T__T_">getAvailableRewards(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets available rewards for couponClass BECoupon.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getAvailableRewards</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="p">])</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT33getAvailableRewardsForCouponClassuRd__CS_8BECouponrFTGSqPS_12CoreProtocol__11couponClassMqd__7handlerFTSbGSaS1___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getAvailableRewardsForCouponClass(_:couponClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT33getAvailableRewardsForCouponClassuRd__CS_8BECouponrFTGSqPS_12CoreProtocol__11couponClassMqd__7handlerFTSbGSaS1___T__T_">getAvailableRewardsForCouponClass(_:couponClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets available rewards for provided coupon class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">getAvailableRewardsForCouponClass</span> <span class="o">&lt;</span><span class="kt">CouponClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">couponClass</span><span class="p">:</span> <span class="kt">CouponClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="p">])</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT15getUserProgressFTGSqPS_12CoreProtocol__7handlerFTGSqSd_GSqOS_8ApiError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getUserProgress(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT15getUserProgressFTGSqPS_12CoreProtocol__7handlerFTGSqSd_GSqOS_8ApiError__T__T_">getUserProgress(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets user progress.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getUserProgress</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Double</span><span class="p">?,</span> <span class="kt"><a href="../Enums/ApiError.html">ApiError</a></span><span class="p">?)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12getGiftCardsFTGSqPS_12CoreProtocol__7handlerFTSbGSaCS_10BEGiftCard__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getGiftCards(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12getGiftCardsFTGSqPS_12CoreProtocol__7handlerFTSbGSaCS_10BEGiftCard__T__T_">getGiftCards(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets gift cards for giftCardClass BEGiftCard.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getGiftCards</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Classes/BEGiftCard.html">BEGiftCard</a></span><span class="p">])</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT28getGiftCardsForGiftCardClassuRd__CS_10BEGiftCardrFTGSqPS_12CoreProtocol__13giftCardClassMqd__7handlerFTSbGSaS1___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getGiftCardsForGiftCardClass(_:giftCardClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT28getGiftCardsForGiftCardClassuRd__CS_10BEGiftCardrFTGSqPS_12CoreProtocol__13giftCardClassMqd__7handlerFTSbGSaS1___T__T_">getGiftCardsForGiftCardClass(_:giftCardClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets gift cards for provided coupon class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">getGiftCardsForGiftCardClass</span> <span class="o">&lt;</span><span class="kt">GiftCardClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEGiftCard.html">BEGiftCard</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">giftCardClass</span><span class="p">:</span> <span class="kt">GiftCardClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">,</span> <span class="p">[</span><span class="kt"><a href="../Classes/BEGiftCard.html">BEGiftCard</a></span><span class="p">])</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12startPaymentFTGSqPS_12CoreProtocol__6cardIdGSqSS_7couponsGSaCS_8BECoupon_7handlerFVS_11BarCodeInfoT__T_"></a>
+                    <a name="//apple_ref/swift/Method/startPayment(_:cardId:coupons:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT12startPaymentFTGSqPS_12CoreProtocol__6cardIdGSqSS_7couponsGSaCS_8BECoupon_7handlerFVS_11BarCodeInfoT__T_">startPayment(_:cardId:coupons:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs start payment request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">startPayment</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">cardId</span> <span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">coupons</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="p">],</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">BarCodeInfo</span><span class="p">)</span><span class="o">-&gt;</span><span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Push%20Notifications"></a>
+                <a name="//apple_ref/swift/Section/Push Notifications" class="dashAnchor"></a>
+                <a href="#/Push%20Notifications">
+                  <h3 class="section-name">Push Notifications</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22pushNotificationEnrollFTSS7handlerFTSbGSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/pushNotificationEnroll(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22pushNotificationEnrollFTSS7handlerFTSbGSqPS_11BEErrorType___T__T_">pushNotificationEnroll(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs push enroll request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">pushNotificationEnroll</span><span class="p">(</span><span class="n">_</span> <span class="nv">deviceToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22pushNotificationDeleteFFTSbGSqPS_11BEErrorType___T_T_"></a>
+                    <a name="//apple_ref/swift/Method/pushNotificationDelete(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT22pushNotificationDeleteFFTSbGSqPS_11BEErrorType___T_T_">pushNotificationDelete(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs push delete request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">pushNotificationDelete</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT27pushNotificationGetMessagesFTSS10maxResultsSi7handlerFTGSqGSaCS_25BEPushNotificationMessage__GSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/pushNotificationGetMessages(_:maxResults:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT27pushNotificationGetMessagesFTSS10maxResultsSi7handlerFTGSqGSaCS_25BEPushNotificationMessage__GSqPS_11BEErrorType___T__T_">pushNotificationGetMessages(_:maxResults:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets user messages from user inbox.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">pushNotificationGetMessages</span><span class="p">(</span><span class="n">_</span> <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">maxResults</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">messages</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a></span><span class="p">]?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT28pushNotificationUpdateStatusFTSS6statusOS_22PushNotificationStatus7handlerFTSbGSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/pushNotificationUpdateStatus(_:status:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT28pushNotificationUpdateStatusFTSS6statusOS_22PushNotificationStatus7handlerFTSbGSqPS_11BEErrorType___T__T_">pushNotificationUpdateStatus(_:status:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes message status. </p>
+
+<p>Possible values:
+* READ
+* UNREAD
+* DELETED</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">pushNotificationUpdateStatus</span><span class="p">(</span><span class="n">_</span> <span class="nv">messageId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">status</span><span class="p">:</span> <span class="kt"><a href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a></span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT30pushNotificationGetMessageByIdFTSS7handlerFTGSqCS_25BEPushNotificationMessage_GSqPS_11BEErrorType___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/pushNotificationGetMessageById(_:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT30pushNotificationGetMessageByIdFTSS7handlerFTGSqCS_25BEPushNotificationMessage_GSqPS_11BEErrorType___T__T_">pushNotificationGetMessageById(_:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets message for specific Id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">pushNotificationGetMessageById</span><span class="p">(</span><span class="n">_</span> <span class="nv">messageId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a></span><span class="p">?,</span> <span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Locations"></a>
+                <a name="//apple_ref/swift/Section/Locations" class="dashAnchor"></a>
+                <a href="#/Locations">
+                  <h3 class="section-name">Locations</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT19getStoresAtLocationFTGSqPS_12CoreProtocol__10coordinateGSqVSC22CLLocationCoordinate2D_7handlerFTSbGSqGSaCS_7BEStore___T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getStoresAtLocation(_:coordinate:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT19getStoresAtLocationFTGSqPS_12CoreProtocol__10coordinateGSqVSC22CLLocationCoordinate2D_7handlerFTSbGSqGSaCS_7BEStore___T__T_">getStoresAtLocation(_:coordinate:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs stores at location request for storeClass BEStore.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getStoresAtLocation</span><span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">?,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">stores</span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/BEStore.html">BEStore</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK12CoreServiceT32getStoresAtLocationForStoreClassuRd__CS_7BEStorerFTGSqPS_12CoreProtocol__10coordinateGSqVSC22CLLocationCoordinate2D_10storeClassMqd__7handlerFTSbGSqGSaS1____T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getStoresAtLocationForStoreClass(_:coordinate:storeClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK12CoreServiceT32getStoresAtLocationForStoreClassuRd__CS_7BEStorerFTGSqPS_12CoreProtocol__10coordinateGSqVSC22CLLocationCoordinate2D_10storeClassMqd__7handlerFTSbGSqGSaS1____T__T_">getStoresAtLocationForStoreClass(_:coordinate:storeClass:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Performs stores at location request for store class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">getStoresAtLocationForStoreClass</span> <span class="o">&lt;</span><span class="kt">StoreClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEStore.html">BEStore</a></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">_</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a></span><span class="p">?,</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">?,</span> <span class="nv">storeClass</span><span class="p">:</span> <span class="kt">StoreClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">((</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">stores</span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/BEStore.html">BEStore</a></span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

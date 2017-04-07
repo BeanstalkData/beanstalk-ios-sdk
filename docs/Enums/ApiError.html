@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ApiError Enum Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Enum/ApiError" class="dashAnchor"></a>
+
+    <a title="ApiError Enum Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          BeanstalkEngageiOSSDK Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">BeanstalkEngageiOSSDK Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      ApiError Enum Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ApiCommunication.html">ApiCommunication</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK20AuthenticateResponse">AuthenticateResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEBalanceAmount.html">BEBalanceAmount</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEContact.html">BEContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BECoupon.html">BECoupon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCard.html">BEGiftCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCardBalance.html">BEGiftCardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BELoyaltyUser.html">BELoyaltyUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BESession.html">BESession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEStore.html">BEStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ContactRequest.html">ContactRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CoreServiceT.html">CoreServiceT</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CouponResponse.html">CouponResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCBResponse.html">GCBResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCResponse.html">GCResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PaymentResponse.html">PaymentResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PushNotificationResponse.html">PushNotificationResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RewardsCountResponse.html">RewardsCountResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerErrorResponse.html">ServerErrorResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerResponse.html">ServerResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StoresResponse.html">StoresResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TrackTransactionResponse.html">TrackTransactionResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ApiError.html">ApiError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BEErrorType.html">BEErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK23GiftCardBalanceResponse">GiftCardBalanceResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK17GiftCardsResponse">GiftCardsResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:V21BeanstalkEngageiOSSDK22ContactRequestResponse">ContactRequestResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>ApiError</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ApiError</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Implementation of BEErrorType. Represents various errors that may occur during API requests.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError7unknownFMS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Element/unknown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError7unknownFMS0_FT_S0_">unknown</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unknown error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">unknown</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError17dataSerializationFMS0_FT6reasonSS_S0_"></a>
+                    <a name="//apple_ref/swift/Element/dataSerialization" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError17dataSerializationFMS0_FT6reasonSS_S0_">dataSerialization</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Data serialization error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">dataSerialization</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError21missingParameterErrorFMS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Element/missingParameterError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError21missingParameterErrorFMS0_FT_S0_">missingParameterError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Missing parameter error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">missingParameterError</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError7networkFMS0_FT5errorGSqPs5Error___S0_"></a>
+                    <a name="//apple_ref/swift/Element/network" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError7networkFMS0_FT5errorGSqPs5Error___S0_">network</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Network error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">network</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError22networkConnectionErrorFMS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Element/networkConnectionError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError22networkConnectionErrorFMS0_FT_S0_">networkConnectionError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Network connection error. Server is not reachable now.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">networkConnectionError</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError19createContactFailedFMS0_FT6reasonP__S0_"></a>
+                    <a name="//apple_ref/swift/Element/createContactFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError19createContactFailedFMS0_FT6reasonP__S0_">createContactFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create contact failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">createContactFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError19deleteContactFailedFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/deleteContactFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError19deleteContactFailedFMS0_FT6reasonGSqP___S0_">deleteContactFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delete contact failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">deleteContactFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError19updateContactFailedFMS0_FT6reasonP__S0_"></a>
+                    <a name="//apple_ref/swift/Element/updateContactFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError19updateContactFailedFMS0_FT6reasonP__S0_">updateContactFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update contact failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">updateContactFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError18fetchContactFailedFMS0_FT6reasonP__S0_"></a>
+                    <a name="//apple_ref/swift/Element/fetchContactFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError18fetchContactFailedFMS0_FT6reasonP__S0_">fetchContactFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetch contact failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">fetchContactFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError20authenticationFailedFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/authenticationFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError20authenticationFailedFMS0_FT6reasonGSqP___S0_">authenticationFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Authentication failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">authenticationFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError18registrationFailedFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/registrationFailed" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError18registrationFailedFMS0_FT6reasonGSqP___S0_">registrationFailed</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registration failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">registrationFailed</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError15userEmailExistsFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/userEmailExists" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError15userEmailExistsFMS0_FT6reasonGSqP___S0_">userEmailExists</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User with same email exists registration failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">userEmailExists</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError15userPhoneExistsFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/userPhoneExists" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError15userPhoneExistsFMS0_FT6reasonGSqP___S0_">userPhoneExists</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User with same phone exists registration failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">userPhoneExists</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError12profileErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/profileError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError12profileErrorFMS0_FT6reasonGSqP___S0_">profileError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get contact request failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">profileError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError18updateProfileErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/updateProfileError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError18updateProfileErrorFMS0_FT6reasonGSqP___S0_">updateProfileError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update profile failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">updateProfileError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError19updatePasswordErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/updatePasswordError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError19updatePasswordErrorFMS0_FT6reasonGSqP___S0_">updatePasswordError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update password failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">updatePasswordError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError18resetPasswordErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/resetPasswordError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError18resetPasswordErrorFMS0_FT6reasonGSqP___S0_">resetPasswordError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reset password failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">resetPasswordError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError14giftCardsErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/giftCardsError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError14giftCardsErrorFMS0_FT6reasonGSqP___S0_">giftCardsError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gift cards request failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">giftCardsError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError12paymentErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/paymentError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError12paymentErrorFMS0_FT6reasonGSqP___S0_">paymentError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start payment failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">paymentError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError15findStoresErrorFMS0_FT6reasonGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Element/findStoresError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError15findStoresErrorFMS0_FT6reasonGSqP___S0_">findStoresError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Find stores failed with reason</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">findStoresError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError27unacceptableStatusCodeErrorFMS0_FT6reasonGSqSS_10statusCodeSi_S0_"></a>
+                    <a name="//apple_ref/swift/Element/unacceptableStatusCodeError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError27unacceptableStatusCodeErrorFMS0_FT6reasonGSqSS_10statusCodeSi_S0_">unacceptableStatusCodeError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unacceptable status code error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">unacceptableStatusCodeError</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">statusCode</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError10errorTitleFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/errorTitle()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError10errorTitleFT_GSqSS_">errorTitle()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Error title to present for user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">errorTitle</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK8ApiError12errorMessageFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/errorMessage()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK8ApiError12errorMessageFT_GSqSS_">errorMessage()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Error message to present for user.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">errorMessage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

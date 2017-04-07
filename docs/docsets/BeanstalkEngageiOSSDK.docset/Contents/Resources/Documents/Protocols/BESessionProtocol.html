@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BESessionProtocol Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/BESessionProtocol" class="dashAnchor"></a>
+
+    <a title="BESessionProtocol Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          BeanstalkEngageiOSSDK Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">BeanstalkEngageiOSSDK Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      BESessionProtocol Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ApiCommunication.html">ApiCommunication</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK20AuthenticateResponse">AuthenticateResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEBalanceAmount.html">BEBalanceAmount</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEContact.html">BEContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BECoupon.html">BECoupon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCard.html">BEGiftCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCardBalance.html">BEGiftCardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BELoyaltyUser.html">BELoyaltyUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BESession.html">BESession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEStore.html">BEStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ContactRequest.html">ContactRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CoreServiceT.html">CoreServiceT</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CouponResponse.html">CouponResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCBResponse.html">GCBResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCResponse.html">GCResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PaymentResponse.html">PaymentResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PushNotificationResponse.html">PushNotificationResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RewardsCountResponse.html">RewardsCountResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerErrorResponse.html">ServerErrorResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerResponse.html">ServerResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StoresResponse.html">StoresResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TrackTransactionResponse.html">TrackTransactionResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ApiError.html">ApiError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BEErrorType.html">BEErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK23GiftCardBalanceResponse">GiftCardBalanceResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK17GiftCardsResponse">GiftCardsResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:V21BeanstalkEngageiOSSDK22ContactRequestResponse">ContactRequestResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>BESessionProtocol</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">BESessionProtocol</span></code></pre>
+
+                </div>
+              </div>
+            <p>Protocol for accessing (persistence) session-related data:
+* Contact info
+* Auth token
+* APNs device token
+* Default Gift card
+* Rewards</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10getContactuRd__CS_9BEContactrFT_GSqqd___"></a>
+                    <a name="//apple_ref/swift/Method/getContact()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10getContactuRd__CS_9BEContactrFT_GSqqd___">getContact()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for user contact of provided class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="n">getContact</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="o">&gt;</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ContactClass</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10setContactFGSqCS_9BEContact_T_"></a>
+                    <a name="//apple_ref/swift/Method/setContact(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10setContactFGSqCS_9BEContact_T_">setContact(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for user contact of provided class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setContact</span><span class="p">(</span><span class="n">_</span> <span class="nv">contact</span><span class="p">:</span> <span class="kt"><a href="../Classes/BEContact.html">BEContact</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getContactIdFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/getContactId()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getContactIdFT_GSqSS_">getContactId()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for user contact id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getContactId</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getAuthTokenFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/getAuthToken()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getAuthTokenFT_GSqSS_">getAuthToken()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for user auth token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getAuthToken</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol11setAuthTokeFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setAuthToke(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol11setAuthTokeFGSqSS_T_">setAuthToke(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for user auth token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setAuthToke</span><span class="p">(</span><span class="n">_</span> <span class="nv">token</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getAPNSTokenFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/getAPNSToken()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12getAPNSTokenFT_GSqSS_">getAPNSToken()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for APNs device token that wasn&rsquo;t successfully enrolled yet.
+Can be used to check whether is enrolled token is expired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getAPNSToken</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12setAPNSTokenFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setAPNSToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12setAPNSTokenFGSqSS_T_">setAPNSToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for APNs device token that wasn&rsquo;t successfully enrolled yet.
+Can be used to check whether is enrolled token is expired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setAPNSToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">apnsToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol22getRegisteredAPNSTokenFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/getRegisteredAPNSToken()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol22getRegisteredAPNSTokenFT_GSqSS_">getRegisteredAPNSToken()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for APNs device token that was successfully enrolled.
+Can be used to check whether is enrolled token is expired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getRegisteredAPNSToken</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol22setRegisteredAPNSTokenFGSqSS_T_"></a>
+                    <a name="//apple_ref/swift/Method/setRegisteredAPNSToken(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol22setRegisteredAPNSTokenFGSqSS_T_">setRegisteredAPNSToken(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for APNs device token that was successfully enrolled.
+Can be used to check whether is enrolled token is expired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">setRegisteredAPNSToken</span><span class="p">(</span><span class="n">_</span> <span class="nv">apnsToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol14getDefaultCardFT_GSqCS_10BEGiftCard_"></a>
+                    <a name="//apple_ref/swift/Method/getDefaultCard()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol14getDefaultCardFT_GSqCS_10BEGiftCard_">getDefaultCard()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for default gift card.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getDefaultCard</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/BEGiftCard.html">BEGiftCard</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol15saveDefaultCardFGSqCS_10BEGiftCard_T_"></a>
+                    <a name="//apple_ref/swift/Method/saveDefaultCard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol15saveDefaultCardFGSqCS_10BEGiftCard_T_">saveDefaultCard(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for default gift card.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">saveDefaultCard</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span> <span class="p">:</span> <span class="kt"><a href="../Classes/BEGiftCard.html">BEGiftCard</a></span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10getRewardsFT_GSqGSaCS_8BECoupon__"></a>
+                    <a name="//apple_ref/swift/Method/getRewards()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol10getRewardsFT_GSqGSaCS_8BECoupon__">getRewards()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for stored available rewards.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">getRewards</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol11saveRewardsFGSqGSaCS_8BECoupon__T_"></a>
+                    <a name="//apple_ref/swift/Method/saveRewards(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol11saveRewardsFGSqGSaCS_8BECoupon__T_">saveRewards(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accessor method for stored available rewards.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">saveRewards</span><span class="p">(</span><span class="n">_</span> <span class="nv">rewards</span> <span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/BECoupon.html">BECoupon</a></span><span class="p">]?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12clearSessionFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/clearSession()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol12clearSessionFT_T_">clearSession()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Method for clearing any session-related data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">clearSession</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol15clearApnsTokensFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/clearApnsTokens()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK17BESessionProtocol15clearApnsTokensFT_T_">clearApnsTokens()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Method for clearing APNs-related data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">clearApnsTokens</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-07)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

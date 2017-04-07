@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of reward coupon.
+ */
 open class BECoupon : NSObject, NSCoding, Mappable {
   fileprivate static let kOriginalDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
   fileprivate static let kDisplayDateFormat = "MM/dd/yyyy"

@@ -12,8 +12,6 @@ import libPhoneNumber_iOS
 import PKHUD
 
 
-// MARK:  Public String Extensions
-
 extension String {
   
   public func formatPhoneNumberToNational() -> String! {
@@ -68,9 +66,6 @@ extension String {
   }
 }
 
-
-
-// MARK:  Public UIViewController Extensions
 
 extension UIViewController {
   

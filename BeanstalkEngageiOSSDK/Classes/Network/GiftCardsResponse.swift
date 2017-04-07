@@ -8,6 +8,9 @@
 import Foundation
 import ObjectMapper
 
+/**
+ Protocol for gift cards response.
+ */
 public protocol GiftCardsResponse {
   func failed() -> Bool
   
@@ -15,6 +18,9 @@ public protocol GiftCardsResponse {
   
 }
 
+/**
+ Response model for gift cards request.
+ */
 open class GCResponse <GiftCardClass: BEGiftCard> : Mappable, GiftCardsResponse {
   fileprivate var status : Bool?
   

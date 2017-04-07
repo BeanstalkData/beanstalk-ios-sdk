@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of store received from store locations.
+ */
 open class BEStore : NSObject, NSCoding, Mappable {
   fileprivate static let kId = "BEStore_id"
   fileprivate static let kCustomerId = "BEStore_customerId"

@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Response model for auth request.
+ */
 open class AuthenticateResponse  {
   var contactId : String?
   var token : String?

@@ -9,6 +9,9 @@ import Foundation
 import ObjectMapper
 
 
+/**
+ Response model for typical server response. Contains server error response model if received.
+ */
 open class ServerResponse: Mappable {
   var statusValue: String?
   var errorValue: ServerErrorResponse?

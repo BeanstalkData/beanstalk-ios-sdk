@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of gift card.
+ */
 open class BEGiftCard : Mappable {
   open static let kDefaultBalance = "$0.00"
   fileprivate static let kId = "BEGiftCard" + "_id"

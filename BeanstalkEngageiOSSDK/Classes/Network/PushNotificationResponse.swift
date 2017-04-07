@@ -8,14 +8,9 @@
 import Foundation
 import ObjectMapper
 
-
-public enum PushNotificationStatus: String {
-  case read = "READ"
-  case unread = "UNREAD"
-  case deleted = "DELETED"
-}
-
-
+/**
+ Response model for push notifications request.
+ */
 open class PushNotificationResponse : Mappable {
  
   fileprivate var status100 : AnyObject?

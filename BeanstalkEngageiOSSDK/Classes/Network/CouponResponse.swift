@@ -9,6 +9,9 @@ import Foundation
 import ObjectMapper
 
 
+/**
+ Response model for coupon request.
+ */
 open class CouponResponse <CouponClass: BECoupon> : Mappable {
   var coupons: [CouponClass]?
   

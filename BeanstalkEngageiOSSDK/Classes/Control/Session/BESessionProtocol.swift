@@ -8,7 +8,12 @@
 import Foundation
 
 /**
- Protocol for accessing session-related data.
+ Protocol for accessing (persistence) session-related data:
+ * Contact info
+ * Auth token
+ * APNs device token
+ * Default Gift card
+ * Rewards
  */
 public protocol BESessionProtocol {
   /**

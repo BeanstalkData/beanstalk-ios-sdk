@@ -15,6 +15,11 @@ import BeanstalkEngageiOSSDK
 
 public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
+/**
+ Main core model interface. Contains ApiCommunication as property. All request performed through ApiCommunication.
+ Manages auth state of user and persists session-related data to provided session entity (BESessionProtocol).
+ */
+
 open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespondersHolder {
   public let apiService: ApiCommunication<SessionManager>
   let session: BESessionProtocol
@@ -31,20 +36,32 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     self.session = session
   }
   
+  /**
+   Returns current session model.
+   */
   open func getSession() -> BESessionProtocol? {
     return session
   }
   
+  /**
+   Calls clearSession on session model.
+   */
   open func clearSession() {
     self.session.clearSession()
   }
   
+  /**
+   Checks whether is user contact Id and access token available.
+   */
   open func isAuthenticated() -> Bool{
     let contactId = session.getContactId()
     let token = session.getAuthToken()
     return contactId != nil && token != nil
   }
   
+  /**
+   Checks whether is server reachable.
+   */
   open func isOnline() -> Bool {
     return self.apiService.isOnline()
   }
@@ -57,6 +74,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     self.apiService.addResponder(responder)
   }
   
+  /**
+   Performs create loyalty user request.
+   */
   open func registerLoyaltyAccount <ContactClass: BEContact> (_ controller: RegistrationProtocol?, request: ContactRequest, contactClass: ContactClass.Type, handler: @escaping (Bool) -> Void){
     if (controller != nil) {
       guard controller!.validate(request) else {
@@ -81,6 +101,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Performs register user request with checks for already existed.
+   */
   open func register <ContactClass: BEContact> (_ controller : RegistrationProtocol?, request : ContactRequest, contactClass: ContactClass.Type, handler : @escaping (Bool) -> Void) {
     if (controller != nil) {
       guard controller!.validate(request) else {
@@ -142,6 +165,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Checks user session.
+   */
   open func autoSignIn <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool) -> Void)) {
     
     let contactId = session.getContactId()
@@ -172,6 +198,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
+  /**
+   Authenticates user.
+   */
   open func authenticate <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, email: String?, password: String?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool) -> Void)) {
     if controller != nil {
       guard controller!.validate(email, password: password) else {
@@ -202,7 +231,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
-  //No needs to check isNoadine user
   fileprivate func auth <ContactClass: BEContact> (_ controller : RegistrationProtocol?, email: String, password: String, contactClass: ContactClass.Type, handler : @escaping (Bool) -> Void) {
     
     self.p_isAuthenticateInProgress = true
@@ -247,6 +275,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Performs reset password request.
+   */
   open func resetPassword(_ controller: AuthenticationProtocol?, email : String?, handler : @escaping (_ success: Bool) -> Void) {
     if controller != nil {
       guard controller!.validate(email, password: "123456") else {
@@ -268,6 +299,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Logouts user.
+   */
   open func logout(_ controller : CoreProtocol?, handler : @escaping (_ success: Bool) -> Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
@@ -293,6 +327,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Checks user exists by email.
+   */
   open func checkContactsByEmailExisted(
     _ controller: CoreProtocol?,
     email: String,
@@ -312,6 +349,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
+  /**
+   Requests contact model from server.
+   */
   open func getContact <ContactClass: BEContact> (_ controller : CoreProtocol?, contactClass: ContactClass.Type, handler : @escaping (Bool, ContactClass?) -> Void) {
     let contactId = session.getContactId()!
     
@@ -339,10 +379,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    
    - Note: Current server API returns only *contactId* on create request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *contactId* will be available.
    
-   - parameters:
-      - request: Contact request.
-      - contactClass: Contact class.
-      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   - Parameter request: Contact request.
+   - Parameter contactClass: Contact class.
+   - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
   open func createContact <ContactClass: BEContact> (
     _ request : ContactRequest,
@@ -374,9 +413,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    
    - Note: Current server API returns only *success* on update request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is updated but *getContact()* request failed, so only *success* will be available.
    
-   - parameters:
-      - request: Contact request.
-      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   - Parameter request: Contact request.
+   - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
   open func updateContact <ContactClass: BEContact> (
     request : ContactRequest,
@@ -407,8 +445,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Deletes contact from server and clears from session.
    
-   - parameters:
-      - contactId: Contact ID.
+   - Parameter contactId: Contact ID.
    */
   open func deleteContact(
     contactId: String,
@@ -429,7 +466,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /** Fetches contact by specific field. Completion handler returns contact (if found) or error (if occur).
    
    ## Note ##
-   Currently it checks for exact match, i.e. 
+   Currently it checks for exact match, i.e.
    ````
    isEqual = (fieldValue == contact[fetchField])
    ````
@@ -474,6 +511,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   //MARK: -
   
+  /**
+   Updates password.
+   */
   open func updatePassword(_ controller : UpdatePasswordProtocol?, password: String?, confirmPassword: String?, handler : @escaping (Bool) -> Void){
     
     if controller != nil {
@@ -499,10 +539,16 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Gets available rewards for couponClass BECoupon.
+   */
   open func getAvailableRewards(_ controller : CoreProtocol?, handler : @escaping (Bool, [BECoupon])->Void){
     self.getAvailableRewardsForCouponClass(controller, couponClass: BECoupon.self, handler: handler)
   }
   
+  /**
+   Gets available rewards for provided coupon class.
+   */
   open func getAvailableRewardsForCouponClass <CouponClass: BECoupon> (_ controller : CoreProtocol?, couponClass: CouponClass.Type, handler : @escaping (Bool, [BECoupon])->Void){
     let contactId = session.getContactId()!
     
@@ -523,6 +569,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Gets user progress.
+   */
   open func getUserProgress(_ controller : CoreProtocol?, handler : @escaping (Double?, ApiError?)->Void){
     let contactId = session.getContactId()!
     
@@ -544,10 +593,16 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Gets gift cards for giftCardClass BEGiftCard.
+   */
   open func getGiftCards(_ controller : CoreProtocol?, handler : @escaping (Bool, [BEGiftCard])->Void){
     self.getGiftCardsForGiftCardClass(controller, giftCardClass: BEGiftCard.self, handler: handler)
   }
   
+  /**
+   Gets gift cards for provided coupon class.
+   */
   open func getGiftCardsForGiftCardClass <GiftCardClass: BEGiftCard> (_ controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : @escaping (Bool, [BEGiftCard])->Void){
     let contactId = session.getContactId()!
     let token = session.getAuthToken()!
@@ -567,6 +622,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Performs start payment request.
+   */
   open func startPayment(_ controller : CoreProtocol?, cardId : String?, coupons: [BECoupon], handler : @escaping (BarCodeInfo)->Void){
     
     if cardId == nil && coupons.count == 0 {
@@ -606,6 +664,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   //MARK: - Push Notifications
   
+  /**
+   Performs push enroll request.
+   */
   open func pushNotificationEnroll(_ deviceToken: String, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
@@ -627,6 +688,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Performs push delete request.
+   */
   open func pushNotificationDelete(_ handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
@@ -648,6 +712,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Gets user messages from user inbox.
+   */
   open func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
@@ -666,6 +733,15 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Changes message status. 
+   
+   Possible values:
+   * READ
+   * UNREAD
+   * DELETED
+   
+   */
   open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
@@ -684,6 +760,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
+  /**
+   Gets message for specific Id.
+   */
   open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
@@ -703,10 +782,17 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   }
   
   //MARK: - Locations
+  
+  /**
+   Performs stores at location request for storeClass BEStore.
+   */
   open func getStoresAtLocation(_ controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, handler : @escaping ((_ success: Bool, _ stores : [BEStore]?) -> Void)) {
     self.getStoresAtLocationForStoreClass(controller, coordinate: coordinate, storeClass: BEStore.self, handler: handler)
   }
   
+  /**
+   Performs stores at location request for store class.
+   */
   open func getStoresAtLocationForStoreClass <StoreClass: BEStore> (_ controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : @escaping ((_ success: Bool, _ stores : [BEStore]?) -> Void)) {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil

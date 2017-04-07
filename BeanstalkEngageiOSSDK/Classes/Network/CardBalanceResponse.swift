@@ -8,12 +8,16 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ Protocol for card balance response.
+ */
 public protocol GiftCardBalanceResponse {
   func getCardBalance() -> String
 }
 
-
+/**
+ Response model for card balance request.
+ */
 open class GCBResponse: Mappable, GiftCardBalanceResponse {
   fileprivate var status: Bool?
   

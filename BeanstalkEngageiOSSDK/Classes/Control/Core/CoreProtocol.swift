@@ -7,6 +7,11 @@
 
 import Foundation
 
+/**
+ List of protocols required by some methods of CoreService.
+ 
+ - Note: Will be deprecated in future.
+ */
 public protocol CoreProtocol {
   func showMessage(_ error: BEErrorType)
   func showMessage(_ title: String?, message : String?)

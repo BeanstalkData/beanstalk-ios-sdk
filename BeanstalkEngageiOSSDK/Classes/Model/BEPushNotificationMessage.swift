@@ -8,7 +8,9 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ Model of push notification message.
+ */
 open class BEPushNotificationMessage: Mappable {
   
   open var messageIdInfo: [String: Any]?
@@ -80,4 +82,16 @@ open class BEPushNotificationMessage: Mappable {
     
     return status
   }
+}
+
+/**
+ Push notification message status enum.
+ */
+public enum PushNotificationStatus: String {
+  /// Status READ
+  case read = "READ"
+  /// Status UNREAD
+  case unread = "UNREAD"
+  /// Status DELETED
+  case deleted = "DELETED"
 }

@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+ Provides mock data to check logic.
+ */
 class MockDataGenerator {
   
   var urls = [

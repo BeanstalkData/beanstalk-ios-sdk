@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of contact.
+ */
 open class BEContact : Mappable {
   
   fileprivate static let kId = "BEContact" + "_id"

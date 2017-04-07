@@ -7,45 +7,80 @@
 
 import Foundation
 
+/**
+ Protocol for error abstraction.
+ */
 public protocol BEErrorType: Error {
+  /**
+   Error title to present for user.
+   */
   func errorTitle() -> String?
+  
+  /**
+   Error message to present for user.
+   */
   func errorMessage() -> String?
 }
 
+/**
+ Implementation of BEErrorType. Represents various errors that may occur during API requests.
+ */
 public enum ApiError: BEErrorType {
   
+  /// Unknown error
   case unknown()
   
+  /// Data serialization error
   case dataSerialization(reason: String)
+  /// Missing parameter error
   case missingParameterError()
   
+  /// Network error
   case network(error: Error?)
+  /// Network connection error. Server is not reachable now.
   case networkConnectionError()
   
+  /// Create contact failed with reason
   case createContactFailed(reason: Any)
+  /// Delete contact failed with reason
   case deleteContactFailed(reason: Any?)
+  /// Update contact failed with reason
   case updateContactFailed(reason: Any)
+  /// Fetch contact failed with reason
   case fetchContactFailed(reason: Any)
   
-  case authenticatFailed(reason: Any?)
+  /// Authentication failed with reason
+  case authenticationFailed(reason: Any?)
+  /// Registration failed with reason
   case registrationFailed(reason: Any?)
+  /// User with same email exists registration failed with reason
   case userEmailExists(reason: Any?)
+  /// User with same phone exists registration failed with reason
   case userPhoneExists(reason: Any?)
   
+  /// Get contact request failed with reason
   case profileError(reason: Any?)
+  /// Update profile failed with reason
   case updateProfileError(reason: Any?)
+  /// Update password failed with reason
   case updatePasswordError(reason: Any?)
+  /// Reset password failed with reason
   case resetPasswordError(reason: Any?)
   
+  /// Gift cards request failed with reason
   case giftCardsError(reason: Any?)
+  /// Start payment failed with reason
   case paymentError(reason: Any?)
   
+  /// Find stores failed with reason
   case findStoresError(reason: Any?)
   
+  /// Unacceptable status code error
   case unacceptableStatusCodeError(reason: String?, statusCode: Int)
   
-  //MARK: error title / message
-  
+  /**
+   Error title to present for user.
+   */
   public func errorTitle() -> String? {
     var errorTitle: String?
     
@@ -72,7 +107,7 @@ public enum ApiError: BEErrorType {
     case .fetchContactFailed(let reason):
       errorTitle = "Fetch Contact Failed"
       
-    case .authenticatFailed(let reason):
+    case .authenticationFailed(let reason):
       errorTitle = "Login Failed"
     case .registrationFailed(let reason):
       errorTitle = "Registration Error"
@@ -105,6 +140,9 @@ public enum ApiError: BEErrorType {
     return errorTitle
   }
   
+  /**
+   Error message to present for user.
+   */
   public func errorMessage() -> String? {
     var errorMessage: String?
     
@@ -129,7 +167,7 @@ public enum ApiError: BEErrorType {
     case .fetchContactFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to fetch contact")
       
-    case .authenticatFailed(let reason):
+    case .authenticationFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .registrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")

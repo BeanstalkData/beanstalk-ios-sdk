@@ -10,6 +10,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model for card balance amount.
+ */
 open class BEBalanceAmount: Mappable {
   var amount: Double?
   

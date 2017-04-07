@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of loyalty user.
+ */
 open class BELoyaltyUser : Mappable {
   open var contactId: String?
   open var sessionToken: String?

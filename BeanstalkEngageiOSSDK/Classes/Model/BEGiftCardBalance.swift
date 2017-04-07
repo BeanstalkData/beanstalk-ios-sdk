@@ -9,6 +9,9 @@ import Foundation
 
 import ObjectMapper
 
+/**
+ Model of gift card balance.
+ */
 open class BEGiftCardBalance: Mappable {
   var balanceAmount: BEBalanceAmount?
   

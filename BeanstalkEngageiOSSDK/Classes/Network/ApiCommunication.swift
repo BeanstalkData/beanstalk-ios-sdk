@@ -31,6 +31,9 @@ public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
   return left.responder === right.responder
 }
 
+/**
+ Contains majority of API calls. It is utilized by CoreService. Can be used directly.
+ */
 open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
   fileprivate let beanstalUrl = "proc.beanstalkdata.com"
   fileprivate let BASE_URL: String
@@ -617,7 +620,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
             } catch { }
             guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
-              handler(.failure(ApiError.authenticatFailed(reason: response.result.value)))
+              handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
               return
             }
             let authResponse = AuthenticateResponse()

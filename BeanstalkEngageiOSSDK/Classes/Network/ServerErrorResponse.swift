@@ -8,7 +8,9 @@
 import Foundation
 import ObjectMapper
 
-
+/**
+ Response model for typical server error.
+ */
 open class ServerErrorResponse: Mappable {
   var codeValue: Int?
   var messageValue: String?

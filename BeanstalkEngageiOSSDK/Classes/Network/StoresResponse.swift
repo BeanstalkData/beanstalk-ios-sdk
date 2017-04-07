@@ -14,6 +14,9 @@ public protocol StoresResponseProtocol {
   func getStores() -> [BEStore]?
 }
 
+/**
+ Response model for store locations request.
+ */
 open class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtocol {
   fileprivate var status : Bool?
   
