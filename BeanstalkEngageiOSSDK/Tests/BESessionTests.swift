@@ -63,10 +63,32 @@ open class BESessionTests: BEBaseTestCase {
     self.session?.clearApnsTokens()
     
     XCTAssert(self.getSession()?.getContactId() == nil)
+    XCTAssert(self.getSession()?.getContact() == nil)
     XCTAssert(self.getSession()?.getAuthToken() == nil)
     XCTAssert(self.getSession()?.getAPNSToken() == nil)
     XCTAssert(self.getSession()?.getRegisteredAPNSToken() == nil)
     XCTAssert(self.getSession()?.getDefaultCard() == nil)
+    
+    let coreServiceHandler = BECoreServiceTestHandler.create(self)
+    
+    coreServiceHandler.updatePassword("testPasswpord") { (resuls) in
+      XCTAssert(resuls == false)
+    }
+    coreServiceHandler.getContact { (contact) in
+      XCTAssert(contact == nil)
+    }
+    coreServiceHandler.getAvailableRewards(BECoupon.self) { (result, coupins) in
+      XCTAssert(result == false)
+    }
+    coreServiceHandler.getProgress { (progress, error) in
+      XCTAssert(progress == nil)
+    }
+    coreServiceHandler.getGiftCards(BEGiftCard.self) { (result, cards) in
+      XCTAssert(result == false)
+    }
+    coreServiceHandler.startPayment("12345", coupons: []) { (badCodeInfo) in
+      XCTAssert(badCodeInfo.data == "")
+    }
   }
   
   open func giftCardSessionTest() {

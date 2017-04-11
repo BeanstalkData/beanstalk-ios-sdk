@@ -54,8 +54,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Checks whether is user contact Id and access token available.
    */
   open func isAuthenticated() -> Bool{
-    let contactId = session.getContactId()
-    let token = session.getAuthToken()
+    let contactId = self.session.getContactId()
+    let token = self.session.getAuthToken()
     return contactId != nil && token != nil
   }
   
@@ -170,10 +170,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    */
   open func autoSignIn <ContactClass: BEContact> (_ controller: AuthenticationProtocol?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool) -> Void)) {
     
-    let contactId = session.getContactId()
-    let token = session.getAuthToken()
+    guard let contactId = self.session.getContactId() else {
+      handler(false)
+      return
+    }
     
-    guard (contactId != nil && token != nil) else {
+    guard let token = self.session.getAuthToken() else {
       handler(false)
       return
     }
@@ -182,7 +184,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     controller?.showProgress("Attempting to Login")
     
     weak var weakSelf = self
-    self.apiService.checkUserSession(contactId!, token: token!) { result in
+    self.apiService.checkUserSession(contactId, token: token) { result in
       controller?.hideProgress()
       
       if result.isFailure {
@@ -303,9 +305,18 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Logouts user.
    */
   open func logout(_ controller : CoreProtocol?, handler : @escaping (_ success: Bool) -> Void){
-    let contactId = session.getContactId()!
-    let token = session.getAuthToken()!
-    let registeredDeviceToken = session.getRegisteredAPNSToken()
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false)
+      return
+    }
+    
+    guard let token = self.session.getAuthToken() else {
+      handler(false)
+      return
+    }
+    
+    let registeredDeviceToken = self.session.getRegisteredAPNSToken()
     
     controller?.showProgress("Logout...")
     
@@ -353,7 +364,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Requests contact model from server.
    */
   open func getContact <ContactClass: BEContact> (_ controller : CoreProtocol?, contactClass: ContactClass.Type, handler : @escaping (Bool, ContactClass?) -> Void) {
-    let contactId = session.getContactId()!
+    guard let contactId = self.session.getContactId() else {
+      handler(false, nil)
+      return
+    }
     
     controller?.showProgress("Retrieving Profile")
     
@@ -429,7 +443,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       if result.isFailure {
         handler(false, nil, result.error as? BEErrorType)
       } else {
-        let contactId = request.getContactId()
         var contact: ContactClass?
         
         if let fetchedContact = result.value?.contact {
@@ -523,8 +536,15 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       }
     }
     
-    let contactId = session.getContactId()!
-    let token = session.getAuthToken()!
+    guard let contactId = self.session.getContactId() else {
+      handler(false)
+      return
+    }
+
+    guard let token = self.session.getAuthToken() else {
+      handler(false)
+      return
+    }
     
     controller?.showProgress("Updating Password")
     apiService.updatePassword(password!, contactId: contactId, token: token, handler: { (result) in
@@ -550,7 +570,11 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Gets available rewards for provided coupon class.
    */
   open func getAvailableRewardsForCouponClass <CouponClass: BECoupon> (_ controller : CoreProtocol?, couponClass: CouponClass.Type, handler : @escaping (Bool, [BECoupon])->Void){
-    let contactId = session.getContactId()!
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false, [])
+      return
+    }
     
     controller?.showProgress("Retrieving Rewards")
     
@@ -573,7 +597,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Gets user progress.
    */
   open func getUserProgress(_ controller : CoreProtocol?, handler : @escaping (Double?, ApiError?)->Void){
-    let contactId = session.getContactId()!
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, nil)
+      return
+    }
     
     controller?.showProgress("Getting Rewards")
     apiService.getProgress(contactId, handler : { (result) in
@@ -604,8 +631,16 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Gets gift cards for provided coupon class.
    */
   open func getGiftCardsForGiftCardClass <GiftCardClass: BEGiftCard> (_ controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : @escaping (Bool, [BEGiftCard])->Void){
-    let contactId = session.getContactId()!
-    let token = session.getAuthToken()!
+   
+    guard let contactId = self.session.getContactId() else {
+      handler(false, [])
+      return
+    }
+    
+    guard let token = self.session.getAuthToken() else {
+      handler(false, [])
+      return
+    }
     
     controller?.showProgress("Retrieving Cards")
     apiService.getGiftCards(contactId, token: token, giftCardClass: giftCardClass, handler: { (result) in
@@ -633,8 +668,18 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-    let contactId = session.getContactId()!
-    let token = session.getAuthToken()!
+    guard let contactId = self.session.getContactId() else {
+      let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
+      handler(data)
+      return
+    }
+    
+    guard let token = self.session.getAuthToken() else {
+      let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
+      handler(data)
+      return
+    }
+    
     let couponsString : String = coupons.reduce("", { $0 == "" ? $1.number! : $0 + "," + $1.number! })
     
     controller?.showProgress("Generating Barcode")
@@ -796,7 +841,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   open func getStoresAtLocationForStoreClass <StoreClass: BEStore> (_ controller : CoreProtocol?, coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : @escaping ((_ success: Bool, _ stores : [BEStore]?) -> Void)) {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
-    let token = session.getAuthToken()
+    let token = self.session.getAuthToken()
     
     controller?.showProgress("Retrieving Stores")
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, storeClass: storeClass, handler: { (result) in
@@ -838,7 +883,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> BarCodeInfo {
     if data == nil || data!.characters.count == 0{
-      let contactId = session.getContactId()!
+      guard let contactId = self.session.getContactId() else {
+        return BarCodeInfo(data: "", type: .memberId)
+      }
       
       return BarCodeInfo(data: contactId, type: .memberId)
     }
