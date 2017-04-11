@@ -25,6 +25,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		6C7E8E0DFDCFAB0757D82709 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
+		891053A91E9D12E000595D1D /* PushNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891053A81E9D12E000595D1D /* PushNotificationsTests.swift */; };
 		893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA2501E3151EE0095A44B /* AccountTests.swift */; };
 		893DA2701E36A5140095A44B /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893DA26F1E36A5140095A44B /* SessionTests.swift */; };
 		894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894907B91E1C2E730089CB10 /* TestsMetadata.swift */; };
@@ -77,6 +78,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* BeanstalkEngageiOSSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanstalkEngageiOSSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		891053A81E9D12E000595D1D /* PushNotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsTests.swift; sourceTree = "<group>"; };
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		894907B91E1C2E730089CB10 /* TestsMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsMetadata.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				893DA2501E3151EE0095A44B /* AccountTests.swift */,
 				896623FB1E4B2A210015698C /* GiftCardsTests.swift */,
+				891053A81E9D12E000595D1D /* PushNotificationsTests.swift */,
 				896623F71E4B0C4D0015698C /* RewardsTests.swift */,
 				893DA26F1E36A5140095A44B /* SessionTests.swift */,
 				896623E51E449DF70015698C /* StoresTests.swift */,
@@ -501,6 +504,7 @@
 				896623FC1E4B2A210015698C /* GiftCardsTests.swift in Sources */,
 				893DA2701E36A5140095A44B /* SessionTests.swift in Sources */,
 				894907BB1E1C2EA00089CB10 /* TestsMetadata.swift in Sources */,
+				891053A91E9D12E000595D1D /* PushNotificationsTests.swift in Sources */,
 				893DA2511E3151EE0095A44B /* AccountTests.swift in Sources */,
 				89ACF7F51E5091C300F8B67A /* ContactRequest.swift in Sources */,
 				896623F31E49C4E90015698C /* ContactModel.swift in Sources */,

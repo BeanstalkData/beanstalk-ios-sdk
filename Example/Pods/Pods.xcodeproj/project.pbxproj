@@ -129,6 +129,7 @@
 		82B33F223516A2AA7DA2985E5A954B88 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9B239760FD071AAE51233AA3166756 /* ObjectMapper.framework */; };
 		871377BB850D113AFB803AF10A34F7C9 /* WindowRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDC100B5C5315553341C5B27FB9E782 /* WindowRootViewController.swift */; };
 		87855639B12C15E4CF960B3350CD2C17 /* RewardsCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E65BB0499DAFEB885EC146542AD524 /* RewardsCountResponse.swift */; };
+		891053A71E9D04A800595D1D /* BEPushNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891053A61E9D04A800595D1D /* BEPushNotificationsTests.swift */; };
 		8A639083C6F596D0EAEC478388BB1AAF /* BECoreServiceTestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D86E3E4A190E6FC54409B7C6B5EB57 /* BECoreServiceTestHandler.swift */; };
 		8A8C2AA5ADD374EB3A6DB4A2B4ED026C /* CouponResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68E397FB3C0C14EF96B1F4834E656D /* CouponResponse.swift */; };
 		8B1DCAA3A596869078949E1534E60DB8 /* DateFormatterTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD9C9B31A777E8FBCA468FBBE0E5902 /* DateFormatterTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -514,6 +515,7 @@
 		8586F87E683D4FAB5660D1A7C8ABA71B /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		881C92BD149E41691EE687CBA6CEA88E /* PKHUDErrorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDErrorView.swift; path = PKHUD/PKHUDErrorView.swift; sourceTree = "<group>"; };
 		8885F6337257B711B15210CEF002A2E0 /* ContactRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContactRequest.swift; sourceTree = "<group>"; };
+		891053A61E9D04A800595D1D /* BEPushNotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEPushNotificationsTests.swift; sourceTree = "<group>"; };
 		89C007F13B4711A87EC5F4D7C6373227 /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A908A65D8DF1465BE7A0B19E42F48BA /* Pods-BeanstalkEngageiOSSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BeanstalkEngageiOSSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		8BCC821FA2806F7EC4CA506C47B1AEA9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				B1AD09B9D01146E466368E19F67EE4ED /* BEBaseTestsMetadataProtocol.swift */,
 				C2D86E3E4A190E6FC54409B7C6B5EB57 /* BECoreServiceTestHandler.swift */,
 				41920B9FAD8A4B81A3C492CD497EC6F7 /* BEGiftCardsTests.swift */,
+				891053A61E9D04A800595D1D /* BEPushNotificationsTests.swift */,
 				D763EB2809158241DEEE68511B2F0DCE /* BERewardsTests.swift */,
 				5012D90B6E7C1579A9504F300F84CF8A /* BESessionTests.swift */,
 				D66B830A290F7E09383ACD592C1E8DF6 /* BEStoresTests.swift */,
@@ -1833,6 +1836,7 @@
 				56638BE66F8A7E1B5F0D159EF13F0FF0 /* ContactRequest.swift in Sources */,
 				9866836E68DC49D0EBF7705A96EDD101 /* CoreExtensions.swift in Sources */,
 				DEDB47E930AECBC0990C8960CC4E6DEF /* CoreProtocol.swift in Sources */,
+				891053A71E9D04A800595D1D /* BEPushNotificationsTests.swift in Sources */,
 				464AD053F91C334AAC862F24B47FBFB0 /* CoreService.swift in Sources */,
 				0AFA7C1A1E8D5F2B004DE357 /* ServerResponse.swift in Sources */,
 				8A8C2AA5ADD374EB3A6DB4A2B4ED026C /* CouponResponse.swift in Sources */,

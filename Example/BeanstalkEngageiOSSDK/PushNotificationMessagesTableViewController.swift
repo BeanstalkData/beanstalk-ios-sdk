@@ -32,11 +32,11 @@ class PushNotificationMessagesTableViewController: UITableViewController, CorePr
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    if let contactId = self.contactId {
+    if let _ = self.contactId {
       self.showProgress("Loading messages")
       
       weak var weakSelf = self
-      self.coreService?.pushNotificationGetMessages(contactId, maxResults: 100, handler: { (messages, error) in
+      self.coreService?.pushNotificationGetMessages(maxResults: 100, handler: { (messages, error) in
         weakSelf?.hideProgress()
         
         if let err = error {

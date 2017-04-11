@@ -760,7 +760,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets user messages from user inbox.
    */
-  open func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
+  open func pushNotificationGetMessages (maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
       handler(nil, ApiError.unknown())

@@ -309,4 +309,25 @@ open class BECoreServiceTestHandler {
     
     return self
   }
+  
+  // Push notifications
+  
+  open func getPushNotificationMessages (maxResults: Int, handler : (Bool, [BEPushNotificationMessage]?) -> Void) -> BECoreServiceTestHandler? {
+    self.testCase.prepare()
+    
+    var pushNotificationMessagesStatus = false
+    var pushNotificationMessages: [BEPushNotificationMessage]? = nil
+    self.testCase.getCoreService()?.pushNotificationGetMessages(maxResults: maxResults, handler: { (messages, error) in
+      pushNotificationMessagesStatus = (error == nil)
+      pushNotificationMessages = messages
+      
+      self.testCase .fullfill()
+    })
+    
+    self.testCase.wait()
+    
+    handler(pushNotificationMessagesStatus, pushNotificationMessages)
+    
+    return self
+  }
 }
