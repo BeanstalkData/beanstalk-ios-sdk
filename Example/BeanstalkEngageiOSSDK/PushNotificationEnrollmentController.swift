@@ -33,7 +33,7 @@ final class PushNotificationEnrollmentController: NSObject {
   
   fileprivate var deviceToken: String?
   
-  var pushNotificationInfo: Dictionary<NSObject, AnyObject>?
+  var pushNotificationInfo: [AnyHashable : Any]?
   
   
   init(beanstalkCoreService: ApiService, session: BESessionProtocol) {
@@ -43,8 +43,6 @@ final class PushNotificationEnrollmentController: NSObject {
     super.init()
     
     if #available(iOS 10, *) {
-      let center = UNUserNotificationCenter.current()
-      center.delegate = self
     }
   }
   
@@ -97,7 +95,9 @@ final class PushNotificationEnrollmentController: NSObject {
     })
   }
   
-  func updateContactForPushNotifications(_ completionHandler: @escaping (_ success: Bool) -> Void) {
+  func updateContactForPushNotifications(_ completionHandler: @escaping (_ error: ApiError?) -> Void) {
+    weak var weakSelf = self
+    
     self.coreService.getMyContact(nil, handler: { (success, contact) in
       if let cont = contact {
         let updateRequest = ContactRequest(origin: cont)
@@ -105,28 +105,27 @@ final class PushNotificationEnrollmentController: NSObject {
         updateRequest.set(pushNotificationOptin: true)
         updateRequest.set(inboxMessageOptin: true)
         
-        self.coreService.updateContact(
+        weakSelf?.coreService.updateContact(
           request: updateRequest,
           contactClass: ContactModel.self,
-          handler: { (success, _, error) in
-            completionHandler(success)
-          }
-        )
+          handler: { (_, _, _) in
+            completionHandler(nil)
+        })
       }
       else {
-        completionHandler(false)
+        completionHandler(nil)
       }
     })
   }
   
-  func sendDeviceTokenAndUpdateContact(_ completionHandler: @escaping (_ success: Bool) -> Void) {
+  func sendDeviceTokenAndUpdateContact(_ completionHandler: @escaping (_ error: BEErrorType?) -> Void) {
     self.sendDeviceToken { (error) in
-      if let _ = error {
-        completionHandler(false)
+      if let err = error {
+        completionHandler(err)
       }
       else {
-        self.updateContactForPushNotifications({ (success) in
-          completionHandler(success)
+        self.updateContactForPushNotifications({ (error) in
+          completionHandler(error)
         })
       }
     }
@@ -140,24 +139,45 @@ final class PushNotificationEnrollmentController: NSObject {
     }
   }
   
+  func onSignIn(contact: BEContact) {
+    let deviceRegistered = self.isRegisteredForPushNotifications()
+    
+    let contactPushOptIn = contact.pushNotificationOptin > 0
+    let contactInboxOptIn = contact.inboxMessageOptin > 0
+    
+    if contactPushOptIn && contactInboxOptIn {
+      if !deviceRegistered {
+        self.requestPushNotificationPermissions({ (granted, error) -> (Void) in
+          if granted {
+            self.sendDeviceTokenAndUpdateContact({ (error) in
+              NSLog("error: \(error)")
+            })
+          } else {
+            // handle error
+          }
+        })
+      }
+    }
+  }
+  
   
   //MARK: - UIApplicationDleegate methods
   
   func applicationDidBecomeActive() {
     if self.pushNotificationInfo != nil {
       // opened from a push notification when the app was on background
-      self.handlePushNotification(self.pushNotificationInfo!)
+      self.handlePushNotification(info: self.pushNotificationInfo!)
       self.pushNotificationInfo = nil
     }
   }
   
-  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
     switch application.applicationState {
     case .active:
-      self.handlePushNotification(userInfo as Dictionary<NSObject, AnyObject>)
+      self.handlePushNotification(info: userInfo)
       break
     default:
-      self.pushNotificationInfo = userInfo as Dictionary<NSObject, AnyObject>?
+      self.pushNotificationInfo = userInfo
       
       break
     }
@@ -180,7 +200,7 @@ final class PushNotificationEnrollmentController: NSObject {
   }
   
   func didRegisterUserNotificationSettings(_ notificationSettings: UIUserNotificationSettings) {
-    
+    UIApplication.shared.registerForRemoteNotifications()
   }
   
   
@@ -243,10 +263,31 @@ final class PushNotificationEnrollmentController: NSObject {
     AppDelegate.rootViewController().present(alert, animated: true, completion: nil)
   }
   
-  fileprivate func handlePushNotification(_ pushNotificationInfo: Dictionary<NSObject, AnyObject>) {
-    // TODO: Handle remote notification
+  fileprivate func handlePushNotification(info: [AnyHashable : Any]) {
+    guard let aps = info["aps"] as? [AnyHashable: Any] else {
+      return
+    }
     
-    NSLog("handlePushNotification: \(pushNotificationInfo)")
+    guard let alert = aps["alert"] as? String else {
+      return
+    }
+    
+    guard let rootController = UIApplication.shared.keyWindow?.rootViewController else {
+      return
+    }
+    
+    let alertController = UIAlertController(
+      title: nil,
+      message: alert,
+      preferredStyle: .alert
+    )
+    
+    alertController.addAction(UIAlertAction(
+      title: "Cancel",
+      style: .cancel,
+      handler: nil))
+    
+    rootController.present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -258,7 +299,7 @@ extension PushNotificationEnrollmentController: UNUserNotificationCenterDelegate
     willPresent notification: UNNotification,
     withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
   {
-    completionHandler(.alert)
+    completionHandler([.badge, .alert, .sound])
   }
   
   @available(iOS 10, *)
