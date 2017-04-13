@@ -8,7 +8,7 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-class SignInViewController: BaseViewController, AuthenticationProtocol, UITextFieldDelegate {
+class SignInViewController: BaseViewController, UITextFieldDelegate {
   @IBOutlet var emailTextField: UITextField!
   @IBOutlet var passwordTextField: UITextField!
   
@@ -29,7 +29,9 @@ class SignInViewController: BaseViewController, AuthenticationProtocol, UITextFi
     
     if let email = self.emailTextField.text {
       if let password = self.passwordTextField.text {
-        self.coreService?.authenticateMe(self, email: email, password: password, handler: { (success) in
+        self.loadingHandler.showProgress("Attempting to Login")
+        self.coreService?.authenticateMe(email: email, password: password, handler: { (success, error) in
+          self.loadingHandler.handleError(success: success, error: error)
           self.completionBlock?(success)
         })
       }

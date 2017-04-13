@@ -33,7 +33,7 @@ public enum ApiError: BEErrorType {
   /// Data serialization error
   case dataSerialization(reason: String)
   /// Missing parameter error
-  case missingParameterError()
+  case missingParameterError(reason: String)
   
   /// Network error
   case network(error: Error?)
@@ -90,7 +90,7 @@ public enum ApiError: BEErrorType {
       
     case .dataSerialization(let reason):
       errorTitle = "Bad request"
-    case .missingParameterError:
+    case .missingParameterError(let reason):
       errorTitle = "Invalid request"
       
     case .network(let error):
@@ -151,8 +151,8 @@ public enum ApiError: BEErrorType {
       errorMessage = "Sorry, an error occurred while processing your request"
     case .dataSerialization(let reason):
       errorMessage = reason
-    case .missingParameterError:
-      errorMessage = "Please verify parameter(s)"
+    case .missingParameterError(let reason):
+      errorMessage = "Please verify parameter(s)" + ((reason.lengthOfBytes(using: String.Encoding.utf8) > 0) ? ": " + reason : "")
     case .network(let error):
       errorMessage = (error != nil ? error!.localizedDescription : "Sorry, an error occurred while processing your request")
     case .networkConnectionError:

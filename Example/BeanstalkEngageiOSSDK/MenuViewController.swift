@@ -8,7 +8,7 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol {
+class MenuViewController: BaseViewController {
   @IBOutlet var registerButton: UIButton!
   @IBOutlet var signInButton: UIButton!
   @IBOutlet var signOutButton: UIButton!
@@ -17,8 +17,6 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   @IBOutlet var userProgressButton: UIButton!
   @IBOutlet var giftCardsButton: UIButton!
   @IBOutlet var contactManagementButton: UIButton!
-  
-  var coreService: ApiService?
   
   
   override func viewDidLoad() {
@@ -65,7 +63,9 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
                                   preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     alert.addAction(UIAlertAction(title: "Sign Out", style: .default, handler: { (_) in
-      self.coreService?.logout(self, handler: { (success) in
+      self.loadingHandler.showProgress("Logout...")
+      self.coreService?.logout(handler: { (success, error) in
+        self.loadingHandler.hideProgress()
         self.updateAuthStatus()
       })
     }))
@@ -90,8 +90,12 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
       style: .default,
       handler: { (_) in
         if let email = alert.textFields?.first?.text {
-          self.coreService?.resetPassword(self, email: email, handler: { (success) in
-            
+          self.loadingHandler.showProgress("Reseting Password")
+          self.coreService?.resetPassword(email: email, handler: { (success, error) in
+            self.loadingHandler.handleError(success: true, error: error)
+            if success {
+              self.loadingHandler.showMessage("Password reset", message: nil)
+            }
           })
         }
     }))

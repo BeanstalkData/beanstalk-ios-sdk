@@ -9,7 +9,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableViewDataSource, UITableViewDelegate {
+class AvailableRewardsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
   var rewards: [BECoupon]?
   
   @IBOutlet var tableView: UITableView!
@@ -30,7 +30,9 @@ class AvailableRewardsViewController: BaseViewController, CoreProtocol, UITableV
   //MARK: - Private
   
   func loadRewards() {
-    self.coreService?.getAvailableRewards(self, handler: { (success, coupons) in
+    self.loadingHandler.showProgress("Retrieving Rewards")
+    self.coreService?.getAvailableRewards(handler: { (success, coupons, error) in
+      self.loadingHandler.handleError(success: success, error: error)
       self.rewards = coupons
       
       self.updateRewards()

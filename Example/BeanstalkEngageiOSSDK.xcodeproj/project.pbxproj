@@ -14,7 +14,6 @@
 		0AB1DAEE1DBE21A200B65DC7 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */; };
 		0AB1DAF01DBE22EA00B65DC7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1DAEF1DBE22EA00B65DC7 /* BaseViewController.swift */; };
 		0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC13FCB1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift */; };
-		0AC13FCE1E71901700D4B17D /* ProfileUpdateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC13FCD1E71901700D4B17D /* ProfileUpdateValidator.swift */; };
 		0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */; };
 		0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFA7C1E1E8D64D0004DE357 /* ContactManagementViewController.swift */; };
 		0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFB99941DC381C200EE9200 /* UserProgressViewController.swift */; };
@@ -38,6 +37,8 @@
 		89ACF7F11E4F215300F8B67A /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7EF1E4F215300F8B67A /* ApiService.swift */; };
 		89ACF7F41E5091C300F8B67A /* ContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7F31E5091C300F8B67A /* ContactRequest.swift */; };
 		89ACF7F51E5091C300F8B67A /* ContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ACF7F31E5091C300F8B67A /* ContactRequest.swift */; };
+		89EDF7CD1E9F78540027B3DC /* LoadingHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EDF7CC1E9F78540027B3DC /* LoadingHandlerProtocol.swift */; };
+		89EDF7CF1E9F78DA0027B3DC /* LoadingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EDF7CE1E9F78DA0027B3DC /* LoadingHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +59,6 @@
 		0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0AB1DAEF1DBE22EA00B65DC7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0AC13FCB1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationEnrollmentController.swift; sourceTree = "<group>"; };
-		0AC13FCD1E71901700D4B17D /* ProfileUpdateValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUpdateValidator.swift; sourceTree = "<group>"; };
 		0AC13FCF1E71923500D4B17D /* BeanstalkEngageiOSSDK_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeanstalkEngageiOSSDK_Example.entitlements; sourceTree = SOURCE_ROOT; };
 		0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationMessagesTableViewController.swift; sourceTree = "<group>"; };
 		0AFA7C1E1E8D64D0004DE357 /* ContactManagementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManagementViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +90,8 @@
 		896623FB1E4B2A210015698C /* GiftCardsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftCardsTests.swift; sourceTree = "<group>"; };
 		89ACF7EF1E4F215300F8B67A /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		89ACF7F31E5091C300F8B67A /* ContactRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRequest.swift; sourceTree = "<group>"; };
+		89EDF7CC1E9F78540027B3DC /* LoadingHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingHandlerProtocol.swift; sourceTree = "<group>"; };
+		89EDF7CE1E9F78DA0027B3DC /* LoadingHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingHandler.swift; sourceTree = "<group>"; };
 		9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB80099628A8D15F333D3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBD98C60E5D745C6627B2FCE /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +120,8 @@
 		0AC13FCA1E718CE700D4B17D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0AC13FCD1E71901700D4B17D /* ProfileUpdateValidator.swift */,
+				89EDF7CE1E9F78DA0027B3DC /* LoadingHandler.swift */,
+				89EDF7CC1E9F78540027B3DC /* LoadingHandlerProtocol.swift */,
 				0AC13FCB1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift */,
 			);
 			name = Controllers;
@@ -478,17 +481,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A6696E21DC2454200E51E82 /* ProfileViewController.swift in Sources */,
+				89EDF7CF1E9F78DA0027B3DC /* LoadingHandler.swift in Sources */,
 				0AB1DAF01DBE22EA00B65DC7 /* BaseViewController.swift in Sources */,
 				0AB1DAEE1DBE21A200B65DC7 /* SignInViewController.swift in Sources */,
 				0AB1DAE81DB50B6400B65DC7 /* RegisterViewController.swift in Sources */,
 				0AFB99971DC3B7F400EE9200 /* GiftCardsViewController.swift in Sources */,
 				0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */,
+				89EDF7CD1E9F78540027B3DC /* LoadingHandlerProtocol.swift in Sources */,
 				0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */,
 				0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */,
 				0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */,
 				89ACF7F01E4F215300F8B67A /* ApiService.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				0AC13FCE1E71901700D4B17D /* ProfileUpdateValidator.swift in Sources */,
 				89ACF7F41E5091C300F8B67A /* ContactRequest.swift in Sources */,
 				0A6696E41DC3654600E51E82 /* AvailableRewardsViewController.swift in Sources */,
 				896623EE1E49B74E0015698C /* ContactModel.swift in Sources */,

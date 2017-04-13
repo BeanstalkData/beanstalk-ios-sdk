@@ -10,7 +10,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class ContactManagementViewController: BaseViewController, CoreProtocol {
+class ContactManagementViewController: BaseViewController {
   @IBOutlet var contactIdLabel: UILabel!
   @IBOutlet var createContactButton: UIButton!
   @IBOutlet var deleteContactButton: UIButton!
@@ -30,17 +30,13 @@ class ContactManagementViewController: BaseViewController, CoreProtocol {
     let request = ContactRequest()
     
     weak var weakSelf = self
-    self.showProgress("Creating Empty Contact")
+    self.loadingHandler.showProgress("Creating Empty Contact")
     self.coreService?.createContact(
       request,
       contactClass: BEContact.self,
       fetchContact: true,
       handler: { (contactId, contact, error) in
-        weakSelf?.hideProgress()
-        
-        if let err = error {
-          weakSelf?.showMessage(err.errorTitle(), message: err.errorMessage())
-        }
+        weakSelf?.loadingHandler.handleError(success: error == nil, error: error)
         
         weakSelf?.setupFor(contact: contact)
     })
@@ -52,15 +48,11 @@ class ContactManagementViewController: BaseViewController, CoreProtocol {
     }
     
     weak var weakSelf = self
-    self.showProgress("Deleting Current Contact")
+    self.loadingHandler.showProgress("Deleting Current Contact")
     self.coreService?.deleteContact(
       contactId: contactId,
       handler: { (success, error) in
-        weakSelf?.hideProgress()
-        
-        if let err = error {
-          weakSelf?.showMessage(err.errorTitle(), message: err.errorMessage())
-        }
+        weakSelf?.loadingHandler.handleError(success: success, error: error)
         
         let contact = weakSelf?.coreService?.getSession()?.getContact()
         weakSelf?.setupFor(contact: contact)

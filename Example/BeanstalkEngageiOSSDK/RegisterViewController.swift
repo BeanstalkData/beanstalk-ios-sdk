@@ -8,7 +8,7 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFieldDelegate {
+class RegisterViewController: BaseViewController, UITextFieldDelegate {
   @IBOutlet var scrollView: UIScrollView!
   
   @IBOutlet var firstNameTextField: UITextField!
@@ -69,7 +69,9 @@ class RegisterViewController: BaseViewController, RegistrationProtocol, UITextFi
     request.set(emailOptin: self.optEmailCheckBox.isOn)
     request.set(gender: self.genderSegmentView.selectedSegmentIndex == 0 ? "Male" : "Female")
     
-    self.coreService?.registerMe(self, request: request, handler: { (success) in
+    self.loadingHandler.showProgress("Registering User")
+    self.coreService?.registerMe(request: request, handler: { (success, error) in
+      self.loadingHandler.handleError(success: success, error: error)
       self.completionBlock?(success)
     })
     

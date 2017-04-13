@@ -11,7 +11,6 @@ import UIKit
 import libPhoneNumber_iOS
 import PKHUD
 
-
 extension String {
   
   public func formatPhoneNumberToNational() -> String! {
@@ -66,31 +65,3 @@ extension String {
   }
 }
 
-
-extension UIViewController {
-  
-  public func showMessage(_ error: BEErrorType) {
-    let title = error.errorTitle()
-    let message = error.errorMessage()
-    self.showMessage(title, message: message)
-  }
-  
-  public func showMessage(_ title: String?, message : String?){
-    let alertController = UIAlertController(title: title, message:
-      message, preferredStyle: UIAlertControllerStyle.alert)
-    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
-    
-    self.present(alertController, animated: true, completion: nil)
-  }
-  
-  public func showProgress(_ message : String){
-    debugPrint("showProgress()")
-    PKHUD.sharedHUD.show()
-    PKHUD.sharedHUD.contentView = PKHUDTextView(text: message)
-  }
-  
-  public func hideProgress(){
-    debugPrint("hideProgress()")
-    PKHUD.sharedHUD.hide()
-  }
-}

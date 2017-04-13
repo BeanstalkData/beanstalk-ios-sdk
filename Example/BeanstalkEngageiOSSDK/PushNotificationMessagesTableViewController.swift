@@ -10,7 +10,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class PushNotificationMessagesTableViewController: UITableViewController, CoreProtocol {
+class PushNotificationMessagesTableViewController: UITableViewController {
   var coreService: ApiService?
   var contactId: String?
   var messages: [BEPushNotificationMessage]? {
@@ -28,21 +28,23 @@ class PushNotificationMessagesTableViewController: UITableViewController, CorePr
     return formatter
   }()
   
+  lazy var loadingHandler: LoadingHandlerProtocol = {
+    let handler = LoadingHandler(viewController: self)
+    
+    return handler
+  }()
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     if let _ = self.contactId {
-      self.showProgress("Loading messages")
+      self.loadingHandler.showProgress("Loading messages")
       
       weak var weakSelf = self
       self.coreService?.pushNotificationGetMessages(maxResults: 100, handler: { (messages, error) in
-        weakSelf?.hideProgress()
+        weakSelf?.loadingHandler.handleError(success: error == nil, error: error)
         
-        if let err = error {
-          weakSelf?.showMessage(err)
-        }
-        else {
+        if error == nil {
           weakSelf?.messages = messages
         }
       })
@@ -123,9 +125,9 @@ class PushNotificationMessagesTableViewController: UITableViewController, CorePr
     
     weak var weakSelf = self
     
-    self.showProgress("Updating")
+    self.loadingHandler.showProgress("Updating")
     self.coreService?.pushNotificationUpdateStatus(messageId, status: new, handler: { (success, msg) in
-      weakSelf?.hideProgress()
+      weakSelf?.loadingHandler.hideProgress()
       
       if success {
         message.status = new.rawValue
@@ -150,9 +152,9 @@ class PushNotificationMessagesTableViewController: UITableViewController, CorePr
         
         weak var weakSelf = self
         
-        self.showProgress("Updating")
+        self.loadingHandler.showProgress("Updating")
         self.coreService?.pushNotificationUpdateStatus(messageId, status: .deleted, handler: { (success, msg) in
-          weakSelf?.hideProgress()
+          weakSelf?.loadingHandler.hideProgress()
           
           if success {
             message.status = PushNotificationStatus.deleted.rawValue

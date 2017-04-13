@@ -30,7 +30,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signInStatus = false
-    self.testCase.getCoreService()?.autoSignIn(nil, contactClass: BEContact.self, handler: { (success) in
+    self.testCase.getCoreService()?.autoSignIn(contactClass: BEContact.self, handler: { (success, error) in
       signInStatus = success
       self.testCase .fullfill()
     })
@@ -47,7 +47,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signInStatus = false
-    self.testCase.getCoreService()?.authenticate(nil, email: email, password: password, contactClass: BEContact.self, handler: { (success) in
+    self.testCase.getCoreService()?.authenticate(email: email, password: password, contactClass: BEContact.self, handler: { (success, error) in
       
       signInStatus = success
       self.testCase .fullfill()
@@ -65,7 +65,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var signOutStatus = false
-    self.testCase.getCoreService()?.logout(nil, handler: { (success) in
+    self.testCase.getCoreService()?.logout(handler: { (success, error) in
       
       signOutStatus = success
       self.testCase .fullfill()
@@ -83,7 +83,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var resetPasswordStatus = false
-    self.testCase.getCoreService()?.resetPassword(nil, email: email, handler: { (result) in
+    self.testCase.getCoreService()?.resetPassword(email: email, handler: { (result, error) in
       
       resetPasswordStatus = result
       self.testCase .fullfill()
@@ -101,7 +101,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var updatePasswordStatus = false
-    self.testCase.getCoreService()?.updatePassword(nil, password: password, confirmPassword: password, handler: { (result) in
+    self.testCase.getCoreService()?.updatePassword(password: password, confirmPassword: password, handler: { (result, error) in
       updatePasswordStatus = result
       self.testCase .fullfill()
     })
@@ -118,7 +118,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.registerLoyaltyAccount(nil, request: request, contactClass: BEContact.self, handler: { (result) in
+    self.testCase.getCoreService()?.registerLoyaltyAccount(request: request, contactClass: BEContact.self, handler: { (result, error) in
       
       registerStatus = result
       self.testCase .fullfill()
@@ -136,7 +136,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.register(nil, request: request, contactClass: BEContact.self, handler: { (result) in
+    self.testCase.getCoreService()?.register(request: request, contactClass: BEContact.self, handler: { (result, error) in
       
       registerStatus = result
       self.testCase .fullfill()
@@ -154,7 +154,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var contact: BEContact?
-    self.testCase.getCoreService()?.getContact(nil, contactClass: BEContact.self, handler: { (success, result) in
+    self.testCase.getCoreService()?.getContact(contactClass: BEContact.self, handler: { (success, result, error) in
       contact = result
       self.testCase .fullfill()
     })
@@ -189,7 +189,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var contact: ContactClass?
-    self.testCase.getCoreService()?.getContact(nil, contactClass: contactClass, handler: { (success,result) in
+    self.testCase.getCoreService()?.getContact(contactClass: contactClass, handler: { (success, result, error) in
       contact = result
       self.testCase .fullfill()
     })
@@ -209,7 +209,7 @@ open class BECoreServiceTestHandler {
     
     var resultStatus = false
     var resultCoupons: [CouponClass] = []
-    self.testCase.getCoreService()?.getAvailableRewardsForCouponClass(nil, couponClass: couponClass, handler: { (success, result) in
+    self.testCase.getCoreService()?.getAvailableRewards(couponClass: couponClass, handler: { (success, result, error) in
       resultStatus = success
       if let coupons = result as? [CouponClass] {
         resultCoupons = coupons
@@ -224,14 +224,14 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  open func getProgress (_ handler : (Double?, ApiError?) -> Void) -> BECoreServiceTestHandler? {
+  open func getProgress (_ handler : (Double?, BEErrorType?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var value: Double?
-    var apiError: ApiError?
+    var apiError: BEErrorType?
     
-    self.testCase.getCoreService()?.getUserProgress(nil, handler: { (progresValue, error) in
+    self.testCase.getCoreService()?.getUserProgress(handler: { (progresValue, error) in
       value = progresValue
       apiError = error
       
@@ -253,7 +253,7 @@ open class BECoreServiceTestHandler {
     
     var resultStatus = false
     var resultGiftCards: [GiftCardClass] = []
-    self.testCase.getCoreService()?.getGiftCardsForGiftCardClass(nil, giftCardClass: giftCardClass, handler: { (success, result) in
+    self.testCase.getCoreService()?.getGiftCards(giftCardClass: giftCardClass, handler: { (success, result, error) in
       resultStatus = success
       if let giftCards = result as? [GiftCardClass] {
         resultGiftCards = giftCards
@@ -274,7 +274,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var barCodeInfo = BarCodeInfo(data: "", type: .memberId)
-    self.testCase.getCoreService()?.startPayment(nil, cardId: cardId, coupons: coupons, handler: { (info) in
+    self.testCase.getCoreService()?.startPayment(cardId: cardId, coupons: coupons, handler: { (success, info, error) in
       
       barCodeInfo = info
       
@@ -295,7 +295,7 @@ open class BECoreServiceTestHandler {
     
     var locationStatus = false
     var locationStores: [BEStore]? = nil
-    self.testCase.getCoreService()?.getStoresAtLocationForStoreClass(nil, coordinate: coordinate, storeClass: storeClass, handler: { (success, stores) in
+    self.testCase.getCoreService()?.getStoresAtLocationForStoreClass(coordinate: coordinate, storeClass: storeClass, handler: { (success, stores, error) in
       
       locationStatus = success
       locationStores = stores

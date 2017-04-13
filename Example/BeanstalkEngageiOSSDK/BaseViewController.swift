@@ -14,6 +14,12 @@ import BeanstalkEngageiOSSDK
 class BaseViewController: UIViewController {
   var coreService: ApiService?
   
+  lazy var loadingHandler: LoadingHandlerProtocol = {
+    let handler = LoadingHandler(viewController: self)
+    
+    return handler
+  }()
+  
   var completionBlock: ((_ success: Bool) -> Void)?
   
   override func viewWillAppear(_ animated: Bool) {

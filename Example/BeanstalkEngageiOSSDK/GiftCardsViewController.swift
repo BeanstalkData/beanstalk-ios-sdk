@@ -9,7 +9,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewDataSource, UITableViewDelegate {
+class GiftCardsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
   var giftCards: [BEGiftCard]?
   
   @IBOutlet var tableView: UITableView!
@@ -30,7 +30,10 @@ class GiftCardsViewController: BaseViewController, CoreProtocol, UITableViewData
   //MARK: - Private
   
   func loadGiftCards() {
-    self.coreService?.getGiftCards(self, handler: { (success, giftCards) in
+    self.loadingHandler.showProgress("Retrieving Cards")
+    self.coreService?.getGiftCards(handler: { (success, giftCards, error) in
+      self.loadingHandler.handleError(success: success, error: error)
+      
       self.giftCards = giftCards
       
       self.updateGiftCards()

@@ -14,23 +14,23 @@ class ApiService: CoreService {
     super.init(apiKey: apiKey, session: session)
   }
   
-  func registerMyLoyaltyAccount (_ controller: RegistrationProtocol?, request: ContactRequest, handler: @escaping (Bool) -> Void) {
-    registerLoyaltyAccount(controller, request: request, contactClass: ContactModel.self, handler: handler)
+  func registerMyLoyaltyAccount (request: ContactRequest, handler: @escaping (Bool, BEErrorType?) -> Void) {
+    registerLoyaltyAccount(request: request, contactClass: ContactModel.self, handler: handler)
   }
   
-  func registerMe (_ controller : RegistrationProtocol?, request : ContactRequest, handler : @escaping (Bool) -> Void) {
-    register(controller, request : request, contactClass: ContactModel.self, handler : handler)
+  func registerMe (request : ContactRequest, handler : @escaping (Bool, BEErrorType?) -> Void) {
+    register(request : request, contactClass: ContactModel.self, handler : handler)
   }
   
-  func autoSignInMe(_ controller: AuthenticationProtocol?, handler : @escaping ((_ success: Bool) -> Void)) {
-    autoSignIn(controller, contactClass: ContactModel.self, handler : handler)
+  func autoSignInMe(handler : @escaping ((_ success: Bool, BEErrorType?) -> Void)) {
+    autoSignIn(contactClass: ContactModel.self, handler : handler)
   }
   
-  func authenticateMe(_ controller: AuthenticationProtocol?, email: String?, password: String?, handler : @escaping (_ success: Bool) -> Void ) {
-    authenticate(controller, email: email, password: password, contactClass: ContactModel.self, handler : handler)
+  func authenticateMe(email: String?, password: String?, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void ) {
+    authenticate(email: email, password: password, contactClass: ContactModel.self, handler : handler)
   }
   
-  func getMyContact(_ controller : CoreProtocol?, handler : @escaping (Bool, BEContact?) -> Void) {
-    getContact(controller, contactClass: ContactModel.self, handler : handler)
+  func getMyContact(handler : @escaping (Bool, BEContact?, BEErrorType?) -> Void) {
+    getContact(contactClass: ContactModel.self, handler : handler)
   }
 }

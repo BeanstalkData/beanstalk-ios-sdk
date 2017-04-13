@@ -9,7 +9,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class UserProgressViewController: BaseViewController, CoreProtocol {
+class UserProgressViewController: BaseViewController {
   @IBOutlet var progressValueLabel: UILabel!
   @IBOutlet var progressTextLabel: UILabel!
   
@@ -24,7 +24,10 @@ class UserProgressViewController: BaseViewController, CoreProtocol {
   //MARK: - Private
   
   func loadProgress() {
-    self.coreService?.getUserProgress(self, handler: { (progressValue, error) in
+    
+    self.loadingHandler.showProgress("Getting Rewards")
+    self.coreService?.getUserProgress(handler: { (progressValue, error) in
+      self.loadingHandler.hideProgress()
       if let value = progressValue {
         self.progressValueLabel.text = "\(Int(value))"
         self.progressTextLabel.text = nil

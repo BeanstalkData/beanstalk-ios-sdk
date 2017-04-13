@@ -9,7 +9,7 @@ import UIKit
 import BeanstalkEngageiOSSDK
 
 
-class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtocol {
+class ProfileViewController: BaseViewController {
   var contact: ContactModel?
   var updateContactRequest: ContactRequest?
   
@@ -56,7 +56,9 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   //MARK: - Private
   
   func loadProfile() {
-    self.coreService?.getMyContact(self, handler: { (success, contact) in
+    self.loadingHandler.showProgress("Retrieving Profile")
+    self.coreService?.getMyContact(handler: { (success, contact, error) in
+      self.loadingHandler.handleError(success: success, error: error)
       if contact != nil {
         self.contact = contact as? ContactModel
         
@@ -96,7 +98,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
   }
   
   private func showPushNotificationsError(error: ApiError) {
-    self.showMessage("Push Notifications Error", message: error.errorMessage())
+    self.loadingHandler.showMessage("Push Notifications Error", message: error.errorMessage())
     
     self.loadProfile()
   }
@@ -128,7 +130,7 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
       let sendToken = {
         pushEnrollment.sendDeviceTokenAndUpdateContact({ (success) in
           if success {
-            weakSelft?.showMessage("Push Notifications Enabled", message: nil)
+            weakSelft?.loadingHandler.showMessage("Push Notifications Enabled", message: nil)
             weakSelft?.loadProfile()
           }
           else {
@@ -182,13 +184,13 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
     }
     
     weak var weakSelf = self
-    self.showProgress("Updating Profile")
+    self.loadingHandler.showProgress("Updating Profile")
     self.coreService?.updateContact(
       request: request,
       contactClass: ContactModel.self,
       fetchContact: true,
       handler: { (success, fetchedContact, error) in
-        weakSelf?.hideProgress()
+        weakSelf?.loadingHandler.handleError(success: success, error: error)
         
         if success {
           if let contact = fetchedContact {
@@ -198,8 +200,6 @@ class ProfileViewController: BaseViewController, CoreProtocol, EditProfileProtoc
           } else {
             weakSelf?.loadProfile()
           }
-        } else {
-          weakSelf?.showMessage(error?.errorTitle(), message: error?.errorMessage())
         }
     })
   }
