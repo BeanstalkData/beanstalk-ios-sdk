@@ -25,7 +25,7 @@ open class BECoreServiceTestHandler {
   
   /* User */
   
-  open func autoSignIn(_ handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func autoSignIn(_ handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -42,7 +42,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  @discardableResult open func signIn(_ email: String, password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func signIn(_ email: String, password: String, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -60,7 +60,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func signOut(_ handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func signOut(_ handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -78,14 +78,14 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func resetPassword(_ email: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func resetPassword(_ email: String, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var resetPasswordStatus = false
-    self.testCase.getCoreService()?.resetPassword(email: email, handler: { (result, error) in
+    self.testCase.getCoreService()?.resetPassword(email: email, handler: { (success, error) in
       
-      resetPasswordStatus = result
+      resetPasswordStatus = success
       self.testCase .fullfill()
     })
     
@@ -96,13 +96,13 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func updatePassword(_ password: String, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func updatePassword(_ password: String, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var updatePasswordStatus = false
-    self.testCase.getCoreService()?.updatePassword(password: password, confirmPassword: password, handler: { (result, error) in
-      updatePasswordStatus = result
+    self.testCase.getCoreService()?.updatePassword(password: password, confirmPassword: password, handler: { (success, error) in
+      updatePasswordStatus = success
       self.testCase .fullfill()
     })
     
@@ -113,14 +113,14 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func registerLoyaltyAccount(_ request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func registerLoyaltyAccount(_ request: ContactRequest, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.registerLoyaltyAccount(request: request, contactClass: BEContact.self, handler: { (result, error) in
+    self.testCase.getCoreService()?.registerLoyaltyAccount(request: request, contactClass: BEContact.self, handler: { (success, error) in
       
-      registerStatus = result
+      registerStatus = success
       self.testCase .fullfill()
     })
     
@@ -131,14 +131,14 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func registerAccount(_ request: ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func registerAccount(_ request: ContactRequest, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var registerStatus = false
-    self.testCase.getCoreService()?.register(request: request, contactClass: BEContact.self, handler: { (result, error) in
+    self.testCase.getCoreService()?.register(request: request, contactClass: BEContact.self, handler: { (success, error) in
       
-      registerStatus = result
+      registerStatus = success
       self.testCase .fullfill()
     })
     
@@ -149,7 +149,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func getContact(_ handler : (BEContact?) -> Void) -> BECoreServiceTestHandler? {
+  open func getContact(_ handler: (_ contact: BEContact?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -166,7 +166,7 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  @discardableResult open func updateContact(request : ContactRequest, handler : (Bool) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func updateContact(request : ContactRequest, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -184,7 +184,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  @discardableResult open func getContact <ContactClass: BEContact> (_ contactClass: ContactClass.Type, handler : (ContactClass?) -> Void) -> BECoreServiceTestHandler? {
+  @discardableResult open func getContact <ContactClass: BEContact> (_ contactClass: ContactClass.Type, handler: (_ contact: ContactClass?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -203,7 +203,7 @@ open class BECoreServiceTestHandler {
   
   // Rewards
   
-  open func getAvailableRewards <CouponClass: BECoupon> (_ couponClass: CouponClass.Type, handler : (Bool, [CouponClass]) -> Void) -> BECoreServiceTestHandler? {
+  open func getAvailableRewards <CouponClass: BECoupon> (_ couponClass: CouponClass.Type, handler: (_ success: Bool, _ coupons: [CouponClass]) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -224,14 +224,14 @@ open class BECoreServiceTestHandler {
     return self
   }
 
-  open func getProgress (_ handler : (Double?, BEErrorType?) -> Void) -> BECoreServiceTestHandler? {
+  open func getProgress (_ handler: (_ progress: Double?, _ error: BEErrorType?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var value: Double?
     var apiError: BEErrorType?
     
-    self.testCase.getCoreService()?.getUserProgress(handler: { (progresValue, error) in
+    self.testCase.getCoreService()?.getUserProgress(handler: { (success, progresValue, error) in
       value = progresValue
       apiError = error
       
@@ -247,7 +247,7 @@ open class BECoreServiceTestHandler {
   
   // Gift cards
   
-  open func getGiftCards <GiftCardClass: BEGiftCard> (_ giftCardClass: GiftCardClass.Type, handler : (Bool, [GiftCardClass]) -> Void) -> BECoreServiceTestHandler? {
+  open func getGiftCards <GiftCardClass: BEGiftCard> (_ giftCardClass: GiftCardClass.Type, handler: (_ success: Bool, _ cards: [GiftCardClass]) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -269,7 +269,7 @@ open class BECoreServiceTestHandler {
     return self
   }
   
-  open func startPayment (_ cardId: String?, coupons: [BECoupon], handler : (BarCodeInfo) -> Void) -> BECoreServiceTestHandler? {
+  open func startPayment (_ cardId: String?, coupons: [BECoupon], handler: (_ info: BarCodeInfo) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
@@ -290,7 +290,7 @@ open class BECoreServiceTestHandler {
   
   // Stores
   
-  open func getStoresAtLocation <StoreClass: BEStore> (_ coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : (Bool, [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
+  open func getStoresAtLocation <StoreClass: BEStore> (_ coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: (_ success: Bool, _ stores: [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
     self.testCase.prepare()
     
     var locationStatus = false
@@ -312,12 +312,12 @@ open class BECoreServiceTestHandler {
   
   // Push notifications
   
-  open func getPushNotificationMessages (maxResults: Int, handler : (Bool, [BEPushNotificationMessage]?) -> Void) -> BECoreServiceTestHandler? {
+  open func getPushNotificationMessages (maxResults: Int, handler: (_ success: Bool, _ messages: [BEPushNotificationMessage]?) -> Void) -> BECoreServiceTestHandler? {
     self.testCase.prepare()
     
     var pushNotificationMessagesStatus = false
     var pushNotificationMessages: [BEPushNotificationMessage]? = nil
-    self.testCase.getCoreService()?.pushNotificationGetMessages(maxResults: maxResults, handler: { (messages, error) in
+    self.testCase.getCoreService()?.pushNotificationGetMessages(maxResults: maxResults, handler: { (success, messages, error) in
       pushNotificationMessagesStatus = (error == nil)
       pushNotificationMessages = messages
       

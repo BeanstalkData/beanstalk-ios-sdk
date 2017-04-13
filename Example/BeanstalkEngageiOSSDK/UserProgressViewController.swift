@@ -26,7 +26,7 @@ class UserProgressViewController: BaseViewController {
   func loadProgress() {
     
     self.loadingHandler.showProgress("Getting Rewards")
-    self.coreService?.getUserProgress(handler: { (progressValue, error) in
+    self.coreService?.getUserProgress(handler: { (success, progressValue, error) in
       self.loadingHandler.hideProgress()
       if let value = progressValue {
         self.progressValueLabel.text = "\(Int(value))"

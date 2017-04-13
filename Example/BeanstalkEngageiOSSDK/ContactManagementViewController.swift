@@ -35,8 +35,8 @@ class ContactManagementViewController: BaseViewController {
       request,
       contactClass: BEContact.self,
       fetchContact: true,
-      handler: { (contactId, contact, error) in
-        weakSelf?.loadingHandler.handleError(success: error == nil, error: error)
+      handler: { (success, contactId, contact, error) in
+        weakSelf?.loadingHandler.handleError(success: success, error: error)
         
         weakSelf?.setupFor(contact: contact)
     })

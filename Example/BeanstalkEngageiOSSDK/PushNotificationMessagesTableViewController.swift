@@ -41,8 +41,8 @@ class PushNotificationMessagesTableViewController: UITableViewController {
       self.loadingHandler.showProgress("Loading messages")
       
       weak var weakSelf = self
-      self.coreService?.pushNotificationGetMessages(maxResults: 100, handler: { (messages, error) in
-        weakSelf?.loadingHandler.handleError(success: error == nil, error: error)
+      self.coreService?.pushNotificationGetMessages(maxResults: 100, handler: { (success, messages, error) in
+        weakSelf?.loadingHandler.handleError(success: success, error: error)
         
         if error == nil {
           weakSelf?.messages = messages

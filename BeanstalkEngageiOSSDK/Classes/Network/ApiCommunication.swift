@@ -350,7 +350,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    */
   open func deleteContact(
     contactId: String,
-    handler : @escaping (_ result: Result<Any>) -> Void) {
+    handler: @escaping (_ result: Result<Any>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -738,7 +738,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func updatePassword(_ password : String, contactId : String, token: String, handler : @escaping (Result<Any>)->Void){
+  open func updatePassword(_ password : String, contactId : String, token: String, handler: @escaping (Result<Any>)->Void){
     
     if (isOnline()) {
       let params = ["token": token,
@@ -769,7 +769,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler : @escaping (Result<[BECoupon]>) -> Void){
+  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler: @escaping (Result<[BECoupon]>) -> Void){
     
     if (isOnline()) {
       let params = [
@@ -845,7 +845,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getGiftCards <GiftCardClass: BEGiftCard> (_ contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler : @escaping (Result<[BEGiftCard]>) -> Void) {
+  open func getGiftCards <GiftCardClass: BEGiftCard> (_ contactId: String, token : String, giftCardClass: GiftCardClass.Type, handler: @escaping (Result<[BEGiftCard]>) -> Void) {
     
     if (isOnline()) {
       let params = [
@@ -883,7 +883,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getGiftCardBalance(_ contactId: String, token : String, number : String, handler : @escaping (Result<String?>) -> Void){
+  open func getGiftCardBalance(_ contactId: String, token : String, number : String, handler: @escaping (Result<String?>) -> Void){
     
     if (isOnline()) {
       let params = [
@@ -919,7 +919,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func startPayment(_ contactId: String, token: String, paymentId: String?, coupons: String, handler : @escaping (Result<String?>)->Void){
+  open func startPayment(_ contactId: String, token: String, paymentId: String?, coupons: String, handler: @escaping (Result<String?>)->Void){
     
     if (isOnline()) {
       var params = [
@@ -965,7 +965,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Locations
   
-  open func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler : @escaping (Result<[BEStore]?>) -> Void) {
+  open func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler: @escaping (Result<[BEStore]?>) -> Void) {
     
     if (isOnline()) {
       
@@ -1011,7 +1011,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Push Notifications
   
-  public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler : @escaping (Result<Any?>)->Void) {
+  public func pushNotificationEnroll(_ contactId: String, deviceToken: String, handler: @escaping (Result<Any?>)->Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -1053,7 +1053,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  public func pushNotificationDelete(_ contactId: String, handler : @escaping (Result<Any>)->Void) {
+  public func pushNotificationDelete(_ contactId: String, handler: @escaping (Result<Any>)->Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -1093,7 +1093,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  public func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler : @escaping (Result<[BEPushNotificationMessage]>) -> Void) {
+  public func pushNotificationGetMessages(_ contactId: String, maxResults: Int, handler: @escaping (Result<[BEPushNotificationMessage]>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -1131,7 +1131,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  public func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (Result<Any>) -> Void) {
+  public func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler: @escaping (Result<Any>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -1169,7 +1169,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  public func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (Result<BEPushNotificationMessage>) -> Void) {
+  public func pushNotificationGetMessageById(_ messageId: String, handler: @escaping (Result<BEPushNotificationMessage>) -> Void) {
     
     guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))

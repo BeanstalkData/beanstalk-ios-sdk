@@ -80,7 +80,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs create loyalty user request.
    */
-  open func registerLoyaltyAccount <ContactClass: BEContact> (request: ContactRequest, contactClass: ContactClass.Type, handler: @escaping (Bool, BEErrorType?) -> Void){
+  open func registerLoyaltyAccount <ContactClass: BEContact> (request: ContactRequest, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void){
     guard self.validator.validate(createRequest: request, errorHandler: { error in
       handler(false, error)
     }) else {
@@ -106,7 +106,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs register user request with checks for already existed.
    */
-  open func register <ContactClass: BEContact> (request : ContactRequest, contactClass: ContactClass.Type, handler : @escaping (Bool, BEErrorType?) -> Void) {
+  open func register <ContactClass: BEContact> (request : ContactRequest, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, BEErrorType?) -> Void) {
     guard self.validator.validate(createRequest: request, errorHandler: { error in
       handler(false, error)
     }) else {
@@ -169,7 +169,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Checks user session.
    */
-  open func autoSignIn <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool, _ error: BEErrorType?) -> Void)) {
+  open func autoSignIn <ContactClass: BEContact> (contactClass: ContactClass.Type, handler: @escaping ((_ success: Bool, _ error: BEErrorType?) -> Void)) {
     
     guard let contactId = self.session.getContactId() else {
       handler(false, ApiError.missingParameterError(reason: ""))
@@ -193,9 +193,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
 //        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, result.error! as! BEErrorType)
       } else {
-        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
+        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { (success, error) in
           weakSelf?.p_isAuthenticateInProgress = false
-          handler(result, nil)
+          handler(success, error)
         })
       }
     }
@@ -204,7 +204,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Authenticates user.
    */
-  open func authenticate <ContactClass: BEContact> (email: String?, password: String?, contactClass: ContactClass.Type, handler : @escaping ((_ success: Bool, _ error: BEErrorType?) -> Void)) {
+  open func authenticate <ContactClass: BEContact> (email: String?, password: String?, contactClass: ContactClass.Type, handler: @escaping ((_ success: Bool, _ error: BEErrorType?) -> Void)) {
     
     guard self.validator.validate(email: email, password: password, errorHandler: { error in
       handler(false, error)
@@ -226,15 +226,15 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       } else {
         let contactId = result.value!.contactId
         let token = result.value!.token
-        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
+        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { (success, error) in
           weakSelf?.p_isAuthenticateInProgress = false
-          handler(result, nil)
+          handler(success, error)
         })
       }
     })
   }
   
-  fileprivate func auth <ContactClass: BEContact> (email: String, password: String, contactClass: ContactClass.Type, handler : @escaping (Bool, _ error: BEErrorType?) -> Void) {
+  fileprivate func auth <ContactClass: BEContact> (email: String, password: String, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     self.p_isAuthenticateInProgress = true
 //    controller?.showProgress("Attempting to Login")
@@ -250,19 +250,19 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       } else {
         let contactId = result.value!.contactId
         let token = result.value!.token
-        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { result in
+        weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { (success, error) in
           weakSelf?.p_isAuthenticateInProgress = false
-          handler(result, nil)
+          handler(success, error)
         })
       }
     })
   }
   
-  fileprivate func handleLoginComplete <ContactClass: BEContact> (_ contactId : String?, token : String?, contactClass: ContactClass.Type, handler : @escaping (Bool) -> Void) {
+  fileprivate func handleLoginComplete <ContactClass: BEContact> (_ contactId : String?, token : String?, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard (contactId != nil && token != nil) else {
       self.clearSession()
-      handler(false)
+      handler(false, ApiError.missingParameterError(reason: ""))
       return
     }
     
@@ -274,14 +274,18 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         weakSelf?.session.setContact(nil)
       }
       weakSelf?.session.setAuthToke(token)
-      handler(result.isSuccess)
+      if result.isSuccess {
+        handler(true, nil)
+      } else {
+        handler(false, ApiError.profileError(reason: result.error! as! BEErrorType))
+      }
     })
   }
   
   /**
    Performs reset password request.
    */
-  open func resetPassword(email : String?, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+  open func resetPassword(email : String?, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard self.validator.validate(email: email, errorHandler: { error in
       handler(false, error)
@@ -306,7 +310,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Logouts user.
    */
-  open func logout(handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void){
+  open func logout(handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void){
     
     guard let contactId = self.session.getContactId() else {
       handler(false, ApiError.missingParameterError(reason: ""))
@@ -346,7 +350,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   open func checkContactsByEmailExisted(
     email: String,
     prospectTypes: [ProspectType],
-    handler : @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
+    handler: @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
     ) {
 //    controller?.showProgress("Checking email")
     apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
@@ -364,7 +368,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Requests contact model from server.
    */
-  open func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler : @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void) {
+  open func getContact <ContactClass: BEContact> (contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void) {
     guard let contactId = self.session.getContactId() else {
       handler(false, nil, ApiError.missingParameterError(reason: ""))
       return
@@ -402,14 +406,14 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     _ request : ContactRequest,
     contactClass: ContactClass.Type,
     fetchContact: Bool = false,
-    handler : @escaping (_ contactId: String?, _ contact: ContactClass?, _ error: BEErrorType?) -> Void) {
+    handler: @escaping (_ success : Bool, _ contactId: String?, _ contact: ContactClass?, _ error: BEErrorType?) -> Void) {
     
     request.normalize()
     
     weak var weakSelf = self
     apiService.createContact(request, contactClass: contactClass, fetchContact: fetchContact) { (result) in
       if result.isFailure {
-        handler(nil, nil, result.error as? BEErrorType)
+        handler(false, nil, nil, result.error as? BEErrorType)
       } else {
         let contactId = result.value?.contactId
         let contact = result.value?.contact
@@ -418,7 +422,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
           weakSelf?.session.setContact(contact)
         }
         
-        handler(contactId, contact, nil)
+        handler(true, contactId, contact, nil)
       }
     }
   }
@@ -435,7 +439,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     request : ContactRequest,
     contactClass : ContactClass.Type,
     fetchContact : Bool = false,
-    handler : @escaping (_ success : Bool, _ contact : ContactClass?, _ error : BEErrorType?) -> Void) {
+    handler: @escaping (_ success : Bool, _ contact : ContactClass?, _ error : BEErrorType?) -> Void) {
     
     request.normalize()
     
@@ -463,7 +467,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    */
   open func deleteContact(
     contactId: String,
-    handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     weak var weakSelf = self
     apiService.deleteContact(contactId: contactId) { (result) in
@@ -528,7 +532,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Updates password.
    */
-  open func updatePassword(password: String?, confirmPassword: String?, handler : @escaping (Bool, _ error: BEErrorType?) -> Void){
+  open func updatePassword(password: String?, confirmPassword: String?, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void){
     
     guard self.validator.validate(password: password, confirmPassword: confirmPassword, errorHandler: { error in
       handler(false, error)
@@ -562,14 +566,14 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets available rewards for couponClass BECoupon.
    */
-  open func getAvailableRewards(handler : @escaping (Bool, [BECoupon], _ error: BEErrorType?)->Void){
+  open func getAvailableRewards(handler: @escaping (_ success: Bool, _ coupons: [BECoupon], _ error: BEErrorType?)->Void){
     self.getAvailableRewards(couponClass: BECoupon.self, handler: handler)
   }
   
   /**
    Gets available rewards for provided coupon class.
    */
-  open func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler : @escaping (Bool, [BECoupon], _ error: BEErrorType?)->Void){
+  open func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler: @escaping (_ success: Bool, _ coupons: [BECoupon], _ error: BEErrorType?)->Void){
     
     guard let contactId = self.session.getContactId() else {
       handler(false, [], ApiError.missingParameterError(reason: ""))
@@ -579,7 +583,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
 //    controller?.showProgress("Retrieving Rewards")
     
     weak var weakSelf = self
-    apiService.getUserOffers(contactId, couponClass: couponClass, handler : { (result) in
+    apiService.getUserOffers(contactId, couponClass: couponClass, handler: { (result) in
 //      controller?.hideProgress()
       
       if result.isFailure {
@@ -596,42 +600,37 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets user progress.
    */
-  open func getUserProgress(handler : @escaping (Double?, BEErrorType?)->Void){
+  open func getUserProgress(handler: @escaping (_ success: Bool, _ progress: Double?, _ error: BEErrorType?)->Void){
     
     guard let contactId = self.session.getContactId() else {
-      handler(nil, ApiError.missingParameterError(reason: ""))
+      handler(false, nil, ApiError.missingParameterError(reason: ""))
       return
     }
     
 //    controller?.showProgress("Getting Rewards")
-    apiService.getProgress(contactId, handler : { (result) in
+    apiService.getProgress(contactId, handler: { (result) in
 //      controller?.hideProgress()
       
-      var progressValue: Double?
-      var error: ApiError?
-      
       if result.isFailure {
-        error = result.error as? ApiError
+        handler(false, nil, result.error as? BEErrorType)
       }
       else {
-        progressValue = result.value
+        handler(true, result.value, nil)
       }
-      
-      handler(progressValue, error)
     })
   }
   
   /**
    Gets gift cards for giftCardClass BEGiftCard.
    */
-  open func getGiftCards(handler : @escaping (Bool, [BEGiftCard], _ error: BEErrorType?)->Void){
+  open func getGiftCards(handler: @escaping (_ success: Bool, _ cards: [BEGiftCard], _ error: BEErrorType?)->Void){
     self.getGiftCards(giftCardClass: BEGiftCard.self, handler: handler)
   }
   
   /**
    Gets gift cards for provided coupon class.
    */
-  open func getGiftCards <GiftCardClass: BEGiftCard> (giftCardClass: GiftCardClass.Type, handler : @escaping (Bool, [BEGiftCard], _ error: BEErrorType?)->Void){
+  open func getGiftCards <GiftCardClass: BEGiftCard> (giftCardClass: GiftCardClass.Type, handler: @escaping (_ success: Bool, _ cards: [BEGiftCard], _ error: BEErrorType?)->Void){
    
     guard let contactId = self.session.getContactId() else {
       handler(false, [], ApiError.missingParameterError(reason: ""))
@@ -661,7 +660,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs start payment request.
    */
-  open func startPayment(cardId : String?, coupons: [BECoupon], handler : @escaping (_ success: Bool, BarCodeInfo, _ error: BEErrorType?)->Void){
+  open func startPayment(cardId : String?, coupons: [BECoupon], handler: @escaping (_ success: Bool, BarCodeInfo, _ error: BEErrorType?)->Void){
     
     if cardId == nil && coupons.count == 0 {
       let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
@@ -686,7 +685,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
 //    controller?.showProgress("Generating Barcode")
     
     weak var weakSelf = self
-    apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler : { (result) in
+    apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler: { (result) in
 //      controller?.hideProgress()
       
       if result.isFailure {
@@ -761,20 +760,20 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets user messages from user inbox.
    */
-  open func pushNotificationGetMessages (maxResults: Int, handler : @escaping (_ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
+  open func pushNotificationGetMessages (maxResults: Int, handler: @escaping (_ success: Bool, _ messages: [BEPushNotificationMessage]?, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
-      handler(nil, ApiError.unknown())
+      handler(false, nil, ApiError.unknown())
       return
     }
     
     apiService.pushNotificationGetMessages(contactId, maxResults: maxResults, handler: { (result) in
       
       if result.isSuccess {
-        handler(result.value, nil)
+        handler(true, result.value, nil)
       }
       else {
-        handler(nil, result.error as? BEErrorType)
+        handler(false, nil, result.error as? BEErrorType)
       }
     })
   }
@@ -788,7 +787,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    * DELETED
    
    */
-  open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+  open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
       handler(false, ApiError.unknown())
@@ -809,20 +808,20 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets message for specific Id.
    */
-  open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
+  open func pushNotificationGetMessageById(_ messageId: String, handler: @escaping (_ success: Bool, _ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
     
     guard let contactId = self.session.getContactId() else {
-      handler(nil, ApiError.unknown())
+      handler(false, nil, ApiError.unknown())
       return
     }
     
     apiService.pushNotificationGetMessageById(messageId) { (result) in
       
       if result.isSuccess {
-        handler(result.value, nil)
+        handler(true, result.value, nil)
       }
       else {
-        handler(nil, result.error as? BEErrorType)
+        handler(false, nil, result.error as? BEErrorType)
       }
     }
   }
@@ -832,14 +831,14 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs stores at location request for storeClass BEStore.
    */
-  open func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler : @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
+  open func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
     self.getStoresAtLocationForStoreClass(coordinate: coordinate, storeClass: BEStore.self, handler: handler)
   }
   
   /**
    Performs stores at location request for store class.
    */
-  open func getStoresAtLocationForStoreClass <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler : @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
+  open func getStoresAtLocationForStoreClass <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = self.session.getAuthToken()
@@ -858,7 +857,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   }
   
   // TODO: fixme
-  //  private func getBalanceForCard(contactId: String, token: String, index: Int, cards : [BEGiftCard], handler :([BEGiftCard])->Void){
+  //  private func getBalanceForCard(contactId: String, token: String, index: Int, cards : [BEGiftCard], handler:([BEGiftCard])->Void){
   //
   //    if index == 0 {
   //      dispatch_async(dispatch_get_main_queue(),{
