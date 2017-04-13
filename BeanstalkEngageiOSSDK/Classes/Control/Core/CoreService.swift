@@ -330,17 +330,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.logoutUser(contactId, token : token, handler: { (result) in
 //      controller?.hideProgress()
       
-      if registeredDeviceToken != nil {
-        weakSelf?.pushNotificationDelete({ (success, error) in
-          handler(success, nil)
-        })
-        
-        weakSelf?.clearSession()
-      } else {
-        weakSelf?.clearSession()
-        
-        handler(result.isSuccess, nil)
-      }
+      weakSelf?.clearSession()
+      
+      handler(result.isSuccess, nil)
     })
   }
   

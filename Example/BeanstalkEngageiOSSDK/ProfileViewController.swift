@@ -85,19 +85,24 @@ class ProfileViewController: BaseViewController {
       self.genderSegment.selectedSegmentIndex = 2
     }
     
+    self.pushNotificationsSwitch.isEnabled = self.pushNotificationEnrollment != nil
+    
+    guard let pushEnrollment = self.pushNotificationEnrollment else {
+      return
+    }
+    
     var pushEnabled = false
+    let deviceRegistered = pushEnrollment.isRegisteredForPushNotifications()
     
     if let pushOn = self.updateContactRequest?.isPushNotificationOptin() {
       if let inboxOn = self.updateContactRequest?.isInboxMessageOptin() {
-        pushEnabled = pushOn && inboxOn
+        pushEnabled = pushOn && inboxOn && deviceRegistered
       }
     }
     self.pushNotificationsSwitch.isOn = pushEnabled
-    
-    self.pushNotificationsSwitch.isEnabled = self.pushNotificationEnrollment != nil
   }
   
-  private func showPushNotificationsError(error: ApiError) {
+  private func showPushNotificationsError(error: BEErrorType) {
     self.loadingHandler.showMessage("Push Notifications Error", message: error.errorMessage())
     
     self.loadProfile()
@@ -128,13 +133,13 @@ class ProfileViewController: BaseViewController {
       // turn ON
       
       let sendToken = {
-        pushEnrollment.sendDeviceTokenAndUpdateContact({ (success) in
-          if success {
-            weakSelft?.loadingHandler.showMessage("Push Notifications Enabled", message: nil)
-            weakSelft?.loadProfile()
+        pushEnrollment.sendDeviceTokenAndUpdateContact({ (error) in
+          if let err = error {
+            weakSelft?.showPushNotificationsError(error: err)
           }
           else {
-            weakSelft?.showPushNotificationsError(error: ApiError.updateProfileError(reason: "Failed to enable push notifications"))
+            weakSelft?.loadingHandler.showMessage("Push Notifications Enabled", message: nil)
+            weakSelft?.loadProfile()
           }
         })
       }

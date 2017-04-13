@@ -51,6 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.pushNotificationEnrollment?.application(application, didReceiveRemoteNotification: userInfo)
   }
   
+  func applicationDidBecomeActive(_ application: UIApplication) {
+    self.pushNotificationEnrollment?.applicationDidBecomeActive()
+  }
+  
   
   // MARK: - 
   

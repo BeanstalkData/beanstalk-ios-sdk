@@ -330,6 +330,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 587P7DM9NE;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
