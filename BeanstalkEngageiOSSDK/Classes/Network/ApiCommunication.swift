@@ -371,7 +371,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         // check for successful request
         
         guard weakSelf?.handle(
-          serverResponse: dataResponse,
+          dataResponse: dataResponse,
           onFailError: ApiError.deleteContactFailed(reason: nil),
           serverErrorHandler: handler) ?? true else {
             return
@@ -1209,39 +1209,42 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Tracking
   
-  func trackTransaction(_ contactId: String, userName: String, transactionData: AnyObject, handler: @escaping (Result<Any>)->Void) {
+  func trackTransaction(
+    contactId: String,
+    userName: String,
+    transactionData: String,
+    handler: @escaping (_ result: Result<TrackTransactionResponse>) -> Void) {
     
-    if (isOnline()) {
-      let params = [
-        "contactId" : contactId,
-        "userName" : userName,
-        "key" : self.apiKey,
-        "details" : transactionData
-        ] as [String : Any]
-      
-      weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
-        .validate(getDefaultErrorHandler())
-        .responseObject {
-          (response : DataResponse<TrackTransactionResponse>) in
-          if weakSelf?.dataGenerator != nil {
-            handler(.success("success"))
-          } else {
-            if (response.result.isSuccess) {
-              if let result = response.result.value {
-                handler(.success(result))
-              } else {
-                handler(.failure(ApiError.unknown()))
-              }
-            } else if response.response?.statusCode == 200 {
-              handler(.success("success"))
-            } else {
-              handler(.failure(ApiError.network(error: response.result.error)))
-            }
-          }
-      }
-    } else {
+    guard isOnline() else {
       handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contactId" : contactId,
+      "username" : userName,
+      "key" : self.apiKey,
+      "details" : transactionData
+      ] as [String : Any]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject { (dataResponse : DataResponse<TrackTransactionResponse>) in
+        
+        if let mock = weakSelf?.dataGenerator {
+          handler(.success(mock.getTransactionResponse()))
+          return
+        }
+        
+        guard weakSelf?.handle(
+          dataResponse: dataResponse,
+          onFailError: ApiError.trackTransactionError(reason: nil),
+          serverErrorHandler: handler) ?? true else {
+            return
+        }
+        
+        handler(.success(dataResponse.result.value!))
     }
   }
   
@@ -1289,22 +1292,26 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     return getErrorHandler("Got error while processing your request.")
   }
   
-  fileprivate func handle(
-    serverResponse: DataResponse<ServerResponse>,
+  fileprivate func handle <ResponseModel: Mappable, ResultValue: Any> (
+    dataResponse: DataResponse<ResponseModel>,
     onFailError: ApiError,
-    serverErrorHandler: (_ result: Result<Any>) -> Void) -> Bool {
+    serverErrorHandler: (_ result: Result<ResultValue>) -> Void) -> Bool {
     
-    guard serverResponse.result.isSuccess else {
-      serverErrorHandler(.failure(ApiError.network(error: serverResponse.result.error)))
+    guard dataResponse.result.isSuccess else {
+      serverErrorHandler(.failure(ApiError.network(error: dataResponse.result.error)))
       return false
     }
     
-    guard let response = serverResponse.result.value else {
+    guard let response = dataResponse.result.value else {
       serverErrorHandler(.failure(ApiError.dataSerialization(reason: "Failed to parse response")))
       return false
     }
     
-    guard response.isSuccess() else {
+    guard let serverResponse = response as? ServerResponse else {
+      return true
+    }
+    
+    guard serverResponse.isSuccess() else {
       serverErrorHandler(.failure(onFailError))
       return false
     }

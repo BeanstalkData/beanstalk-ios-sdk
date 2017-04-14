@@ -75,6 +75,9 @@ public enum ApiError: BEErrorType {
   /// Find stores failed with reason
   case findStoresError(reason: Any?)
   
+  /// Track transaction failed with reason
+  case trackTransactionError(reason: Any?)
+  
   /// Unacceptable status code error
   case unacceptableStatusCodeError(reason: String?, statusCode: Int)
   
@@ -132,6 +135,9 @@ public enum ApiError: BEErrorType {
       
     case .findStoresError(let reason):
       errorTitle = "Find Stores Error"
+      
+    case .trackTransactionError(let reason):
+      errorTitle = "Track Transaction Error"
       
     case .unacceptableStatusCodeError(let reason, let statusCode):
       errorTitle = "Bad request"
@@ -192,6 +198,9 @@ public enum ApiError: BEErrorType {
      
     case .findStoresError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error Retrieving Stores Information")
+      
+    case .trackTransactionError(let reason):
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to Track Transaction")
       
     case .unacceptableStatusCodeError(let reason, let statusCode):
       errorMessage = reason

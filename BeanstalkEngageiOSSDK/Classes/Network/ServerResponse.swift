@@ -13,7 +13,7 @@ import ObjectMapper
  Response model for typical server response. Contains server error response model if received.
  */
 open class ServerResponse: Mappable {
-  var statusValue: String?
+  var statusValue: Any?
   var errorValue: ServerErrorResponse?
   
   
@@ -30,6 +30,14 @@ open class ServerResponse: Mappable {
   //MARK: - Public
   
   public func isSuccess() -> Bool {
-    return self.statusValue == Optional("success")
+    if let status = self.statusValue as? Bool {
+      return status
+    }
+    
+    if let status = self.statusValue as? String {
+      return status == "success"
+    }
+    
+    return false
   }
 }
