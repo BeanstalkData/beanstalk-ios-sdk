@@ -22,7 +22,7 @@ public enum PushNotificationsKeys: String {
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  let coreService = ApiService(apiKey: "1234-4321-ABCD-DCBA", session: BESession())
+  let coreService = ApiService(apiKey: "1234-4321-ABCD-DCBA", session: BESession(), apiUsername: nil)
   
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   

@@ -907,6 +907,46 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
+  /**
+   Retrieve transaction events.
+   
+   * Dates are sent in the format YYYY-MM-DD.
+   * If no dates are passed, all events for the _contactId_ will be returned.
+   * To retrieve events for a specific date, set _startDate_ and _endDate_ to the same date.
+   * If _startDate_ and _endDate_ are both set, all events in that range will be returned.
+   * If only _startDate_ is set, all events from that day until now will be returned.
+   * If only _endDate_ is set, all events until that day will be returned.
+   
+   - Parameter startDate: The beginning date for transaction events.
+   - Parameter endDate: The end date for transaction events.
+   - Parameter handler: Completion handler.
+   - Parameter transactions: Transaction models.
+   - Parameter error: Error if occur.
+   */
+  
+  public func getTransactions(
+    startDate: Date?,
+    endDate: Date?,
+    handler: @escaping (_ transactions: [BETransaction]?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.noContactIdInSession() )
+      return
+    }
+    
+    apiService.getTransactions(
+      contactId: contactId,
+      startDate: startDate,
+      endDate: endDate) { (result) in
+        
+        if result.isFailure {
+          handler(nil, result.error as? BEErrorType)
+        } else {
+          handler(result.value, nil)
+        }
+    }
+  }
+  
   //MARK: - Private
   
   fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> BarCodeInfo {
