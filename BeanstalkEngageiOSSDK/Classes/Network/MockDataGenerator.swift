@@ -71,6 +71,18 @@ class MockDataGenerator {
   func getStores() -> StoresResponseProtocol {
     return DummyStoresResponse()
   }
+  
+  func getTransactionResponse() -> TrackTransactionResponse {
+    return DummyTransactionResponse()
+  }
+}
+
+private class DummyTransactionResponse: TrackTransactionResponse {
+  convenience init() {
+    self.init()
+    
+    self.transaction = BETransaction(transactionId: "<dummy transaction id>")
+  }
 }
 
 private class DummyStoresResponse: StoresResponseProtocol {

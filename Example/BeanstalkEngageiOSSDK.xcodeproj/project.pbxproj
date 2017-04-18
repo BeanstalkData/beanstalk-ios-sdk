@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A6696E21DC2454200E51E82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6696E11DC2454200E51E82 /* ProfileViewController.swift */; };
 		0A6696E41DC3654600E51E82 /* AvailableRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6696E31DC3654600E51E82 /* AvailableRewardsViewController.swift */; };
+		0A9467F21EA11B2A00085C54 /* TrackTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */; };
 		0AB1DAE71DB50B6400B65DC7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1DAE51DB50B6400B65DC7 /* MenuViewController.swift */; };
 		0AB1DAE81DB50B6400B65DC7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1DAE61DB50B6400B65DC7 /* RegisterViewController.swift */; };
 		0AB1DAEE1DBE21A200B65DC7 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		0A6696E11DC2454200E51E82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A6696E31DC3654600E51E82 /* AvailableRewardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRewardsViewController.swift; sourceTree = "<group>"; };
+		0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTransactionViewController.swift; sourceTree = "<group>"; };
 		0AB1DAE51DB50B6400B65DC7 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0AB1DAE61DB50B6400B65DC7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */,
 				0AB1DAE61DB50B6400B65DC7 /* RegisterViewController.swift */,
 				0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */,
+				0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */,
 				0AFB99941DC381C200EE9200 /* UserProgressViewController.swift */,
 			);
 			name = ViewControllers;
@@ -489,6 +492,7 @@
 				0AFB99971DC3B7F400EE9200 /* GiftCardsViewController.swift in Sources */,
 				0AFB99951DC381C200EE9200 /* UserProgressViewController.swift in Sources */,
 				89EDF7CD1E9F78540027B3DC /* LoadingHandlerProtocol.swift in Sources */,
+				0A9467F21EA11B2A00085C54 /* TrackTransactionViewController.swift in Sources */,
 				0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */,
 				0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */,
 				0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */,

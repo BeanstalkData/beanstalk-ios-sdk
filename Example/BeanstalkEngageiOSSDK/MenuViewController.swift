@@ -17,6 +17,7 @@ class MenuViewController: BaseViewController {
   @IBOutlet var userProgressButton: UIButton!
   @IBOutlet var giftCardsButton: UIButton!
   @IBOutlet var contactManagementButton: UIButton!
+  @IBOutlet var trackTransactionButton: UIButton!
   
   
   override func viewDidLoad() {
@@ -120,5 +121,6 @@ class MenuViewController: BaseViewController {
     self.availableRewardsButton.isEnabled = isAuthenticated
     self.userProgressButton.isEnabled = isAuthenticated
     self.giftCardsButton.isEnabled = isAuthenticated
+    self.trackTransactionButton.isEnabled = isAuthenticated
   }
 }

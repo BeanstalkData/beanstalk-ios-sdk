@@ -10,8 +10,8 @@ import BeanstalkEngageiOSSDK
 
 class ApiService: CoreService {
   
-  required init(apiKey: String, session: BESessionProtocol) {
-    super.init(apiKey: apiKey, session: session)
+  required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil) {
+    super.init(apiKey: apiKey, session: session, apiUsername: apiUsername)
   }
   
   func registerMyLoyaltyAccount (request: ContactRequest, handler: @escaping (Bool, BEErrorType?) -> Void) {

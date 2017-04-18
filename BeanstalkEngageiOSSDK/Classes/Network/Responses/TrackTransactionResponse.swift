@@ -10,15 +10,22 @@ import ObjectMapper
 
 /**
  Response model for track transaction request.
- 
- - Note: Currently deprecated.
  */
-open class TrackTransactionResponse : Mappable {
-  required public init?(map: Map) {
-    
-  }
+open class TrackTransactionResponse : ServerResponse {
+  var successValue: [String: Any]?
+  var transaction: BETransaction?
   
-  open func mapping(map: Map) {
+  
+  public override func mapping(map: Map) {
+    super.mapping(map: map)
     
+    successValue <- map["success"]
+    
+    guard let message = self.successValue?["message"] as? [String: Any] else {
+      return
+    }
+    
+    let map = Map(mappingType: .fromJSON, JSON: message)
+    self.transaction = BETransaction(map: map)
   }
 }
