@@ -1220,7 +1220,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Tracking
   
-  func trackTransaction(
+  public func trackTransaction(
     contactId: String,
     transactionData: String,
     handler: @escaping (_ result: Result<TrackTransactionResponse>) -> Void) {
@@ -1282,7 +1282,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    - Parameter result: Request result model.
    */
   
-  func getTransactions(
+  public func getTransactions(
     contactId: String,
     startDate: Date?,
     endDate: Date?,

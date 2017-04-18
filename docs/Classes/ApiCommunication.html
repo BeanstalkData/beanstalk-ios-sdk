@@ -114,7 +114,7 @@
                 <a class="nav-group-task-link" href="../Classes/StoresResponse.html">StoresResponse</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/TrackTransactionResponse.html">TrackTransactionResponse</a>
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK24TrackTransactionResponse">TrackTransactionResponse</a>
               </li>
             </ul>
           </li>
@@ -535,13 +535,136 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Tracking"></a>
+                <a name="//apple_ref/swift/Section/Tracking" class="dashAnchor"></a>
+                <a href="#/Tracking">
+                  <h3 class="section-name">Tracking</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK16ApiCommunication15getTransactionsFT9contactIdSS9startDateGSqV10Foundation4Date_7endDateGSqS2__7handlerFGO9Alamofire6ResultGSaVS_13BETransaction__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getTransactions(contactId:startDate:endDate:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK16ApiCommunication15getTransactionsFT9contactIdSS9startDateGSqV10Foundation4Date_7endDateGSqS2__7handlerFGO9Alamofire6ResultGSaVS_13BETransaction__T__T_">getTransactions(contactId:startDate:endDate:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieve transaction events.</p>
+
+<ul>
+<li>Dates are sent in the format YYYY-MM-DD.</li>
+<li>If no dates are passed, all events for the <em>contactId</em> will be returned.</li>
+<li>To retrieve events for a specific date, set <em>startDate</em> and <em>endDate</em> to the same date.</li>
+<li>If <em>startDate</em> and <em>endDate</em> are both set, all events in that range will be returned.</li>
+<li>If only <em>startDate</em> is set, all events from that day until now will be returned.</li>
+<li><p>If only <em>endDate</em> is set, all events until that day will be returned.</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getTransactions</span><span class="p">(</span>
+    <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?,</span>
+    <span class="nv">endDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?,</span>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">BETransaction</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The beginning date for transaction events.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>endDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The end date for transaction events.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>handler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion handler.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>result</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Request result model.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-07)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-18)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

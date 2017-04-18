@@ -774,10 +774,15 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Changes message status.
    
    Possible values:
-   * READ
-   * UNREAD
-   * DELETED
+   * Read
+   * Unread
+   * Delete
    
+   - Parameter messageId: Message ID.
+   - Parameter status: Message status.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
    */
   open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     

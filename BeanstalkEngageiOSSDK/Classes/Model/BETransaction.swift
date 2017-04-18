@@ -9,6 +9,9 @@ import Foundation
 import ObjectMapper
 
 
+/**
+ Model of transaction event.
+ */
 public struct BETransaction: Mappable {
   public var transactionId: String = ""
   public var status: String?
@@ -16,7 +19,11 @@ public struct BETransaction: Mappable {
   private var dateCreatedValue: BETransactionDate?
   private var dateModifiedValue: BETransactionDate?
   
-  
+  /**
+   Returns nil if no transaction ID can be parsed from _map_.
+   
+   - Parameter map: ObjectMapper map.
+   */
   public init?(map: Map) {
     var valid = false
     
