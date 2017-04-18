@@ -767,13 +767,13 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Performs stores at location request for storeClass BEStore.
    */
   open func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
-    self.getStoresAtLocationForStoreClass(coordinate: coordinate, storeClass: BEStore.self, handler: handler)
+    self.getStoresAtLocation(coordinate: coordinate, storeClass: BEStore.self, handler: handler)
   }
   
   /**
    Performs stores at location request for store class.
    */
-  open func getStoresAtLocationForStoreClass <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
+  open func getStoresAtLocation <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = self.session.getAuthToken()
