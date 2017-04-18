@@ -90,12 +90,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     request.normalize()
     
     weak var weakSelf = self
-//    controller?.showProgress("Registering User")
     apiService.createLoyaltyAccount(request, handler: { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
-//        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, result.error! as! BEErrorType)
       } else {
         weakSelf?.auth(email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
@@ -115,14 +112,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     request.normalize()
     
-//    controller?.showProgress("Registering User")
-    
     weak var weakSelf = self
     apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
       
       if result.isFailure {
-//        controller?.hideProgress()
-//        controller?.showMessage(ApiError.userEmailExists(reason: result.error! as! BEErrorType))
         handler(false, result.error! as! BEErrorType)
       } else {
         var updateExisted = result.value!
@@ -130,8 +123,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         weakSelf?.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
           
           if result.isFailure {
-//            controller?.hideProgress()
-//            controller?.showMessage(ApiError.userPhoneExists(reason: result.error! as! BEErrorType))
             handler(false, ApiError.userPhoneExists(reason: result.error! as! BEErrorType))
           } else {
             updateExisted = updateExisted || result.value!
@@ -139,8 +130,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
             weakSelf?.apiService.createContact(request, contactClass: contactClass, handler: { (result) in
               
               if result.isFailure {
-//                controller?.hideProgress()
-//                controller?.showMessage(result.error! as! BEErrorType)
                 handler(false, result.error! as! BEErrorType)
               } else {
                 if !updateExisted {
@@ -148,8 +137,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
                   weakSelf?.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: contactId, handler: { (result) in
                     
                     if result.isFailure {
-//                      controller?.hideProgress()
-//                      controller?.showMessage(result.error! as! BEErrorType)
                       handler(false, result.error! as! BEErrorType)
                     } else {
                       weakSelf?.auth(email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
@@ -182,15 +169,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
     
     self.p_isAuthenticateInProgress = true
-//    controller?.showProgress("Attempting to Login")
     
     weak var weakSelf = self
     self.apiService.checkUserSession(contactId, token: token) { result in
-//      controller?.hideProgress()
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-//        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, result.error! as! BEErrorType)
       } else {
         weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { (success, error) in
@@ -213,15 +197,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
     
     self.p_isAuthenticateInProgress = true
-//    controller?.showProgress("Attempting to Login")
     
     weak var weakSelf = self
     self.apiService.authenticateUser(email!, password: password!, handler: { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-//        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, result.error! as! BEErrorType)
       } else {
         let contactId = result.value!.contactId
@@ -237,15 +218,12 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   fileprivate func auth <ContactClass: BEContact> (email: String, password: String, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     self.p_isAuthenticateInProgress = true
-//    controller?.showProgress("Attempting to Login")
     
     weak var weakSelf = self
     apiService.authenticateUser(email, password: password, handler: { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-//        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, result.error! as! BEErrorType)
       } else {
         let contactId = result.value!.contactId
@@ -293,15 +271,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Reseting Password")
     apiService.resetPassword(email!, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
-//        controller?.showMessage(ApiError.resetPasswordError(reason: result.error! as! BEErrorType))
         handler(false, ApiError.resetPasswordError(reason: result.error! as! BEErrorType))
       } else {
-//        controller?.showMessage("Password reset", message: result.value!)
         handler(true, nil)
       }
     })
@@ -324,11 +297,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     let registeredDeviceToken = self.session.getRegisteredAPNSToken()
     
-//    controller?.showProgress("Logout...")
-    
     weak var weakSelf = self
     apiService.logoutUser(contactId, token : token, handler: { (result) in
-//      controller?.hideProgress()
       
       weakSelf?.clearSession()
       
@@ -344,12 +314,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     prospectTypes: [ProspectType],
     handler: @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
     ) {
-//    controller?.showProgress("Checking email")
     apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
-//        controller?.showMessage(ApiError.userEmailExists(reason: result.error! as! BEErrorType))
         handler(false, nil, ApiError.userEmailExists(reason: result.error! as! BEErrorType))
       } else {
         handler(true, result.value!, nil)
@@ -366,14 +333,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Retrieving Profile")
-    
     weak var weakSelf = self
     apiService.getContact(contactId, contactClass: contactClass, handler: { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
-//        controller?.showMessage(ApiError.profileError(reason: result.error! as! BEErrorType))
         handler(false, nil, ApiError.profileError(reason: result.error! as! BEErrorType))
       } else {
         weakSelf?.session.setContact(result.value!)
@@ -542,12 +505,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Updating Password")
     apiService.updatePassword(password!, contactId: contactId, token: token, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
-//        controller?.showMessage(ApiError.updatePasswordError(reason: result.error! as! BEErrorType))
         handler(false, ApiError.updatePasswordError(reason: result.error! as! BEErrorType))
       } else {
         handler(true, nil)
@@ -572,14 +531,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Retrieving Rewards")
-    
     weak var weakSelf = self
     apiService.getUserOffers(contactId, couponClass: couponClass, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
-//        controller?.showMessage(result.error! as! BEErrorType)
         handler(false, [], result.error! as! BEErrorType)
       } else {
         let rewards = result.value!
@@ -599,10 +553,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Getting Rewards")
     apiService.getProgress(contactId, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
         handler(false, nil, result.error as? BEErrorType)
       }
@@ -634,12 +585,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-//    controller?.showProgress("Retrieving Cards")
     apiService.getGiftCards(contactId, token: token, giftCardClass: giftCardClass, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
-//        controller?.showMessage(ApiError.giftCardsError(reason: result.error! as! BEErrorType))
         handler(false, [], ApiError.giftCardsError(reason: result.error! as! BEErrorType))
       } else {
         let cards = result.value!
@@ -674,14 +621,10 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     let couponsString : String = coupons.reduce("", { $0 == "" ? $1.number! : $0 + "," + $1.number! })
     
-//    controller?.showProgress("Generating Barcode")
-    
     weak var weakSelf = self
     apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler: { (result) in
-//      controller?.hideProgress()
       
       if result.isFailure {
-//        controller?.showMessage(ApiError.paymentError(reason: result.error! as! BEErrorType))
         var data = weakSelf?.getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
         if data == nil {
           data = BarCodeInfo(data: "", type: .memberId)
@@ -835,12 +778,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = self.session.getAuthToken()
     
-//    controller?.showProgress("Retrieving Stores")
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, storeClass: storeClass, handler: { (result) in
-//      controller?.hideProgress()
-      
       if result.isFailure {
-//        controller?.showMessage(ApiError.findStoresError(reason: result.error! as! BEErrorType))
         handler(false, [], ApiError.findStoresError(reason: result.error! as! BEErrorType))
       } else {
         handler(true, result.value!, nil)
