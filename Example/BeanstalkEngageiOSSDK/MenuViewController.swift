@@ -17,6 +17,7 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
   @IBOutlet var userProgressButton: UIButton!
   @IBOutlet var giftCardsButton: UIButton!
   @IBOutlet var contactManagementButton: UIButton!
+  @IBOutlet var trackTransactionButton: UIButton!
   
   var coreService: ApiService?
   
@@ -116,5 +117,6 @@ class MenuViewController: UIViewController, CoreProtocol, AuthenticationProtocol
     self.availableRewardsButton.isEnabled = isAuthenticated
     self.userProgressButton.isEnabled = isAuthenticated
     self.giftCardsButton.isEnabled = isAuthenticated
+    self.trackTransactionButton.isEnabled = isAuthenticated
   }
 }

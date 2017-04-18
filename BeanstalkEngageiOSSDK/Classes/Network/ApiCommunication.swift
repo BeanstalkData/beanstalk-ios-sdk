@@ -38,14 +38,16 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   fileprivate let beanstalUrl = "proc.beanstalkdata.com"
   fileprivate let BASE_URL: String
   fileprivate let apiKey: String
+  fileprivate let apiUsername: String?
   
   internal let reachabilityManager: Alamofire.NetworkReachabilityManager
   
   internal var dataGenerator: MockDataGenerator?
   
-  public required init(apiKey: String) {
+  public required init(apiKey: String, apiUsername: String? = nil) {
     self.BASE_URL = "https://" + beanstalUrl
     self.apiKey = apiKey
+    self.apiUsername = apiUsername
     
     self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: beanstalUrl)!
     
@@ -372,7 +374,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         guard weakSelf?.handle(
           dataResponse: dataResponse,
-          onFailError: ApiError.deleteContactFailed(reason: nil),
+          onFailError: { (reason) in
+            return ApiError.deleteContactFailed(reason: reason)
+        },
           serverErrorHandler: handler) ?? true else {
             return
         }
@@ -1211,7 +1215,6 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   func trackTransaction(
     contactId: String,
-    userName: String,
     transactionData: String,
     handler: @escaping (_ result: Result<TrackTransactionResponse>) -> Void) {
     
@@ -1220,15 +1223,20 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       return
     }
     
+    guard let username = self.apiUsername else {
+      handler(.failure(ApiError.noApiUsernameProvided()))
+      return
+    }
+    
     let params = [
-      "contactId" : contactId,
-      "username" : userName,
+      "contact" : contactId,
+      "username" : username,
       "key" : self.apiKey,
       "details" : transactionData
       ] as [String : Any]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactions/add/", method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (dataResponse : DataResponse<TrackTransactionResponse>) in
         
@@ -1239,7 +1247,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         guard weakSelf?.handle(
           dataResponse: dataResponse,
-          onFailError: ApiError.trackTransactionError(reason: nil),
+          onFailError: { (reason) in
+            return ApiError.trackTransactionError(reason: reason)
+        },
           serverErrorHandler: handler) ?? true else {
             return
         }
@@ -1294,7 +1304,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   fileprivate func handle <ResponseModel: Mappable, ResultValue: Any> (
     dataResponse: DataResponse<ResponseModel>,
-    onFailError: ApiError,
+    onFailError: (_ reason: Any?) -> ApiError,
     serverErrorHandler: (_ result: Result<ResultValue>) -> Void) -> Bool {
     
     guard dataResponse.result.isSuccess else {
@@ -1312,7 +1322,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
     
     guard serverResponse.isSuccess() else {
-      serverErrorHandler(.failure(onFailError))
+      serverErrorHandler(.failure(onFailError(serverResponse.errorValue?.messageValue)))
       return false
     }
     

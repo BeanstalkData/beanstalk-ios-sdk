@@ -18,6 +18,8 @@
 		0804F0A648D2E29D576AD1A6B5BA305C /* PKHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = C3B8E497475545777110341B13C12992 /* PKHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		095BCC082DB6864AC4D543CDDD906AC4 /* NBPhoneMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = F188E60983A64C6AE1CB093A564CDC8E /* NBPhoneMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		096D6F50790C0C86FCA1D4E275C53E35 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321CF2EA9812F254838170E79D78F377 /* AlamofireObjectMapper.framework */; };
+		0A9467EF1EA1050000085C54 /* BETransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9467EE1EA1050000085C54 /* BETransaction.swift */; };
+		0A9467F01EA1050000085C54 /* BETransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9467EE1EA1050000085C54 /* BETransaction.swift */; };
 		0AB991EA1E803B4000BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
 		0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */; };
 		0AB9926C1E892F7800BFDBA7 /* ContactRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9926B1E892F7800BFDBA7 /* ContactRequestResponse.swift */; };
@@ -410,6 +412,7 @@
 		079C970460206BFC03C7BF1E9BE7F6DE /* libPhoneNumber-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "libPhoneNumber-iOS.xcconfig"; sourceTree = "<group>"; };
 		089D85DAB6E1B37DCA60E756F1F1D289 /* NBPhoneNumber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumber.h; path = libPhoneNumber/NBPhoneNumber.h; sourceTree = "<group>"; };
 		0928780CDCA88F721D9188C903A7B65F /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		0A9467EE1EA1050000085C54 /* BETransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BETransaction.swift; sourceTree = "<group>"; };
 		0AB991E91E803B3800BFDBA7 /* BESessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BESessionProtocol.swift; sourceTree = "<group>"; };
 		0AB9926B1E892F7800BFDBA7 /* ContactRequestResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRequestResponse.swift; sourceTree = "<group>"; };
 		0AFA7C181E8D5F2B004DE357 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
@@ -1146,6 +1149,7 @@
 				B94B68911DB4A6038ADEC150B41562B6 /* BEPushNotificationMessage.swift */,
 				7F1EE072672115952498795CC316ED76 /* BERespondersHolder.swift */,
 				E30D3D4CD716DB152FE4D44F196C37A9 /* BEStore.swift */,
+				0A9467EE1EA1050000085C54 /* BETransaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1730,6 +1734,7 @@
 				73B00BBB23852F5E80DB96D8CD631927 /* ContactRequest.swift in Sources */,
 				BBB2DD71F993B0817DA0EBC2EF7BF214 /* CoreExtensions.swift in Sources */,
 				C98061C9EEA3417DF9B1A0E9A6EDB2F9 /* CoreProtocol.swift in Sources */,
+				0A9467EF1EA1050000085C54 /* BETransaction.swift in Sources */,
 				6EF54DFB5DB670114E85412AE34E5322 /* CoreService.swift in Sources */,
 				93327D2CE9DF27730FB20B2CAEE2BE4F /* CouponResponse.swift in Sources */,
 				0AB991EA1E803B4000BFDBA7 /* BESessionProtocol.swift in Sources */,
@@ -1814,6 +1819,7 @@
 				0AB991EB1E803B4100BFDBA7 /* BESessionProtocol.swift in Sources */,
 				29E6814E6C203637E69F658286A4BD9C /* BEAccountTests.swift in Sources */,
 				3CB3C73392EE7DEFDDE70752072BF376 /* BeanstalkEngageiOSSDK.common-Testing-dummy.m in Sources */,
+				0A9467F01EA1050000085C54 /* BETransaction.swift in Sources */,
 				F364ACA09686734B2614144C193B5921 /* BEAsyncTestCase.swift in Sources */,
 				5334A4B3688B23569257895E036B77AC /* BEBalanceAmount.swift in Sources */,
 				012305F8B9FDE73600B257C9B90496C1 /* BEBaseTestCase.swift in Sources */,

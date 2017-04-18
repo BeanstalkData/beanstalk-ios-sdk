@@ -2,8 +2,7 @@
 //  ContactManagementViewController.swift
 //  BeanstalkEngageiOSSDK
 //
-//  Created by Dmytro Nadtochyy on 3/30/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import UIKit

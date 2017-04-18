@@ -80,10 +80,8 @@ class MockDataGenerator {
 private class DummyTransactionResponse: TrackTransactionResponse {
   convenience init() {
     self.init()
-  }
-  
-  override func getTransactionId() -> String? {
-    return "<dummy transaction id>"
+    
+    self.transaction = BETransaction(transactionId: "<dummy transaction id>")
   }
 }
 

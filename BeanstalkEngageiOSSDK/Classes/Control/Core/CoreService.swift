@@ -31,8 +31,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
-  public required init(apiKey: String, session: BESessionProtocol) {
-    self.apiService = ApiCommunication(apiKey: apiKey)
+  public required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil) {
+    self.apiService = ApiCommunication(apiKey: apiKey, apiUsername: apiUsername)
     self.session = session
   }
   
@@ -532,7 +532,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       handler(false)
       return
     }
-
+    
     guard let token = self.session.getAuthToken() else {
       handler(false)
       return
@@ -623,7 +623,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Gets gift cards for provided coupon class.
    */
   open func getGiftCardsForGiftCardClass <GiftCardClass: BEGiftCard> (_ controller : CoreProtocol?, giftCardClass: GiftCardClass.Type, handler : @escaping (Bool, [BEGiftCard])->Void){
-   
+    
     guard let contactId = self.session.getContactId() else {
       handler(false, [])
       return
@@ -771,7 +771,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   }
   
   /**
-   Changes message status. 
+   Changes message status.
    
    Possible values:
    * READ
@@ -872,6 +872,42 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   //      }
   //    })
   //  }
+  
+  
+  //MARK: - Transactions
+  
+  /**
+   Performs track transaction request.
+   
+   - Note: This method can only be performed if API username provided.
+   
+   - Parameter transactionData: Can take any JSON string. Will interpret JSON as a parsed array and create searchable transaction object which can be used for campaigns and other generic transactional workflows.
+   - Parameter handler: Completion handler.
+   - Parameter transaction: Transaction model from API response.
+   - Parameter error: Error if occur.
+   */
+  public func trackTransaction(
+    transactionData: String,
+    handler: @escaping (_ transaction: BETransaction?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.noContactIdInSession() )
+      return
+    }
+    
+    apiService.trackTransaction(
+      contactId: contactId,
+      transactionData: transactionData) { (result) in
+        
+        if result.isFailure {
+          handler(nil, result.error as? BEErrorType)
+        } else {
+          handler(result.value?.transaction, nil)
+        }
+    }
+  }
+  
+  //MARK: - Private
   
   fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> BarCodeInfo {
     if data == nil || data!.characters.count == 0{

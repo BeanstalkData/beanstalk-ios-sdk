@@ -1,9 +1,8 @@
 //
 //  BEPushNotificationsTests.swift
-//  Pods
+//  BeanstalkEngageiOSSDK
 //
-//  Created by Pavel Dvorovenko on 4/11/17.
-//
+//  2017 Heartland Commerce, Inc. All rights reserved.
 //
 
 import Foundation

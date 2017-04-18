@@ -48,6 +48,11 @@ public enum ApiError: BEErrorType {
   case updateContactFailed(reason: Any)
   /// Fetch contact failed with reason
   case fetchContactFailed(reason: Any)
+  /// No contactId is stored in session
+  case noContactIdInSession()
+  
+  /// No API username provided
+  case noApiUsernameProvided()
   
   /// Authentication failed with reason
   case authenticationFailed(reason: Any?)
@@ -101,6 +106,9 @@ public enum ApiError: BEErrorType {
     case .networkConnectionError:
       errorTitle = "Connection Failed"
     
+    case .noApiUsernameProvided():
+      errorTitle = "No API username provided"
+      
     case .createContactFailed(let reason):
       errorTitle = "Create Contact Failed"
     case .deleteContactFailed(let reason):
@@ -109,6 +117,8 @@ public enum ApiError: BEErrorType {
       errorTitle = "Update Contact Failed"
     case .fetchContactFailed(let reason):
       errorTitle = "Fetch Contact Failed"
+    case .noContactIdInSession():
+      errorTitle = "No contact ID is stored in session"
       
     case .authenticationFailed(let reason):
       errorTitle = "Login Failed"
@@ -164,6 +174,9 @@ public enum ApiError: BEErrorType {
     case .networkConnectionError:
       errorMessage = "Connection unavailable"
     
+    case .noApiUsernameProvided():
+      errorMessage = "In order to perform this action API username must be provided"
+      
     case .createContactFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
     case .deleteContactFailed(let reason):
@@ -172,6 +185,8 @@ public enum ApiError: BEErrorType {
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
     case .fetchContactFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to fetch contact")
+    case .noContactIdInSession():
+      errorMessage = "Contact ID should be provided by session"
       
     case .authenticationFailed(let reason):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")

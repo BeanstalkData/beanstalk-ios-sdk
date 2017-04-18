@@ -13,27 +13,19 @@ import ObjectMapper
  */
 open class TrackTransactionResponse : ServerResponse {
   var successValue: [String: Any]?
+  var transaction: BETransaction?
   
   
   public override func mapping(map: Map) {
     super.mapping(map: map)
     
     successValue <- map["success"]
-  }
-  
-  
-  //MARK: - Public
-  
-  /**
-   Returns transaction id if transaction was successful.
-   */
-  public func getTransactionId() -> String? {
+    
     guard let message = self.successValue?["message"] as? [String: Any] else {
-      return nil
+      return
     }
     
-    let id = message["id"] as? String
-    
-    return id
+    let map = Map(mappingType: .fromJSON, JSON: message)
+    self.transaction = BETransaction(map: map)
   }
 }
