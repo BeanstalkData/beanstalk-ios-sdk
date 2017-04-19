@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |cs|
+    cs.dependency 'BeanstalkEngageiOSSDK/Common'
     cs.dependency 'BeanstalkEngageiOSSDK/Model'
     cs.dependency 'BeanstalkEngageiOSSDK/Network'
     cs.dependency 'BeanstalkEngageiOSSDK/Control'
@@ -26,6 +27,7 @@ Pod::Spec.new do |s|
   s.subspec 'Network' do |ns|
     ns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Network/**/*'
 
+    ns.dependency 'BeanstalkEngageiOSSDK/Common'
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
@@ -35,16 +37,15 @@ Pod::Spec.new do |s|
   s.subspec 'Control' do |cns|
     cns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Control/**/*'
 
+    cns.dependency 'BeanstalkEngageiOSSDK/Common'
     cns.dependency 'BeanstalkEngageiOSSDK/Model'
     cns.dependency 'BeanstalkEngageiOSSDK/Network'
-
-    cns.dependency 'PKHUD', '~> 4.2.0'
-    cns.dependency 'libPhoneNumber-iOS'
   end
 
   s.subspec 'Testing' do |ts|
     ts.source_files = 'BeanstalkEngageiOSSDK/Tests/**/*'
 
+    ts.dependency 'BeanstalkEngageiOSSDK/Common'
     ts.dependency 'BeanstalkEngageiOSSDK/Model'
     ts.dependency 'BeanstalkEngageiOSSDK/Network'
     ts.dependency 'BeanstalkEngageiOSSDK/Control'
@@ -54,8 +55,14 @@ Pod::Spec.new do |s|
     ts.framework = 'XCTest'
   end
 
-  s.subspec 'Vendor' do |cns|
-    cns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Vendor/**/*'
+  s.subspec 'Common' do |cms|
+    cms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Common/**/*'
+
+    cms.dependency 'libPhoneNumber-iOS'
+  end
+
+  s.subspec 'Vendor' do |vs|
+    vs.source_files   = 'BeanstalkEngageiOSSDK/Classes/Vendor/**/*'
   end
 
 end

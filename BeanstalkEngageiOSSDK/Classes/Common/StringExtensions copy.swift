@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import UIKit
 
 import libPhoneNumber_iOS
-import PKHUD
 
 extension String {
   

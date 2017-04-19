@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.5.23",
+  "version": "0.6.2",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.5.23"
+    "tag": "0.6.2"
   },
   "platforms": {
     "ios": "8.0"
@@ -22,6 +22,9 @@
     {
       "name": "Core",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Common": [
+
+        ],
         "BeanstalkEngageiOSSDK/Model": [
 
         ],
@@ -46,6 +49,9 @@
       "name": "Network",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Network/**/*",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Common": [
+
+        ],
         "BeanstalkEngageiOSSDK/Model": [
 
         ],
@@ -61,16 +67,13 @@
       "name": "Control",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Control/**/*",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Common": [
+
+        ],
         "BeanstalkEngageiOSSDK/Model": [
 
         ],
         "BeanstalkEngageiOSSDK/Network": [
-
-        ],
-        "PKHUD": [
-          "~> 4.2.0"
-        ],
-        "libPhoneNumber-iOS": [
 
         ]
       }
@@ -79,6 +82,9 @@
       "name": "Testing",
       "source_files": "BeanstalkEngageiOSSDK/Tests/**/*",
       "dependencies": {
+        "BeanstalkEngageiOSSDK/Common": [
+
+        ],
         "BeanstalkEngageiOSSDK/Model": [
 
         ],
@@ -93,6 +99,15 @@
         ]
       },
       "frameworks": "XCTest"
+    },
+    {
+      "name": "Common",
+      "source_files": "BeanstalkEngageiOSSDK/Classes/Common/**/*",
+      "dependencies": {
+        "libPhoneNumber-iOS": [
+
+        ]
+      }
     },
     {
       "name": "Vendor",

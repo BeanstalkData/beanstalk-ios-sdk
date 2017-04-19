@@ -295,7 +295,7 @@ open class BECoreServiceTestHandler {
     
     var locationStatus = false
     var locationStores: [BEStore]? = nil
-    self.testCase.getCoreService()?.getStoresAtLocationForStoreClass(coordinate: coordinate, storeClass: storeClass, handler: { (success, stores, error) in
+    self.testCase.getCoreService()?.getStoresAtLocation(coordinate: coordinate, storeClass: storeClass, handler: { (success, stores, error) in
       
       locationStatus = success
       locationStores = stores

@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import CoreLocation
-import PKHUD
 
 import Alamofire
 import BeanstalkEngageiOSSDK
