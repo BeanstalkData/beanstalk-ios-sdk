@@ -44,6 +44,13 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   internal var dataGenerator: MockDataGenerator?
   
+  internal let transactionDateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    return dateFormatter
+  }()
+  
   public required init(apiKey: String, apiUsername: String? = nil) {
     self.BASE_URL = "https://" + beanstalUrl
     self.apiKey = apiKey
@@ -90,7 +97,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
               } catch { }
               
               guard let data = jsonResponse as? [AnyObject] else {
@@ -170,7 +177,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
               } catch { }
               
               guard let data = jsonResponse as? [AnyObject], data.count >= 1 else {
@@ -359,7 +366,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       return
     }
     
-    var params = [
+    let params = [
       "ContactID": contactId,
       "key": self.apiKey
     ]
@@ -517,7 +524,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         var jsonResponse : AnyObject? = nil
         
         do {
-          jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
         } catch { }
         
         guard let data = jsonResponse as? [[String : Any]], data.count >= 1 else {
@@ -621,7 +628,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             var jsonResponse : AnyObject? = nil
             
             do {
-              jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+              jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
             } catch { }
             guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
               handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
@@ -1213,7 +1220,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Tracking
   
-  func trackTransaction(
+  public func trackTransaction(
     contactId: String,
     transactionData: String,
     handler: @escaping (_ result: Result<TrackTransactionResponse>) -> Void) {
@@ -1255,6 +1262,100 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         handler(.success(dataResponse.result.value!))
+    }
+  }
+  
+  /**
+   Retrieve transaction events.
+   
+   * Dates are sent in the format YYYY-MM-DD.
+   * If no dates are passed, all events for the _contactId_ will be returned.
+   * To retrieve events for a specific date, set _startDate_ and _endDate_ to the same date.
+   * If _startDate_ and _endDate_ are both set, all events in that range will be returned.
+   * If only _startDate_ is set, all events from that day until now will be returned.
+   * If only _endDate_ is set, all events until that day will be returned.
+   
+   - Parameter contactId: Contact ID.
+   - Parameter startDate: The beginning date for transaction events.
+   - Parameter endDate: The end date for transaction events.
+   - Parameter handler: Completion handler.
+   - Parameter result: Request result model.
+   */
+  
+  public func getTransactions(
+    contactId: String,
+    startDate: Date?,
+    endDate: Date?,
+    handler: @escaping (_ result: Result<[BETransaction]>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    var params = [
+      "contact_id" : contactId,
+      "key" : self.apiKey
+      ] as [String : Any]
+    
+    if let date = startDate {
+      params["start_date"] = self.transactionDateFormatter.string(from: date)
+    }
+    if let date = endDate {
+      params["end_date"] = self.transactionDateFormatter.string(from: date)
+    }
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdTransactionEvents/", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseData { response in
+        
+        if let _ = weakSelf?.dataGenerator {
+          handler(.success([]))
+          return
+        }
+        
+        guard response.result.isSuccess else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+          return
+        }
+        
+        guard let responseData = response.result.value else {
+          handler(.failure(ApiError.dataSerialization(reason: "Empty server response")))
+          return
+        }
+        
+        var jsonResponse : AnyObject? = nil
+        
+        do {
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
+        } catch { }
+        
+        if let errorObject = jsonResponse as? [String: Any] {
+          if let error = errorObject["ERROR"] as? String {
+            handler(.failure(ApiError.dataSerialization(reason: error)))
+          }
+          else {
+            handler(.failure(ApiError.unknown()))
+          }
+          return
+        }
+        
+        guard let data = jsonResponse as? [[String : Any]] else {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        var transactions: [BETransaction] = []
+        for transactionData in data {
+          let map = Map(mappingType: .fromJSON, JSON: transactionData)
+          if var transaction = BETransaction(map: map) {
+            transaction.mapping(map: map)
+            transactions.append(transaction)
+          }
+        }
+        
+        handler(.success(transactions))
     }
   }
   

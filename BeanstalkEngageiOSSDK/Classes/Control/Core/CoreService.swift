@@ -6,11 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import CoreLocation
-
 import Alamofire
-import BeanstalkEngageiOSSDK
 
 public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
@@ -294,8 +291,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-    let registeredDeviceToken = self.session.getRegisteredAPNSToken()
-    
     weak var weakSelf = self
     apiService.logoutUser(contactId, token : token, handler: { (result) in
       
@@ -461,7 +456,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     handler: @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void
     ) {
     
-    weak var weakSelf = self
     apiService.fetchContactBy(
       fetchField: fetchField,
       fieldValue: fieldValue,
@@ -632,7 +626,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       } else {
         let cards = result.value!
         
-        var data = weakSelf?.getBarCodeInfo(result.value!, cardId: cardId, coupons: coupons)
+        var data = weakSelf?.getBarCodeInfo(cards, cardId: cardId, coupons: coupons)
         if data == nil {
           data = BarCodeInfo(data: "", type: .memberId)
         }
@@ -716,15 +710,20 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Changes message status.
    
    Possible values:
-   * READ
-   * UNREAD
-   * DELETED
+   * Read
+   * Unread
+   * Delete
    
+   - Parameter messageId: Message ID.
+   - Parameter status: Message status.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
    */
   open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
-    guard let contactId = self.session.getContactId() else {
-      handler(false, ApiError.unknown())
+    guard let _ = self.session.getContactId() else {
+      handler(false, ApiError.noContactIdInSession())
       return
     }
     
@@ -744,8 +743,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    */
   open func pushNotificationGetMessageById(_ messageId: String, handler: @escaping (_ success: Bool, _ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
     
-    guard let contactId = self.session.getContactId() else {
-      handler(false, nil, ApiError.unknown())
+    guard let _ = self.session.getContactId() else {
+      handler(false, nil, ApiError.noContactIdInSession())
       return
     }
     
@@ -841,6 +840,46 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
           handler(nil, result.error as? BEErrorType)
         } else {
           handler(result.value?.transaction, nil)
+        }
+    }
+  }
+  
+  /**
+   Retrieve transaction events.
+   
+   * Dates are sent in the format YYYY-MM-DD.
+   * If no dates are passed, all events for the _contactId_ will be returned.
+   * To retrieve events for a specific date, set _startDate_ and _endDate_ to the same date.
+   * If _startDate_ and _endDate_ are both set, all events in that range will be returned.
+   * If only _startDate_ is set, all events from that day until now will be returned.
+   * If only _endDate_ is set, all events until that day will be returned.
+   
+   - Parameter startDate: The beginning date for transaction events.
+   - Parameter endDate: The end date for transaction events.
+   - Parameter handler: Completion handler.
+   - Parameter transactions: Transaction models.
+   - Parameter error: Error if occur.
+   */
+  
+  public func getTransactions(
+    startDate: Date?,
+    endDate: Date?,
+    handler: @escaping (_ transactions: [BETransaction]?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.noContactIdInSession() )
+      return
+    }
+    
+    apiService.getTransactions(
+      contactId: contactId,
+      startDate: startDate,
+      endDate: endDate) { (result) in
+        
+        if result.isFailure {
+          handler(nil, result.error as? BEErrorType)
+        } else {
+          handler(result.value, nil)
         }
     }
   }

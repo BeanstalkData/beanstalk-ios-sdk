@@ -18,6 +18,7 @@ class MenuViewController: BaseViewController {
   @IBOutlet var giftCardsButton: UIButton!
   @IBOutlet var contactManagementButton: UIButton!
   @IBOutlet var trackTransactionButton: UIButton!
+  @IBOutlet var transactionsListButton: UIButton!
   
   
   override func viewDidLoad() {
@@ -52,6 +53,9 @@ class MenuViewController: BaseViewController {
         
         self.updateAuthStatus()
       }
+    }
+    else if let vc = segue.destination as? TransactionsListTableViewController {
+      vc.coreService = self.coreService
     }
   }
   
@@ -121,6 +125,5 @@ class MenuViewController: BaseViewController {
     self.availableRewardsButton.isEnabled = isAuthenticated
     self.userProgressButton.isEnabled = isAuthenticated
     self.giftCardsButton.isEnabled = isAuthenticated
-    self.trackTransactionButton.isEnabled = isAuthenticated
   }
 }

@@ -96,12 +96,12 @@ public enum ApiError: BEErrorType {
     case .unknown:
       errorTitle = "Bad request"
       
-    case .dataSerialization(let reason):
+    case .dataSerialization(_):
       errorTitle = "Bad request"
     case .missingParameterError(let reason):
       errorTitle = "Invalid request"
       
-    case .network(let error):
+    case .network(_):
       errorTitle = "Bad request"
     case .networkConnectionError:
       errorTitle = "Connection Failed"
@@ -109,47 +109,47 @@ public enum ApiError: BEErrorType {
     case .noApiUsernameProvided():
       errorTitle = "No API username provided"
       
-    case .createContactFailed(let reason):
+    case .createContactFailed(_):
       errorTitle = "Create Contact Failed"
-    case .deleteContactFailed(let reason):
+    case .deleteContactFailed(_):
       errorTitle = "Delete Contact Failed"
-    case .updateContactFailed(let reason):
+    case .updateContactFailed(_):
       errorTitle = "Update Contact Failed"
-    case .fetchContactFailed(let reason):
+    case .fetchContactFailed(_):
       errorTitle = "Fetch Contact Failed"
     case .noContactIdInSession():
       errorTitle = "No contact ID is stored in session"
       
-    case .authenticationFailed(let reason):
+    case .authenticationFailed(_):
       errorTitle = "Login Failed"
-    case .registrationFailed(let reason):
+    case .registrationFailed(_):
       errorTitle = "Registration Error"
-    case .userEmailExists(let reason):
+    case .userEmailExists(_):
       errorTitle = "Registration Error"
-    case .userPhoneExists(let reason):
+    case .userPhoneExists(_):
       errorTitle = "Registration Error"
       
-    case .profileError(let reason):
+    case .profileError(_):
       errorTitle = "Profile Error"
-    case .updateProfileError(let reason):
+    case .updateProfileError(_):
       errorTitle = "Update Profile Error"
-    case .updatePasswordError(let reason):
+    case .updatePasswordError(_):
       errorTitle = "Password Update"
-    case .resetPasswordError(let reason):
+    case .resetPasswordError(_):
       errorTitle = "Password reset"
       
-    case .giftCardsError(let reason):
+    case .giftCardsError(_):
       errorTitle = "Cards Error"
-    case .paymentError(let reason):
+    case .paymentError(_):
       errorTitle = "Payment Error"
       
-    case .findStoresError(let reason):
+    case .findStoresError(_):
       errorTitle = "Find Stores Error"
       
-    case .trackTransactionError(let reason):
+    case .trackTransactionError(_):
       errorTitle = "Track Transaction Error"
       
-    case .unacceptableStatusCodeError(let reason, let statusCode):
+    case .unacceptableStatusCodeError(_, _):
       errorTitle = "Bad request"
     }
     
@@ -188,7 +188,7 @@ public enum ApiError: BEErrorType {
     case .noContactIdInSession():
       errorMessage = "Contact ID should be provided by session"
       
-    case .authenticationFailed(let reason):
+    case .authenticationFailed(_):
       errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .registrationFailed(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
@@ -217,7 +217,7 @@ public enum ApiError: BEErrorType {
     case .trackTransactionError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to Track Transaction")
       
-    case .unacceptableStatusCodeError(let reason, let statusCode):
+    case .unacceptableStatusCodeError(let reason, _):
       errorMessage = reason
     }
     

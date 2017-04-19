@@ -18,8 +18,7 @@ extension String {
     do {
       let phoneNumber = try phoneUtil.parse(formattedPhone, defaultRegion: "US")
       formattedPhone = try phoneUtil.format(phoneNumber, numberFormat: .NATIONAL)
-    } catch _ as NSError {
-    }
+    } catch _ as NSError { }
     
     return formattedPhone
   }
@@ -30,9 +29,8 @@ extension String {
     let phoneUtil = NBPhoneNumberUtil()
     do {
       let phoneNumber = try phoneUtil.parse(formattedPhone, defaultRegion: "US")
-      formattedPhone = try phoneUtil.getNationalSignificantNumber(phoneNumber)
-    } catch _ as NSError {
-    }
+      formattedPhone = phoneUtil.getNationalSignificantNumber(phoneNumber)
+    } catch _ as NSError { }
     
     return formattedPhone
   }
@@ -42,8 +40,7 @@ extension String {
     do {
       let phoneNumber = try phoneUtil.parse(self, defaultRegion: "US")
       return phoneUtil.isValidNumber(forRegion: phoneNumber, regionCode: "US")
-    } catch _ as NSError {
-    }
+    } catch _ as NSError { }
     
     return false
   }

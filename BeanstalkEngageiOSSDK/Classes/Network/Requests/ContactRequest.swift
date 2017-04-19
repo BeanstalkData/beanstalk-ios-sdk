@@ -32,7 +32,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 /**
  Request model for contact create/update.
  */
-open class ContactRequest: Mappable{
+open class ContactRequest: Mappable {
   
   fileprivate var contactId: Int?
   fileprivate var firstName : String?
@@ -318,6 +318,26 @@ open class ContactRequest: Mappable{
       return self.inboxMessageOptin
     }
     return self.origin?.isInboxMessageOptin()
+  }
+  
+  open func set(prospect: String?) {
+    guard prospect?.characters.count > 0 else {
+      return
+    }
+    
+    guard origin?.prospect?.caseInsensitiveCompare(prospect!) != ComparisonResult.orderedSame else {
+      self.prospect = nil
+      return
+    }
+    
+    self.prospect = prospect
+  }
+  
+  open func getProspect() -> String? {
+    guard self.prospect == nil else {
+      return self.prospect
+    }
+    return self.origin?.prospect
   }
   
   open func mapping(map: Map) {

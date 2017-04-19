@@ -423,28 +423,28 @@
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
       "line": 34,
-      "symbol": "CoreServiceT.init(apiKey:session:)",
+      "symbol": "CoreServiceT.init(apiKey:session:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
       "line": 34,
-      "symbol": "CoreServiceT.init(apiKey:session:)",
+      "symbol": "CoreServiceT.init(apiKey:session:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
       "line": 34,
-      "symbol": "CoreServiceT.init(apiKey:session:)",
+      "symbol": "CoreServiceT.init(apiKey:session:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
       "line": 34,
-      "symbol": "CoreServiceT.init(apiKey:session:)",
+      "symbol": "CoreServiceT.init(apiKey:session:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -506,28 +506,28 @@
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
-      "line": 920,
+      "line": 1035,
       "symbol": "BarCodeInfo",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
-      "line": 920,
+      "line": 1035,
       "symbol": "BarCodeInfo",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
-      "line": 920,
+      "line": 1035,
       "symbol": "BarCodeInfo",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Control/Core/CoreService.swift",
-      "line": 920,
+      "line": 1035,
       "symbol": "BarCodeInfo",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
@@ -4355,6 +4355,48 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift",
+      "line": 12,
+      "symbol": "BETransaction",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
       "line": 13,
       "symbol": "BEApiResponder",
@@ -4426,980 +4468,1015 @@
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 46,
-      "symbol": "ApiCommunication.init(apiKey:)",
+      "line": 54,
+      "symbol": "ApiCommunication.init(apiKey:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 46,
-      "symbol": "ApiCommunication.init(apiKey:)",
+      "line": 54,
+      "symbol": "ApiCommunication.init(apiKey:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 46,
-      "symbol": "ApiCommunication.init(apiKey:)",
+      "line": 54,
+      "symbol": "ApiCommunication.init(apiKey:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 46,
-      "symbol": "ApiCommunication.init(apiKey:)",
+      "line": 54,
+      "symbol": "ApiCommunication.init(apiKey:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 46,
-      "symbol": "ApiCommunication.init(apiKey:)",
+      "line": 54,
+      "symbol": "ApiCommunication.init(apiKey:apiUsername:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 69,
+      "line": 78,
       "symbol": "ApiCommunication.isOnline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 69,
+      "line": 78,
       "symbol": "ApiCommunication.isOnline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 69,
+      "line": 78,
       "symbol": "ApiCommunication.isOnline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 69,
+      "line": 78,
       "symbol": "ApiCommunication.isOnline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 69,
+      "line": 78,
       "symbol": "ApiCommunication.isOnline()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "ApiCommunication.checkContactsByEmailExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "ApiCommunication.checkContactsByEmailExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "ApiCommunication.checkContactsByEmailExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "ApiCommunication.checkContactsByEmailExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 73,
+      "line": 82,
       "symbol": "ApiCommunication.checkContactsByEmailExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 153,
+      "line": 162,
       "symbol": "ApiCommunication.checkContactsByPhoneExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 153,
+      "line": 162,
       "symbol": "ApiCommunication.checkContactsByPhoneExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 153,
+      "line": 162,
       "symbol": "ApiCommunication.checkContactsByPhoneExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 153,
+      "line": 162,
       "symbol": "ApiCommunication.checkContactsByPhoneExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 153,
+      "line": 162,
       "symbol": "ApiCommunication.checkContactsByPhoneExisted(_:prospectTypes:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 228,
+      "line": 237,
       "symbol": "ApiCommunication.createLoyaltyAccount(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 228,
+      "line": 237,
       "symbol": "ApiCommunication.createLoyaltyAccount(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 228,
+      "line": 237,
       "symbol": "ApiCommunication.createLoyaltyAccount(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 228,
+      "line": 237,
       "symbol": "ApiCommunication.createLoyaltyAccount(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 228,
+      "line": 237,
       "symbol": "ApiCommunication.createLoyaltyAccount(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 572,
+      "line": 583,
       "symbol": "ApiCommunication.createUser(_:password:contactId:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 572,
+      "line": 583,
       "symbol": "ApiCommunication.createUser(_:password:contactId:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 572,
+      "line": 583,
       "symbol": "ApiCommunication.createUser(_:password:contactId:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 572,
+      "line": 583,
       "symbol": "ApiCommunication.createUser(_:password:contactId:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 572,
+      "line": 583,
       "symbol": "ApiCommunication.createUser(_:password:contactId:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 604,
+      "line": 615,
       "symbol": "ApiCommunication.authenticateUser(_:password:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 604,
+      "line": 615,
       "symbol": "ApiCommunication.authenticateUser(_:password:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 604,
+      "line": 615,
       "symbol": "ApiCommunication.authenticateUser(_:password:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 604,
+      "line": 615,
       "symbol": "ApiCommunication.authenticateUser(_:password:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 604,
+      "line": 615,
       "symbol": "ApiCommunication.authenticateUser(_:password:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 639,
+      "line": 650,
       "symbol": "ApiCommunication.checkUserSession(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 639,
+      "line": 650,
       "symbol": "ApiCommunication.checkUserSession(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 639,
+      "line": 650,
       "symbol": "ApiCommunication.checkUserSession(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 639,
+      "line": 650,
       "symbol": "ApiCommunication.checkUserSession(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 639,
+      "line": 650,
       "symbol": "ApiCommunication.checkUserSession(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 663,
+      "line": 674,
       "symbol": "ApiCommunication.resetPassword(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 663,
+      "line": 674,
       "symbol": "ApiCommunication.resetPassword(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 663,
+      "line": 674,
       "symbol": "ApiCommunication.resetPassword(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 663,
+      "line": 674,
       "symbol": "ApiCommunication.resetPassword(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 663,
+      "line": 674,
       "symbol": "ApiCommunication.resetPassword(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 686,
+      "line": 697,
       "symbol": "ApiCommunication.logoutUser(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 686,
+      "line": 697,
       "symbol": "ApiCommunication.logoutUser(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 686,
+      "line": 697,
       "symbol": "ApiCommunication.logoutUser(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 686,
+      "line": 697,
       "symbol": "ApiCommunication.logoutUser(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 686,
+      "line": 697,
       "symbol": "ApiCommunication.logoutUser(_:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 710,
+      "line": 721,
       "symbol": "ApiCommunication.getContact(_:contactClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 710,
+      "line": 721,
       "symbol": "ApiCommunication.getContact(_:contactClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 710,
+      "line": 721,
       "symbol": "ApiCommunication.getContact(_:contactClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 710,
+      "line": 721,
       "symbol": "ApiCommunication.getContact(_:contactClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 710,
+      "line": 721,
       "symbol": "ApiCommunication.getContact(_:contactClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 741,
+      "line": 752,
       "symbol": "ApiCommunication.updatePassword(_:contactId:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 741,
+      "line": 752,
       "symbol": "ApiCommunication.updatePassword(_:contactId:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 741,
+      "line": 752,
       "symbol": "ApiCommunication.updatePassword(_:contactId:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 741,
+      "line": 752,
       "symbol": "ApiCommunication.updatePassword(_:contactId:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 741,
+      "line": 752,
       "symbol": "ApiCommunication.updatePassword(_:contactId:token:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 772,
+      "line": 783,
       "symbol": "ApiCommunication.getUserOffers(_:couponClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 772,
+      "line": 783,
       "symbol": "ApiCommunication.getUserOffers(_:couponClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 772,
+      "line": 783,
       "symbol": "ApiCommunication.getUserOffers(_:couponClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 772,
+      "line": 783,
       "symbol": "ApiCommunication.getUserOffers(_:couponClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 772,
+      "line": 783,
       "symbol": "ApiCommunication.getUserOffers(_:couponClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 811,
+      "line": 822,
       "symbol": "ApiCommunication.getProgress(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 811,
+      "line": 822,
       "symbol": "ApiCommunication.getProgress(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 811,
+      "line": 822,
       "symbol": "ApiCommunication.getProgress(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 811,
+      "line": 822,
       "symbol": "ApiCommunication.getProgress(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 811,
+      "line": 822,
       "symbol": "ApiCommunication.getProgress(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 848,
+      "line": 859,
       "symbol": "ApiCommunication.getGiftCards(_:token:giftCardClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 848,
+      "line": 859,
       "symbol": "ApiCommunication.getGiftCards(_:token:giftCardClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 848,
+      "line": 859,
       "symbol": "ApiCommunication.getGiftCards(_:token:giftCardClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 848,
+      "line": 859,
       "symbol": "ApiCommunication.getGiftCards(_:token:giftCardClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 848,
+      "line": 859,
       "symbol": "ApiCommunication.getGiftCards(_:token:giftCardClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 886,
+      "line": 897,
       "symbol": "ApiCommunication.getGiftCardBalance(_:token:number:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 886,
+      "line": 897,
       "symbol": "ApiCommunication.getGiftCardBalance(_:token:number:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 886,
+      "line": 897,
       "symbol": "ApiCommunication.getGiftCardBalance(_:token:number:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 886,
+      "line": 897,
       "symbol": "ApiCommunication.getGiftCardBalance(_:token:number:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 886,
+      "line": 897,
       "symbol": "ApiCommunication.getGiftCardBalance(_:token:number:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 922,
+      "line": 933,
       "symbol": "ApiCommunication.startPayment(_:token:paymentId:coupons:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 922,
+      "line": 933,
       "symbol": "ApiCommunication.startPayment(_:token:paymentId:coupons:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 922,
+      "line": 933,
       "symbol": "ApiCommunication.startPayment(_:token:paymentId:coupons:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 922,
+      "line": 933,
       "symbol": "ApiCommunication.startPayment(_:token:paymentId:coupons:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 922,
+      "line": 933,
       "symbol": "ApiCommunication.startPayment(_:token:paymentId:coupons:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 968,
+      "line": 979,
       "symbol": "ApiCommunication.getStoresAtLocation(_:latitude:token:storeClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 968,
+      "line": 979,
       "symbol": "ApiCommunication.getStoresAtLocation(_:latitude:token:storeClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 968,
+      "line": 979,
       "symbol": "ApiCommunication.getStoresAtLocation(_:latitude:token:storeClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 968,
+      "line": 979,
       "symbol": "ApiCommunication.getStoresAtLocation(_:latitude:token:storeClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 968,
+      "line": 979,
       "symbol": "ApiCommunication.getStoresAtLocation(_:latitude:token:storeClass:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1014,
+      "line": 1025,
       "symbol": "ApiCommunication.pushNotificationEnroll(_:deviceToken:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1014,
+      "line": 1025,
       "symbol": "ApiCommunication.pushNotificationEnroll(_:deviceToken:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1014,
+      "line": 1025,
       "symbol": "ApiCommunication.pushNotificationEnroll(_:deviceToken:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1014,
+      "line": 1025,
       "symbol": "ApiCommunication.pushNotificationEnroll(_:deviceToken:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1014,
+      "line": 1025,
       "symbol": "ApiCommunication.pushNotificationEnroll(_:deviceToken:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1056,
+      "line": 1067,
       "symbol": "ApiCommunication.pushNotificationDelete(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1056,
+      "line": 1067,
       "symbol": "ApiCommunication.pushNotificationDelete(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1056,
+      "line": 1067,
       "symbol": "ApiCommunication.pushNotificationDelete(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1056,
+      "line": 1067,
       "symbol": "ApiCommunication.pushNotificationDelete(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1056,
+      "line": 1067,
       "symbol": "ApiCommunication.pushNotificationDelete(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1096,
+      "line": 1107,
       "symbol": "ApiCommunication.pushNotificationGetMessages(_:maxResults:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1096,
+      "line": 1107,
       "symbol": "ApiCommunication.pushNotificationGetMessages(_:maxResults:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1096,
+      "line": 1107,
       "symbol": "ApiCommunication.pushNotificationGetMessages(_:maxResults:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1096,
+      "line": 1107,
       "symbol": "ApiCommunication.pushNotificationGetMessages(_:maxResults:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1096,
+      "line": 1107,
       "symbol": "ApiCommunication.pushNotificationGetMessages(_:maxResults:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1134,
+      "line": 1145,
       "symbol": "ApiCommunication.pushNotificationUpdateStatus(_:status:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1134,
+      "line": 1145,
       "symbol": "ApiCommunication.pushNotificationUpdateStatus(_:status:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1134,
+      "line": 1145,
       "symbol": "ApiCommunication.pushNotificationUpdateStatus(_:status:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1134,
+      "line": 1145,
       "symbol": "ApiCommunication.pushNotificationUpdateStatus(_:status:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1134,
+      "line": 1145,
       "symbol": "ApiCommunication.pushNotificationUpdateStatus(_:status:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1172,
+      "line": 1183,
       "symbol": "ApiCommunication.pushNotificationGetMessageById(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1172,
+      "line": 1183,
       "symbol": "ApiCommunication.pushNotificationGetMessageById(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1172,
+      "line": 1183,
       "symbol": "ApiCommunication.pushNotificationGetMessageById(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1172,
+      "line": 1183,
       "symbol": "ApiCommunication.pushNotificationGetMessageById(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1172,
+      "line": 1183,
       "symbol": "ApiCommunication.pushNotificationGetMessageById(_:handler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1316,
+      "line": 1223,
+      "symbol": "ApiCommunication.trackTransaction(contactId:transactionData:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
+      "line": 1223,
+      "symbol": "ApiCommunication.trackTransaction(contactId:transactionData:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
+      "line": 1223,
+      "symbol": "ApiCommunication.trackTransaction(contactId:transactionData:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
+      "line": 1223,
+      "symbol": "ApiCommunication.trackTransaction(contactId:transactionData:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
+      "line": 1223,
+      "symbol": "ApiCommunication.trackTransaction(contactId:transactionData:handler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
+      "line": 1434,
       "symbol": "HTTPAlamofireManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1316,
+      "line": 1434,
       "symbol": "HTTPAlamofireManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1316,
+      "line": 1434,
       "symbol": "HTTPAlamofireManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1316,
+      "line": 1434,
       "symbol": "HTTPAlamofireManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1316,
+      "line": 1434,
       "symbol": "HTTPAlamofireManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1326,
+      "line": 1444,
       "symbol": "HTTPTimberjackManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1326,
+      "line": 1444,
       "symbol": "HTTPTimberjackManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1326,
+      "line": 1444,
       "symbol": "HTTPTimberjackManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1326,
+      "line": 1444,
       "symbol": "HTTPTimberjackManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1326,
+      "line": 1444,
       "symbol": "HTTPTimberjackManager",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1342,
+      "line": 1460,
       "symbol": "ProspectType",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1342,
+      "line": 1460,
       "symbol": "ProspectType",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1342,
+      "line": 1460,
       "symbol": "ProspectType",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1342,
+      "line": 1460,
       "symbol": "ProspectType",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1342,
+      "line": 1460,
       "symbol": "ProspectType",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1353,
+      "line": 1471,
       "symbol": "ContactFetchField",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1353,
+      "line": 1471,
       "symbol": "ContactFetchField",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1353,
+      "line": 1471,
       "symbol": "ContactFetchField",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1353,
+      "line": 1471,
       "symbol": "ContactFetchField",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift",
-      "line": 1353,
+      "line": 1471,
       "symbol": "ContactFetchField",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiError.swift",
-      "line": 203,
+      "line": 227,
       "symbol": "ApiError.getErrorMessageFromReason(_:defaultMessage:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiError.swift",
-      "line": 203,
+      "line": 227,
       "symbol": "ApiError.getErrorMessageFromReason(_:defaultMessage:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiError.swift",
-      "line": 203,
+      "line": 227,
       "symbol": "ApiError.getErrorMessageFromReason(_:defaultMessage:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiError.swift",
-      "line": 203,
+      "line": 227,
       "symbol": "ApiError.getErrorMessageFromReason(_:defaultMessage:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/ApiError.swift",
-      "line": 203,
+      "line": 227,
       "symbol": "ApiError.getErrorMessageFromReason(_:defaultMessage:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -6876,70 +6953,70 @@
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 29,
+      "line": 31,
       "symbol": "PushNotificationResponse.failed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 29,
+      "line": 31,
       "symbol": "PushNotificationResponse.failed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 29,
+      "line": 31,
       "symbol": "PushNotificationResponse.failed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 29,
+      "line": 31,
       "symbol": "PushNotificationResponse.failed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 29,
+      "line": 31,
       "symbol": "PushNotificationResponse.failed()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 37,
+      "line": 45,
       "symbol": "PushNotificationResponse.getMessages()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 37,
+      "line": 45,
       "symbol": "PushNotificationResponse.getMessages()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 37,
+      "line": 45,
       "symbol": "PushNotificationResponse.getMessages()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 37,
+      "line": 45,
       "symbol": "PushNotificationResponse.getMessages()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/PushNotificationResponse.swift",
-      "line": 37,
+      "line": 45,
       "symbol": "PushNotificationResponse.getMessages()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -7116,6 +7193,41 @@
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/StoresResponse.swift",
       "line": 42,
       "symbol": "StoresResponse.getStores()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/TrackTransactionResponse.swift",
+      "line": 19,
+      "symbol": "TrackTransactionResponse.mapping(map:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/TrackTransactionResponse.swift",
+      "line": 19,
+      "symbol": "TrackTransactionResponse.mapping(map:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/TrackTransactionResponse.swift",
+      "line": 19,
+      "symbol": "TrackTransactionResponse.mapping(map:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/TrackTransactionResponse.swift",
+      "line": 19,
+      "symbol": "TrackTransactionResponse.mapping(map:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Classes/Network/TrackTransactionResponse.swift",
+      "line": 19,
+      "symbol": "TrackTransactionResponse.mapping(map:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -7249,6 +7361,13 @@
       "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Tests/BEGiftCardsTests.swift",
       "line": 34,
       "symbol": "BEGiftCardsTests",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmytro.nadtochyy/Documents/Projects/Repository/beanstalk-ios-sdk/BeanstalkEngageiOSSDK/Tests/BEPushNotificationsTests.swift",
+      "line": 11,
+      "symbol": "BEPushNotificationsTests",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },

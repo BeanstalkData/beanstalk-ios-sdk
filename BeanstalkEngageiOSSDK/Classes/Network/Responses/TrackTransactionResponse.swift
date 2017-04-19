@@ -27,5 +27,6 @@ open class TrackTransactionResponse : ServerResponse {
     
     let map = Map(mappingType: .fromJSON, JSON: message)
     self.transaction = BETransaction(map: map)
+    self.transaction?.mapping(map: map)
   }
 }

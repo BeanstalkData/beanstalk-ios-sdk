@@ -3,7 +3,7 @@
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 8.4+
 - Xcode 8.1+
 - Swift 3.0
 
@@ -22,11 +22,11 @@ To integrate BeanstalkEngageiOSSDK into your Xcode project using CocoaPods, spec
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'BeanstalkEngageiOSSDK', :git => 'git@github.com:BeanstalkData/beanstalk-ios-sdk.git', :tag => '0.5.1'
+pod 'BeanstalkEngageiOSSDK', :git => 'git@github.com:BeanstalkData/beanstalk-ios-sdk.git', :tag => '0.5.28'
 end
 ```
 
