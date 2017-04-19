@@ -58,6 +58,8 @@ Pod::Spec.new do |s|
   s.subspec 'Common' do |cms|
     cms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Common/**/*'
 
+    cms.dependency 'BeanstalkEngageiOSSDK/Vendor'
+    cms.dependency 'Alamofire', '~> 4.4.0'
     cms.dependency 'libPhoneNumber-iOS'
   end
 
