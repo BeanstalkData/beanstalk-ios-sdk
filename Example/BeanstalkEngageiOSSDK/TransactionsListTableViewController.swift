@@ -16,6 +16,12 @@ class TransactionsListTableViewController: UITableViewController {
     }
   }
   
+  lazy var loadingHandler: LoadingHandlerProtocol = {
+    let handler = LoadingHandler(viewController: self)
+    
+    return handler
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -31,16 +37,16 @@ class TransactionsListTableViewController: UITableViewController {
       return
     }
     
-    self.showProgress("Loading")
+    self.loadingHandler.showProgress("Loading")
     weak var weakSelf = self
     coreService.getTransactions(
       startDate: nil,
       endDate: nil) { (transactions, error) in
         
-        weakSelf?.hideProgress()
+        weakSelf?.loadingHandler.hideProgress()
         
         if let err = error {
-          weakSelf?.showMessage(err)
+          weakSelf?.loadingHandler.showMessage(err)
         } else {
           if let transactions = transactions {
             weakSelf?.transactions = transactions
