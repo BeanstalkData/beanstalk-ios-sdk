@@ -66,12 +66,8 @@ class TransactionsListTableViewController: UITableViewController {
     let transaction = self.transactions[indexPath.row]
     
     (cell.viewWithTag(1) as? UILabel)?.text = transaction.getDateCreated()?.description
-    if let details = transaction.details as? AnyObject {
-      (cell.viewWithTag(2) as? UILabel)?.text = details.description
-    }
-    else {
-      (cell.viewWithTag(2) as? UILabel)?.text = "<empty details>"
-    }
+    let details = transaction.details as AnyObject
+    (cell.viewWithTag(2) as? UILabel)?.text = details.description
     
     return cell
   }

@@ -97,7 +97,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
               } catch { }
               
               guard let data = jsonResponse as? [AnyObject] else {
@@ -177,7 +177,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               var jsonResponse : AnyObject? = nil
               
               do {
-                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+                jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
               } catch { }
               
               guard let data = jsonResponse as? [AnyObject], data.count >= 1 else {
@@ -366,7 +366,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       return
     }
     
-    var params = [
+    let params = [
       "ContactID": contactId,
       "key": self.apiKey
     ]
@@ -524,7 +524,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         var jsonResponse : AnyObject? = nil
         
         do {
-          jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
         } catch { }
         
         guard let data = jsonResponse as? [[String : Any]], data.count >= 1 else {
@@ -628,7 +628,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             var jsonResponse : AnyObject? = nil
             
             do {
-              jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as? AnyObject
+              jsonResponse = try JSONSerialization.jsonObject(with: responseData!, options: []) as AnyObject
             } catch { }
             guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
               handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
@@ -1310,7 +1310,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       .validate(getDefaultErrorHandler())
       .responseData { response in
         
-        if let mock = weakSelf?.dataGenerator {
+        if let _ = weakSelf?.dataGenerator {
           handler(.success([]))
           return
         }
@@ -1328,7 +1328,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         var jsonResponse : AnyObject? = nil
         
         do {
-          jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? AnyObject
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
         } catch { }
         
         if let errorObject = jsonResponse as? [String: Any] {

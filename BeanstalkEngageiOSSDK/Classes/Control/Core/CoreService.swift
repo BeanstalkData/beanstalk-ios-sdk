@@ -6,12 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import CoreLocation
-import PKHUD
-
 import Alamofire
-import BeanstalkEngageiOSSDK
 
 public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
 
@@ -316,8 +312,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-    let registeredDeviceToken = self.session.getRegisteredAPNSToken()
-    
     controller?.showProgress("Logout...")
     
     weak var weakSelf = self
@@ -494,7 +488,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     handler: @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void
     ) {
     
-    weak var weakSelf = self
     apiService.fetchContactBy(
       fetchField: fetchField,
       fieldValue: fieldValue,
@@ -690,7 +683,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       } else {
         let cards = result.value!
         
-        var data = weakSelf?.getBarCodeInfo(result.value!, cardId: cardId, coupons: coupons)
+        var data = weakSelf?.getBarCodeInfo(cards, cardId: cardId, coupons: coupons)
         if data == nil {
           data = BarCodeInfo(data: "", type: .memberId)
         }
@@ -786,8 +779,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    */
   open func pushNotificationUpdateStatus(_ messageId: String, status: PushNotificationStatus, handler : @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
-    guard let contactId = self.session.getContactId() else {
-      handler(false, ApiError.unknown())
+    guard let _ = self.session.getContactId() else {
+      handler(false, ApiError.noContactIdInSession())
       return
     }
     
@@ -807,8 +800,8 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    */
   open func pushNotificationGetMessageById(_ messageId: String, handler : @escaping (_ message: BEPushNotificationMessage?, _ error: BEErrorType?) -> Void) {
     
-    guard let contactId = self.session.getContactId() else {
-      handler(nil, ApiError.unknown())
+    guard let _ = self.session.getContactId() else {
+      handler(nil, ApiError.noContactIdInSession())
       return
     }
     

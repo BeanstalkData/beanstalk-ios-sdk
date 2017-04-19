@@ -38,7 +38,7 @@ open class BESession: BESessionProtocol {
   open func getContactId() -> String? {
     let prefs = self.userDefaults.getTransientDefaults()
     
-    var contact = BEContact(storage: prefs)
+    let contact = BEContact(storage: prefs)
     
     guard let contactId = contact?.contactId else {
       return nil
@@ -50,7 +50,7 @@ open class BESession: BESessionProtocol {
   open func getContact <ContactClass: BEContact> () -> ContactClass? {
     let prefs = self.userDefaults.getTransientDefaults()
     
-    var contact = ContactClass(storage: prefs)
+    let contact = ContactClass(storage: prefs)
     
     return contact
   }
@@ -131,7 +131,7 @@ open class BESession: BESessionProtocol {
   
   open func getRewards() -> [BECoupon]? {
     let prefs = self.userDefaults.getTransientDefaults()
-    var rewards = BECoupon.initList(prefs)
+    let rewards = BECoupon.initList(prefs)
     
     return rewards
   }
