@@ -13,14 +13,16 @@ import Foundation
  */
 open class BERequestValidator: BERequestValidatorProtocol {
   
+  public init() {
+    
+  }
+  
   /**
    Validate the Create contact request.
    
    - Note: Following validation rules applied to the ContactRequest fields
      - firstName should not be ampty;
      - lastName should not be empty;
-     - phone should be valid for the US region;
-     - ZIP code is a number consisted of five digits from 0 to 9 (e.g.,"94105")
      - email may contain following characters: appercase and lowercase Latin letters A to Z and a to z, digits 0 to 9, +, -, @, .;
      - password should not be empty;
    
@@ -39,14 +41,14 @@ open class BERequestValidator: BERequestValidatorProtocol {
         errorHandler(ApiError.missingParameterError(reason: "Enter Last Name"))
         return false
       }
-      guard (createRequest.getPhone() != nil && (createRequest.getPhone()?.isValidPhone())!) else {
-        errorHandler(ApiError.missingParameterError(reason: "Please enter a valid phone number"))
-        return false
-      }
-      guard (createRequest.getZipCode() != nil && (createRequest.getZipCode()?.isValidZipCode())!) else {
-        errorHandler(ApiError.missingParameterError(reason: "Enter 5 Digit Zipcode"))
-        return false
-      }
+//      guard (createRequest.getPhone() != nil && (createRequest.getPhone()?.isValidPhone())!) else {
+//        errorHandler(ApiError.missingParameterError(reason: "Please enter a valid phone number"))
+//        return false
+//      }
+//      guard (createRequest.getZipCode() != nil && (createRequest.getZipCode()?.isValidZipCode())!) else {
+//        errorHandler(ApiError.missingParameterError(reason: "Enter 5 Digit Zipcode"))
+//        return false
+//      }
       guard (createRequest.getEmail() != nil && (createRequest.getEmail()?.isValidEmail())!) else {
         errorHandler(ApiError.missingParameterError(reason: "Enter Valid Email"))
         return false
