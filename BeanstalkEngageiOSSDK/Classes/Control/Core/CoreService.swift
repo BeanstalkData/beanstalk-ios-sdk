@@ -410,6 +410,78 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   }
   
   /**
+   Sends a contact’s Geo Location data to server.
+   
+   - Parameter latitude: Latitude string.
+   - Parameter longitude: Longitude string.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
+   */
+  
+  open func relocateContact(
+    latitude: String,
+    longitude: String,
+    handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false, ApiError.noContactIdInSession())
+      return
+    }
+    
+    weak var weakSelf = self
+    apiService.relocateContact(
+      contactId: contactId,
+      latitude: latitude,
+      longitude: longitude,
+      handler: { (result) in
+
+        if result.isFailure {
+          handler(false, result.error as? BEErrorType)
+        } else {
+          if let success = result.value {
+            handler(success, nil)
+          } else {
+            handler(false, nil)
+          }
+        }
+    })
+  }
+  
+  /**
+   Retrieves image data from Beanstalk.
+   
+   - Parameter handler: Completion handler.
+   - Parameter geoAssets: Geo assets response model.
+   - Parameter error: Error if occur.
+   */
+  
+  open func getContactGeoAssets(
+    handler: @escaping (_ geoAssets: ContactGeoAssetsResponse?, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(nil, ApiError.noContactIdInSession())
+      return
+    }
+    
+    weak var weakSelf = self
+    apiService.getContactGeoAssets(
+      contactId: contactId,
+      handler: { (result) in
+        
+        if result.isFailure {
+          handler(nil, result.error as? BEErrorType)
+        } else {
+          if let response = result.value {
+            handler(response, nil)
+          } else {
+            handler(nil, ApiError.unknown())
+          }
+        }
+    })
+  }
+  
+  /**
    Deletes contact from server and clears from session.
    
    - Parameter contactId: Contact ID.
@@ -784,31 +856,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       }
     })
   }
-  
-  // TODO: fixme
-  //  private func getBalanceForCard(contactId: String, token: String, index: Int, cards : [BEGiftCard], handler:([BEGiftCard])->Void){
-  //
-  //    if index == 0 {
-  //      dispatch_async(dispatch_get_main_queue(),{
-  //        // controller.showProgress("Retrieving Cards Balances")
-  //      })
-  //    }
-  //    apiService.getGiftCardBalance(contactId, token: token, number: cards[index].number!, handler: {
-  //      data, error in
-  //      debugPrint("index \(index)")
-  //      if index == cards.count-1 {
-  //      //  controller.hideProgress()
-  //      }
-  //      if error == nil {
-  //        cards[index].balance = data?.getCardBalance()
-  //      }
-  //      if index == cards.count-1 {
-  //        handler(cards)
-  //      } else {
-  //        self.getBalanceForCard(contactId: contactId, token: token, index: index + 1, cards: cards, handler: handler)
-  //      }
-  //    })
-  //  }
   
   
   //MARK: - Transactions

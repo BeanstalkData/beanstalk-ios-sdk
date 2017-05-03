@@ -113,15 +113,19 @@ class MenuViewController: BaseViewController {
   
   private func updateAuthStatus() {
     var isAuthenticated = false
+    var isContactAvailableInSession = false
     
     if let isAuth = self.coreService?.isAuthenticated() {
       isAuthenticated = isAuth
+    }
+    if let _ = self.coreService?.getSession()?.getContact() {
+      isContactAvailableInSession = true
     }
     
     self.registerButton.isEnabled = !isAuthenticated
     self.signInButton.isEnabled = !isAuthenticated
     self.signOutButton.isEnabled = isAuthenticated
-    self.profileButton.isEnabled = isAuthenticated
+    self.profileButton.isEnabled = isContactAvailableInSession
     self.availableRewardsButton.isEnabled = isAuthenticated
     self.userProgressButton.isEnabled = isAuthenticated
     self.giftCardsButton.isEnabled = isAuthenticated

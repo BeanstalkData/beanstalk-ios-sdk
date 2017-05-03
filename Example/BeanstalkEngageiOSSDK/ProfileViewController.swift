@@ -44,6 +44,9 @@ class ProfileViewController: BaseViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     
+    if let vc = segue.destination as? BaseViewController {
+      vc.coreService = self.coreService
+    }
     if let vc = segue.destination as? PushNotificationMessagesTableViewController {
       vc.coreService = self.coreService
       

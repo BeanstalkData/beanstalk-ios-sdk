@@ -466,7 +466,111 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  /** Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).
+  /**
+   Sends a contact’s Geo Location data to server.
+   
+   - Parameter contactId: Contact ID.
+   - Parameter latitude: Latitude string.
+   - Parameter longitude: Longitude string.
+   - Parameter handler: Completion handler.
+   - Parameter result: Request result model.
+   */
+  
+  open func relocateContact(
+    contactId: String,
+    latitude: String,
+    longitude: String,
+    handler: @escaping (_ result: Result<Bool>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contactId" : contactId,
+      "key" : self.apiKey,
+      "latitude" : latitude,
+      "longitude" : longitude
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdContact/relocate.php", method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseJSON { (response) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.success(true))
+          return
+        }
+        
+        guard response.result.isSuccess else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+          return
+        }
+        
+        guard let result = response.result.value as? [String: Any] else {
+          handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+          return
+        }
+        
+        guard let success = result["Success"] as? String else {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        handler(.success(success == "true"))
+    }
+  }
+  
+  /**
+   Retrieves image data from Beanstalk.
+   
+   - Parameter contactId: Contact ID.
+   - Parameter handler: Completion handler.
+   - Parameter result: Request result model.
+   */
+  
+  open func getContactGeoAssets(
+    contactId: String,
+    handler: @escaping (_ result: Result<ContactGeoAssetsResponse>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contactId" : contactId,
+      "key" : self.apiKey
+    ]
+    
+    weak var weakSelf = self
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdContact/geoAssets.php", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject { (dataResponse : DataResponse<ContactGeoAssetsResponse>) in
+        
+        if weakSelf?.dataGenerator != nil {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        guard dataResponse.result.isSuccess else {
+          handler(.failure(ApiError.network(error: dataResponse.result.error)))
+          return
+        }
+        
+        guard let response = dataResponse.value else {
+          handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+          return
+        }
+        
+        handler(.success(response))
+    }
+  }
+  
+  /** 
+   Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).
    
    ## Note ##
    Currently it checks for exact match, i.e.
