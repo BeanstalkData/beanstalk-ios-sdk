@@ -29,10 +29,22 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   open var validator: BERequestValidatorProtocol
   
+  /**
+   LocationTracker instance. Can be accessed as public property to call its methods.
+   - Property onDidUpdate: By default is assigned by CoreService. Default implementation will send location data by calling *relocateContact*.
+   - Property onDidChangePermissions: Can be assigned to track whether is location permissions denied at some point in order to appropriately notify user. Default implementation does nothing.
+   - Property onDidFail: Can be assigned to track whether is some error occur. Default implementation does nothing.
+   - Completion handlers can be reset to default by calling *subscribeForLocationTracking* on CoreService instance.
+   */
+  open var locationTracker: LocationTracker?
+  
   public required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil) {
     self.apiService = ApiCommunication(apiKey: apiKey, apiUsername: apiUsername)
     self.session = session
     self.validator = BERequestValidator()
+    
+    self.locationTracker = LocationTracker()
+    self.subscribeForLocationTracking(relocateContactHandler: { _ in })
   }
   
   /**
@@ -300,23 +312,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
-  /**
-   Checks user exists by email.
-   */
-  open func checkContactsByEmailExisted(
-    email: String,
-    prospectTypes: [ProspectType],
-    handler: @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
-    ) {
-    apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
-      
-      if result.isFailure {
-        handler(false, nil, ApiError.userEmailExists(reason: result.error! as! BEErrorType))
-      } else {
-        handler(true, result.value!, nil)
-      }
-    }
-  }
+  //MARK: - Contact
   
   /**
    Requests contact model from server.
@@ -338,9 +334,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       }
     })
   }
-  
-  
-  //MARK: - Contact
   
   /**
    Creates contact of provided class and persists it in session.
@@ -545,6 +538,24 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
           }
         }
     })
+  }
+  
+  /**
+   Checks user exists by email.
+   */
+  open func checkContactsByEmailExisted(
+    email: String,
+    prospectTypes: [ProspectType],
+    handler: @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
+    ) {
+    apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
+      
+      if result.isFailure {
+        handler(false, nil, ApiError.userEmailExists(reason: result.error! as! BEErrorType))
+      } else {
+        handler(true, result.value!, nil)
+      }
+    }
   }
   
   //MARK: -
@@ -870,7 +881,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    - Parameter transaction: Transaction model from API response.
    - Parameter error: Error if occur.
    */
-  public func trackTransaction(
+  open func trackTransaction(
     transactionData: String,
     handler: @escaping (_ transaction: BETransaction?, _ error: BEErrorType?) -> Void) {
     
@@ -908,7 +919,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    - Parameter error: Error if occur.
    */
   
-  public func getTransactions(
+  open func getTransactions(
     startDate: Date?,
     endDate: Date?,
     handler: @escaping (_ transactions: [BETransaction]?, _ error: BEErrorType?) -> Void) {
@@ -928,6 +939,25 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         } else {
           handler(result.value, nil)
         }
+    }
+  }
+  
+  //MARK: - Location Tracking
+  
+  open func subscribeForLocationTracking(relocateContactHandler: @escaping (Bool, BEErrorType?) -> Void) {
+    weak var weakSelf = self
+    self.locationTracker?.onDidUpdate = { (location) in
+      weakSelf?.relocateContact(
+        latitude: "\(location.latitude)",
+        longitude: "\(location.longitude)",
+        handler: relocateContactHandler
+      )
+    }
+    self.locationTracker?.onDidChangePermissions = { (granted) in
+      
+    }
+    self.locationTracker?.onDidFail = { (error) in
+      
     }
   }
   

@@ -52,4 +52,21 @@ class ContactGeoDataViewController: BaseViewController {
         }
     })
   }
+  
+  @IBAction func startLocationTracking() {
+    self.coreService?.locationTracker?.startLocationTracking()
+    
+    self.coreService?.locationTracker?.onDidChangePermissions = { (granted) in
+      
+    }
+    self.coreService?.locationTracker?.onDidFail = { (error) in
+      NSLog("error: \(error)\n\n")
+    }
+  }
+  
+  @IBAction func stopLocationTracking() {
+    self.coreService?.locationTracker?.stopLocationTracking()
+    
+    self.coreService?.subscribeForLocationTracking(relocateContactHandler: { _ in })
+  }
 }

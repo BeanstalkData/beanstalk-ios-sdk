@@ -1120,34 +1120,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-2H-cdt">
-                                <rect key="frame" x="16" y="30" width="63" height="21"/>
+                                <rect key="frame" x="16" y="90" width="63" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3A-lP-y2L">
-                                <rect key="frame" x="99" y="25.5" width="260" height="30"/>
+                                <rect key="frame" x="99" y="85.5" width="260" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO2-IR-mLq">
-                                <rect key="frame" x="16" y="81" width="76.5" height="21"/>
+                                <rect key="frame" x="16" y="141" width="76.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qKQ-QL-8jg">
-                                <rect key="frame" x="112.5" y="76" width="246.5" height="30"/>
+                                <rect key="frame" x="112.5" y="136" width="246.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-xo-i9a">
-                                <rect key="frame" x="169" y="136" width="36" height="30"/>
+                                <rect key="frame" x="169" y="196" width="36" height="30"/>
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="sendGeoData" destination="ViW-mS-GRi" eventType="touchUpInside" id="EPD-TP-ke1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmx-6C-MaN">
+                                <rect key="frame" x="16" y="20" width="97" height="30"/>
+                                <state key="normal" title="Start Tracking"/>
+                                <connections>
+                                    <action selector="startLocationTracking" destination="ViW-mS-GRi" eventType="touchUpInside" id="hR6-mi-T3u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxz-Hf-fZH">
+                                <rect key="frame" x="264" y="20" width="95" height="30"/>
+                                <state key="normal" title="Stop Tracking"/>
+                                <connections>
+                                    <action selector="stopLocationTracking" destination="ViW-mS-GRi" eventType="touchUpInside" id="ebK-u3-2f5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1156,15 +1170,19 @@
                             <constraint firstItem="gO2-IR-mLq" firstAttribute="top" secondItem="0Qc-2H-cdt" secondAttribute="bottom" constant="30" id="0Km-aW-qu5"/>
                             <constraint firstItem="HKe-xo-i9a" firstAttribute="top" secondItem="qKQ-QL-8jg" secondAttribute="bottom" constant="30" id="0WD-V2-aiV"/>
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="leading" secondItem="0Qc-2H-cdt" secondAttribute="trailing" constant="20" id="0gA-22-YOt"/>
+                            <constraint firstItem="xmx-6C-MaN" firstAttribute="top" secondItem="IGb-aQ-7E6" secondAttribute="bottom" constant="20" id="1z6-J3-ykp"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="leading" secondItem="gO2-IR-mLq" secondAttribute="trailing" constant="20" id="2ue-95-eXF"/>
-                            <constraint firstItem="0Qc-2H-cdt" firstAttribute="top" secondItem="IGb-aQ-7E6" secondAttribute="bottom" constant="30" id="E2P-3t-i9i"/>
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="centerY" secondItem="0Qc-2H-cdt" secondAttribute="centerY" id="P40-Mt-AHv"/>
                             <constraint firstItem="HKe-xo-i9a" firstAttribute="centerX" secondItem="tFH-L6-66O" secondAttribute="centerX" id="Sim-8e-Y03"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="centerY" secondItem="gO2-IR-mLq" secondAttribute="centerY" id="Teg-E4-QyQ"/>
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="trailing" secondItem="tFH-L6-66O" secondAttribute="trailingMargin" id="UVe-s4-nHW"/>
+                            <constraint firstItem="xmx-6C-MaN" firstAttribute="leading" secondItem="tFH-L6-66O" secondAttribute="leadingMargin" id="Us7-am-6uj"/>
+                            <constraint firstItem="gxz-Hf-fZH" firstAttribute="trailing" secondItem="tFH-L6-66O" secondAttribute="trailingMargin" id="Vhf-vH-bG6"/>
                             <constraint firstItem="gO2-IR-mLq" firstAttribute="leading" secondItem="0Qc-2H-cdt" secondAttribute="leading" id="Wzv-EE-NNV"/>
+                            <constraint firstItem="0Qc-2H-cdt" firstAttribute="top" secondItem="xmx-6C-MaN" secondAttribute="bottom" constant="40" id="lhz-v9-Ngh"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="trailing" secondItem="k3A-lP-y2L" secondAttribute="trailing" id="qVe-R4-2Na"/>
                             <constraint firstItem="0Qc-2H-cdt" firstAttribute="leading" secondItem="tFH-L6-66O" secondAttribute="leadingMargin" id="qtH-aF-D45"/>
+                            <constraint firstItem="gxz-Hf-fZH" firstAttribute="centerY" secondItem="xmx-6C-MaN" secondAttribute="centerY" id="stL-dU-TNO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Contact Geo Data" id="hR3-Dh-SSj"/>
