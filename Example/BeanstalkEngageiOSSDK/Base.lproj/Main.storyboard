@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -268,7 +268,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z11-B6-rnr" id="5x1-nB-ASN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85n-fE-j4J" userLabel="Date">
@@ -705,7 +705,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VKA-Jy-xGf" id="riE-Bo-F5e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-oJ-gLp">
@@ -1053,7 +1053,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPn-Id-eO9" id="Dam-NW-qyV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEh-5H-HDA">
@@ -1144,8 +1144,8 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-xo-i9a">
-                                <rect key="frame" x="169" y="196" width="36" height="30"/>
-                                <state key="normal" title="Send"/>
+                                <rect key="frame" x="255" y="196" width="104" height="30"/>
+                                <state key="normal" title="Send Geo Data"/>
                                 <connections>
                                     <action selector="sendGeoData" destination="ViW-mS-GRi" eventType="touchUpInside" id="EPD-TP-ke1"/>
                                 </connections>
@@ -1164,6 +1164,13 @@
                                     <action selector="stopLocationTracking" destination="ViW-mS-GRi" eventType="touchUpInside" id="ebK-u3-2f5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esv-Pm-W5e">
+                                <rect key="frame" x="16" y="196" width="93" height="30"/>
+                                <state key="normal" title="Get Geo Data"/>
+                                <connections>
+                                    <action selector="getGeoData" destination="ViW-mS-GRi" eventType="touchUpInside" id="HJl-gz-K9U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1172,14 +1179,16 @@
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="leading" secondItem="0Qc-2H-cdt" secondAttribute="trailing" constant="20" id="0gA-22-YOt"/>
                             <constraint firstItem="xmx-6C-MaN" firstAttribute="top" secondItem="IGb-aQ-7E6" secondAttribute="bottom" constant="20" id="1z6-J3-ykp"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="leading" secondItem="gO2-IR-mLq" secondAttribute="trailing" constant="20" id="2ue-95-eXF"/>
+                            <constraint firstItem="HKe-xo-i9a" firstAttribute="trailing" secondItem="tFH-L6-66O" secondAttribute="trailingMargin" id="3KG-Q5-ziA"/>
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="centerY" secondItem="0Qc-2H-cdt" secondAttribute="centerY" id="P40-Mt-AHv"/>
-                            <constraint firstItem="HKe-xo-i9a" firstAttribute="centerX" secondItem="tFH-L6-66O" secondAttribute="centerX" id="Sim-8e-Y03"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="centerY" secondItem="gO2-IR-mLq" secondAttribute="centerY" id="Teg-E4-QyQ"/>
                             <constraint firstItem="k3A-lP-y2L" firstAttribute="trailing" secondItem="tFH-L6-66O" secondAttribute="trailingMargin" id="UVe-s4-nHW"/>
                             <constraint firstItem="xmx-6C-MaN" firstAttribute="leading" secondItem="tFH-L6-66O" secondAttribute="leadingMargin" id="Us7-am-6uj"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Esv-Pm-W5e" secondAttribute="leading" id="VNe-ut-ZTp"/>
                             <constraint firstItem="gxz-Hf-fZH" firstAttribute="trailing" secondItem="tFH-L6-66O" secondAttribute="trailingMargin" id="Vhf-vH-bG6"/>
                             <constraint firstItem="gO2-IR-mLq" firstAttribute="leading" secondItem="0Qc-2H-cdt" secondAttribute="leading" id="Wzv-EE-NNV"/>
                             <constraint firstItem="0Qc-2H-cdt" firstAttribute="top" secondItem="xmx-6C-MaN" secondAttribute="bottom" constant="40" id="lhz-v9-Ngh"/>
+                            <constraint firstItem="Esv-Pm-W5e" firstAttribute="centerY" secondItem="HKe-xo-i9a" secondAttribute="centerY" id="mfd-V9-0En"/>
                             <constraint firstItem="qKQ-QL-8jg" firstAttribute="trailing" secondItem="k3A-lP-y2L" secondAttribute="trailing" id="qVe-R4-2Na"/>
                             <constraint firstItem="0Qc-2H-cdt" firstAttribute="leading" secondItem="tFH-L6-66O" secondAttribute="leadingMargin" id="qtH-aF-D45"/>
                             <constraint firstItem="gxz-Hf-fZH" firstAttribute="centerY" secondItem="xmx-6C-MaN" secondAttribute="centerY" id="stL-dU-TNO"/>
@@ -1187,9 +1196,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Contact Geo Data" id="hR3-Dh-SSj"/>
                     <connections>
+                        <outlet property="getButton" destination="Esv-Pm-W5e" id="4mJ-hh-BHJ"/>
                         <outlet property="latitudeTextField" destination="k3A-lP-y2L" id="mtS-QL-faj"/>
                         <outlet property="longitudeTextField" destination="qKQ-QL-8jg" id="MZa-Kn-26I"/>
-                        <outlet property="sendButton" destination="HKe-xo-i9a" id="dSW-pd-EJU"/>
+                        <outlet property="sendButton" destination="HKe-xo-i9a" id="qjJ-qF-mjQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0r-Fs-Cmg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1216,7 +1226,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ekx-7H-A9L" id="Rjm-fs-e6A">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2HL-Y9-7E4">
