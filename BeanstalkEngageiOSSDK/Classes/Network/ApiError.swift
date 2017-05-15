@@ -98,7 +98,7 @@ public enum ApiError: BEErrorType {
       
     case .dataSerialization(_):
       errorTitle = "Bad request"
-    case .missingParameterError(let reason):
+    case .missingParameterError(_):
       errorTitle = "Invalid request"
       
     case .network(_):

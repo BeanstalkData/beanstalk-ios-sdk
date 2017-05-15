@@ -150,7 +150,7 @@ final class PushNotificationEnrollmentController: NSObject {
         self.requestPushNotificationPermissions({ (granted, error) -> (Void) in
           if granted {
             self.sendDeviceTokenAndUpdateContact({ (error) in
-              NSLog("error: \(error)")
+              // handle error
             })
           } else {
             // handle error

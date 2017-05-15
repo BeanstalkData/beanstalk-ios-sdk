@@ -38,8 +38,8 @@ public enum LocationTrackerError: BEErrorType {
       text = "Location permission denied"
     case .locationManagerDidFail(let error):
       text = error.localizedDescription
-    default:
-      text = "Location tracking error occur"
+//    default:
+//      text = "Location tracking error occur"
     }
     
     return text

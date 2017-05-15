@@ -101,7 +101,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.createLoyaltyAccount(request, handler: { (result) in
       
       if result.isFailure {
-        handler(false, result.error! as! BEErrorType)
+        handler(false, result.error! as? BEErrorType)
       } else {
         weakSelf?.auth(email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
       }
@@ -124,28 +124,28 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
       
       if result.isFailure {
-        handler(false, result.error! as! BEErrorType)
+        handler(false, result.error! as? BEErrorType)
       } else {
         var updateExisted = result.value!
         
         weakSelf?.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
           
           if result.isFailure {
-            handler(false, ApiError.userPhoneExists(reason: result.error! as! BEErrorType))
+            handler(false, ApiError.userPhoneExists(reason: result.error! as? BEErrorType))
           } else {
             updateExisted = updateExisted || result.value!
             
             weakSelf?.apiService.createContact(request, contactClass: contactClass, handler: { (result) in
               
               if result.isFailure {
-                handler(false, result.error! as! BEErrorType)
+                handler(false, result.error! as? BEErrorType)
               } else {
                 if !updateExisted {
                   let contactId = result.value!.contactId
                   weakSelf?.apiService.createUser(request.getEmail()!, password: request.getPassword()!, contactId: contactId, handler: { (result) in
                     
                     if result.isFailure {
-                      handler(false, result.error! as! BEErrorType)
+                      handler(false, result.error! as? BEErrorType)
                     } else {
                       weakSelf?.auth(email: request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
                     }
@@ -183,7 +183,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-        handler(false, result.error! as! BEErrorType)
+        handler(false, result.error! as? BEErrorType)
       } else {
         weakSelf?.handleLoginComplete(contactId, token: token, contactClass: contactClass, handler: { (success, error) in
           weakSelf?.p_isAuthenticateInProgress = false
@@ -211,7 +211,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-        handler(false, result.error! as! BEErrorType)
+        handler(false, result.error! as? BEErrorType)
       } else {
         let contactId = result.value!.contactId
         let token = result.value!.token
@@ -232,7 +232,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       
       if result.isFailure {
         weakSelf?.p_isAuthenticateInProgress = false
-        handler(false, result.error! as! BEErrorType)
+        handler(false, result.error! as? BEErrorType)
       } else {
         let contactId = result.value!.contactId
         let token = result.value!.token
@@ -263,7 +263,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       if result.isSuccess {
         handler(true, nil)
       } else {
-        handler(false, ApiError.profileError(reason: result.error! as! BEErrorType))
+        handler(false, ApiError.profileError(reason: result.error! as? BEErrorType))
       }
     })
   }
@@ -281,7 +281,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     apiService.resetPassword(email!, handler: { (result) in
       if result.isFailure {
-        handler(false, ApiError.resetPasswordError(reason: result.error! as! BEErrorType))
+        handler(false, ApiError.resetPasswordError(reason: result.error! as? BEErrorType))
       } else {
         handler(true, nil)
       }
@@ -327,7 +327,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.getContact(contactId, contactClass: contactClass, handler: { (result) in
       
       if result.isFailure {
-        handler(false, nil, ApiError.profileError(reason: result.error! as! BEErrorType))
+        handler(false, nil, ApiError.profileError(reason: result.error! as? BEErrorType))
       } else {
         weakSelf?.session.setContact(result.value!)
         handler(true, result.value!, nil)
@@ -422,7 +422,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-    weak var weakSelf = self
     apiService.relocateContact(
       contactId: contactId,
       latitude: latitude,
@@ -457,7 +456,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       return
     }
     
-    weak var weakSelf = self
     apiService.getContactGeoAssets(
       contactId: contactId,
       handler: { (result) in
@@ -551,7 +549,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.checkContactsByEmailExisted(email, prospectTypes: prospectTypes) { (result) in
       
       if result.isFailure {
-        handler(false, nil, ApiError.userEmailExists(reason: result.error! as! BEErrorType))
+        handler(false, nil, ApiError.userEmailExists(reason: result.error! as? BEErrorType))
       } else {
         handler(true, result.value!, nil)
       }
@@ -583,7 +581,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     apiService.updatePassword(password!, contactId: contactId, token: token, handler: { (result) in
       if result.isFailure {
-        handler(false, ApiError.updatePasswordError(reason: result.error! as! BEErrorType))
+        handler(false, ApiError.updatePasswordError(reason: result.error! as? BEErrorType))
       } else {
         handler(true, nil)
       }
@@ -610,7 +608,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     weak var weakSelf = self
     apiService.getUserOffers(contactId, couponClass: couponClass, handler: { (result) in
       if result.isFailure {
-        handler(false, [], result.error! as! BEErrorType)
+        handler(false, [], result.error! as? BEErrorType)
       } else {
         let rewards = result.value!
         weakSelf?.session.saveRewards(rewards)
@@ -663,7 +661,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     apiService.getGiftCards(contactId, token: token, giftCardClass: giftCardClass, handler: { (result) in
       if result.isFailure {
-        handler(false, [], ApiError.giftCardsError(reason: result.error! as! BEErrorType))
+        handler(false, [], ApiError.giftCardsError(reason: result.error! as? BEErrorType))
       } else {
         let cards = result.value!
         
@@ -705,7 +703,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         if data == nil {
           data = BarCodeInfo(data: "", type: .memberId)
         }
-        handler(false, data!, ApiError.paymentError(reason: result.error! as! BEErrorType))
+        handler(false, data!, ApiError.paymentError(reason: result.error! as? BEErrorType))
       } else {
         let cards = result.value!
         
@@ -861,7 +859,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     
     apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, storeClass: storeClass, handler: { (result) in
       if result.isFailure {
-        handler(false, [], ApiError.findStoresError(reason: result.error! as! BEErrorType))
+        handler(false, [], ApiError.findStoresError(reason: result.error! as? BEErrorType))
       } else {
         handler(true, result.value!, nil)
       }
