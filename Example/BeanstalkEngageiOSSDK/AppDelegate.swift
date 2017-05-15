@@ -22,7 +22,7 @@ public enum PushNotificationsKeys: String {
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  let coreService = ApiService(apiKey: "1234-4321-ABCD-DCBA", session: BESession(), apiUsername: nil)
+  let coreService = ApiService(apiKey: AppDelegate.getApiKey(), session: BESession(), apiUsername: nil)
   
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   
@@ -72,5 +72,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
     self.pushNotificationEnrollment?.didRegisterUserNotificationSettings(notificationSettings)
+  }
+  
+  
+  //MARK: -
+  
+  class func getApiKey() -> String {
+    if let fileUrl = Bundle.main.url(forResource: "creds", withExtension: "plist"),
+      let data = try? Data(contentsOf: fileUrl) {
+      if let result = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] { // [String: Any] which ever it is
+        if let apiKey = result?["apiKey"] as? String {
+          return apiKey
+        }
+      }
+    }
+    
+    return ""
   }
 }

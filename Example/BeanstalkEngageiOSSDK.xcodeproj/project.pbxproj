@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A6498271EC9B81B004582A0 /* creds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A6498261EC9B81B004582A0 /* creds.plist */; };
 		0A6696E21DC2454200E51E82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6696E11DC2454200E51E82 /* ProfileViewController.swift */; };
 		0A6696E41DC3654600E51E82 /* AvailableRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6696E31DC3654600E51E82 /* AvailableRewardsViewController.swift */; };
 		0A9467F21EA11B2A00085C54 /* TrackTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A6498261EC9B81B004582A0 /* creds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = creds.plist; sourceTree = "<group>"; };
 		0A6696E11DC2454200E51E82 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A6696E31DC3654600E51E82 /* AvailableRewardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableRewardsViewController.swift; sourceTree = "<group>"; };
 		0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTransactionViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				0AC13FCA1E718CE700D4B17D /* Controllers */,
 				89ACF7EE1E4F210F00F8B67A /* Core */,
+				0A6498261EC9B81B004582A0 /* creds.plist */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -379,6 +382,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				0A6498271EC9B81B004582A0 /* creds.plist in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
