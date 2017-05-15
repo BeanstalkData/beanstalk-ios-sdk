@@ -572,14 +572,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   /** 
    Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).
    
-   ## Note ##
-   Currently it checks for exact match, i.e.
-   ````
-   isEqual = (fieldValue == contact[fetchField])
-   ````
-   
    - Parameter fetchField: Field by which fetch will be performed.
    - Parameter fieldValue: Fetch field value, i.e. query string.
+   - Parameter caseSensitive: Indicates whether is field values should be compared in case-sensitive manner. Default is _false_.
    - Parameter prospectTypes: Prospect types list. Contact with specified prospect value will be evaluated only. If empty, prospect will be ignored. Default is *empty*.
    - Parameter contactClass: Contact model class.
    - Parameter handler: Completion handler.
@@ -589,6 +584,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   open func fetchContactBy <ContactClass: Mappable> (
     fetchField: ContactFetchField,
     fieldValue: String,
+    caseSensitive: Bool = false,
     prospectTypes: [ProspectType] = [],
     contactClass: ContactClass.Type,
     handler: @escaping (_ result: Result<ContactClass?>) -> Void
@@ -646,7 +642,20 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
             continue
           }
           
-          if contactFieldValue == fieldValue {
+          var isValuesEqual = false
+          
+          if caseSensitive {
+            isValuesEqual = contactFieldValue == fieldValue
+          } else {
+            isValuesEqual = contactFieldValue.compare(
+              fieldValue,
+              options: String.CompareOptions.caseInsensitive,
+              range: nil,
+              locale: nil
+            ) == ComparisonResult.orderedSame
+          }
+          
+          if isValuesEqual {
             fieldEquals = true
             
             // check for required prospect type

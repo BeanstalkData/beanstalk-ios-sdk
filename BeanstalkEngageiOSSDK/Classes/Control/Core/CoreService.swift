@@ -495,14 +495,9 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   /** Fetches contact by specific field. Completion handler returns contact (if found) or error (if occur).
    
-   ## Note ##
-   Currently it checks for exact match, i.e.
-   ````
-   isEqual = (fieldValue == contact[fetchField])
-   ````
-   
    - Parameter fetchField: Field by which fetch will be performed.
    - Parameter fieldValue: Fetch field value, i.e. query string.
+   - Parameter caseSensitive: Indicates whether is field values should be compared in case-sensitive manner. Default is _false_.
    - Parameter prospectTypes: Prospect types list. Contact with specified prospect value will be evaluated only. If empty, prospect will be ignored. Default is *empty*.
    - Parameter contactClass: Contact model class.
    - Parameter handler: Completion handler.
@@ -514,6 +509,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   open func fetchContactBy <ContactClass: BEContact> (
     fetchField: ContactFetchField,
     fieldValue: String,
+    caseSensitive: Bool = false,
     prospectTypes: [ProspectType] = [],
     contactClass: ContactClass.Type,
     handler: @escaping (_ success: Bool, _ contact: ContactClass?, _ error: BEErrorType?) -> Void
@@ -522,6 +518,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.fetchContactBy(
       fetchField: fetchField,
       fieldValue: fieldValue,
+      caseSensitive: caseSensitive,
       prospectTypes: prospectTypes,
       contactClass: contactClass,
       handler: { (result) in
