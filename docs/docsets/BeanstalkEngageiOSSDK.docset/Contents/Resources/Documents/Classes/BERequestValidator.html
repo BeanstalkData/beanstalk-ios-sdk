@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>BERequestValidator Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/BERequestValidator" class="dashAnchor"></a>
+
+    <a title="BERequestValidator Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          BeanstalkEngageiOSSDK Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">BeanstalkEngageiOSSDK Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      BERequestValidator Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ApiCommunication.html">ApiCommunication</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK20AuthenticateResponse">AuthenticateResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEBalanceAmount.html">BEBalanceAmount</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEContact.html">BEContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BECoupon.html">BECoupon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCard.html">BEGiftCard</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEGiftCardBalance.html">BEGiftCardBalance</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BELoyaltyUser.html">BELoyaltyUser</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BERequestValidator.html">BERequestValidator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BESession.html">BESession</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BEStore.html">BEStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ContactRequest.html">ContactRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CoreServiceT.html">CoreServiceT</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CouponResponse.html">CouponResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCBResponse.html">GCBResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/GCResponse.html">GCResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK15LocationTracker">LocationTracker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PaymentResponse.html">PaymentResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PushNotificationResponse.html">PushNotificationResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/RewardsCountResponse.html">RewardsCountResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerErrorResponse.html">ServerErrorResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServerResponse.html">ServerResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StoresResponse.html">StoresResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK24TrackTransactionResponse">TrackTransactionResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ApiError.html">ApiError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LocationTrackerError.html">LocationTrackerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions.html#/s:SS">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BEErrorType.html">BEErrorType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BERequestValidatorProtocol.html">BERequestValidatorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK23GiftCardBalanceResponse">GiftCardBalanceResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK17GiftCardsResponse">GiftCardsResponse</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BETransaction.html">BETransaction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs.html#/s:V21BeanstalkEngageiOSSDK22ContactRequestResponse">ContactRequestResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>BERequestValidator</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">BERequestValidator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BERequestValidatorProtocol.html">BERequestValidatorProtocol</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Default implementation of BERequestValidatorProtocol.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT13createRequestCS_14ContactRequest12errorHandlerFGSqPS_11BEErrorType__T__Sb"></a>
+                    <a name="//apple_ref/swift/Method/validate(createRequest:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT13createRequestCS_14ContactRequest12errorHandlerFGSqPS_11BEErrorType__T__Sb">validate(createRequest:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate the Create contact request.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Following validation rules applied to the ContactRequest fields</p>
+
+<ul>
+<li>firstName should not be ampty;</li>
+<li>lastName should not be empty;</li>
+<li>email may contain following characters: appercase and lowercase Latin letters A to Z and a to z, digits 0 to 9, +, -, @, .;</li>
+<li>password should not be empty;</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">createRequest</span><span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>createRequest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Create contact request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Called if the createRequest is not correct</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT13updateRequestCS_14ContactRequest12errorHandlerFGSqPS_11BEErrorType__T__Sb"></a>
+                    <a name="//apple_ref/swift/Method/validate(updateRequest:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT13updateRequestCS_14ContactRequest12errorHandlerFGSqPS_11BEErrorType__T__Sb">validate(updateRequest:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate the Update contact request.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Following validation rules applied to the ContactRequest fields
+
+</div>
+
+<p><li>contactId should not be ampty;</li>
+<li>firstName should not be ampty;</li>
+<li>lastName should not be empty;</li>
+<li>phone should be valid for the US region;</li>
+<li>ZIP code is a number consisted of five digits from 0 to 9 (e.g.,<q>94105</q>)</li>
+<li>email may contain following characters: appercase and lowercase Latin letters A to Z and a to z, digits 0 to 9, +, -, @, .;</li>
+<li><p>password should not be empty;</p></li></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">updateRequest</span><span class="p">:</span> <span class="kt"><a href="../Classes/ContactRequest.html">ContactRequest</a></span><span class="p">,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span>  <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>createRequest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Create contact request</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Called if the createRequest is not correct</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT8passwordGSqSS_15confirmPasswordGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb"></a>
+                    <a name="//apple_ref/swift/Method/validate(password:confirmPassword:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT8passwordGSqSS_15confirmPasswordGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb">validate(password:confirmPassword:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate the Update password request parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">confirmPassword</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span>  <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Password string should not be empty</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>confirmPassword</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Password string should not be empty and should be equal to the password parameter</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Called if the parameters are not correct</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT5emailGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb"></a>
+                    <a name="//apple_ref/swift/Method/validate(email:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT5emailGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb">validate(email:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate the Email request parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span>  <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>email may contain following characters: appercase and lowercase Latin letters A to Z and a to z, digits 0 to 9, +, -, @, .;</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Called if the parameter is not correct</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT5emailGSqSS_8passwordGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb"></a>
+                    <a name="//apple_ref/swift/Method/validate(email:password:errorHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK18BERequestValidator8validateFT5emailGSqSS_8passwordGSqSS_12errorHandlerFGSqPS_11BEErrorType__T__Sb">validate(email:password:errorHandler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate the Autentication request parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">errorHandler</span><span class="p">:</span> <span class="kd">@escaping</span>  <span class="p">(</span><span class="n">_</span> <span class="nv">error</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>email may contain following characters: appercase and lowercase Latin letters A to Z and a to z, digits 0 to 9, +, -, @, .;</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>password</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>password string should not be empty</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorHandler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Called if the parameters are not correct</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-05-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

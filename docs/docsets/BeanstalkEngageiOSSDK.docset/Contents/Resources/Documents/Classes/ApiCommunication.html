@@ -75,6 +75,9 @@
                 <a class="nav-group-task-link" href="../Classes/BEPushNotificationMessage.html">BEPushNotificationMessage</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/BERequestValidator.html">BERequestValidator</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/BESession.html">BESession</a>
               </li>
               <li class="nav-group-task">
@@ -94,6 +97,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/GCResponse.html">GCResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:C21BeanstalkEngageiOSSDK15LocationTracker">LocationTracker</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/PaymentResponse.html">PaymentResponse</a>
@@ -125,6 +131,9 @@
                 <a class="nav-group-task-link" href="../Enums/ApiError.html">ApiError</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LocationTrackerError.html">LocationTrackerError</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/PushNotificationStatus.html">PushNotificationStatus</a>
               </li>
             </ul>
@@ -144,10 +153,10 @@
                 <a class="nav-group-task-link" href="../Protocols/BEErrorType.html">BEErrorType</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
+                <a class="nav-group-task-link" href="../Protocols/BERequestValidatorProtocol.html">BERequestValidatorProtocol</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK12CoreProtocol">CoreProtocol</a>
+                <a class="nav-group-task-link" href="../Protocols/BESessionProtocol.html">BESessionProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols.html#/s:P21BeanstalkEngageiOSSDK23GiftCardBalanceResponse">GiftCardBalanceResponse</a>
@@ -160,6 +169,9 @@
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/BETransaction.html">BETransaction</a>
+              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs.html#/s:V21BeanstalkEngageiOSSDK22ContactRequestResponse">ContactRequestResponse</a>
               </li>
@@ -299,7 +311,7 @@
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">deleteContact</span><span class="p">(</span>
     <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-    <span class="nv">handler</span> <span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Any</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -412,9 +424,187 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC21BeanstalkEngageiOSSDK16ApiCommunication14fetchContactByuRd__12ObjectMapper8MappablerFT10fetchFieldOS_17ContactFetchField10fieldValueSS13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFGO9Alamofire6ResultGSqqd____T__T_"></a>
-                    <a name="//apple_ref/swift/Method/fetchContactBy(fetchField:fieldValue:prospectTypes:contactClass:handler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK16ApiCommunication14fetchContactByuRd__12ObjectMapper8MappablerFT10fetchFieldOS_17ContactFetchField10fieldValueSS13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFGO9Alamofire6ResultGSqqd____T__T_">fetchContactBy(fetchField:fieldValue:prospectTypes:contactClass:handler:)</a>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK16ApiCommunication15relocateContactFT9contactIdSS8latitudeSS9longitudeSS7handlerFGO9Alamofire6ResultSb_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/relocateContact(contactId:latitude:longitude:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK16ApiCommunication15relocateContactFT9contactIdSS8latitudeSS9longitudeSS7handlerFGO9Alamofire6ResultSb_T__T_">relocateContact(contactId:latitude:longitude:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sends a contact’s Geo Location data to server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">relocateContact</span><span class="p">(</span>
+    <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">latitude</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">longitude</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>latitude</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Latitude string.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>longitude</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Longitude string.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>handler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion handler.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>result</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Request result model.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK16ApiCommunication19getContactGeoAssetsFT9contactIdSS7handlerFGO9Alamofire6ResultVS_24ContactGeoAssetsResponse_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/getContactGeoAssets(contactId:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK16ApiCommunication19getContactGeoAssetsFT9contactIdSS7handlerFGO9Alamofire6ResultVS_24ContactGeoAssetsResponse_T__T_">getContactGeoAssets(contactId:handler:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves image data from Beanstalk.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">getContactGeoAssets</span><span class="p">(</span>
+    <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">ContactGeoAssetsResponse</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>contactId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Contact ID.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>handler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion handler.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>result</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Request result model.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC21BeanstalkEngageiOSSDK16ApiCommunication14fetchContactByuRd__12ObjectMapper8MappablerFT10fetchFieldOS_17ContactFetchField10fieldValueSS13caseSensitiveSb13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFGO9Alamofire6ResultGSqqd____T__T_"></a>
+                    <a name="//apple_ref/swift/Method/fetchContactBy(fetchField:fieldValue:caseSensitive:prospectTypes:contactClass:handler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC21BeanstalkEngageiOSSDK16ApiCommunication14fetchContactByuRd__12ObjectMapper8MappablerFT10fetchFieldOS_17ContactFetchField10fieldValueSS13caseSensitiveSb13prospectTypesGSaOS_12ProspectType_12contactClassMqd__7handlerFGO9Alamofire6ResultGSqqd____T__T_">fetchContactBy(fetchField:fieldValue:caseSensitive:prospectTypes:contactClass:handler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -424,12 +614,6 @@
                       <div class="abstract">
                         <p>Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).</p>
 
-<p>## Note ##
- Currently it checks for exact match, i.e.
- <code>
- isEqual = (fieldValue == contact[fetchField])
-</code></p>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -438,6 +622,7 @@
                           <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="n">fetchContactBy</span> <span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">:</span> <span class="kt">Mappable</span><span class="o">&gt;</span> <span class="p">(</span>
     <span class="nv">fetchField</span><span class="p">:</span> <span class="kt">ContactFetchField</span><span class="p">,</span>
     <span class="nv">fieldValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">caseSensitive</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
     <span class="nv">prospectTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt">ProspectType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">contactClass</span><span class="p">:</span> <span class="kt">ContactClass</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
     <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">ContactClass</span><span class="p">?</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
@@ -471,6 +656,19 @@
                               <td>
                                 <div>
                                   <p>Fetch field value, i.e. query string.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>caseSensitive</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Indicates whether is field values should be compared in case-sensitive manner. Default is .</p>
 
                                 </div>
                               </td>
@@ -577,7 +775,7 @@
     <span class="nv">contactId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
     <span class="nv">startDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?,</span>
     <span class="nv">endDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?,</span>
-    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">BETransaction</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+    <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/BETransaction.html">BETransaction</a></span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -664,7 +862,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-04-18)</p>
+      <p>&copy; 2017 <a class="link" href="https://github.com/BeanstalkData/beanstalk-ios-sdk" target="_blank" rel="external">Beanstalk Data</a>. All rights reserved. (Last updated: 2017-05-17)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.5</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

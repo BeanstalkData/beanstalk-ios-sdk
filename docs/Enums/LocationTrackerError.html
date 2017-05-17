@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PaymentResponse Class Reference</title>
+    <title>LocationTrackerError Enum Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/PaymentResponse" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Enum/LocationTrackerError" class="dashAnchor"></a>
 
-    <a title="PaymentResponse Class Reference"></a>
+    <a title="LocationTrackerError Enum Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -38,7 +38,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">BeanstalkEngageiOSSDK Reference</a>
       <img class="carat" src="../img/carat.png" />
-      PaymentResponse Class Reference
+      LocationTrackerError Enum Reference
     </p>
 
     <div class="content-wrapper">
@@ -183,14 +183,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>PaymentResponse</h1>
+            <h1>LocationTrackerError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">PaymentResponse</span> <span class="p">:</span> <span class="kt">Mappable</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LocationTrackerError</span><span class="p">:</span> <span class="kt"><a href="../Protocols/BEErrorType.html">BEErrorType</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Response model for payment request.</p>
+            <p>Implementation of BEErrorType. Represents various errors that may occur during location tracking.</p>
 
           </div>
         </section>
@@ -202,9 +202,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12ObjectMapper8MappablecFT3mapCS_3Map_GSqx_"></a>
-                    <a name="//apple_ref/swift/Method/init(map:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12ObjectMapper8MappablecFT3mapCS_3Map_GSqx_">init(map:)</a>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK20LocationTrackerError25locationPermissionsDeniedFMS0_FT_S0_"></a>
+                    <a name="//apple_ref/swift/Element/locationPermissionsDenied" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK20LocationTrackerError25locationPermissionsDeniedFMS0_FT_S0_">locationPermissionsDenied</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -212,13 +212,76 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Location permissions denied or restricted</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">map</span><span class="p">:</span> <span class="kt">Map</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">locationPermissionsDenied</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO21BeanstalkEngageiOSSDK20LocationTrackerError22locationManagerDidFailFMS0_FT5errorPs5Error__S0_"></a>
+                    <a name="//apple_ref/swift/Element/locationManagerDidFail" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO21BeanstalkEngageiOSSDK20LocationTrackerError22locationManagerDidFailFMS0_FT5errorPs5Error__S0_">locationManagerDidFail</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CLLocationManager failed with error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="nf">locationManagerDidFail</span><span class="p">(</span><span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK11BEErrorType10errorTitleFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/errorTitle()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK11BEErrorType10errorTitleFT_GSqSS_">errorTitle()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CLLocationManager failed with error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">errorTitle</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -228,9 +291,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP12ObjectMapper12BaseMappable7mappingFT3mapCS_3Map_T_"></a>
-                    <a name="//apple_ref/swift/Method/mapping(map:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP12ObjectMapper12BaseMappable7mappingFT3mapCS_3Map_T_">mapping(map:)</a>
+                    <a name="/s:FP21BeanstalkEngageiOSSDK11BEErrorType12errorMessageFT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/errorMessage()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP21BeanstalkEngageiOSSDK11BEErrorType12errorMessageFT_GSqSS_">errorMessage()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -238,13 +301,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>CLLocationManager failed with error</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">mapping</span><span class="p">(</span><span class="nv">map</span><span class="p">:</span> <span class="kt">Map</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">errorMessage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
