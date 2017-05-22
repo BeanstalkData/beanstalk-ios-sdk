@@ -53,7 +53,7 @@ extension String {
   }
   
   public func isValidEmail() -> Bool{
-    let regex = try! NSRegularExpression(pattern: "[^@]+@[A-Za-z0-9.-]+\\.[A-Za-z]+", options: [])
+    let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9](?!.*__.*)([a-zA-Z0-9\\.\\_\\%\\-\\+]){0,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+$", options: [])
     let range = NSRange(location: 0, length: self.characters.count)
     let matches = regex.matches(in: self, options : NSRegularExpression.MatchingOptions(), range: range)
     return matches.count == 1
