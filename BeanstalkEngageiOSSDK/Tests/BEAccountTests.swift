@@ -386,4 +386,34 @@ open class BEAccountTests: BEBaseTestCase {
       }
     }
   }
+  
+  open func userInfoTest() {
+
+    XCTAssert("test102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test102@email.uk.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test_102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("tes_t_102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test.102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test.102.1@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test%102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test-102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test+102@email.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test_102@e-mail.net".isValidEmail(), "Email should be valid")
+    XCTAssert("test_102@email.n-et".isValidEmail(), "Email should be valid")
+    XCTAssert("test_102@email.n".isValidEmail(), "Email should be valid")
+    
+    XCTAssert(!("test_102@-email.net").isValidEmail(), "Email should be valid")
+    XCTAssert(!("test_102@_email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!(".test102@email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email.net.".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email.".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("_test102@email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email.net_".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("te__st102@email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("te___st102@email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test..102@email.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email..net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email..uk.net".isValidEmail()), "Email should be invalid")
+    XCTAssert(!("test102@email.uk..net".isValidEmail()), "Email should be invalid")
+  }
 }

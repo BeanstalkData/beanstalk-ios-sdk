@@ -66,6 +66,10 @@ class AccountTests: BEAccountTests {
     updateContactTest(ContactModel.self)
   }
   
+  func testUserInfo() {
+    userInfoTest()
+  }
+  
   internal func testUpdateContactCustomFields() {
     self.getSession()?.clearSession()
     self.getSession()?.clearApnsTokens()
