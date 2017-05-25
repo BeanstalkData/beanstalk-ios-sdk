@@ -103,9 +103,48 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       if result.isFailure {
         handler(false, result.error! as? BEErrorType)
       } else {
-        weakSelf?.auth(email : request.getEmail()!, password: request.getPassword()!, contactClass: contactClass, handler: handler)
+        weakSelf?.auth(
+          email: request.getEmail()!,
+          password: request.getPassword()!,
+          contactClass: contactClass,
+          handler: { (authSuccess, authError) in
+            
+            if authSuccess {
+              weakSelf?.checkLoyaltyAccount(handler: { (checkSuccess, checkError) in
+                
+                handler(authSuccess, authError)
+              })
+            } else {
+              handler(authSuccess, authError)
+            }
+        })
       }
     })
+  }
+  
+  /**
+   Utility call to check account is configured correctly after registerLoyaltyAccount is performed.
+   Called after successful registerLoyaltyAccount.
+   
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
+   */
+  open func checkLoyaltyAccount(handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    guard let contactId = self.session.getContactId() else {
+      handler(false, ApiError.noContactIdInSession())
+      return
+    }
+    
+    apiService.checkLoyaltyAccount(contactId: contactId) { (result) in
+      
+      if result.isFailure {
+        handler(false, result.error as? BEErrorType)
+      } else {
+        handler(true, nil)
+      }
+    }
   }
   
   /**

@@ -262,6 +262,52 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  /**
+   Utility call to check account is configured correctly after createLoyaltyAccount is performed.
+   Should be called after successful registerLoyaltyAccount request.
+   
+   - Parameter contactId: Contact Id.
+   - Parameter handler: Completion handler.
+   - Parameter result: Request result model.
+   */
+  open func checkLoyaltyAccount(
+    contactId: String,
+    handler: @escaping (_ result: Result<String>) -> Void) {
+    
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = [
+      "contact": contactId,
+      "cardNumber": contactId,
+      "key": self.apiKey,
+      "function": "addNewCard"
+    ]
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/maintainLoyaltyCards.php", method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseString { (dataResponse) in
+        
+        guard dataResponse.result.isSuccess else {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        guard let responseString = dataResponse.value else {
+          handler(.failure(ApiError.unknown()))
+          return
+        }
+        
+        if responseString == "card added" {
+          handler(.success(responseString))
+        } else {
+          handler(.failure(ApiError.unknown()))
+        }
+    }
+  }
+  
   
   //MARK: - Contact
   
