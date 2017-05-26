@@ -592,6 +592,24 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     }
   }
   
+  /**
+   Checks user exists by phone number.
+   */
+  open func checkContactsByPhoneExisted(
+    phoneNumber: String,
+    prospectTypes: [ProspectType],
+    handler: @escaping (_ success: Bool, _ existed: Bool?, _ error: BEErrorType?) -> Void
+    ) {
+    apiService.checkContactsByPhoneExisted(phoneNumber.formatPhoneNumberToNationalSignificant(), prospectTypes: prospectTypes) { (result) in
+      
+      if result.isFailure {
+        handler(false, nil, ApiError.userEmailExists(reason: result.error! as? BEErrorType))
+      } else {
+        handler(true, result.value!, nil)
+      }
+    }
+  }
+  
   //MARK: -
   
   /**
