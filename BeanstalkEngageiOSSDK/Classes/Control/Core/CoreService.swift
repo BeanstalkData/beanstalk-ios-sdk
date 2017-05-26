@@ -603,7 +603,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     apiService.checkContactsByPhoneExisted(phoneNumber.formatPhoneNumberToNationalSignificant(), prospectTypes: prospectTypes) { (result) in
       
       if result.isFailure {
-        handler(false, nil, ApiError.userEmailExists(reason: result.error! as? BEErrorType))
+        handler(false, nil, ApiError.userPhoneExists(reason: result.error! as? BEErrorType))
       } else {
         handler(true, result.value!, nil)
       }
