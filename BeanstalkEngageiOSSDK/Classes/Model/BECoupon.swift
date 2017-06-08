@@ -21,11 +21,13 @@ open class BECoupon : NSObject, NSCoding, Mappable {
   fileprivate static let kExpiration = "BECoupon" + "_expiration"
   fileprivate static let kText = "BECoupon" + "_text"
   fileprivate static let kImageUrl = "BECoupon" + "_imageUrl"
+  fileprivate static let kReceiptText = "BECoupon" + "_receiptText"
   
   open var number: String?
   open var expiration: String?
   open var text: String?
   open var imageUrl: String?
+  open var receiptText: String?
   
   //for mocks only
   init(imageUrl: String) {
@@ -42,6 +44,7 @@ open class BECoupon : NSObject, NSCoding, Mappable {
     expiration <- map["ExpirationDate"]
     text <- map["CouponText"]
     imageUrl <- map["Image"]
+    receiptText <- map["CouponReceiptText"]
   }
   
   
@@ -104,6 +107,7 @@ open class BECoupon : NSObject, NSCoding, Mappable {
     self.expiration = aDecoder.decodeObject(forKey: BECoupon.kExpiration) as? String
     self.text = aDecoder.decodeObject(forKey: BECoupon.kText) as? String
     self.imageUrl = aDecoder.decodeObject(forKey: BECoupon.kImageUrl) as? String
+    self.receiptText = aDecoder.decodeObject(forKey: BECoupon.kReceiptText) as? String
   }
   
   open func encode(with aCoder: NSCoder) {
@@ -111,5 +115,6 @@ open class BECoupon : NSObject, NSCoding, Mappable {
     aCoder.encode(expiration, forKey: BECoupon.kExpiration)
     aCoder.encode(text, forKey: BECoupon.kText)
     aCoder.encode(imageUrl, forKey: BECoupon.kImageUrl)
+    aCoder.encode(receiptText, forKey: BECoupon.kReceiptText)
   }
 }
