@@ -466,7 +466,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
       latitude: latitude,
       longitude: longitude,
       handler: { (result) in
-
+        
         if result.isFailure {
           handler(false, result.error as? BEErrorType)
         } else {
@@ -991,6 +991,27 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         } else {
           handler(result.value, nil)
         }
+    }
+  }
+  
+  //MARK: - Support
+  
+  /**
+   Sends support request.
+   
+   - Parameter supportRequest: Support request model. All fields should be filled.
+   - Parameter handler: Completion handler.
+   - Parameter error: Error if occur.
+   */
+  
+  public func sendSupportRequest(
+    supportRequest: SupportRequest,
+    handler: @escaping (_ error: BEErrorType?) -> Void) {
+    
+    apiService.sendSupportRequest(
+    supportRequest: supportRequest) { (error) in
+      
+      handler(error)
     }
   }
   

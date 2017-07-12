@@ -83,6 +83,9 @@ public enum ApiError: BEErrorType {
   /// Track transaction failed with reason
   case trackTransactionError(reason: Any?)
   
+  /// Support request failed
+  case supportRequestError(reason: Any?)
+  
   /// Unacceptable status code error
   case unacceptableStatusCodeError(reason: String?, statusCode: Int)
   
@@ -148,6 +151,9 @@ public enum ApiError: BEErrorType {
       
     case .trackTransactionError(_):
       errorTitle = "Track Transaction Error"
+      
+    case .supportRequestError(_):
+      errorTitle = "Support Request Error"
       
     case .unacceptableStatusCodeError(_, _):
       errorTitle = "Bad request"
@@ -216,6 +222,9 @@ public enum ApiError: BEErrorType {
       
     case .trackTransactionError(let reason):
       errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to Track Transaction")
+      
+    case .supportRequestError(let reason):
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to send Support Request")
       
     case .unacceptableStatusCodeError(let reason, _):
       errorMessage = reason

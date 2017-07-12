@@ -316,10 +316,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    
    - Note: Current server API returns only *contactId* on create request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *contactId* will be available.
    
-   - parameters:
-      - request: Contact request.
-      - contactClass: Contact class.
-      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   - Parameter request: Contact request.
+   - Parameter contactClass: Contact class.
+   - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
   open func createContact <ContactClass: Mappable> (
     _ request : ContactRequest,
@@ -400,8 +399,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   /**
    Delete contact request.
    
-   - parameters:
-      - contactId: Contact ID.
+   - Parameter contactId: Contact ID.
    */
   open func deleteContact(
     contactId: String,
@@ -443,10 +441,9 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    
    - Note: Current server API returns only *success* on update request. So in order to return contact model (if requested) - *getContact()* request is performed. There might be situations (bad network conditions, etc.) when contact is created but *getContact()* request failed, so only *success* will be available.
    
-   - parameters:
-      - request: Contact request.
-      - contactClass: Contact class.
-      - fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
+   - Parameter request: Contact request.
+   - Parameter contactClass: Contact class.
+   - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
   open func updateContact <ContactClass: Mappable> (
     request : ContactRequest,
@@ -615,7 +612,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  /** 
+  /**
    Fetches contact by specific field. Completion handler returns result object with contact (if found), no contact (if no satisfied contacts) or error (if occur).
    
    - Parameter fetchField: Field by which fetch will be performed.
@@ -698,7 +695,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
               options: String.CompareOptions.caseInsensitive,
               range: nil,
               locale: nil
-            ) == ComparisonResult.orderedSame
+              ) == ComparisonResult.orderedSame
           }
           
           if isValuesEqual {
@@ -1515,6 +1512,62 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         handler(.success(transactions))
+    }
+  }
+  
+  
+  //MARK: - Support
+  
+  /**
+   Sends support request.
+   
+   - Parameter supportRequest: Support request model. All fields should be filled.
+   - Parameter handler: Completion handler.
+   - Parameter result: Request result model.
+   */
+  
+  public func sendSupportRequest(
+    supportRequest: SupportRequest,
+    handler: @escaping (_ error: ApiError?) -> Void) {
+    
+    guard isOnline() else {
+      handler(ApiError.networkConnectionError())
+      return
+    }
+    
+    let params = Mapper().toJSON(supportRequest)
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/feedback/contactUs/index.php", method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseData { response in
+        
+        guard response.result.isSuccess else {
+          handler(ApiError.network(error: response.result.error))
+          return
+        }
+        
+        guard let responseData = response.result.value else {
+          handler(ApiError.dataSerialization(reason: "Empty server response"))
+          return
+        }
+        
+        var jsonResponse : AnyObject? = nil
+        
+        do {
+          jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
+        } catch { }
+        
+        if let responseObject = jsonResponse as? [String: Any] {
+          if let error = responseObject["error"] as? String {
+            handler(ApiError.supportRequestError(reason: error))
+          }
+          else {
+            handler(nil)
+          }
+          return
+        } else {
+          handler(ApiError.dataSerialization(reason: "Empty server response"))
+        }
     }
   }
   

@@ -19,6 +19,8 @@
 		0A9468041EBC893A00085C54 /* LocationTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9468031EBC893A00085C54 /* LocationTrackerError.swift */; };
 		0A9468051EBC893B00085C54 /* LocationTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9468031EBC893A00085C54 /* LocationTrackerError.swift */; };
 		0ADB6795AF25B38014A023C562627563 /* NBMetadataCoreTestMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3426D806C0BB560FB35995B31B340BB8 /* NBMetadataCoreTestMapper.m */; };
+		0AF0D1511F1626B80014CDB2 /* SupportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0D1501F1626B80014CDB2 /* SupportRequest.swift */; };
+		0AF0D1521F1626B80014CDB2 /* SupportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF0D1501F1626B80014CDB2 /* SupportRequest.swift */; };
 		0DF54EF6561E1295B8765B88B6579241 /* FromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D801E32A6D55C072AC65FEB19879C340 /* FromJSON.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E1CF61095837CDEDF1D2C9FFFA466EA /* ApiCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22091149A08BA018C5E4C7C947B08F41 /* ApiCommunication.swift */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBB0C5AD45A7E5D0BF0C5F6A7E4BC2 /* Timeline.swift */; };
@@ -412,6 +414,7 @@
 		0A9467F91EBA41D200085C54 /* ContactGeoAssetsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactGeoAssetsResponse.swift; sourceTree = "<group>"; };
 		0A9467FD1EBC83CE00085C54 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		0A9468031EBC893A00085C54 /* LocationTrackerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackerError.swift; sourceTree = "<group>"; };
+		0AF0D1501F1626B80014CDB2 /* SupportRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportRequest.swift; sourceTree = "<group>"; };
 		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
 		0B421C6840921ADE9AD67D0551EAEC8A /* NBMetadataCoreTestMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataCoreTestMapper.h; path = libPhoneNumber/NBMetadataCoreTestMapper.h; sourceTree = "<group>"; };
 		0BF1F7D23952BC51F821E87E39F5542D /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
@@ -1262,6 +1265,7 @@
 			isa = PBXGroup;
 			children = (
 				4A734C3979371B2424F0B11847CCB219 /* ContactRequest.swift */,
+				0AF0D1501F1626B80014CDB2 /* SupportRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1745,6 +1749,7 @@
 				160B6647F5A23B2577A16D1323EFA7B0 /* BESession.swift in Sources */,
 				3A5C03C478BE57E22BFC73BC3FA61651 /* BESessionProtocol.swift in Sources */,
 				8A43CCBFEC502C594315203BF32F5C9F /* BEStore.swift in Sources */,
+				0AF0D1511F1626B80014CDB2 /* SupportRequest.swift in Sources */,
 				9B6699D91520F3228FA47D72989CED80 /* BETransaction.swift in Sources */,
 				AE1041A01071B316E7824E0C1A2E2FC3 /* CardBalanceResponse.swift in Sources */,
 				8E6DE72689E0136FE2C75498E50E3317 /* ContactRequest.swift in Sources */,
@@ -1847,6 +1852,7 @@
 				89EE199AE4E3CE7741586D26059B1747 /* BERequestValidatorProtocol.swift in Sources */,
 				71FB914F7E1E929E9F9ED4990F3952BD /* BERespondersHolder.swift in Sources */,
 				463E7673C61BC27A79E8B9DF82191DEF /* BERewardsTests.swift in Sources */,
+				0AF0D1521F1626B80014CDB2 /* SupportRequest.swift in Sources */,
 				FA90FB71F3E02E504F15D2F2798DFD74 /* BESession.swift in Sources */,
 				9F252B96829F81D24FD3187A31332035 /* BESessionProtocol.swift in Sources */,
 				8D31DB5A535CAFD1997F44DD112D4F7F /* BESessionTests.swift in Sources */,
