@@ -24,6 +24,28 @@ open class SupportRequest: Mappable {
   required public init?(map: Map) {
   }
   
+  public init() {
+  }
+  
+  convenience public init(
+    supportAddress: String?,
+    firstName: String?,
+    lastName: String?,
+    email: String?,
+    phoneNumber: String?,
+    comments: String?
+    ) {
+    
+    self.init()
+    
+    self.supportAddress = supportAddress
+    self.firstName = firstName
+    self.lastName = lastName
+    self.email = email
+    self.phoneNumber = phoneNumber
+    self.comments = comments
+  }
+  
   open func mapping(map: Map) {
     
     supportAddress <- map["to_email"]
