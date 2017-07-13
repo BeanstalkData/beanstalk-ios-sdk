@@ -1557,17 +1557,23 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
         } catch { }
         
-        if let responseObject = jsonResponse as? [String: Any] {
+        guard let responseObject = jsonResponse as? [String: Any] else {
+          handler(ApiError.dataSerialization(reason: "Incorrect server response"))
+          return
+        }
+        
+        guard let status = responseObject["success"] as? String, status == "true" else {
           if let error = responseObject["error"] as? String {
             handler(ApiError.supportRequestError(reason: error))
           }
           else {
-            handler(nil)
+            handler(ApiError.unknown())
           }
+          
           return
-        } else {
-          handler(ApiError.dataSerialization(reason: "Empty server response"))
         }
+        
+        handler(nil)
     }
   }
   
