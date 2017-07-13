@@ -14,12 +14,12 @@ import ObjectMapper
  */
 open class SupportRequest: Mappable {
   
-  var supportAddress: String?
-  var firstName: String?
-  var lastName: String?
-  var email: String?
-  var phoneNumber: String?
-  var comments: String?
+  open var supportAddress: String?
+  open var firstName: String?
+  open var lastName: String?
+  open var email: String?
+  open var phoneNumber: String?
+  open var comments: String?
   
   required public init?(map: Map) {
   }
