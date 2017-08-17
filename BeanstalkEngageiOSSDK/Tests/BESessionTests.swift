@@ -110,7 +110,8 @@ open class BESessionTests: BEBaseTestCase {
   
   open func contactSessionTest() {
     
-    self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
+    let mocContact = getMetadata()!.getRegisteredUser1Contact()
+    self.getSession()?.setContact(mocContact)
     
     let contact = self.getSession()?.getContact()
     
@@ -129,6 +130,8 @@ open class BESessionTests: BEBaseTestCase {
     XCTAssert(contact?.emailOptin == getMetadata()!.getRegisteredUser1Contact().emailOptin)
     XCTAssert(contact?.pushNotificationOptin == getMetadata()!.getRegisteredUser1Contact().pushNotificationOptin)
     XCTAssert(contact?.inboxMessageOptin == getMetadata()!.getRegisteredUser1Contact().inboxMessageOptin)
+    XCTAssert(contact?.primaryId == getMetadata()!.getRegisteredUser1Contact().primaryId)
+    XCTAssert(contact?.loyaltyCardId == getMetadata()!.getRegisteredUser1Contact().loyaltyCardId)
     
     self.getSession()?.setContact(nil)
     let contactNill = self.getSession()?.getContact()

@@ -42,6 +42,8 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     contact.emailOptin = 0
     contact.pushNotificationOptin = 0
     contact.inboxMessageOptin = 0
+    contact.primaryId = "123454321"
+    contact.loyaltyCardId = "987654321"
     
     return contact
   }
