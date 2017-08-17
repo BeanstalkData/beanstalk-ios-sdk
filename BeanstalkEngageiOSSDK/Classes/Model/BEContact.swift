@@ -28,6 +28,8 @@ open class BEContact : Mappable {
   fileprivate static let kEmailOptin = "BEContact" + "_emailOptin"
   fileprivate static let kPushNotificationOptin = "BEContact" + "_pushNotificationOptin"
   fileprivate static let kInboxMessageOptin = "BEContact" + "_inboxMessageOptin"
+  fileprivate static let kPrimaryId = "BEContact" + "_primaryId"
+  fileprivate static let kLoyaltyCardId = "BEContact" + "_loyaltyCardId"
   
   open var contactId: Int?
   open var firstName: String?
@@ -43,6 +45,8 @@ open class BEContact : Mappable {
   open var emailOptin = 0
   open var pushNotificationOptin = 0
   open var inboxMessageOptin = 0
+  open var primaryId: String?
+  open var loyaltyCardId: String?
   
   required public init() {
     
@@ -94,6 +98,8 @@ open class BEContact : Mappable {
     emailOptin <- map["Email_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
+    primaryId <- map["Primary_Id"]
+    loyaltyCardId <- map["LoyaltyCard"]
   }
   
   // MARK: - Persistence store -
@@ -125,6 +131,8 @@ open class BEContact : Mappable {
     if let inboxMessageOptin = storage.object(forKey: BEContact.kInboxMessageOptin) as? Int {
       self.inboxMessageOptin = inboxMessageOptin
     }
+    primaryId = storage.object(forKey: BEContact.kPrimaryId) as? String
+    loyaltyCardId = storage.object(forKey: BEContact.kLoyaltyCardId) as? String
   }
   
   open class func clear(_ storage : UserDefaults) {
@@ -142,6 +150,8 @@ open class BEContact : Mappable {
     storage.set(nil, forKey: BEContact.kEmailOptin)
     storage.set(nil, forKey: BEContact.kPushNotificationOptin)
     storage.set(nil, forKey: BEContact.kInboxMessageOptin)
+    storage.set(nil, forKey: BEContact.kPrimaryId)
+    storage.set(nil, forKey: BEContact.kLoyaltyCardId)
     
     storage.synchronize()
   }
@@ -161,6 +171,8 @@ open class BEContact : Mappable {
     storage.set(emailOptin, forKey: BEContact.kEmailOptin)
     storage.set(pushNotificationOptin, forKey: BEContact.kPushNotificationOptin)
     storage.set(inboxMessageOptin, forKey: BEContact.kInboxMessageOptin)
+    storage.set(primaryId, forKey: BEContact.kPrimaryId)
+    storage.set(loyaltyCardId, forKey: BEContact.kLoyaltyCardId)
     
     storage.synchronize()
   }

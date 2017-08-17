@@ -28,6 +28,7 @@ open class BESessionTests: BEBaseTestCase {
     self.getSession()?.saveDefaultCard(getMetadata()!.getRegisteredUser1GiftCard())
     
     XCTAssert(String(getMetadata()!.getRegisteredUser1Contact().contactId!) == self.getSession()?.getContactId())
+    let contact = self.getSession()?.getContact()
     XCTAssert(self.getSession()?.getAuthToken() == "12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
     XCTAssert(self.getSession()?.getAPNSToken() == getMetadata()!.getValidAPNSToken())
     XCTAssert(self.getSession()?.getRegisteredAPNSToken() == getMetadata()!.getValidAPNSToken())
@@ -110,7 +111,8 @@ open class BESessionTests: BEBaseTestCase {
   
   open func contactSessionTest() {
     
-    self.getSession()?.setContact(getMetadata()!.getRegisteredUser1Contact())
+    let mocContact = getMetadata()!.getRegisteredUser1Contact()
+    self.getSession()?.setContact(mocContact)
     
     let contact = self.getSession()?.getContact()
     
@@ -129,6 +131,8 @@ open class BESessionTests: BEBaseTestCase {
     XCTAssert(contact?.emailOptin == getMetadata()!.getRegisteredUser1Contact().emailOptin)
     XCTAssert(contact?.pushNotificationOptin == getMetadata()!.getRegisteredUser1Contact().pushNotificationOptin)
     XCTAssert(contact?.inboxMessageOptin == getMetadata()!.getRegisteredUser1Contact().inboxMessageOptin)
+    XCTAssert(contact?.primaryId == getMetadata()!.getRegisteredUser1Contact().primaryId)
+    XCTAssert(contact?.loyaltyCardId == getMetadata()!.getRegisteredUser1Contact().loyaltyCardId)
     
     self.getSession()?.setContact(nil)
     let contactNill = self.getSession()?.getContact()
