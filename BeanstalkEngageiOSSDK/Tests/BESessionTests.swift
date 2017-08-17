@@ -28,7 +28,6 @@ open class BESessionTests: BEBaseTestCase {
     self.getSession()?.saveDefaultCard(getMetadata()!.getRegisteredUser1GiftCard())
     
     XCTAssert(String(getMetadata()!.getRegisteredUser1Contact().contactId!) == self.getSession()?.getContactId())
-    let contact = self.getSession()?.getContact()
     XCTAssert(self.getSession()?.getAuthToken() == "12c893b776668ed4384b5ff0e91ab4a3f3fb5867")
     XCTAssert(self.getSession()?.getAPNSToken() == getMetadata()!.getValidAPNSToken())
     XCTAssert(self.getSession()?.getRegisteredAPNSToken() == getMetadata()!.getValidAPNSToken())
