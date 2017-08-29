@@ -95,6 +95,9 @@
 		65809D0A0AC6141EF1A005CFB63CC0C5 /* BELoyaltyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501D326E363D7E8A4DC9575B659F66B /* BELoyaltyUser.swift */; };
 		659179EFC4D883F90CCFCD9AF4029E72 /* EnumTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87C74F44351A887E1642DD2229AC21 /* EnumTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		65B55048FA240EE2E0691E25BFA458BE /* libPhoneNumber-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F0220680FC8DA8AAD7EC45670679DECC /* libPhoneNumber-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		664CE7491F558F5500C3669E /* CheckContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664CE7471F558BB600C3669E /* CheckContactResponse.swift */; };
+		664CE74A1F558F5600C3669E /* CheckContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664CE7471F558BB600C3669E /* CheckContactResponse.swift */; };
+		6684D0841F5028A7005E3D7B /* GoogleContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684D0811F501F66005E3D7B /* GoogleContactRequest.swift */; };
 		687D6A18AFEB70F1BAB071FEFA685C57 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D26412BCCC68DC7E5F313D0D79FEB7A /* AlamofireObjectMapper.framework */; };
 		6969A494DEAD015724B30C64E0A1EA02 /* TrackTransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A99E04219995EFB2D97D125DB836EA /* TrackTransactionResponse.swift */; };
 		6A62ABD1FB13C68EBF0B37DF94EE1CFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E508463AC9D3381EA86EA28682BE35 /* Foundation.framework */; };
@@ -480,6 +483,8 @@
 		5FCD8394035A2C4D2D932EA4FCB49C51 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6023B4847B8B6931A622A9B468B6F75E /* BECoreServiceTestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BECoreServiceTestHandler.swift; sourceTree = "<group>"; };
 		62CB375D59456297305A613C48F20A18 /* DateTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTransform.swift; path = Sources/DateTransform.swift; sourceTree = "<group>"; };
+		664CE7471F558BB600C3669E /* CheckContactResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckContactResponse.swift; sourceTree = "<group>"; };
+		6684D0811F501F66005E3D7B /* GoogleContactRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleContactRequest.swift; sourceTree = "<group>"; };
 		678F1B54E4E12734C1C197A3D9D560F2 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		6932E7BA0318AE88D1CE1E3D07F538C3 /* HUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = PKHUD/HUD.swift; sourceTree = "<group>"; };
 		699A83EF0AFA60982FEE17CBFDFB3094 /* URLTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLTransform.swift; path = Sources/URLTransform.swift; sourceTree = "<group>"; };
@@ -977,6 +982,7 @@
 				128203AE2A812655FC9F2B028019D83E /* ServerResponse.swift */,
 				A6FF5F94E9674914CF18DB0386601F25 /* StoresResponse.swift */,
 				27A99E04219995EFB2D97D125DB836EA /* TrackTransactionResponse.swift */,
+				664CE7471F558BB600C3669E /* CheckContactResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1266,6 +1272,7 @@
 			children = (
 				4A734C3979371B2424F0B11847CCB219 /* ContactRequest.swift */,
 				0AF0D1501F1626B80014CDB2 /* SupportRequest.swift */,
+				6684D0811F501F66005E3D7B /* GoogleContactRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1758,6 +1765,7 @@
 				A746506970DCCC49EF7AE6628F227192 /* CouponResponse.swift in Sources */,
 				E63821C52E52EFA19657350566F413C9 /* GiftCardsResponse.swift in Sources */,
 				017CD9291C95B29FEF37229C9ABE7920 /* MockDataGenerator.swift in Sources */,
+				664CE7491F558F5500C3669E /* CheckContactResponse.swift in Sources */,
 				334240D31EC7A5E5FFE6475E3F11B11A /* PaymentResponse.swift in Sources */,
 				AE378B20974C60C1D7848B33A873A4E3 /* PushNotificationResponse.swift in Sources */,
 				ED38AFA4D2669339E00F5C938DA15B03 /* RewardsCountResponse.swift in Sources */,
@@ -1855,7 +1863,9 @@
 				0AF0D1521F1626B80014CDB2 /* SupportRequest.swift in Sources */,
 				FA90FB71F3E02E504F15D2F2798DFD74 /* BESession.swift in Sources */,
 				9F252B96829F81D24FD3187A31332035 /* BESessionProtocol.swift in Sources */,
+				664CE74A1F558F5600C3669E /* CheckContactResponse.swift in Sources */,
 				8D31DB5A535CAFD1997F44DD112D4F7F /* BESessionTests.swift in Sources */,
+				6684D0841F5028A7005E3D7B /* GoogleContactRequest.swift in Sources */,
 				084C0D4C1FBAEC581A0517F64A93D28B /* BEStore.swift in Sources */,
 				A5211AC011A0471B30B85E8DEC141173 /* BEStoresTests.swift in Sources */,
 				2FB082F7444BE76BA2C98302F54A79C0 /* BETransaction.swift in Sources */,

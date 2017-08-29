@@ -30,6 +30,10 @@ open class BEContact : Mappable {
   fileprivate static let kInboxMessageOptin = "BEContact" + "_inboxMessageOptin"
   fileprivate static let kPrimaryId = "BEContact" + "_primaryId"
   fileprivate static let kLoyaltyCardId = "BEContact" + "_loyaltyCardId"
+  fileprivate static let kGoogleId = "BEContact" + "_googleId"
+  fileprivate static let kGoogleToken = "BEContact" + "_googleToken"
+  fileprivate static let kFbId = "BEContact" + "_fbId"
+  fileprivate static let kFbToken = "BEContact" + "_fbToken"
   
   open var contactId: Int?
   open var firstName: String?
@@ -48,6 +52,11 @@ open class BEContact : Mappable {
   open var primaryId: String?
   open var loyaltyCardId: String?
   
+  open var googleId: Int?
+  open var googleToken: String?
+  open var fbId: Int?
+  open var fbToken: String?
+
   required public init() {
     
   }
@@ -100,6 +109,10 @@ open class BEContact : Mappable {
     inboxMessageOptin <- map["InboxMessage_Optin"]
     primaryId <- map["Primary_Id"]
     loyaltyCardId <- map["LoyaltyCard"]
+    googleId <- map["GoogleId"]
+    googleToken <- map["GoogleToken"]
+    fbId <- map["FBid"]
+    fbToken <- map["FBToken"]
   }
   
   // MARK: - Persistence store -
@@ -133,6 +146,11 @@ open class BEContact : Mappable {
     }
     primaryId = storage.object(forKey: BEContact.kPrimaryId) as? String
     loyaltyCardId = storage.object(forKey: BEContact.kLoyaltyCardId) as? String
+    
+    googleId = storage.integer(forKey: BEContact.kGoogleId)
+    googleToken = storage.string(forKey: BEContact.kGoogleToken)
+    fbId = storage.integer(forKey: BEContact.kFbId)
+    fbToken = storage.string(forKey: BEContact.kFbToken)
   }
   
   open class func clear(_ storage : UserDefaults) {
@@ -152,6 +170,10 @@ open class BEContact : Mappable {
     storage.set(nil, forKey: BEContact.kInboxMessageOptin)
     storage.set(nil, forKey: BEContact.kPrimaryId)
     storage.set(nil, forKey: BEContact.kLoyaltyCardId)
+    storage.set(nil, forKey: BEContact.kGoogleId)
+    storage.set(nil, forKey: BEContact.kGoogleToken)
+    storage.set(nil, forKey: BEContact.kFbId)
+    storage.set(nil, forKey: BEContact.kFbToken)
     
     storage.synchronize()
   }
@@ -173,7 +195,11 @@ open class BEContact : Mappable {
     storage.set(inboxMessageOptin, forKey: BEContact.kInboxMessageOptin)
     storage.set(primaryId, forKey: BEContact.kPrimaryId)
     storage.set(loyaltyCardId, forKey: BEContact.kLoyaltyCardId)
-    
+    storage.set(googleId, forKey: BEContact.kGoogleId)
+    storage.set(googleToken, forKey: BEContact.kGoogleToken)
+    storage.set(fbId, forKey: BEContact.kFbId)
+    storage.set(fbToken, forKey: BEContact.kFbToken)
+
     storage.synchronize()
   }
 }

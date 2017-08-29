@@ -733,6 +733,109 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  /**
+   Check Facebook Account existing
+   
+   - Parameter facebookId: Facebook ID.
+   - Parameter facebookToken: Facebook token.
+   - Parameter handler: Completion handler.
+   - Parameter result: Response with account ID and account token.
+   */
+  
+  open func checkFacebookAccountExisted(facebookId: String, facebookToken: String, handler: @escaping (Result<CheckContactResponse>) -> Void) {
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = ["Fb": facebookId,
+                  "fbtoken": facebookToken,
+                  "key": self.apiKey,
+                  "function": "checkFacebook"
+    ]
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/", method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseString { response in
+        guard response.result.isSuccess else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+          return
+        }
+        
+        guard response.result.value != nil else {
+          handler(.failure(ApiError.registrationFailed(reason : nil)))
+          return
+        }
+        
+        guard let responseData = response.result.value?.data(using: String.Encoding.utf8) else {
+          handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
+          return
+        }
+        
+        let jsonResponse = try? JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
+        
+        guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
+          handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
+          return
+        }
+        
+        let response = CheckContactResponse(contactId: String(describing: data[0]),
+                                            contactToken: String(describing: data[1]))
+        handler(.success(response))
+    }
+  }
+  
+  /**
+   Check Google Account existing
+   
+   - Parameter googleId: Google ID.
+   - Parameter googleToken: Gooogle token.
+   - Parameter handler: Completion handler.
+   - Parameter result: Response with account ID and account token.
+   */
+  open func checkGoogleAccountExisted(googleId: String, googleToken: String, handler: @escaping (Result<CheckContactResponse>) -> Void) {
+    guard isOnline() else {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    let params = ["GoogleId": googleId,
+                  "GoogleToken": googleToken,
+                  "key": self.apiKey,
+                  "function": "checkGoogle"
+    ]
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/", method: .post, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseString { response in
+        
+        guard response.result.isSuccess else {
+          handler(.failure(ApiError.network(error: response.result.error)))
+          return
+        }
+        
+        guard response.result.value != nil else {
+          handler(.failure(ApiError.registrationFailed(reason : nil)))
+          return
+        }
+        
+        guard let responseData = response.result.value?.data(using: String.Encoding.utf8) else {
+          handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
+          return
+        }
+        
+        let jsonResponse = try? JSONSerialization.jsonObject(with: responseData, options: []) as AnyObject
+        
+        guard let data = jsonResponse as? [AnyObject], data.count == 2 else {
+          handler(.failure(ApiError.authenticationFailed(reason: response.result.value)))
+          return
+        }
+        
+        let response = CheckContactResponse(contactId: String(describing: data[0]),
+                                            contactToken: String(describing: data[1]))
+        handler(.success(response))
+    }
+  }
   
   //MARK: -
   
@@ -1599,7 +1702,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           
         }
         
-        //TODO: Create corresponding error
+//TODO: Create corresponding error
 //        let error = NSError(
 //          domain: Error.domain,
 //          code: Error.Code.StatusCodeValidationFailed.rawValue,
