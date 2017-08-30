@@ -324,6 +324,10 @@ open class ContactRequest: Mappable {
   }
   
   open func set(googleId: String?) {
+    guard let googleId = googleId else {
+      return
+    }
+
     guard origin?.googleId?.caseInsensitiveCompare(googleId!) != ComparisonResult.orderedSame else {
       self.googleId = nil
       return
@@ -333,6 +337,10 @@ open class ContactRequest: Mappable {
   }
 
   open func set(googleToken: String?) {
+    guard let googleToken = googleToken else {
+      return
+    }
+
     guard origin?.googleToken?.caseInsensitiveCompare(googleToken!) != ComparisonResult.orderedSame else {
       self.googleToken = nil
       return
@@ -342,7 +350,11 @@ open class ContactRequest: Mappable {
   }
   
   open func set(fBid: String?) {
-    guard origin?.fbId?.caseInsensitiveCompare(fBid!) != ComparisonResult.orderedSame else {
+    guard let fBid = fBid else {
+      return
+    }
+
+    guard origin?.fbId?.caseInsensitiveCompare(fBid) != ComparisonResult.orderedSame else {
       self.googleToken = nil
       return
     }
@@ -351,7 +363,11 @@ open class ContactRequest: Mappable {
   }
 
   open func set(fBToken: String?) {
-    guard origin?.fbToken?.caseInsensitiveCompare(fBToken!) != ComparisonResult.orderedSame else {
+    guard let fBToken = fBToken else {
+      return
+    }
+
+    guard origin?.fbToken?.caseInsensitiveCompare(fBToken) != ComparisonResult.orderedSame else {
       self.googleToken = nil
       return
     }
