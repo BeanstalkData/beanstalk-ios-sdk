@@ -328,7 +328,7 @@ open class ContactRequest: Mappable {
       return
     }
 
-    guard origin?.googleId?.caseInsensitiveCompare(googleId!) != ComparisonResult.orderedSame else {
+    guard origin?.googleId?.caseInsensitiveCompare(googleId) != ComparisonResult.orderedSame else {
       self.googleId = nil
       return
     }
@@ -341,7 +341,7 @@ open class ContactRequest: Mappable {
       return
     }
 
-    guard origin?.googleToken?.caseInsensitiveCompare(googleToken!) != ComparisonResult.orderedSame else {
+    guard origin?.googleToken?.caseInsensitiveCompare(googleToken) != ComparisonResult.orderedSame else {
       self.googleToken = nil
       return
     }
