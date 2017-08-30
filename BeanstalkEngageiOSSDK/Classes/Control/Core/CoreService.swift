@@ -283,6 +283,71 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Authenticate user with Facebook account
+   
+   - Parameter facebookId: facebook ID
+   - Parameter facebookToken: facebook token
+   - Parameter contactClass: Contact class.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
+   
+   */
+  open func authWithFacebookUser<ContactClass: BEContact>(facebookId: String,
+                                                          facebookToken: String,
+                                                          contactClass: ContactClass.Type,
+                                                          handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    self.p_isAuthenticateInProgress = true
+    
+    apiService.checkFacebookAccountExisted(facebookId: facebookId, facebookToken: facebookToken) {[weak self] result in
+      switch result {
+      case .success(let response):
+        self?.handleLoginComplete(response.contactId, token: response.contactToken, contactClass: contactClass, handler: { (success, error) in
+          self?.p_isAuthenticateInProgress = false
+          handler(success, error)
+        })
+       
+      case .failure(let error):
+        self?.p_isAuthenticateInProgress = false
+        handler(false, error as? BEErrorType)
+      }
+    }
+  }
+  
+  /**
+   Authenticate user with Google account
+   
+   - Parameter googleId: google ID
+   - Parameter googleToken: google token
+   - Parameter contactClass: Contact class.
+   - Parameter handler: Completion handler.
+   - Parameter success: Whether is request was successful.
+   - Parameter error: Error if occur.
+   */
+  open func authWithGoogleUser<ContactClass: BEContact>(googleId: String,
+                                                        googleToken: String,
+                                                        contactClass: ContactClass.Type,
+                                                        handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
+    
+    self.p_isAuthenticateInProgress = true
+    
+    apiService.checkGoogleAccountExisted(googleId: googleId, googleToken: googleToken) {[weak self] result in
+      switch result {
+      case .success(let response):
+        self?.handleLoginComplete(response.contactId, token: response.contactToken, contactClass: contactClass, handler: { (success, error) in
+          self?.p_isAuthenticateInProgress = false
+          handler(success, error)
+        })
+      
+      case .failure(let error):
+        self?.p_isAuthenticateInProgress = false
+        handler(false, error as? BEErrorType)
+      }
+    }
+  }
+  
   fileprivate func handleLoginComplete <ContactClass: BEContact> (_ contactId : String?, token : String?, contactClass: ContactClass.Type, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     
     guard (contactId != nil && token != nil) else {
@@ -606,74 +671,6 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
         handler(false, nil, ApiError.userPhoneExists(reason: result.error! as? BEErrorType))
       } else {
         handler(true, result.value!, nil)
-      }
-    }
-  }
-  
-  /**
-   Get Contact joined with Facebook account
-   
-   - Parameter facebookId: facebook ID
-   - Parameter facebookToken: facebook token
-   - Parameter handler: Completion handler.
-   - Parameter success: Whether is request was successful.
-   - Parameter error: Error if occur.
-   
-   */
-  open func checkContactByFacebookUser(facebookId: String,
-                                       facebookToken: String,
-                                       handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
-    
-    apiService.checkFacebookAccountExisted(facebookId: facebookId, facebookToken: facebookToken) {[weak self] result in
-      switch result {
-      case .success(let response):
-        self?.apiService.getContact(response.contactId, contactClass: BEContact.self, handler: { result in
-          
-          guard result.isSuccess else {
-            handler(false, result.error as? BEErrorType)
-            return
-          }
-          
-          self?.session.setContact(result.value)
-          self?.session.setAuthToke(response.contactToken)
-          handler(true, nil)
-        })
-        
-      case .failure(let error):
-        handler(false, error as? BEErrorType)
-      }
-    }
-  }
-  
-  /**
-   Get Contact joined with Google account
-   - Parameter googleId: google ID
-   - Parameter googleToken: google token
-   - Parameter handler: Completion handler.
-   - Parameter success: Whether is request was successful.
-   - Parameter error: Error if occur.
-   */
-  open func checkContactByGoogleUser(googleId: String,
-                                     googleToken: String,
-                                     handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
-    
-    apiService.checkGoogleAccountExisted(googleId: googleId, googleToken: googleToken) {[weak self] result in
-      switch result {
-      case .success(let response):
-        self?.apiService.getContact(response.contactId, contactClass: BEContact.self, handler: { result in
-          
-          guard result.isSuccess else {
-            handler(false, result.error as? BEErrorType)
-            return
-          }
-          
-          self?.session.setContact(result.value)
-          self?.session.setAuthToke(response.contactToken)
-          handler(true, nil)
-        })
-        
-      case .failure(let error):
-        handler(false, error as? BEErrorType)
       }
     }
   }
