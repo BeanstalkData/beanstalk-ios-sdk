@@ -28,7 +28,11 @@ open class ContactRequest: Mappable {
   fileprivate var pushNotificationOptin: Bool?
   fileprivate var inboxMessageOptin: Bool?
   fileprivate var prospect : String?
-  
+  fileprivate var googleId: String?
+  fileprivate var googleToken: String?
+  fileprivate var fBid: String?
+  fileprivate var fBToken: String?
+
   open fileprivate(set) var origin: BEContact?
   
   public init(origin: BEContact? = nil, prospect: String = "loyalty") {
@@ -319,6 +323,22 @@ open class ContactRequest: Mappable {
     return self.origin?.prospect
   }
   
+  open func set(googleId: String?) {
+    self.googleId = googleId
+  }
+
+  open func set(googleToken: String?) {
+    self.googleToken = googleToken
+  }
+  
+  open func set(fBid: String?) {
+    self.fBid = fBid
+  }
+
+  open func set(fBToken: String?) {
+    self.fBToken = fBToken
+  }
+
   open func mapping(map: Map) {
     
     contactId <- map["ContactID"]
@@ -336,6 +356,10 @@ open class ContactRequest: Mappable {
     textOptin <- map["Txt_Optin"]
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
+    googleId <- map["GoogleId"]
+    googleToken <- map["GoogleToken"]
+    fBid <- map["FBid"]
+    fBToken <- map["FBToken"]
   }
 
   open func normalize() {
