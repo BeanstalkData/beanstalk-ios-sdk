@@ -324,18 +324,38 @@ open class ContactRequest: Mappable {
   }
   
   open func set(googleId: String?) {
+    guard origin?.googleId?.caseInsensitiveCompare(googleId!) != ComparisonResult.orderedSame else {
+      self.googleId = nil
+      return
+    }
+
     self.googleId = googleId
   }
 
   open func set(googleToken: String?) {
+    guard origin?.googleToken?.caseInsensitiveCompare(googleToken!) != ComparisonResult.orderedSame else {
+      self.googleToken = nil
+      return
+    }
+    
     self.googleToken = googleToken
   }
   
   open func set(fBid: String?) {
+    guard origin?.fbId?.caseInsensitiveCompare(fBid!) != ComparisonResult.orderedSame else {
+      self.googleToken = nil
+      return
+    }
+    
     self.fBid = fBid
   }
 
   open func set(fBToken: String?) {
+    guard origin?.fbToken?.caseInsensitiveCompare(fBToken!) != ComparisonResult.orderedSame else {
+      self.googleToken = nil
+      return
+    }
+    
     self.fBToken = fBToken
   }
 

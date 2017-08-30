@@ -52,9 +52,9 @@ open class BEContact : Mappable {
   open var primaryId: String?
   open var loyaltyCardId: String?
   
-  open var googleId: Int?
+  open var googleId: String?
   open var googleToken: String?
-  open var fbId: Int?
+  open var fbId: String?
   open var fbToken: String?
 
   required public init() {
@@ -147,9 +147,9 @@ open class BEContact : Mappable {
     primaryId = storage.object(forKey: BEContact.kPrimaryId) as? String
     loyaltyCardId = storage.object(forKey: BEContact.kLoyaltyCardId) as? String
     
-    googleId = storage.integer(forKey: BEContact.kGoogleId)
+    googleId = storage.string(forKey: BEContact.kGoogleId)
     googleToken = storage.string(forKey: BEContact.kGoogleToken)
-    fbId = storage.integer(forKey: BEContact.kFbId)
+    fbId = storage.string(forKey: BEContact.kFbId)
     fbToken = storage.string(forKey: BEContact.kFbToken)
   }
   
