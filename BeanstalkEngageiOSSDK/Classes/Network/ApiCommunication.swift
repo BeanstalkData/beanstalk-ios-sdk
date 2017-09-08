@@ -748,7 +748,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       return
     }
     
-    let params = ["Fb": facebookId,
+    let params = ["fb": facebookId,
                   "fbtoken": facebookToken,
                   "key": self.apiKey,
                   "function": "checkFacebook"
