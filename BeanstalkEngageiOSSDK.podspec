@@ -58,9 +58,16 @@ Pod::Spec.new do |s|
   s.subspec 'Common' do |cms|
     cms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Common/**/*'
 
+    cms.dependency 'BeanstalkEngageiOSSDK/Localization'
     cms.dependency 'BeanstalkEngageiOSSDK/Vendor'
     cms.dependency 'Alamofire', '~> 4.4.0'
     cms.dependency 'libPhoneNumber-iOS'
+  end
+
+  s.subspec 'Localization' do |l|
+    l.resources      = 'BeanstalkEngageiOSSDK/Localizables/*.lproj'
+    l.preserve_paths = 'BeanstalkEngageiOSSDK/Localizables/*.lproj'
+    l.source_files   = 'BeanstalkEngageiOSSDK/Classes/Localizables/**/*'
   end
 
   s.subspec 'Vendor' do |vs|
