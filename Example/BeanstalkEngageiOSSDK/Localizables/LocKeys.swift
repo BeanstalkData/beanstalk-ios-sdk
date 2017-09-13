@@ -10,4 +10,6 @@ enum LocKey: String, BELocKeyProtocol {
   
   case continue_process = "continue_process"
   case sorry_an_error_occurred_while_processing_your_request = "sorry_an_error_occurred_while_processing_your_request"
+  
+  case wrong_key = "wrong_key"
 }
