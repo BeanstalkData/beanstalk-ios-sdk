@@ -14,6 +14,9 @@ class LocalizationTests: BELocalizablesTests {
   
   func testLocalizables() {
     localizablesTest()
+    
+    XCTAssert(Localized(key: LocKey.continue_process) == "Continue")
+    XCTAssert(Localized(key: LocKey.sorry_an_error_occurred_while_processing_your_request) == "Sorry")
   }
 
 }

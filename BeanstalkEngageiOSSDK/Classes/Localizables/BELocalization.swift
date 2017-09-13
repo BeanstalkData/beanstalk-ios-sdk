@@ -8,25 +8,25 @@
 import Foundation
 
 func Localized(key: BELocKeyProtocol, capitalize: Bool = false) -> String {
-  let localized = BELocalizationImpl.sharedInstance.localizeReplace(key: key, replace: [:], capitalize: capitalize)
+  let localized = BELocalizationImpl.sharedInstance.localizeReplace(key: key, replace: [:], capitalize: capitalize, bundle: Bundle(for: BELocalizationImpl.self))
   
   return localized
 }
 
 func Localized(key: BELocKeyProtocol, replace: [String: String], capitalize: Bool = false) -> String {
-  let localized = BELocalizationImpl.sharedInstance.localizeReplace(key: key, replace: replace, capitalize: capitalize)
+  let localized = BELocalizationImpl.sharedInstance.localizeReplace(key: key, replace: replace, capitalize: capitalize, bundle: Bundle(for: BELocalizationImpl.self))
   
   return localized
 }
 
-class BELocalizationImpl {
-  static let sharedInstance = BELocalizationImpl()
+public class BELocalizationImpl {
+  public static let sharedInstance = BELocalizationImpl()
   
-  fileprivate func localizeReplace(key: BELocKeyProtocol, replace: [String: String] = [:], capitalize: Bool = false) -> String {
+  public func localizeReplace(key: BELocKeyProtocol, replace: [String: String] = [:], capitalize: Bool = false, bundle: Bundle) -> String {
     //  Uncomment for localization debug
     //  return key.rawValue
     
-    var string = NSLocalizedString(key.getRawValue(), bundle: Bundle(for: BELocalizationImpl.self), comment: "")
+    var string = NSLocalizedString(key.getRawValue(), bundle: bundle, comment: "")
     
     for (replaceKey, replaceValue) in replace {
       string = string.replacingOccurrences(of: "$(\(replaceKey))", with: replaceValue)
