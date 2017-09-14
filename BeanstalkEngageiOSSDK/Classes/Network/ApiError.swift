@@ -97,66 +97,66 @@ public enum ApiError: BEErrorType {
     
     switch self {
     case .unknown:
-      errorTitle = "Bad request"
+      errorTitle = Localized(key: BELocKey.error_bad_request_title)
       
     case .dataSerialization(_):
-      errorTitle = "Bad request"
+      errorTitle = Localized(key: BELocKey.error_bad_request_title)
     case .missingParameterError(_):
-      errorTitle = "Invalid request"
+      errorTitle = Localized(key: BELocKey.error_invalid_request_title)
       
     case .network(_):
-      errorTitle = "Bad request"
+      errorTitle = Localized(key: BELocKey.error_bad_request_title)
     case .networkConnectionError:
-      errorTitle = "Connection Failed"
+      errorTitle = Localized(key: BELocKey.error_connection_failed_title)
     
     case .noApiUsernameProvided():
-      errorTitle = "No API username provided"
+      errorTitle = Localized(key: BELocKey.error_no_API_username_provided_title)
       
     case .createContactFailed(_):
-      errorTitle = "Create Contact Failed"
+      errorTitle = Localized(key: BELocKey.error_create_contact_failed_title)
     case .deleteContactFailed(_):
-      errorTitle = "Delete Contact Failed"
+      errorTitle = Localized(key: BELocKey.error_delete_contact_failed_title)
     case .updateContactFailed(_):
-      errorTitle = "Update Contact Failed"
+      errorTitle = Localized(key: BELocKey.error_update_contact_failed_title)
     case .fetchContactFailed(_):
-      errorTitle = "Fetch Contact Failed"
+      errorTitle = Localized(key: BELocKey.error_fetch_contact_failed_title)
     case .noContactIdInSession():
-      errorTitle = "No contact ID is stored in session"
+      errorTitle = Localized(key: BELocKey.error_no_contact_ID_is_stored_in_session_title)
       
     case .authenticationFailed(_):
-      errorTitle = "Login Failed"
+      errorTitle = Localized(key: BELocKey.login_failed)
     case .registrationFailed(_):
-      errorTitle = "Registration Error"
+      errorTitle = Localized(key: BELocKey.error_registration_title)
     case .userEmailExists(_):
-      errorTitle = "Registration Error"
+      errorTitle = Localized(key: BELocKey.error_registration_title)
     case .userPhoneExists(_):
-      errorTitle = "Registration Error"
+      errorTitle = Localized(key: BELocKey.error_registration_title)
       
     case .profileError(_):
-      errorTitle = "Profile Error"
+      errorTitle = Localized(key: BELocKey.error_profile_title)
     case .updateProfileError(_):
-      errorTitle = "Update Profile Error"
+      errorTitle = Localized(key: BELocKey.error_update_profile_title)
     case .updatePasswordError(_):
-      errorTitle = "Password Update"
+      errorTitle = Localized(key: BELocKey.error_password_update_title)
     case .resetPasswordError(_):
-      errorTitle = "Password reset"
+      errorTitle = Localized(key: BELocKey.error_password_reset_title)
       
     case .giftCardsError(_):
-      errorTitle = "Cards Error"
+      errorTitle = Localized(key: BELocKey.error_cards_error_title)
     case .paymentError(_):
-      errorTitle = "Payment Error"
+      errorTitle = Localized(key: BELocKey.error_payment_title)
       
     case .findStoresError(_):
-      errorTitle = "Find Stores Error"
+      errorTitle = Localized(key: BELocKey.error_find_stores_title)
       
     case .trackTransactionError(_):
-      errorTitle = "Track Transaction Error"
+      errorTitle = Localized(key: BELocKey.error_track_transaction_title)
       
     case .supportRequestError(_):
-      errorTitle = "Support Request Error"
+      errorTitle = Localized(key: BELocKey.error_support_request_title)
       
     case .unacceptableStatusCodeError(_, _):
-      errorTitle = "Bad request"
+      errorTitle = Localized(key: BELocKey.error_bad_request_title)
     }
     
     return errorTitle
@@ -170,61 +170,61 @@ public enum ApiError: BEErrorType {
     
     switch self {
     case .unknown:
-      errorMessage = "Sorry, an error occurred while processing your request"
+      errorMessage = Localized(key: BELocKey.error_sorry_an_error_occurred_while_processing_your_request)
     case .dataSerialization(let reason):
       errorMessage = reason
     case .missingParameterError(let reason):
-      errorMessage = "Please verify parameter(s)" + ((reason.lengthOfBytes(using: String.Encoding.utf8) > 0) ? ": " + reason : "")
+      errorMessage = Localized(key: BELocKey.error_please_verify_parameters) + ((reason.lengthOfBytes(using: String.Encoding.utf8) > 0) ? ": " + reason : "")
     case .network(let error):
-      errorMessage = (error != nil ? error!.localizedDescription : "Sorry, an error occurred while processing your request")
+      errorMessage = (error != nil ? error!.localizedDescription : Localized(key: BELocKey.error_sorry_an_error_occurred_while_processing_your_request))
     case .networkConnectionError:
-      errorMessage = "Connection unavailable"
+      errorMessage = Localized(key: BELocKey.error_connection_unavailable)
     
     case .noApiUsernameProvided():
-      errorMessage = "In order to perform this action API username must be provided"
+      errorMessage = Localized(key: BELocKey.error_api_username_must_be_provided)
       
     case .createContactFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unknown))
     case .deleteContactFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to delete contact")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_failed_to_delete_contact))
     case .updateContactFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unknown error")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unknown))
     case .fetchContactFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to fetch contact")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_failed_to_fetch_contact))
     case .noContactIdInSession():
-      errorMessage = "Contact ID should be provided by session"
+      errorMessage = Localized(key: BELocKey.error_contact_ID_should_be_provided_by_session)
       
     case .authenticationFailed(_):
-      errorMessage = "Please check your credentials and try again"//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
+      errorMessage =  Localized(key: BELocKey.login_failed_text)//getErrorMessageFromReason(reason, defaultMessage: "Username or password incorrect")
     case .registrationFailed(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to sign up user, please try again later")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unable_to_sign_up_user))
     case .userEmailExists(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "This email is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it.")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_this_email_is_already_registered))
     case .userPhoneExists(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "This phone is already registered in our database. Please sign-in into your account. Use the \"forgot password\" button in case you need to reset it.")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_this_phone_is_already_registered))
       
     case .profileError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to retrieve profile")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unable_to_retrieve_profile))
     case .updateProfileError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Update Failed!")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_update_failed))
     case .updatePasswordError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to update password")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unable_to_update_password))
     case .resetPasswordError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Unable to reset password")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_unable_to_reset_password))
       
     case .giftCardsError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error Retrieving Cards Information")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_retrieving_cards_information))
     case .paymentError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error generating barcode. Please try again later.")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_generating_barcode))
      
     case .findStoresError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Error Retrieving Stores Information")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.error_retrieving_stores_information))
       
     case .trackTransactionError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to Track Transaction")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.failed_to_track_transaction))
       
     case .supportRequestError(let reason):
-      errorMessage = getErrorMessageFromReason(reason, defaultMessage: "Failed to send Support Request")
+      errorMessage = getErrorMessageFromReason(reason, defaultMessage: Localized(key: BELocKey.failed_to_send_support_request))
       
     case .unacceptableStatusCodeError(let reason, _):
       errorMessage = reason

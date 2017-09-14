@@ -553,7 +553,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         guard let result = response.result.value as? [String: Any] else {
-          handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+          handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
           return
         }
         
@@ -604,7 +604,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         guard let response = dataResponse.value else {
-          handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+          handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
           return
         }
         
@@ -1260,7 +1260,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           if (response.result.isSuccess) {
             if let data = response.result.value {
               if (data.failed()) {
-                handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+                handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
               } else {
                 handler(.success(data.getStores()))
               }
@@ -1308,7 +1308,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         if (response.result.isSuccess) {
           if let result = response.result.value {
             if (result.failed()) {
-              handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+              handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
             } else {
               handler(.success("success"))
             }
@@ -1348,7 +1348,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         if (response.result.isSuccess) {
           if let result = response.result.value {
             if (result.failed()) {
-              handler(.failure(ApiError.dataSerialization(reason: "Bad request!")))
+              handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
             } else {
               handler(.success("success"))
             }

@@ -4,6 +4,11 @@
 # Overcommit
 .overcommit.yml
 
+# Babelish
+.babelish
+.babelish.token
+translations.csv
+
 # Xcode
 build/
 *.pbxuser
@@ -21,6 +26,7 @@ profile
 DerivedData
 *.hmap
 *.ipa
+
 
 # Bundler
 .bundle
