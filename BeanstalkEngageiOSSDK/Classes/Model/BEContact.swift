@@ -108,7 +108,7 @@ open class BEContact : Mappable {
     pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
     primaryId <- map["Primary_Id"]
-    loyaltyCardId <- map["LoyaltyCard"]
+    loyaltyCardId <- map["ThirdPartyLoyaltyCard"]
     googleId <- map["GoogleId"]
     googleToken <- map["GoogleToken"]
     fbId <- map["FBid"]
