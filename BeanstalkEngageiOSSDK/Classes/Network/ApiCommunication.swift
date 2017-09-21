@@ -1535,7 +1535,8 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       return
     }
     
-    let params = Mapper().toJSON(supportRequest)
+    var params = Mapper().toJSON(supportRequest)
+    params["key"] = self.apiKey
     
     SessionManagerClass.getSharedInstance().request(BASE_URL + "/feedback/contactUs/index.php", method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
