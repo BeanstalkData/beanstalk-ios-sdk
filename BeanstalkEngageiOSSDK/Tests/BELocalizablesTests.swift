@@ -20,6 +20,6 @@ open class BELocalizablesTests: BEBaseTestCase {
   }
   
   open func localizablesTest() {
-    XCTAssert(Localized(key: BELocKey.sorry_an_error_occurred_while_processing_your_request) == "Sorry, an error occurred while processing your request")
+    XCTAssert(Localized(key: BELocKey.error_sorry_an_error_occurred_while_processing_your_request) == "Sorry, an error occurred while processing your request")
   }
 }
