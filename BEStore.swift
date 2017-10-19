@@ -1,8 +1,9 @@
 //
 //  BEStore.swift
-//  BeanstalkEngageiOSSDK
+//  Pods
 //
-//  2017 Heartland Commerce, Inc. All rights reserved.
+//  Created by Pavel Dvorovenko on 10/18/17.
+//
 //
 
 import Foundation
@@ -12,7 +13,7 @@ import ObjectMapper
 /**
  Model of store received from store locations.
  */
-open class BEStore : NSObject, NSCoding, Mappable {
+open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
   fileprivate static let kId = "BEStore_id"
   fileprivate static let kCustomerId = "BEStore_customerId"
   fileprivate static let kDate = "BEStore_date"
@@ -28,19 +29,9 @@ open class BEStore : NSObject, NSCoding, Mappable {
   fileprivate static let kGeoEnabled = "BEStore_geoEnabled"
   fileprivate static let kPaymentLoyaltyParticipation = "BEStore_paymentLoyaltyParticipation"
   
-  //  private static let kStoreName = "_storeName"
-  //  private static let kAddress2 = "_address2"
-  //  private static let kFax = "_fax"
-  //  private static let kConcept = "_concept"
-  //  private static let kVenue = "_venue"
-  //  private static let kSubVenue = "_subVenue"
-  //  private static let kRegion = "_region"
-  //  private static let kRegionName = "_regionName"
-  
-  
   open var id: String?
   open var customerId: String?
-  open var openDate: Date?
+  open var openDate: Date?     //
   open var storeId: String?
   open var country: String?
   open var address1: String?
@@ -53,14 +44,43 @@ open class BEStore : NSObject, NSCoding, Mappable {
   open var geoEnabled: Bool?
   open var paymentLoyaltyParticipation: Bool?
   
-  //  public var storeName: String?
-  //  public var address2: String?
-  //  public var fax: String?
-  //  public var concept: String?
-  //  public var venue: String?
-  //  public var subVenue: String?
-  //  public var region: String?
-  //  public var regionName: String?
+  open var website: String? {
+    get {
+      return nil
+    }
+  }
+  
+  open var email: String? {
+    get {
+      return nil
+    }
+  }
+  
+  open var timeZone: String? {
+    get {
+      return nil
+    }
+  }
+  
+  open var name: String? {
+    get {
+      let storeName = "Store" + (self.storeId != nil ? " #\(storeId!)" : "")
+      
+      return storeName
+    }
+  }
+  
+  open var address2: String? {
+    get {
+      return nil
+    }
+  }
+  
+  open var openingHours: [Int: BEOpeningHour]? {
+    get {
+      return nil
+    }
+  }
   
   public init(id: String){
     super.init()
@@ -70,12 +90,6 @@ open class BEStore : NSObject, NSCoding, Mappable {
   
   required public init?(map: Map) {
     super.init()
-  }
-  
-  open func getStoreName() -> String {
-    let storeName = "Store" + (self.storeId != nil ? " #\(storeId!)" : "")
-    
-    return storeName
   }
   
   open func mapping(map: Map) {
@@ -119,15 +133,6 @@ open class BEStore : NSObject, NSCoding, Mappable {
     if (paymentLoyaltyParticipationNumber != nil) {
       paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
-    
-    //  storeName <- map["StoreName"]
-    //  address2 <- map["Address2"]
-    //  fax <- map["Fax"]
-    //  concept <- map["Concept"]
-    //  venue <- map["Venue"]
-    //  subVenue <- map["SubVenue"]
-    //  region <- map["Region"]
-    //  regionName <- map["RegionName"]
   }
   
   //MARK: - NSCoding -

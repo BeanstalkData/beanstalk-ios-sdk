@@ -142,7 +142,7 @@ private class DummyStoresResponse: StoresResponseProtocol {
     return false
   }
   
-  func getStores() -> [BEStore]? {
+  func getStores() -> [BEStoreProtocol]? {
     return stores
   }
   

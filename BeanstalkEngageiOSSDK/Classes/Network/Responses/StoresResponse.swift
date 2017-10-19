@@ -11,13 +11,13 @@ import ObjectMapper
 public protocol StoresResponseProtocol {
   func failed() -> Bool
   
-  func getStores() -> [BEStore]?
+  func getStores() -> [BEStoreProtocol]?
 }
 
 /**
  Response model for store locations request.
  */
-open class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtocol {
+open class StoresResponse<StoreClass> : Mappable, StoresResponseProtocol where StoreClass: BEStoreProtocol {
   fileprivate var status : Bool?
   
   var stores : [StoreClass]?
@@ -39,7 +39,7 @@ open class StoresResponse<StoreClass: BEStore> : Mappable, StoresResponseProtoco
     return false
   }
   
-  open func getStores() -> [BEStore]? {
+  open func getStores() -> [BEStoreProtocol]? {
     return stores
   }
 }

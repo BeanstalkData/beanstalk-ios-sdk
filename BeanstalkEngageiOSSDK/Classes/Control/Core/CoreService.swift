@@ -964,19 +964,19 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs stores at location request for storeClass BEStore.
    */
-  open func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
+  open func getStoresAtLocation(coordinate: CLLocationCoordinate2D?, handler: @escaping ((_ success: Bool, _ stores : [BEStoreProtocol]?, _ error: BEErrorType?) -> Void)) {
     self.getStoresAtLocation(coordinate: coordinate, storeClass: BEStore.self, handler: handler)
   }
   
   /**
    Performs stores at location request for store class.
    */
-  open func getStoresAtLocation <StoreClass: BEStore> (coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ stores : [BEStore]?, _ error: BEErrorType?) -> Void)) {
+  open func getStoresAtLocation <StoreClass> (coordinate: CLLocationCoordinate2D?, version: String? = nil, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ stores : [BEStoreProtocol]?, _ error: BEErrorType?) -> Void)) where StoreClass: BEStoreProtocol {
     let longitude: String? = (coordinate != nil) ? "\(coordinate!.longitude)" : nil
     let latitude: String? = (coordinate != nil) ? "\(coordinate!.latitude)" : nil
     let token = self.session.getAuthToken()
     
-    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, storeClass: storeClass, handler: { (result) in
+    apiService.getStoresAtLocation (longitude, latitude: latitude, token: token, version: version, storeClass: storeClass, handler: { (result) in
       if result.isFailure {
         handler(false, [], ApiError.findStoresError(reason: result.error! as? BEErrorType))
       } else {

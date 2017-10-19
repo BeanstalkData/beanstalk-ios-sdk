@@ -290,12 +290,12 @@ open class BECoreServiceTestHandler {
   
   // Stores
   
-  open func getStoresAtLocation <StoreClass: BEStore> (_ coordinate: CLLocationCoordinate2D?, storeClass: StoreClass.Type, handler: (_ success: Bool, _ stores: [BEStore]?) -> Void) -> BECoreServiceTestHandler? {
+  open func getStoresAtLocation <StoreClass> (_ coordinate: CLLocationCoordinate2D?, version: String?, storeClass: StoreClass.Type, handler: (_ success: Bool, _ stores: [BEStoreProtocol]?) -> Void) -> BECoreServiceTestHandler? where StoreClass: BEStoreProtocol {
     self.testCase.prepare()
     
     var locationStatus = false
-    var locationStores: [BEStore]? = nil
-    self.testCase.getCoreService()?.getStoresAtLocation(coordinate: coordinate, storeClass: storeClass, handler: { (success, stores, error) in
+    var locationStores: [BEStoreProtocol]? = nil
+    self.testCase.getCoreService()?.getStoresAtLocation(coordinate: coordinate, version: version, storeClass: storeClass, handler: { (success, stores, error) in
       
       locationStatus = success
       locationStores = stores

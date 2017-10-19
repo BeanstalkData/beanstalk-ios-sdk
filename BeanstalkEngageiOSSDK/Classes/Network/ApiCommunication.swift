@@ -1235,21 +1235,25 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   
   //MARK: - Locations
   
-  open func getStoresAtLocation <StoreClass: BEStore> (_ longitude: String?, latitude: String?, token : String?, storeClass: StoreClass.Type, handler: @escaping (Result<[BEStore]?>) -> Void) {
+  open func getStoresAtLocation <StoreClass> (_ longitude: String?, latitude: String?, token : String?, version: String? = nil, storeClass: StoreClass.Type, handler: @escaping (Result<[BEStoreProtocol]?>) -> Void) where StoreClass: BEStoreProtocol {
     
     if (isOnline()) {
       
       var params = Dictionary<String, String>()
-      if longitude != nil {
-        params["long"] = longitude!
+      if let longitude = longitude {
+        params["long"] = longitude
       }
       
-      if latitude != nil {
-        params["lat"] = latitude!
+      if let latitude = latitude{
+        params["lat"] = latitude
       }
       
-      if (token != nil) {
-        params["token"] = token!
+      if let token = token {
+        params["token"] = token
+      }
+      
+      if let version = version {
+        params["version"] = version
       }
       
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdStores/locate?key=" + self.apiKey, method: .get, parameters: params)

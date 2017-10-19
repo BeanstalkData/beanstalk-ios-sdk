@@ -22,7 +22,7 @@
 		13F4F9433DD2478E4A12FEA79D38C37F /* BELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF99A9628EC5946A843624412DEA246 /* BELocalization.swift */; };
 		1674976E5691AC6C3F018C2E42683218 /* ObjectMapper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F6FC17A52F8F2C2D69495E5F07C6E18 /* ObjectMapper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17E7E62102D200AFE11B049F570C9397 /* PKHUDErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C92BD149E41691EE687CBA6CEA88E /* PKHUDErrorView.swift */; };
-		17F9584EA6C6228331A0029B7CECA305 /* BEStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389702F41AA770572403FA6960C8FFF9 /* BEStore.swift */; };
+		17F9584EA6C6228331A0029B7CECA305 /* BEStoreV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389702F41AA770572403FA6960C8FFF9 /* BEStoreV2.swift */; };
 		1859D469E375C808B36D7689CADB9D0F /* BeanstalkEngageiOSSDK.common-Testing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FE9429B78BCF6C9AD0F2AC1705F5685 /* BeanstalkEngageiOSSDK.common-Testing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1929F91EB38B923FBFA0B2F53C0C4877 /* PKHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B0C08B0CB16B845C1A55803579755F93 /* PKHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		19543AD7B52A932B4998A6CAA515F0D2 /* SupportRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ADB79A20ADDEF9F70AA69747819BE1 /* SupportRequest.swift */; };
@@ -128,6 +128,12 @@
 		8491440E494CAAAE6DB2EA1D8D215903 /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7508EF07E38E15631845E921E4769269 /* ImmutableMappable.swift */; };
 		85B8C4FB841232C50313730A99245517 /* BEGiftCardBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625FF50437D36F0CC9A441D0D3EA4BA /* BEGiftCardBalance.swift */; };
 		869B25CDDA4D1BDA81A495A23D43E108 /* PKHUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52B0D65E1F97B53469E0D27B8C8F763 /* PKHUDAssets.swift */; };
+		899A636B1F97E826004D2B03 /* BEStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A636A1F97E826004D2B03 /* BEStoreProtocol.swift */; };
+		899A636C1F97E826004D2B03 /* BEStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A636A1F97E826004D2B03 /* BEStoreProtocol.swift */; };
+		899A636E1F97E84D004D2B03 /* BEOpeningHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A636D1F97E84C004D2B03 /* BEOpeningHour.swift */; };
+		899A636F1F97E84D004D2B03 /* BEOpeningHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A636D1F97E84C004D2B03 /* BEOpeningHour.swift */; };
+		899A63711F97EC22004D2B03 /* BEStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A63701F97EC22004D2B03 /* BEStore.swift */; };
+		899A63721F97EC22004D2B03 /* BEStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A63701F97EC22004D2B03 /* BEStore.swift */; };
 		89C4ADD534D41DF5442F67D799B8E12B /* PKHUDSystemActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A64D7E7174E72D0118E7E281A147336 /* PKHUDSystemActivityIndicatorView.swift */; };
 		8D26FB90819D1A18462DE86CF36FCFCF /* Pods-BeanstalkEngageiOSSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F73B530CC503FF9C1BFAE6EF8425838E /* Pods-BeanstalkEngageiOSSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DE2747A20B08C031B00EF0F73B09E35 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFE59075E0379FB862B0A1CAE524A8C /* CoreTelephony.framework */; };
@@ -135,7 +141,7 @@
 		8E40D8C5F92533F55591416C93D10F7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BCCA8DCB20E1768E056DB191F9877E4 /* Foundation.framework */; };
 		8F4204739743C1A20A35C4E8763236CA /* CardBalanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF8F18491109505749DA73E46D4F527 /* CardBalanceResponse.swift */; };
 		8F46A5E6F7671EA5EA201315E3A799E6 /* IntegerOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F13A5DB241E1790928CC697C41F9ADF /* IntegerOperators.swift */; };
-		900513B08A27A03470C1D8B4A40F998E /* BEStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389702F41AA770572403FA6960C8FFF9 /* BEStore.swift */; };
+		900513B08A27A03470C1D8B4A40F998E /* BEStoreV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389702F41AA770572403FA6960C8FFF9 /* BEStoreV2.swift */; };
 		923F6958C8E17F3C8E4E6759050BF206 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2D4713E6EF9DFF681BE616E644E3A4 /* LocationTracker.swift */; };
 		950A2AE1C1F544B20BFF157075A1EA21 /* ContactRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A3A90EDFC0C1F34BBDD81A3903448F /* ContactRequestResponse.swift */; };
 		96C8233EAA6793B817F54BB53B48DD3F /* AuthenticateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F614CAB90015AD15D1E05A3EBD8DBB /* AuthenticateResponse.swift */; };
@@ -421,7 +427,7 @@
 		0928780CDCA88F721D9188C903A7B65F /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		09897C579D1B430F6D2506BD0518C450 /* BETransaction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BETransaction.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BETransaction.swift; sourceTree = "<group>"; };
 		0A6FC246E7051706C054E25107D07813 /* BESessionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BESessionTests.swift; path = BeanstalkEngageiOSSDK/Tests/BESessionTests.swift; sourceTree = "<group>"; };
-		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
+		0B07C17030A63FCAC139E52838F786C8 /* libPhoneNumber-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "libPhoneNumber-iOS.modulemap"; sourceTree = "<group>"; };
 		0B421C6840921ADE9AD67D0551EAEC8A /* NBMetadataCoreTestMapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataCoreTestMapper.h; path = libPhoneNumber/NBMetadataCoreTestMapper.h; sourceTree = "<group>"; };
 		0BF1F7D23952BC51F821E87E39F5542D /* NBAsYouTypeFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBAsYouTypeFormatter.m; path = libPhoneNumber/NBAsYouTypeFormatter.m; sourceTree = "<group>"; };
 		0C61560308CBFF453C2940CA2CCA9366 /* BELocalizablesTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BELocalizablesTests.swift; path = BeanstalkEngageiOSSDK/Tests/BELocalizablesTests.swift; sourceTree = "<group>"; };
@@ -430,8 +436,8 @@
 		0FB7745DF83E2D83F865DA984517C863 /* BELocKeyProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BELocKeyProtocol.swift; path = BeanstalkEngageiOSSDK/Classes/Localizables/BELocKeyProtocol.swift; sourceTree = "<group>"; };
 		110E9B05B928F99D0EA61987DD0D1D9C /* BERespondersHolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BERespondersHolder.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BERespondersHolder.swift; sourceTree = "<group>"; };
 		12E3D2FEA28C01C8991AAB99586CDDF7 /* NBMetadataHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBMetadataHelper.m; path = libPhoneNumber/NBMetadataHelper.m; sourceTree = "<group>"; };
-		134EFF47C473C3360BC509592DD70BDA /* AlamofireObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AlamofireObjectMapper.modulemap; sourceTree = "<group>"; };
-		143DC65EE3A3761BBA6148E2A2353603 /* BeanstalkEngageiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BeanstalkEngageiOSSDK.framework; path = "BeanstalkEngageiOSSDK.common-Testing.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		134EFF47C473C3360BC509592DD70BDA /* AlamofireObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AlamofireObjectMapper.modulemap; sourceTree = "<group>"; };
+		143DC65EE3A3761BBA6148E2A2353603 /* BeanstalkEngageiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeanstalkEngageiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1455FFFC88F755A6E72F8F0534F9E1FE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15379A9AF1C4E64798260826CCC4E09A /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		178F92D2737605DC47FC0A79274535FA /* libPhoneNumber-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "libPhoneNumber-iOS-dummy.m"; sourceTree = "<group>"; };
@@ -445,7 +451,7 @@
 		222F833EC884484508E94BC103760F81 /* BeanstalkEngageiOSSDK.common.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BeanstalkEngageiOSSDK.common.xcconfig; sourceTree = "<group>"; };
 		2238292024DB62F2EF4FAACA6173E832 /* NBNumberFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBNumberFormat.h; path = libPhoneNumber/NBNumberFormat.h; sourceTree = "<group>"; };
 		2298C574B990BEC7C5EB01D734F6C3B6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2385CD799C5937C86A20698CF7D72486 /* Pods-BeanstalkEngageiOSSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BeanstalkEngageiOSSDK_Example.modulemap"; sourceTree = "<group>"; };
+		2385CD799C5937C86A20698CF7D72486 /* Pods-BeanstalkEngageiOSSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BeanstalkEngageiOSSDK_Example.modulemap"; sourceTree = "<group>"; };
 		240264DD610568F575A7874319CB28CC /* libPhoneNumber-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "libPhoneNumber-iOS-prefix.pch"; sourceTree = "<group>"; };
 		245FFC70A7736B432BDD85EAA6DAEA38 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		24A859E524162F92DBCDF971B8D28600 /* ObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ObjectMapper-dummy.m"; sourceTree = "<group>"; };
@@ -461,10 +467,10 @@
 		338A64833BA28119CE69FFCE1EA17D17 /* BELoyaltyUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BELoyaltyUser.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BELoyaltyUser.swift; sourceTree = "<group>"; };
 		3426D806C0BB560FB35995B31B340BB8 /* NBMetadataCoreTestMapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBMetadataCoreTestMapper.m; path = libPhoneNumber/NBMetadataCoreTestMapper.m; sourceTree = "<group>"; };
 		347F92C807EEB312D3EAD7A415069BBC /* CheckContactResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckContactResponse.swift; sourceTree = "<group>"; };
-		389702F41AA770572403FA6960C8FFF9 /* BEStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEStore.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEStore.swift; sourceTree = "<group>"; };
-		38AE1B558D82E99037B99BFCB937618C /* Pods-BeanstalkEngageiOSSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-BeanstalkEngageiOSSDK_Tests.modulemap"; sourceTree = "<group>"; };
+		389702F41AA770572403FA6960C8FFF9 /* BEStoreV2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEStoreV2.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEStoreV2.swift; sourceTree = "<group>"; };
+		38AE1B558D82E99037B99BFCB937618C /* Pods-BeanstalkEngageiOSSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BeanstalkEngageiOSSDK_Tests.modulemap"; sourceTree = "<group>"; };
 		39EDDE352D9E2BBE9CD659FCF24B7104 /* PKHUDAnimating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimating.swift; path = PKHUD/PKHUDAnimating.swift; sourceTree = "<group>"; };
-		3AE263FFBD706F86D5E11E76F6C548E0 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PKHUD.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE263FFBD706F86D5E11E76F6C548E0 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE5D7EEB1FCC8EFC46B4510A92F3047 /* BEContact.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEContact.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEContact.swift; sourceTree = "<group>"; };
 		3CCAA105398C913830ECB34B30807A64 /* CCTestingUserDefaults.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CCTestingUserDefaults.xcconfig; sourceTree = "<group>"; };
 		3D26412BCCC68DC7E5F313D0D79FEB7A /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,7 +485,7 @@
 		4BF8F18491109505749DA73E46D4F527 /* CardBalanceResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardBalanceResponse.swift; sourceTree = "<group>"; };
 		4D2BCB17DEDEC01F32F64DF2CDE868B0 /* BEBaseTestsMetadataProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEBaseTestsMetadataProtocol.swift; path = BeanstalkEngageiOSSDK/Tests/BEBaseTestsMetadataProtocol.swift; sourceTree = "<group>"; };
 		5128CE7FDEB39E7CB135090B8BD7CC41 /* ApiCommunication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ApiCommunication.swift; path = BeanstalkEngageiOSSDK/Classes/Network/ApiCommunication.swift; sourceTree = "<group>"; };
-		534E1F994EF1EED87E34169D0AF6C89B /* BeanstalkEngageiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BeanstalkEngageiOSSDK.framework; path = BeanstalkEngageiOSSDK.common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		534E1F994EF1EED87E34169D0AF6C89B /* BeanstalkEngageiOSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeanstalkEngageiOSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		542820DC9AFECFC8F04051707ACE0676 /* PKHUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUD.swift; path = PKHUD/PKHUD.swift; sourceTree = "<group>"; };
 		56D7E9699C0CB3E1F47F6D5792943483 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		57D91147913E7F324C3DFD7EFC1C83C4 /* Pods-BeanstalkEngageiOSSDK_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeanstalkEngageiOSSDK_Tests-resources.sh"; sourceTree = "<group>"; };
@@ -510,7 +516,7 @@
 		74ADDD11648E2E65D518EA08C9EB7DD3 /* TransformOperators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformOperators.swift; path = Sources/TransformOperators.swift; sourceTree = "<group>"; };
 		7508EF07E38E15631845E921E4769269 /* ImmutableMappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImmutableMappable.swift; path = Sources/ImmutableMappable.swift; sourceTree = "<group>"; };
 		76A9D3C9B8C9496AF9071BE13ADD9C0C /* BESessionProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BESessionProtocol.swift; sourceTree = "<group>"; };
-		76E20D508470D839297D287495D192AB /* CCTestingUserDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CCTestingUserDefaults.framework; path = CCTestingUserDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76E20D508470D839297D287495D192AB /* CCTestingUserDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CCTestingUserDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FBAAE8D0D400973CD2BCBE45C92787 /* NBPhoneNumberDefines.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumberDefines.m; path = libPhoneNumber/NBPhoneNumberDefines.m; sourceTree = "<group>"; };
 		7A2FEA06287EB23682F5A32E7FF8E684 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A64D7E7174E72D0118E7E281A147336 /* PKHUDSystemActivityIndicatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDSystemActivityIndicatorView.swift; path = PKHUD/PKHUDSystemActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -525,27 +531,30 @@
 		84C7F78F31AFA0626D06926287DEA63A /* Pods-BeanstalkEngageiOSSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeanstalkEngageiOSSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8586F87E683D4FAB5660D1A7C8ABA71B /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		881C92BD149E41691EE687CBA6CEA88E /* PKHUDErrorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDErrorView.swift; path = PKHUD/PKHUDErrorView.swift; sourceTree = "<group>"; };
+		899A636A1F97E826004D2B03 /* BEStoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEStoreProtocol.swift; sourceTree = "<group>"; };
+		899A636D1F97E84C004D2B03 /* BEOpeningHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEOpeningHour.swift; sourceTree = "<group>"; };
+		899A63701F97EC22004D2B03 /* BEStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BEStore.swift; sourceTree = "<group>"; };
 		89C007F13B4711A87EC5F4D7C6373227 /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A7F0737E6E3F52F70E5CE1332BC106A /* BEStoresTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEStoresTests.swift; path = BeanstalkEngageiOSSDK/Tests/BEStoresTests.swift; sourceTree = "<group>"; };
 		8A908A65D8DF1465BE7A0B19E42F48BA /* Pods-BeanstalkEngageiOSSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BeanstalkEngageiOSSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		8BCC821FA2806F7EC4CA506C47B1AEA9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C1D81F0C67DA81BFF1D4BCDDB3F850E /* BeanstalkEngageiOSSDK.common-Testing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "BeanstalkEngageiOSSDK.common-Testing-dummy.m"; path = "../BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-dummy.m"; sourceTree = "<group>"; };
-		8C244A0FEB47AB0730924DB9F1EDDA92 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C5DD49702F6CBC354667D0D91E1FFFE /* BeanstalkEngageiOSSDK.common-Testing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "BeanstalkEngageiOSSDK.common-Testing.modulemap"; path = "../BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap"; sourceTree = "<group>"; };
+		8C244A0FEB47AB0730924DB9F1EDDA92 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5DD49702F6CBC354667D0D91E1FFFE /* BeanstalkEngageiOSSDK.common-Testing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "BeanstalkEngageiOSSDK.common-Testing.modulemap"; path = "../BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap"; sourceTree = "<group>"; };
 		8C8D4DEEC155A8D3D914682EECF92352 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB5DB2C069E13821FE71C2E4805AA37 /* MockDataGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockDataGenerator.swift; path = BeanstalkEngageiOSSDK/Classes/Network/MockDataGenerator.swift; sourceTree = "<group>"; };
 		90A7D6D7C23ABD12258E67C7D8D5C18A /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F70D7721309CBB598F27715375FB40 /* Pods-BeanstalkEngageiOSSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BeanstalkEngageiOSSDK_Example-umbrella.h"; sourceTree = "<group>"; };
 		91C54F9749BE86FE1E10DDA8CFDC96B4 /* BERequestValidatorProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BERequestValidatorProtocol.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		950CD6CB7DE89C3160BC87FBD2DD43E9 /* PushNotificationResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PushNotificationResponse.swift; sourceTree = "<group>"; };
 		961F5B95789F92E87535575C894F808B /* BECoupon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BECoupon.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BECoupon.swift; sourceTree = "<group>"; };
-		974BE4859BBA05C18387C3D110B802B3 /* BeanstalkEngageiOSSDK.common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = BeanstalkEngageiOSSDK.common.modulemap; sourceTree = "<group>"; };
+		974BE4859BBA05C18387C3D110B802B3 /* BeanstalkEngageiOSSDK.common.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BeanstalkEngageiOSSDK.common.modulemap; sourceTree = "<group>"; };
 		9861E923A646461C53A94F8C2796F773 /* HexColorTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColorTransform.swift; path = Sources/HexColorTransform.swift; sourceTree = "<group>"; };
 		99ADB79A20ADDEF9F70AA69747819BE1 /* SupportRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupportRequest.swift; sourceTree = "<group>"; };
 		9C61FF97CAE9D0FB05E8F598C66D9E5F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9E77C1B3A92EE52191F9FE049FC1A093 /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BeanstalkEngageiOSSDK_Example.framework; path = "Pods-BeanstalkEngageiOSSDK_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FEF622F8058F35C937C35F07A52FE6B /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ObjectMapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E77C1B3A92EE52191F9FE049FC1A093 /* Pods_BeanstalkEngageiOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FEF622F8058F35C937C35F07A52FE6B /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0910D667AF450E4D01E42C1B3FE5E0C /* TrackTransactionResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TrackTransactionResponse.swift; sourceTree = "<group>"; };
 		A33A648A64D1F088538A0E7B5A27AC82 /* PKHUDWideBaseView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDWideBaseView.swift; path = PKHUD/PKHUDWideBaseView.swift; sourceTree = "<group>"; };
 		A3AD1332C2131C4F3B023E5A3B7453D1 /* BEAsyncTestCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEAsyncTestCase.swift; path = BeanstalkEngageiOSSDK/Tests/BEAsyncTestCase.swift; sourceTree = "<group>"; };
@@ -558,14 +567,14 @@
 		AEC1835477B7EC49A157BC5CF00C9C81 /* DataTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataTransform.swift; path = Sources/DataTransform.swift; sourceTree = "<group>"; };
 		B0893EE556C26964F36AAE24858C688C /* Mappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mappable.swift; path = Sources/Mappable.swift; sourceTree = "<group>"; };
 		B0C08B0CB16B845C1A55803579755F93 /* PKHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-umbrella.h"; sourceTree = "<group>"; };
-		B189FDC0FA35C2EC49D1D9930BF6A6E1 /* PKHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PKHUD.modulemap; sourceTree = "<group>"; };
+		B189FDC0FA35C2EC49D1D9930BF6A6E1 /* PKHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PKHUD.modulemap; sourceTree = "<group>"; };
 		B1B48B6C26FF8F03D2401346DFE7B0DF /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
 		B2024DFE982524BE262D7D039C450223 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		B24BDE92134DCA117619283961E4B92F /* Pods_BeanstalkEngageiOSSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BeanstalkEngageiOSSDK_Tests.framework; path = "Pods-BeanstalkEngageiOSSDK_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24BDE92134DCA117619283961E4B92F /* Pods_BeanstalkEngageiOSSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeanstalkEngageiOSSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B449F8B11ABE00C12185E36007F0A716 /* NBPhoneNumberUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumberUtil.h; path = libPhoneNumber/NBPhoneNumberUtil.h; sourceTree = "<group>"; };
-		B5D122E030C66BBC714BBF7330A3EBAC /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = BeanstalkEngageiOSSDK/Localizables/en.lproj; sourceTree = "<group>"; };
+		B5D122E030C66BBC714BBF7330A3EBAC /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = BeanstalkEngageiOSSDK/Localizables/en.lproj; sourceTree = "<group>"; };
 		B605802C40D0BA6E0D2915911362E748 /* NBPhoneNumber.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NBPhoneNumber.m; path = libPhoneNumber/NBPhoneNumber.m; sourceTree = "<group>"; };
-		B8E748B6473CEE58155AEF24EF1A2334 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlamofireObjectMapper.framework; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8E748B6473CEE58155AEF24EF1A2334 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA706B8BF61B60472171C70388D77D6F /* BEGiftCardsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEGiftCardsTests.swift; path = BeanstalkEngageiOSSDK/Tests/BEGiftCardsTests.swift; sourceTree = "<group>"; };
 		BA786ABF359EC3147F54DD364830BE63 /* PKHUDAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimation.swift; path = PKHUD/PKHUDAnimation.swift; sourceTree = "<group>"; };
 		BC8DF252E71662BDC53CF392B549D69F /* NSDecimalNumberTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSDecimalNumberTransform.swift; path = Sources/NSDecimalNumberTransform.swift; sourceTree = "<group>"; };
@@ -589,15 +598,15 @@
 		D3390B6162BB477A2C8CE89315C2E943 /* BeanstalkEngageiOSSDK.common-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BeanstalkEngageiOSSDK.common-dummy.m"; sourceTree = "<group>"; };
 		D5A968B043A80D4E9EF5802264322BFA /* AlamofireObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireObjectMapper-umbrella.h"; sourceTree = "<group>"; };
 		D69290076B3AAAC45CACE446BF677211 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		D6C847A8526CBFF4148C953BA2FF62F9 /* ObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ObjectMapper.modulemap; sourceTree = "<group>"; };
+		D6C847A8526CBFF4148C953BA2FF62F9 /* ObjectMapper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ObjectMapper.modulemap; sourceTree = "<group>"; };
 		D705C82FD4DC2E0FB90728D0A6BE6E8A /* LocationTrackerError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationTrackerError.swift; sourceTree = "<group>"; };
 		D768F1AC097D63CA606AB0BD3C347000 /* Pods-BeanstalkEngageiOSSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeanstalkEngageiOSSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
 		D801E32A6D55C072AC65FEB19879C340 /* FromJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FromJSON.swift; path = Sources/FromJSON.swift; sourceTree = "<group>"; };
 		D817B1DED8CD83EAB96598AF11E97A69 /* DictionaryTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DictionaryTransform.swift; path = Sources/DictionaryTransform.swift; sourceTree = "<group>"; };
 		DACBB0C5AD45A7E5D0BF0C5F6A7E4BC2 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		DB6D3256A4159486DA1E875BBE6F4ED4 /* Pods-BeanstalkEngageiOSSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BeanstalkEngageiOSSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		DC3F9B3ECAFEBC51DF4BA1F91732FD5C /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		DE9BE3E9F12DA1C0A75D05B619BAB1F7 /* CCTestingUserDefaults.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CCTestingUserDefaults.modulemap; sourceTree = "<group>"; };
+		DC3F9B3ECAFEBC51DF4BA1F91732FD5C /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		DE9BE3E9F12DA1C0A75D05B619BAB1F7 /* CCTestingUserDefaults.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CCTestingUserDefaults.modulemap; sourceTree = "<group>"; };
 		DFC8BD33474710AAB5A3855CC5962C62 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10FB0245250984D6CCF96F1B50A7370 /* BEBalanceAmount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEBalanceAmount.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEBalanceAmount.swift; sourceTree = "<group>"; };
 		E1E4313F9F6E676E0AF8F51AE41ED755 /* Pods-BeanstalkEngageiOSSDK_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeanstalkEngageiOSSDK_Example-resources.sh"; sourceTree = "<group>"; };
@@ -607,7 +616,7 @@
 		EC7774874F433E48BD507780955D9760 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		ECF99A9628EC5946A843624412DEA246 /* BELocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BELocalization.swift; path = BeanstalkEngageiOSSDK/Classes/Localizables/BELocalization.swift; sourceTree = "<group>"; };
 		EEAF9CFBEAC99509B1674254E14BFFCC /* ToJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToJSON.swift; path = Sources/ToJSON.swift; sourceTree = "<group>"; };
-		EF18BE65BEDDF9103954AE04B93202A6 /* libPhoneNumber_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = libPhoneNumber_iOS.framework; path = "libPhoneNumber-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF18BE65BEDDF9103954AE04B93202A6 /* libPhoneNumber_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = libPhoneNumber_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF21F134D4B50E2BDFE053783374406C /* AlamofireObjectMapper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireObjectMapper.xcconfig; sourceTree = "<group>"; };
 		EF2E742B8D3A2090E9DCA2687A3E3DF7 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "BeanstalkEngageiOSSDK.common-Testing.xcconfig"; path = "../BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.xcconfig"; sourceTree = "<group>"; };
 		EF3BFA769A932B54EF7BAACF1ECC943A /* NBAsYouTypeFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBAsYouTypeFormatter.h; path = libPhoneNumber/NBAsYouTypeFormatter.h; sourceTree = "<group>"; };
@@ -816,7 +825,6 @@
 				15379A9AF1C4E64798260826CCC4E09A /* Validation.swift */,
 				BA8EE6751333705D20159F3CE426FEA2 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -848,7 +856,6 @@
 				699A83EF0AFA60982FEE17CBFDFB3094 /* URLTransform.swift */,
 				C945AE338E937330557CCDDA9C0A7ED0 /* Support Files */,
 			);
-			name = ObjectMapper;
 			path = ObjectMapper;
 			sourceTree = "<group>";
 		};
@@ -859,7 +866,6 @@
 				0D62AF1791A3831F1FDF1ED71CB726B0 /* CCTestingUserDefaults.m */,
 				1C8FC94B50624D219E10314BCF141948 /* Support Files */,
 			);
-			name = CCTestingUserDefaults;
 			path = CCTestingUserDefaults;
 			sourceTree = "<group>";
 		};
@@ -872,9 +878,12 @@
 				5D6D795CCEEF694041094E6C6682B9DA /* BEGiftCard.swift */,
 				6625FF50437D36F0CC9A441D0D3EA4BA /* BEGiftCardBalance.swift */,
 				338A64833BA28119CE69FFCE1EA17D17 /* BELoyaltyUser.swift */,
+				899A636D1F97E84C004D2B03 /* BEOpeningHour.swift */,
 				FC98DB03F860C055F0D77F1A38490F0E /* BEPushNotificationMessage.swift */,
 				110E9B05B928F99D0EA61987DD0D1D9C /* BERespondersHolder.swift */,
-				389702F41AA770572403FA6960C8FFF9 /* BEStore.swift */,
+				899A63701F97EC22004D2B03 /* BEStore.swift */,
+				389702F41AA770572403FA6960C8FFF9 /* BEStoreV2.swift */,
+				899A636A1F97E826004D2B03 /* BEStoreProtocol.swift */,
 				09897C579D1B430F6D2506BD0518C450 /* BETransaction.swift */,
 			);
 			name = Model;
@@ -886,7 +895,6 @@
 				BE51546EE083390488602B1AF8901F86 /* AlamofireObjectMapper.swift */,
 				9ACCA923ABFE1A7A29725DBE0191F5F7 /* Support Files */,
 			);
-			name = AlamofireObjectMapper;
 			path = AlamofireObjectMapper;
 			sourceTree = "<group>";
 		};
@@ -1160,7 +1168,6 @@
 				447DBDBA0FEBAF8BC7E6D844B8D209B7 /* NBPhoneNumberUtil.m */,
 				7253AB085D3646820A1B01499C1B1799 /* Support Files */,
 			);
-			name = "libPhoneNumber-iOS";
 			path = "libPhoneNumber-iOS";
 			sourceTree = "<group>";
 		};
@@ -1247,7 +1254,6 @@
 				607141C840A717D7706D7CA094EB38D4 /* Resources */,
 				8C02C9D819774500B3A424D7423A2EF6 /* Support Files */,
 			);
-			name = PKHUD;
 			path = PKHUD;
 			sourceTree = "<group>";
 		};
@@ -1651,8 +1657,10 @@
 				96C8233EAA6793B817F54BB53B48DD3F /* AuthenticateResponse.swift in Sources */,
 				121896656ACD80E1F79D09F1C29FF453 /* BEAccountTests.swift in Sources */,
 				978AFD217D17A9274BE70F91F51C3584 /* BeanstalkEngageiOSSDK.common-Testing-dummy.m in Sources */,
+				899A63721F97EC22004D2B03 /* BEStore.swift in Sources */,
 				6316F469F2524D5C1FD423C455486192 /* BEAsyncTestCase.swift in Sources */,
 				2BCEC77E62732C721A2C62D14E1731DA /* BEBalanceAmount.swift in Sources */,
+				899A636C1F97E826004D2B03 /* BEStoreProtocol.swift in Sources */,
 				AD04247DC3827E575105596EB6FF6052 /* BEBaseTestCase.swift in Sources */,
 				DCC05AD330D5E092E6F58CABADB6AB4D /* BEBaseTestsMetadataProtocol.swift in Sources */,
 				0C516CDF8CB75D51DBBE7556633F631B /* BEContact.swift in Sources */,
@@ -1675,7 +1683,7 @@
 				4A27F91886FF2707FA80C18725908432 /* BESession.swift in Sources */,
 				F8E0692817CB989C9A4F9C58A5841104 /* BESessionProtocol.swift in Sources */,
 				C7581A85174E9BE4D7241D16A736C201 /* BESessionTests.swift in Sources */,
-				17F9584EA6C6228331A0029B7CECA305 /* BEStore.swift in Sources */,
+				17F9584EA6C6228331A0029B7CECA305 /* BEStoreV2.swift in Sources */,
 				4D320A6F1B4431EF3C631223D145ED7C /* BEStoresTests.swift in Sources */,
 				F760B4610E44E7E13CA3A2E9C385C95D /* BETransaction.swift in Sources */,
 				74BF4ADEBF058C41B699ACC150AA7DBD /* CardBalanceResponse.swift in Sources */,
@@ -1687,6 +1695,7 @@
 				2D81D5097C2804D9E573BB67AF4D86C5 /* CouponResponse.swift in Sources */,
 				25AB172E6490DC6F4DDD3BC5430F0DDB /* GiftCardsResponse.swift in Sources */,
 				923F6958C8E17F3C8E4E6759050BF206 /* LocationTracker.swift in Sources */,
+				899A636F1F97E84D004D2B03 /* BEOpeningHour.swift in Sources */,
 				B052E41637F7EE834D65F1812D13E4EF /* LocationTrackerError.swift in Sources */,
 				EC108E938C89AEB185DC3C4C74D6B810 /* MockDataGenerator.swift in Sources */,
 				5456322ACCE4208760AEFAB570BE3168 /* PaymentResponse.swift in Sources */,
@@ -1814,6 +1823,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899A63711F97EC22004D2B03 /* BEStore.swift in Sources */,
 				CBCC4D787342DA74FD2D94FD0D921486 /* AlamofireSessionManager.swift in Sources */,
 				EFD38CF7209DCB0657B4CE5BC173D12F /* ApiCommunication.swift in Sources */,
 				63CBB8A83D7B030584526BA912A3C4BB /* ApiError.swift in Sources */,
@@ -1834,7 +1844,7 @@
 				30F3B5F75F8C33338EA512337CF8A9CC /* BERespondersHolder.swift in Sources */,
 				5A37BAAE36CB357C9C5A8F12E6115108 /* BESession.swift in Sources */,
 				E65D95E032D4660A90C9AE7C9CB4BC7D /* BESessionProtocol.swift in Sources */,
-				900513B08A27A03470C1D8B4A40F998E /* BEStore.swift in Sources */,
+				900513B08A27A03470C1D8B4A40F998E /* BEStoreV2.swift in Sources */,
 				691FC5B9A230062DE8642DB66A259D3A /* BETransaction.swift in Sources */,
 				8F4204739743C1A20A35C4E8763236CA /* CardBalanceResponse.swift in Sources */,
 				1A76F78DF4879C1A1DDC95EA0D6105CA /* CheckContactResponse.swift in Sources */,
@@ -1844,6 +1854,7 @@
 				24A611FA73A320828BFA4E448892791B /* CoreService.swift in Sources */,
 				A1C1B359FD06AC9B91F7F1F38FC184F0 /* CouponResponse.swift in Sources */,
 				C7692094DBA0B899083E5216CC254BA0 /* GiftCardsResponse.swift in Sources */,
+				899A636B1F97E826004D2B03 /* BEStoreProtocol.swift in Sources */,
 				B3F079DF68CE9D007E918937C4F426D4 /* LocationTracker.swift in Sources */,
 				53F811D1BB27D91FD04CE33FA1895095 /* LocationTrackerError.swift in Sources */,
 				706840997D2CBBCA6F3FD28A5B5D0AAD /* MockDataGenerator.swift in Sources */,
@@ -1852,6 +1863,7 @@
 				506AF6C86F390252F6D9DE122D42BF89 /* RewardsCountResponse.swift in Sources */,
 				AFCCFA75C0AAC9C22825DAFC74E82BAF /* ServerErrorResponse.swift in Sources */,
 				FBE6BD79A93A282A3E4315B400806D62 /* ServerResponse.swift in Sources */,
+				899A636E1F97E84D004D2B03 /* BEOpeningHour.swift in Sources */,
 				9A7D5852B471456627EEA49958A6DC3B /* StoresResponse.swift in Sources */,
 				D38431AFE2CE1DA8C1DF4EF9B93CDCAC /* StringExtensions copy.swift in Sources */,
 				19543AD7B52A932B4998A6CAA515F0D2 /* SupportRequest.swift in Sources */,

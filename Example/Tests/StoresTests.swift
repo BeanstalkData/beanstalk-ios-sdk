@@ -16,10 +16,14 @@ class StoresTests: BEStoresTests {
   }
   
   func testAllStores() {
-    _ = allStoresTest(BEStore.self)
+    _ = allStoresTest(version: nil, storeClass: BEStore.self)
   }
   
   func testStoresAtLocation() {
-    _ = allStoresAtLocationTest(BEStore.self)
+    _ = allStoresAtLocationTest(version: nil, storeClass: BEStore.self)
+  }
+  
+  func testAllStoresV2() {
+    _ = allStoresTest(version: "2", storeClass: BEStoreV2.self)
   }
 }
