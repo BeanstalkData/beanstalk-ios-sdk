@@ -84,9 +84,10 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     phone <- map["phone_number"]
     website <- map["website"]
     email <- map["email"]
+    timeZone <- map["time_zone"]
     
     var geoEnabledNumber: String?
-    geoEnabledNumber <- map["geoEnabled"]
+    geoEnabledNumber <- map["geo_enabled"]
     if (geoEnabledNumber != nil) {
       geoEnabled = (Int(geoEnabledNumber!) != 0)
     }
@@ -102,13 +103,17 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     address2 <- map["loc.address_2"]
     city <- map["loc.city"]
     state <- map["loc.state"]
-    zip <- map["loc.zip"]
+    zip <- (map["loc.zip"], TransformOf<Int, String>(fromJSON: { Int($0!) }, toJSON: { $0.map { String($0) } }))
     country <- map["loc.country"]
     
-    var coordinates: [String]?
+    var coordinates: [Double]?
     coordinates <- map["loc.coordinates"]
-    longitude = coordinates?.first
-    latitude = coordinates?.last
+    if let long = coordinates?.first {
+      longitude = String(format: "%.6f", long)
+    }
+    if let lat = coordinates?.last {
+      latitude = String(format: "%.6f", lat)
+    }
     
     var openHoursString: String?
     openHoursString <- map["hours"]

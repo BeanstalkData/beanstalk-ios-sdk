@@ -47,6 +47,15 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     self.subscribeForLocationTracking(relocateContactHandler: { _ in })
   }
   
+  public required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil, beanstalkUrl: String) {
+    self.apiService = ApiCommunication(apiKey: apiKey, apiUsername: apiUsername, beanstalkUrl: beanstalkUrl)
+    self.session = session
+    self.validator = BERequestValidator()
+    
+    self.locationTracker = LocationTracker()
+    self.subscribeForLocationTracking(relocateContactHandler: { _ in })
+  }
+  
   /**
    Returns current session model.
    */

@@ -31,11 +31,13 @@ public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
   return left.responder === right.responder
 }
 
+fileprivate let kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
+
 /**
  Contains majority of API calls. It is utilized by CoreService. Can be used directly.
  */
 open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
-  fileprivate let beanstalUrl = "proc.beanstalkdata.com"
+  
   fileprivate let BASE_URL: String
   fileprivate let apiKey: String
   fileprivate let apiUsername: String?
@@ -51,12 +53,12 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     return dateFormatter
   }()
   
-  public required init(apiKey: String, apiUsername: String? = nil) {
-    self.BASE_URL = "https://" + beanstalUrl
+  public required init(apiKey: String, apiUsername: String? = nil, beanstalkUrl: String = kDefaultBeanstalkUrl) {
     self.apiKey = apiKey
     self.apiUsername = apiUsername
+    self.BASE_URL = "https://" + beanstalkUrl
     
-    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: beanstalUrl)!
+    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: beanstalkUrl)!
     
     super.init()
     

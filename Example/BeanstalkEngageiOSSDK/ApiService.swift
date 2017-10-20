@@ -14,6 +14,10 @@ class ApiService: CoreService {
     super.init(apiKey: apiKey, session: session, apiUsername: apiUsername)
   }
   
+  required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil, beanstalkUrl: String) {
+    super.init(apiKey: apiKey, session: session, apiUsername: apiUsername, beanstalkUrl: beanstalkUrl)
+  }
+  
   func registerMyLoyaltyAccount (request: ContactRequest, handler: @escaping (Bool, BEErrorType?) -> Void) {
     registerLoyaltyAccount(request: request, contactClass: ContactModel.self, handler: handler)
   }

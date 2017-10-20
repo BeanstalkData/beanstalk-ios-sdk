@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-public protocol BEStoreProtocol: NSObjectProtocol {
+public protocol BEStoreProtocol: NSObjectProtocol, BaseMappable {
   var id: String? { get }
   var customerId: String? { get }
   var name: String? { get }
