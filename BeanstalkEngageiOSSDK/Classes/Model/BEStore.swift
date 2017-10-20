@@ -76,7 +76,7 @@ open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
     }
   }
   
-  open var openingHours: [Int: BEOpeningHour]? {
+  open var openingHours: BEOpeningWeekHours? {
     get {
       return nil
     }

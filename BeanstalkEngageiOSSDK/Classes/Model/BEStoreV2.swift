@@ -31,7 +31,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   fileprivate static let kTimeZone = "BEStoreV2_timeZone"
   fileprivate static let kName = "BEStoreV2_name"
   fileprivate static let kAddress2 = "BEStoreV2_address2"
-  fileprivate static let kOpeningHours = "BEStoreV2_openingHours"
+  fileprivate static let kOpeningWeekHours = "BEStoreV2_openingWeekHours"
   
   open var id: String?
   open var customerId: String?
@@ -54,7 +54,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   
   open var address2: String?
   
-  open var openingHours: [Int: BEOpeningHour]?
+  open var openingHours: BEOpeningWeekHours?
   
   open var openDate: Date? {
     get {
@@ -114,30 +114,9 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     if let lat = coordinates?.last {
       latitude = String(format: "%.6f", lat)
     }
-    
-    var openHoursString: String?
-    openHoursString <- map["hours"]
-    
-    guard let openDayComponents = openHoursString?.components(separatedBy: ",") else {
-      return
-    }
-    
-    openingHours = [Int: BEOpeningHour]()
-    
-    for openDayComponent in openDayComponents {
-      let openHourComponents = openDayComponent.components(separatedBy: ":")
-      if openHourComponents.count == 5 {
-        if let dayOfWeek = Int(openHourComponents[0]),
-          let fromHour = Int(openHourComponents[1]),
-          let fromMinute = Int(openHourComponents[2]),
-          let toHour = Int(openHourComponents[3]),
-          let toMinute = Int(openHourComponents[4]) {
-
-          let openingHour = BEOpeningHour(dayOfWeek: dayOfWeek, fromHour: fromHour, fromMinute: fromMinute, toHour: toHour, toMinute: toMinute)
-          openingHours?[dayOfWeek] = openingHour
-        }
-      }
-    }
+    var openingHoursString: String?
+    openingHoursString <- map["hours"]
+    openingHours = BEOpeningWeekHours(formattedString: openingHoursString)
   }
   
   //MARK: - NSCoding -
@@ -160,9 +139,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     self.timeZone = aDecoder.decodeObject(forKey: BEStoreV2.kTimeZone) as? String
     self.name = aDecoder.decodeObject(forKey: BEStoreV2.kName) as? String
     self.address2 = aDecoder.decodeObject(forKey: BEStoreV2.kAddress2) as? String
-    if let openingHours = aDecoder.decodeObject(forKey: BEStoreV2.kOpeningHours) as? Data {
-      self.openingHours = NSKeyedUnarchiver.unarchiveObject(with: openingHours) as? [Int: BEOpeningHour]
-    }
+    self.openingHours = aDecoder.decodeObject(forKey: BEStoreV2.kOpeningWeekHours) as? BEOpeningWeekHours
   }
   
   public func encode(with aCoder: NSCoder) {
@@ -184,10 +161,6 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     aCoder.encode(timeZone, forKey: BEStoreV2.kTimeZone)
     aCoder.encode(name, forKey: BEStoreV2.kName)
     aCoder.encode(address2, forKey: BEStoreV2.kAddress2)
-    if let openingHours = self.openingHours {
-      aCoder.encode(NSKeyedArchiver.archivedData(withRootObject: openingHours as NSDictionary), forKey: BEStoreV2.kOpeningHours)
-    } else {
-      aCoder.encode(nil, forKey: BEStoreV2.kOpeningHours)
-    }
+    aCoder.encode(openingHours, forKey: BEStoreV2.kOpeningWeekHours)
   }
 }

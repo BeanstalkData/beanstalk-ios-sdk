@@ -10,6 +10,7 @@ import CoreLocation
 
 public protocol BEBaseTestsMetadataProtocol: class {
   func getBeanstalkApiKey() -> String
+  func getBeanstalkUrl() -> String
   
   func getRegisteredUserEmail() -> String
   

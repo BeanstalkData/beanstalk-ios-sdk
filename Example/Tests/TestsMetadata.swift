@@ -14,6 +14,10 @@ class TestsMetadata: BEBaseTestsMetadataProtocol {
     return "1234-4321-ABCD-DCBA"
   }
   
+  internal func getBeanstalkUrl() -> String {
+    return "proc.beanstalkdata.com"
+  }
+  
   internal func getRegisteredUserEmail() -> String {
     return "pavel105@dp.net"
   }
