@@ -15,9 +15,20 @@ public class BEOpeningHour: NSObject, NSCoding {
   fileprivate static let kToHour = "BEOpeningHour_toHour"
   fileprivate static let kToMinute = "BEOpeningHour_toMinute"
   
+  /** dayOfWeek = day of the week –
+      1 – Sunday
+      2 – Monday
+      3 – Tuesday
+      4 – Wednesday
+      5 – Thursday
+      6 – Friday
+      7 – Saturday
+  */
   open let dayOfWeek: Int
+  // fromHour:fromMinute = opening time in 24-hour format
   open let fromHour: Int
   open let fromMinute: Int
+  // toHour:toMinute = closing time in 24-hour format
   open let toHour: Int
   open let toMinute: Int
   
