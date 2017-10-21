@@ -27,9 +27,9 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
 
   fileprivate static let kOpeningHours = "BEOpeningWeekHours_openingHours"
   
-  open var openingHours: [Int: [BEOpeningHour]]?
+  open var openingHours: [Int: BEOpeningDayHour]?
   
-  init(openingHours: [Int: [BEOpeningHour]]?) {
+  init(openingHours: [Int: BEOpeningDayHour]?) {
     self.openingHours = openingHours
   }
   
@@ -38,7 +38,7 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
       return
     }
     
-    self.openingHours = [Int: [BEOpeningHour]]()
+    self.openingHours = [Int: BEOpeningDayHour]()
     
     for openDayComponent in openDayComponents {
       let openHourComponents = openDayComponent.components(separatedBy: ":")
@@ -52,9 +52,9 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
           let openingHour = BEOpeningHour(dayOfWeek: dayOfWeek, fromHour: fromHour, fromMinute: fromMinute, toHour: toHour, toMinute: toMinute)
           var openingHoursForDay = openingHours?[dayOfWeek]
           if openingHoursForDay == nil {
-            openingHoursForDay = [openingHour]
+            openingHoursForDay = BEOpeningDayHour([openingHour])
           } else {
-            openingHoursForDay?.append(openingHour)
+            openingHoursForDay?.openingHours.append(openingHour)
           }
           openingHours?[dayOfWeek] = openingHoursForDay
         }
@@ -65,13 +65,13 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
   //MARK: - NSCoding -
   required public init(coder aDecoder: NSCoder) {
     if let openingHours = aDecoder.decodeObject(forKey: BEOpeningWeekHours.kOpeningHours) as? Data {
-      self.openingHours = NSKeyedUnarchiver.unarchiveObject(with: openingHours) as? [Int: [BEOpeningHour]]
+      self.openingHours = NSKeyedUnarchiver.unarchiveObject(with: openingHours) as? [Int: BEOpeningDayHour]
     }
   }
   
   public func encode(with aCoder: NSCoder) {
     if let openingHours = self.openingHours {
-      aCoder.encode(NSKeyedArchiver.archivedData(withRootObject: openingHours as NSDictionary), forKey: BEOpeningWeekHours.kOpeningHours)
+      aCoder.encode(NSKeyedArchiver.archivedData(withRootObject: openingHours), forKey: BEOpeningWeekHours.kOpeningHours)
     } else {
       aCoder.encode(nil, forKey: BEOpeningWeekHours.kOpeningHours)
     }

@@ -3,37 +3,37 @@ PODS:
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - BeanstalkEngageiOSSDK (0.6.28):
-    - BeanstalkEngageiOSSDK/Core (= 0.6.28)
-  - BeanstalkEngageiOSSDK/Common (0.6.28):
+  - BeanstalkEngageiOSSDK (0.6.32):
+    - BeanstalkEngageiOSSDK/Core (= 0.6.32)
+  - BeanstalkEngageiOSSDK/Common (0.6.32):
     - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Localization
     - BeanstalkEngageiOSSDK/Vendor
     - libPhoneNumber-iOS
-  - BeanstalkEngageiOSSDK/Control (0.6.28):
+  - BeanstalkEngageiOSSDK/Control (0.6.32):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Core (0.6.28):
+  - BeanstalkEngageiOSSDK/Core (0.6.32):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Localization (0.6.28)
-  - BeanstalkEngageiOSSDK/Model (0.6.28):
+  - BeanstalkEngageiOSSDK/Localization (0.6.32)
+  - BeanstalkEngageiOSSDK/Model (0.6.32):
     - AlamofireObjectMapper (~> 4.1.0)
-  - BeanstalkEngageiOSSDK/Network (0.6.28):
+  - BeanstalkEngageiOSSDK/Network (0.6.32):
     - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Vendor
-  - BeanstalkEngageiOSSDK/Testing (0.6.28):
+  - BeanstalkEngageiOSSDK/Testing (0.6.32):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - CCTestingUserDefaults
-  - BeanstalkEngageiOSSDK/Vendor (0.6.28)
+  - BeanstalkEngageiOSSDK/Vendor (0.6.32)
   - CCTestingUserDefaults (0.1.2)
   - libPhoneNumber-iOS (0.9.10)
   - ObjectMapper (2.2.9)
@@ -51,7 +51,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  BeanstalkEngageiOSSDK: 61af768d37f5c46647ea88b20a4bc15ae1c00401
+  BeanstalkEngageiOSSDK: b26213ccdff94e94ddbf591d34628bc8206783f9
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
   libPhoneNumber-iOS: f721ae4d5854bce60934f9fb9b0b28e8e68913cb
   ObjectMapper: 63cfe41bc6f8e7c8f44344c49901b8ae7de14c52

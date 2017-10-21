@@ -42,26 +42,28 @@ public class BEOpeningHour: NSObject, NSCoding {
   
   //MARK: - NSCoding -
   required public init?(coder aDecoder: NSCoder) {
-    guard let dayOfWeek = aDecoder.decodeObject(forKey: BEOpeningHour.kDayOfWeek) as? Int,
-      let fromHour = aDecoder.decodeObject(forKey: BEOpeningHour.kFromHour) as? Int,
-      let fromMinute = aDecoder.decodeObject(forKey: BEOpeningHour.kFromMinute) as? Int,
-      let toHour = aDecoder.decodeObject(forKey: BEOpeningHour.kToHour) as? Int,
-      let toMinute = aDecoder.decodeObject(forKey: BEOpeningHour.kToMinute) as? Int else {
-        return nil
+    let dayOfWeek = aDecoder.decodeInt32(forKey: BEOpeningHour.kDayOfWeek)
+    guard dayOfWeek > 0 &&  dayOfWeek < 8 else {
+      return nil
     }
     
-    self.dayOfWeek = dayOfWeek
-    self.fromHour = fromHour
-    self.fromMinute = fromMinute
-    self.toMinute = toMinute
-    self.toHour = toHour
+    let fromHour = aDecoder.decodeInt32(forKey: BEOpeningHour.kFromHour)
+    let fromMinute = aDecoder.decodeInt32(forKey: BEOpeningHour.kFromMinute)
+    let toHour = aDecoder.decodeInt32(forKey: BEOpeningHour.kToHour)
+    let toMinute = aDecoder.decodeInt32(forKey: BEOpeningHour.kToMinute)
+    
+    self.dayOfWeek = Int(dayOfWeek)
+    self.fromHour = Int(fromHour)
+    self.fromMinute = Int(fromMinute)
+    self.toMinute = Int(toMinute)
+    self.toHour = Int(toHour)
   }
   
   public func encode(with aCoder: NSCoder) {
-    aCoder.encode(dayOfWeek, forKey: BEOpeningHour.kDayOfWeek)
-    aCoder.encode(fromHour, forKey: BEOpeningHour.kFromHour)
-    aCoder.encode(fromMinute, forKey: BEOpeningHour.kFromMinute)
-    aCoder.encode(toHour, forKey: BEOpeningHour.kToHour)
-    aCoder.encode(toMinute, forKey: BEOpeningHour.kToMinute)
+    aCoder.encode(Int32(dayOfWeek), forKey: BEOpeningHour.kDayOfWeek)
+    aCoder.encode(Int32(fromHour), forKey: BEOpeningHour.kFromHour)
+    aCoder.encode(Int32(fromMinute), forKey: BEOpeningHour.kFromMinute)
+    aCoder.encode(Int32(toHour), forKey: BEOpeningHour.kToHour)
+    aCoder.encode(Int32(toMinute), forKey: BEOpeningHour.kToMinute)
   }
 }
