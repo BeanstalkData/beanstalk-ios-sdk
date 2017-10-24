@@ -15,6 +15,8 @@ public class BEOpeningHour: NSObject, NSCoding {
   fileprivate static let kToHour = "BEOpeningHour_toHour"
   fileprivate static let kToMinute = "BEOpeningHour_toMinute"
   
+  fileprivate static let kClosedHours = -1
+  
   /** dayOfWeek = day of the week –
       1 – Sunday
       2 – Monday
@@ -38,6 +40,18 @@ public class BEOpeningHour: NSObject, NSCoding {
     self.fromMinute = fromMinute
     self.toHour = toHour
     self.toMinute = toMinute
+  }
+  
+  init(closedDayOfWeek dayOfWeek: Int) {
+    self.dayOfWeek = dayOfWeek
+    self.fromHour = BEOpeningHour.kClosedHours
+    self.fromMinute = BEOpeningHour.kClosedHours
+    self.toHour = BEOpeningHour.kClosedHours
+    self.toMinute = BEOpeningHour.kClosedHours
+  }
+  
+  open func isClosed() -> Bool {
+    return (self.fromHour == BEOpeningHour.kClosedHours)
   }
   
   //MARK: - NSCoding -

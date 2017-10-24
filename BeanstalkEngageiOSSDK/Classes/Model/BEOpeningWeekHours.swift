@@ -14,7 +14,9 @@ import ObjectMapper
  
  Example: open all day on Saturdays – dayOfWeek:7 fromHour: 00 fromMinute: 00 toHour:00 toMinute:00
  
- 2. To indicate that a store is closed on a specific day, omit that day from the list
+ 2. To indicate that a store is closed on a specific day, omit that day from the list or set it as closed
+ 
+ Example: closed on Sundays – 1:closed
  
  3. To indicate that a store has split hours on a specific day, submit a set of hours for each block of time the location is open.
  
@@ -26,6 +28,8 @@ import ObjectMapper
 public class BEOpeningWeekHours: NSObject, NSCoding {
 
   fileprivate static let kOpeningHours = "BEOpeningWeekHours_openingHours"
+  
+  fileprivate static let kClosedStore = "closed"
   
   open var openingHours: [Int: BEOpeningDayHour]?
   
@@ -42,7 +46,17 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
     
     for openDayComponent in openDayComponents {
       let openHourComponents = openDayComponent.components(separatedBy: ":")
-      if openHourComponents.count == 5 {
+      switch openHourComponents.count {
+      case 2:
+        if let dayOfWeek = Int(openHourComponents[0]) {
+          let state = openHourComponents[1]
+          
+          if state.caseInsensitiveCompare(BEOpeningWeekHours.kClosedStore) == .orderedSame {
+            let openingHour = BEOpeningHour(closedDayOfWeek: dayOfWeek)
+          }
+        }
+      
+      case 5:
         if let dayOfWeek = Int(openHourComponents[0]),
           let fromHour = Int(openHourComponents[1]),
           let fromMinute = Int(openHourComponents[2]),
@@ -58,6 +72,8 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
           }
           openingHours?[dayOfWeek] = openingHoursForDay
         }
+      default:
+        break
       }
     }
   }
