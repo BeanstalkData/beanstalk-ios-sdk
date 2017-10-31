@@ -27,6 +27,7 @@ open class BEStore : NSObject, NSCoding, Mappable {
   fileprivate static let kLatitude = "BEStore_latitude"
   fileprivate static let kGeoEnabled = "BEStore_geoEnabled"
   fileprivate static let kPaymentLoyaltyParticipation = "BEStore_paymentLoyaltyParticipation"
+  fileprivate static let kDriveThru = "BEStore_driveThru"
   
   //  private static let kStoreName = "_storeName"
   //  private static let kAddress2 = "_address2"
@@ -52,6 +53,7 @@ open class BEStore : NSObject, NSCoding, Mappable {
   open var latitude: String?
   open var geoEnabled: Bool?
   open var paymentLoyaltyParticipation: Bool?
+  open var driveThru: String?
   
   //  public var storeName: String?
   //  public var address2: String?
@@ -120,6 +122,8 @@ open class BEStore : NSObject, NSCoding, Mappable {
       paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
     
+    driveThru <- map["DriveThru"]
+    
     //  storeName <- map["StoreName"]
     //  address2 <- map["Address2"]
     //  fax <- map["Fax"]
@@ -146,6 +150,7 @@ open class BEStore : NSObject, NSCoding, Mappable {
     self.latitude = aDecoder.decodeObject(forKey: BEStore.kLatitude) as? String
     self.geoEnabled = aDecoder.decodeObject(forKey: BEStore.kGeoEnabled) as? Bool
     self.paymentLoyaltyParticipation = aDecoder.decodeObject(forKey: BEStore.kPaymentLoyaltyParticipation) as? Bool
+    self.driveThru = aDecoder.decodeObject(forKey: BEStore.kDriveThru) as? String
   }
   
   public func encode(with aCoder: NSCoder) {
@@ -163,5 +168,6 @@ open class BEStore : NSObject, NSCoding, Mappable {
     aCoder.encode(latitude, forKey: BEStore.kLatitude)
     aCoder.encode(geoEnabled, forKey: BEStore.kGeoEnabled)
     aCoder.encode(paymentLoyaltyParticipation, forKey: BEStore.kPaymentLoyaltyParticipation)
+    aCoder.encode(driveThru, forKey: BEStore.kDriveThru)
   }
 }
