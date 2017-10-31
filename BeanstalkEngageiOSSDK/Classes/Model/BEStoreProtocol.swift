@@ -19,6 +19,7 @@ public protocol BEStoreProtocol: NSObjectProtocol, BaseMappable {
   var storeId: String? { get }
   var timeZone: String? { get }
   var paymentLoyaltyParticipation: Bool? { get }
+  var driveThru: String? { get }
   var geoEnabled: Bool? { get }
   var openDate: Date? { get }
   

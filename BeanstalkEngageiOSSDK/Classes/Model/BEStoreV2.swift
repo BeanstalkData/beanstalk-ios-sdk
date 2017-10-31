@@ -32,6 +32,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   fileprivate static let kName = "BEStoreV2_name"
   fileprivate static let kAddress2 = "BEStoreV2_address2"
   fileprivate static let kOpeningWeekHours = "BEStoreV2_openingWeekHours"
+  fileprivate static let kDriveThru = "BEStoreV2_driveThru"
   
   open var id: String?
   open var customerId: String?
@@ -46,6 +47,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   open var latitude: String?
   open var geoEnabled: Bool?
   open var paymentLoyaltyParticipation: Bool?
+  open var driveThru: String?
   
   open var website: String?
   open var email: String?
@@ -98,6 +100,8 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
       paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
     
+    driveThru <- map["DriveThru"]
+    
     // location
     address1 <- map["loc.address_1"]
     address2 <- map["loc.address_2"]
@@ -140,6 +144,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     self.name = aDecoder.decodeObject(forKey: BEStoreV2.kName) as? String
     self.address2 = aDecoder.decodeObject(forKey: BEStoreV2.kAddress2) as? String
     self.openingHours = aDecoder.decodeObject(forKey: BEStoreV2.kOpeningWeekHours) as? BEOpeningWeekHours
+    self.driveThru = aDecoder.decodeObject(forKey: BEStoreV2.kDriveThru) as? String
   }
   
   public func encode(with aCoder: NSCoder) {
@@ -162,5 +167,6 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     aCoder.encode(name, forKey: BEStoreV2.kName)
     aCoder.encode(address2, forKey: BEStoreV2.kAddress2)
     aCoder.encode(openingHours, forKey: BEStoreV2.kOpeningWeekHours)
+    aCoder.encode(driveThru, forKey: BEStoreV2.kDriveThru)
   }
 }
