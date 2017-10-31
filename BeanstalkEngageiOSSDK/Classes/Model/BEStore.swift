@@ -44,7 +44,7 @@ open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
   open var latitude: String?
   open var geoEnabled: Bool?
   open var paymentLoyaltyParticipation: Bool?
-  open var driveThru: String?
+  open var driveThru: Bool?
   
   open var website: String? {
     get {
@@ -136,7 +136,9 @@ open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
       paymentLoyaltyParticipation = paymentLoyaltyParticipationNumber?.boolValue
     }
     
-    driveThru <- map["DriveThru"]
+    var driveThruString: String?
+    driveThruString <- map["DriveThru"]
+    driveThru = (driveThruString?.caseInsensitiveCompare("yes") == .orderedSame)
   }
   
   //MARK: - NSCoding -
@@ -155,7 +157,7 @@ open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
     self.latitude = aDecoder.decodeObject(forKey: BEStore.kLatitude) as? String
     self.geoEnabled = aDecoder.decodeObject(forKey: BEStore.kGeoEnabled) as? Bool
     self.paymentLoyaltyParticipation = aDecoder.decodeObject(forKey: BEStore.kPaymentLoyaltyParticipation) as? Bool
-    self.driveThru = aDecoder.decodeObject(forKey: BEStore.kDriveThru) as? String
+    self.driveThru = aDecoder.decodeObject(forKey: BEStore.kDriveThru) as? Bool
   }
   
   public func encode(with aCoder: NSCoder) {

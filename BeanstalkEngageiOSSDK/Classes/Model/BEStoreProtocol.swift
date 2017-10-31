@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 public protocol BEStoreProtocol: NSObjectProtocol, BaseMappable {
-  var id: String? { get }
+  var id: String? { get } 
   var customerId: String? { get }
   var name: String? { get }
   var phone: String? { get }
@@ -19,7 +19,7 @@ public protocol BEStoreProtocol: NSObjectProtocol, BaseMappable {
   var storeId: String? { get }
   var timeZone: String? { get }
   var paymentLoyaltyParticipation: Bool? { get }
-  var driveThru: String? { get }
+  var driveThru: Bool? { get }
   var geoEnabled: Bool? { get }
   var openDate: Date? { get }
   
