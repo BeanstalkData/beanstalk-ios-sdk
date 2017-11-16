@@ -26,7 +26,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'BeanstalkEngageiOSSDK', :git => 'git@github.com:BeanstalkData/beanstalk-ios-sdk.git', :tag => '0.6.37'
+pod 'BeanstalkEngageiOSSDK', :git => 'git@github.com:BeanstalkData/beanstalk-ios-sdk.git', :tag => '0.6.38’
 end
 ```
 
