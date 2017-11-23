@@ -147,7 +147,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     self.driveThru = aDecoder.decodeObject(forKey: BEStoreV2.kDriveThru) as? Bool
   }
   
-  public func encode(with aCoder: NSCoder) {
+  open func encode(with aCoder: NSCoder) {
     aCoder.encode(id, forKey: BEStoreV2.kId)
     aCoder.encode(customerId, forKey: BEStoreV2.kCustomerId)
     aCoder.encode(storeId, forKey: BEStoreV2.kStoreId)

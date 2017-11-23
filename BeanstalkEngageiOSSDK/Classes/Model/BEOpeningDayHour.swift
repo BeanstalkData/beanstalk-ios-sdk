@@ -30,7 +30,7 @@ public class BEOpeningDayHour: NSObject, NSCoding {
     self.openingHours = openingHours
   }
   
-  public func encode(with aCoder: NSCoder) {
+  open func encode(with aCoder: NSCoder) {
     aCoder.encode(NSKeyedArchiver.archivedData(withRootObject: openingHours as NSArray), forKey: BEOpeningDayHour.kOpeningHours)
   }
 }

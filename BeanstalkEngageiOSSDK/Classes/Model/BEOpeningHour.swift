@@ -73,7 +73,7 @@ public class BEOpeningHour: NSObject, NSCoding {
     self.toHour = Int(toHour)
   }
   
-  public func encode(with aCoder: NSCoder) {
+  open func encode(with aCoder: NSCoder) {
     aCoder.encode(Int32(dayOfWeek), forKey: BEOpeningHour.kDayOfWeek)
     aCoder.encode(Int32(fromHour), forKey: BEOpeningHour.kFromHour)
     aCoder.encode(Int32(fromMinute), forKey: BEOpeningHour.kFromMinute)

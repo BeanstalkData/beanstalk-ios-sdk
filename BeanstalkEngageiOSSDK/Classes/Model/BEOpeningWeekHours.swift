@@ -85,7 +85,7 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
     }
   }
   
-  public func encode(with aCoder: NSCoder) {
+  open func encode(with aCoder: NSCoder) {
     if let openingHours = self.openingHours {
       aCoder.encode(NSKeyedArchiver.archivedData(withRootObject: openingHours), forKey: BEOpeningWeekHours.kOpeningHours)
     } else {
