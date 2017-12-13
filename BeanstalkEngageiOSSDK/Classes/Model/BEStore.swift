@@ -64,6 +64,12 @@ open class BEStore : NSObject, NSCoding, Mappable, BEStoreProtocol {
     }
   }
   
+  open var timeZoneOffset: Int? {
+    get {
+      return nil
+    }
+  }
+  
   open var name: String? {
     get {
       let storeName = "Store" + (self.storeId != nil ? " #\(storeId!)" : "")

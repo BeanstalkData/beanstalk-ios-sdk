@@ -29,6 +29,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   fileprivate static let kWebsite = "BEStoreV2_website"
   fileprivate static let kEmail = "BEStoreV2_email"
   fileprivate static let kTimeZone = "BEStoreV2_timeZone"
+  fileprivate static let kTimeZoneOffset = "BEStoreV2_timeZoneOffset"
   fileprivate static let kName = "BEStoreV2_name"
   fileprivate static let kAddress2 = "BEStoreV2_address2"
   fileprivate static let kOpeningWeekHours = "BEStoreV2_openingWeekHours"
@@ -52,6 +53,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
   open var website: String?
   open var email: String?
   open var timeZone: String?
+  open var timeZoneOffset: Int?
   open var name: String?
   
   open var address2: String?
@@ -87,6 +89,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     website <- map["website"]
     email <- map["email"]
     timeZone <- map["time_zone"]
+    timeZoneOffset <- (map["time_zone_offset"], TransformOf<Int, String>(fromJSON: { Int($0!) }, toJSON: { $0.map { String($0) } }))
     
     var geoEnabledNumber: String?
     geoEnabledNumber <- map["geo_enabled"]
@@ -141,6 +144,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     self.website = aDecoder.decodeObject(forKey: BEStoreV2.kWebsite) as? String
     self.email = aDecoder.decodeObject(forKey: BEStoreV2.kEmail) as? String
     self.timeZone = aDecoder.decodeObject(forKey: BEStoreV2.kTimeZone) as? String
+    self.timeZoneOffset = aDecoder.decodeObject(forKey: BEStoreV2.kTimeZoneOffset) as? Int
     self.name = aDecoder.decodeObject(forKey: BEStoreV2.kName) as? String
     self.address2 = aDecoder.decodeObject(forKey: BEStoreV2.kAddress2) as? String
     self.openingHours = aDecoder.decodeObject(forKey: BEStoreV2.kOpeningWeekHours) as? BEOpeningWeekHours
@@ -164,6 +168,7 @@ open class BEStoreV2 : NSObject, NSCoding, Mappable, BEStoreProtocol {
     aCoder.encode(website, forKey: BEStoreV2.kWebsite)
     aCoder.encode(email, forKey: BEStoreV2.kEmail)
     aCoder.encode(timeZone, forKey: BEStoreV2.kTimeZone)
+    aCoder.encode(timeZoneOffset, forKey: BEStoreV2.kTimeZoneOffset)
     aCoder.encode(name, forKey: BEStoreV2.kName)
     aCoder.encode(address2, forKey: BEStoreV2.kAddress2)
     aCoder.encode(openingHours, forKey: BEStoreV2.kOpeningWeekHours)
