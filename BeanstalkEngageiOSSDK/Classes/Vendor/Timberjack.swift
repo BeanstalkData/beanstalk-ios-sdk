@@ -147,6 +147,10 @@ open class Timberjack: URLProtocol {
             if let headers = request.allHTTPHeaderFields {
                 self.logHeaders(headers as [String : AnyObject])
             }
+          
+            if let httpBody = request.httpBody, let httpBodyString = String(data: httpBody, encoding: .utf8) {
+              print("Request Body: \(httpBodyString)")
+            }
         }
     }
     
