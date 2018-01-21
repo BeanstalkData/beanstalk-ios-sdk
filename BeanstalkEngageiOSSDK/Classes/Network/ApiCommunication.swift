@@ -1041,7 +1041,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
-  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler: @escaping (Result<[BECoupon]>) -> Void){
+  open func getUserOffers <CouponClass: BECoupon> (_ contactId : String, couponClass: CouponClass.Type, handler: @escaping (Result<[BECouponProtocol]>) -> Void){
     
     if (isOnline()) {
       let params = [
@@ -1055,7 +1055,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .responseObject {
           (response : DataResponse<CouponResponse<CouponClass>>) in
           if weakSelf?.dataGenerator != nil {
-            var coupons: [BECoupon]? = weakSelf?.dataGenerator!.getUserOffers().coupons
+            var coupons: [BECouponProtocol]? = weakSelf?.dataGenerator!.getUserOffers().coupons
             if coupons == nil {
               coupons = []
             }
@@ -1063,7 +1063,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           } else {
             if (response.result.isSuccess) {
               if let data = response.result.value {
-                let coupons: [BECoupon] = (data.coupons != nil) ? data.coupons! : []
+                let coupons: [BECouponProtocol] = (data.coupons != nil) ? data.coupons! : []
                 handler(.success(coupons))
               } else {
                 handler(.failure(ApiError.unknown()))

@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Response model for coupon request.
  */
-open class CouponResponse <CouponClass: BECoupon> : Mappable {
+open class CouponResponse <CouponClass> : Mappable where CouponClass: BECouponProtocol {
   var coupons: [CouponClass]?
   
   //for mocks only

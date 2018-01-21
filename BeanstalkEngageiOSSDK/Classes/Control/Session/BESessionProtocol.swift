@@ -72,11 +72,11 @@ public protocol BESessionProtocol {
   /**
    Accessor method for stored available rewards.
    */
-  func getRewards() -> [BECoupon]?
+  func getRewards() -> [BECouponProtocol]?
   /**
    Accessor method for stored available rewards.
    */
-  func saveRewards(_ rewards : [BECoupon]?)
+  func saveRewards(_ rewards : [BECouponProtocol]?)
   
   /**
    Method for clearing any session-related data.

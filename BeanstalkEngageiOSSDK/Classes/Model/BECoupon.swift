@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Model of reward coupon.
  */
-open class BECoupon : NSObject, NSCoding, Mappable {
+open class BECoupon : NSObject, NSCoding, Mappable, BECouponProtocol {
   fileprivate static let kOriginalDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
   fileprivate static let kDisplayDateFormat = "MM/dd/yyyy"
   
@@ -79,34 +79,6 @@ open class BECoupon : NSObject, NSCoding, Mappable {
     return nil
   }
   
-  //MARK: - Persistence store -
-  
-  class open func initList(_ storage : UserDefaults) -> [BECoupon] {
-    
-    var couponList: [BECoupon]?
-    if let list = storage.object(forKey: BECoupon.kObject) as? Data {
-      couponList = NSKeyedUnarchiver.unarchiveObject(with: list) as? [BECoupon]
-    }
-    
-    if couponList == nil {
-      couponList = []
-    }
-    
-    return couponList!
-  }
-  
-  class open func clearList(_ storage : UserDefaults) {
-    storage.set(nil, forKey: BECoupon.kObject)
-    
-    storage.synchronize()
-  }
-  
-  class open func saveList(_ list : [BECoupon], storage : UserDefaults) {
-    storage.set(NSKeyedArchiver.archivedData(withRootObject: list), forKey: BECoupon.kObject)
-    
-    storage.synchronize()
-  }
-  
   //MARK: - NSCoding -
   required public init(coder aDecoder: NSCoder) {
     self.number = aDecoder.decodeObject(forKey: BECoupon.kNumber) as? String
@@ -126,5 +98,35 @@ open class BECoupon : NSObject, NSCoding, Mappable {
     aCoder.encode(imageAUrl, forKey: BECoupon.kImageAUrl)
     aCoder.encode(receiptText, forKey: BECoupon.kReceiptText)
     aCoder.encode(discountCode, forKey: BECoupon.kDiscountCode)
+  }
+}
+
+public extension BECoupon {
+  //MARK: - Persistence store -
+  
+  class public func initList<CouponClass : BECouponProtocol>(_ storage : UserDefaults, couponClass: CouponClass.Type) -> [CouponClass] {
+    
+    var couponList: [CouponClass]?
+    if let list = storage.object(forKey: BECoupon.kObject) as? Data {
+      couponList = NSKeyedUnarchiver.unarchiveObject(with: list) as? [CouponClass]
+    }
+    
+    if couponList == nil {
+      couponList = []
+    }
+    
+    return couponList!
+  }
+  
+  class public func clearList(_ storage : UserDefaults) {
+    storage.set(nil, forKey: BECoupon.kObject)
+    
+    storage.synchronize()
+  }
+  
+  class public func saveList(_ list : [BECouponProtocol], storage : UserDefaults) {
+    storage.set(NSKeyedArchiver.archivedData(withRootObject: list), forKey: BECoupon.kObject)
+    
+    storage.synchronize()
   }
 }

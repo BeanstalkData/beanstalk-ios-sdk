@@ -129,14 +129,14 @@ open class BESession: BESessionProtocol {
     }
   }
   
-  open func getRewards() -> [BECoupon]? {
+  open func getRewards() -> [BECouponProtocol]? {
     let prefs = self.userDefaults.getTransientDefaults()
-    let rewards = BECoupon.initList(prefs)
+    let rewards = BECoupon.initList(prefs, couponClass: BECoupon.self)
     
     return rewards
   }
   
-  open func saveRewards(_ rewards : [BECoupon]?){
+  open func saveRewards(_ rewards : [BECouponProtocol]?){
     let prefs = self.userDefaults.getTransientDefaults()
     if (rewards != nil) {
       BECoupon.saveList(rewards!, storage: prefs)

@@ -719,14 +719,14 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Gets available rewards for couponClass BECoupon.
    */
-  open func getAvailableRewards(handler: @escaping (_ success: Bool, _ coupons: [BECoupon], _ error: BEErrorType?)->Void){
+  open func getAvailableRewards(handler: @escaping (_ success: Bool, _ coupons: [BECouponProtocol], _ error: BEErrorType?)->Void){
     self.getAvailableRewards(couponClass: BECoupon.self, handler: handler)
   }
   
   /**
    Gets available rewards for provided coupon class.
    */
-  open func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler: @escaping (_ success: Bool, _ coupons: [BECoupon], _ error: BEErrorType?)->Void){
+  open func getAvailableRewards <CouponClass: BECoupon> (couponClass: CouponClass.Type, handler: @escaping (_ success: Bool, _ coupons: [BECouponProtocol], _ error: BEErrorType?)->Void){
     
     guard let contactId = self.session.getContactId() else {
       handler(false, [], ApiError.missingParameterError(reason: ""))
@@ -801,7 +801,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs start payment request.
    */
-  open func startPayment(cardId : String?, coupons: [BECoupon], handler: @escaping (_ success: Bool, BarCodeInfo, _ error: BEErrorType?)->Void){
+  open func startPayment(cardId : String?, coupons: [BECouponProtocol], handler: @escaping (_ success: Bool, BarCodeInfo, _ error: BEErrorType?)->Void){
     
     if cardId == nil && coupons.count == 0 {
       let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
@@ -1110,7 +1110,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   
   //MARK: - Private
   
-  fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECoupon]) -> BarCodeInfo {
+  fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECouponProtocol]) -> BarCodeInfo {
     if data == nil || data!.characters.count == 0{
       guard let contactId = self.session.getContactId() else {
         return BarCodeInfo(data: "", type: .memberId)
