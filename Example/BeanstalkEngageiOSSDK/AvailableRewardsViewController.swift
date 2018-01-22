@@ -10,7 +10,7 @@ import BeanstalkEngageiOSSDK
 
 
 class AvailableRewardsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
-  var rewards: [BECoupon]?
+  var rewards: [BECouponProtocol]?
   
   @IBOutlet var tableView: UITableView!
   
@@ -19,6 +19,7 @@ class AvailableRewardsViewController: BaseViewController, UITableViewDataSource,
     super.viewDidAppear(animated)
     
     if self.rewards == nil {
+      
       self.loadRewards()
     }
     else {

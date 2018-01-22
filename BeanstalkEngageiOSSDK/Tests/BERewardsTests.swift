@@ -71,7 +71,7 @@ open class BERewardsTests: BEBaseTestCase {
     ]
   
     let map = Map(mappingType: .fromJSON, JSON: JSON)
-    var couponResponce = CouponResponse(map: map)
+    let couponResponce = CouponResponse<BECoupon>(map: map)
     couponResponce?.mapping(map: map)
     
     XCTAssert(couponResponce?.coupons?.count == 1, "Coupon objects count is invalid")
