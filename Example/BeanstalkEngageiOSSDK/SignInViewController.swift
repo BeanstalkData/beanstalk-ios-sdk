@@ -24,7 +24,7 @@ class SignInViewController: BaseViewController, UITextFieldDelegate {
   
   //MARK: - Actions
   
-  func signIn() {
+  @objc func signIn() {
     self.view.endEditing(true)
     
     if let email = self.emailTextField.text {

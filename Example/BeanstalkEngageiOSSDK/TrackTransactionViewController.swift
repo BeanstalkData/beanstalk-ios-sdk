@@ -24,11 +24,11 @@ class TrackTransactionViewController: BaseViewController, UITextViewDelegate {
   
   //MARK: - Actions
   
-  func dismissKeyboard() {
+  @objc func dismissKeyboard() {
     self.textView.resignFirstResponder()
   }
   
-  func sendTransaction() {
+  @objc func sendTransaction() {
     guard let text = self.textView.text, text.lengthOfBytes(using: .utf8) > 0 else {
       self.loadingHandler.showMessage("Input Transaction String", message: nil)
       return

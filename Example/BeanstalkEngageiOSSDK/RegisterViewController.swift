@@ -55,7 +55,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
   
   //MARK: - Actions
   
-  func register() {
+  @objc func register() {
     self.scrollView.endEditing(true)
     
     let request = ContactRequest()
