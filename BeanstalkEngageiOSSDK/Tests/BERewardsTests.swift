@@ -99,7 +99,7 @@ open class BERewardsTests: BEBaseTestCase {
       
       if (result) {
         coreServiceHandler.getProgress({ (value, error) in
-          XCTAssert(value != nil, "Failed to get users' progress: \(error?.errorTitle()) - \(error?.errorMessage())")
+          XCTAssert(value != nil, "Failed to get users' progress: \(error?.errorTitle() ?? "") - \(error?.errorMessage() ?? "")")
         })
       }
     }
@@ -109,7 +109,7 @@ open class BERewardsTests: BEBaseTestCase {
     let JSON: [String: Any] = ["Category":[["Name":"Orders","Count":"1"]]]
     
     let map = Map(mappingType: .fromJSON, JSON: JSON)
-    var rewardsCountResponce = RewardsCountResponse(map: map)
+    let rewardsCountResponce = RewardsCountResponse(map: map)
     rewardsCountResponce?.mapping(map: map)
     
     XCTAssert(rewardsCountResponce?.getCount() == 1, "Rewards count is invalid")

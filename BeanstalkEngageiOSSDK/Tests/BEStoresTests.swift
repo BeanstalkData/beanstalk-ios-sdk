@@ -24,7 +24,7 @@ open class BEStoresTests: BEBaseTestCase {
       XCTAssert(result, "Login request finished with error")
       
       if (result) {
-        var coordinate = self.getMetadata()!.getInvalidLocationCoordinate()
+        let coordinate = self.getMetadata()!.getInvalidLocationCoordinate()
         
         coreServiceHandler.getStoresAtLocation(coordinate, version: version, storeClass: storeClass) { (result, stores) in
           XCTAssert(result, "Get stores at location finished with error")
@@ -50,7 +50,7 @@ open class BEStoresTests: BEBaseTestCase {
       XCTAssert(result, "Login request finished with error")
       
       if (result) {
-        var coordinate = self.getMetadata()!.getValidLocationCoordinate()
+        let coordinate = self.getMetadata()!.getValidLocationCoordinate()
         
         coreServiceHandler.getStoresAtLocation(coordinate, version: version, storeClass: storeClass) { (result, stores) in
           XCTAssert(result, "Get stores at location finished with error")

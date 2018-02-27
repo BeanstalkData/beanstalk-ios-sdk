@@ -23,7 +23,7 @@ open class ContactModel: BEContact {
     }
     
     if self.lastName != nil {
-      if fullName.characters.count > 0 {
+      if !fullName.isEmpty {
         fullName += " "
       }
       

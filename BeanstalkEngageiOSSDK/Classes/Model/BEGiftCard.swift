@@ -70,8 +70,8 @@ open class BEGiftCard : Mappable {
   }
   
   open func getDisplayNumber() -> String {
-    if number != nil && number!.characters.count > 4{
-      return "XXXXXXXXXXXX\(number!.substring(from: number!.characters.index(number!.endIndex, offsetBy: -4)))"
+    if let number = number, number.count > 4{
+      return "XXXXXXXXXXXX\(number[number.index(number.endIndex, offsetBy: -4)...])"
     }else {
       return "XXXXXXXXXXXXXXXX"
     }

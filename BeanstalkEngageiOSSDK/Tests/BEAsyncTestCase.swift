@@ -21,9 +21,10 @@ open class BEAsyncTestCase: XCTestCase {
     self.expectation.fulfill()
   }
   
+  @discardableResult
   open func wait(_ timeout: TimeInterval) -> Bool {
     var error: NSError?
-    waitForExpectations(timeout: kAsyncTimeout, handler: { err in
+    waitForExpectations(timeout: timeout, handler: { err in
       error = err as NSError?
       XCTAssertNil(err)
     })
@@ -31,6 +32,7 @@ open class BEAsyncTestCase: XCTestCase {
     return (error == nil)
   }
   
+  @discardableResult
   open func wait() -> Bool {
     return self.wait(kAsyncTimeout)
   }

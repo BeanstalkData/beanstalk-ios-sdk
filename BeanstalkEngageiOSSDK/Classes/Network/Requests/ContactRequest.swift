@@ -62,11 +62,9 @@ open class ContactRequest: Mappable {
   }
   
   open func set(firstName: String?) {
-    guard firstName?.characters.count > 0 else {
-      return
-    }
+    guard let firstName = firstName, !firstName.isEmpty else { return }
 
-    guard origin?.firstName?.caseInsensitiveCompare(firstName!) != ComparisonResult.orderedSame else {
+    guard origin?.firstName?.caseInsensitiveCompare(firstName) != ComparisonResult.orderedSame else {
       self.firstName = nil
       return
     }
@@ -82,11 +80,11 @@ open class ContactRequest: Mappable {
   }
   
   open func set(lastName: String?) {
-    guard lastName?.characters.count > 0 else {
+    guard let lastName = lastName, !lastName.isEmpty else {
       return
     }
     
-    guard origin?.lastName?.caseInsensitiveCompare(lastName!) != ComparisonResult.orderedSame else {
+    guard origin?.lastName?.caseInsensitiveCompare(lastName) != ComparisonResult.orderedSame else {
       self.lastName = nil
       return
     }
@@ -122,11 +120,11 @@ open class ContactRequest: Mappable {
   }
   
   open func set(email: String?) {
-    guard email?.characters.count > 0 else {
+    guard let email = email, !email.isEmpty else {
       return
     }
     
-    guard origin?.email?.caseInsensitiveCompare(email!) != ComparisonResult.orderedSame else {
+    guard origin?.email?.caseInsensitiveCompare(email) != ComparisonResult.orderedSame else {
       self.email = nil
       return
     }
@@ -142,11 +140,11 @@ open class ContactRequest: Mappable {
   }
   
   open func set(fKey: String?) {
-    guard fKey?.characters.count > 0 else {
+    guard let fKey = fKey, !fKey.isEmpty else {
       return
     }
     
-    guard origin?.fKey?.caseInsensitiveCompare(fKey!) != ComparisonResult.orderedSame else {
+    guard origin?.fKey?.caseInsensitiveCompare(fKey) != ComparisonResult.orderedSame else {
       self.fKey = nil
       return
     }
@@ -163,11 +161,11 @@ open class ContactRequest: Mappable {
 
   
   open func set(phone: String?) {
-    guard phone?.characters.count > 0 else {
+    guard let phone = phone, !phone.isEmpty else {
       return
     }
     
-    guard origin?.phone?.caseInsensitiveCompare(phone!) != ComparisonResult.orderedSame else {
+    guard origin?.phone?.caseInsensitiveCompare(phone) != ComparisonResult.orderedSame else {
       self.phone = nil
       return
     }
@@ -304,11 +302,11 @@ open class ContactRequest: Mappable {
   }
   
   open func set(prospect: String?) {
-    guard prospect?.characters.count > 0 else {
+    guard let prospect = prospect, !prospect.isEmpty else {
       return
     }
     
-    guard origin?.prospect?.caseInsensitiveCompare(prospect!) != ComparisonResult.orderedSame else {
+    guard origin?.prospect?.caseInsensitiveCompare(prospect) != ComparisonResult.orderedSame else {
       self.prospect = nil
       return
     }

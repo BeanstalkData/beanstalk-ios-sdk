@@ -47,14 +47,14 @@ extension String {
   
   public func isValidZipCode() -> Bool{
     let regex = try! NSRegularExpression(pattern: "[0-9]{5}", options: [.caseInsensitive])
-    let range = NSRange(location: 0, length: self.characters.count)
+    let range = NSRange(location: 0, length: self.count)
     let matches = regex.matches(in: self, options : NSRegularExpression.MatchingOptions(), range: range)
     return matches.count == 1
   }
   
   public func isValidEmail() -> Bool{
     let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9](?!.*__.*)(?!.*\\.\\..*)(?!.*\\._.*)(?!.*_\\..*)([a-zA-Z0-9\\.\\_\\%\\-\\+]){0,256}(?<![\\._])@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+$", options: [])
-    let range = NSRange(location: 0, length: self.characters.count)
+    let range = NSRange(location: 0, length: self.count)
     let matches = regex.matches(in: self, options : NSRegularExpression.MatchingOptions(), range: range)
     return matches.count == 1
   }

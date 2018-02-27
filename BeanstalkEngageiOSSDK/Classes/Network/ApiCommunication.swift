@@ -325,7 +325,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    - Parameter contactClass: Contact class.
    - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
-  open func createContact <ContactClass: Mappable> (
+  open func createContact <ContactClass> (
     _ request : ContactRequest,
     contactClass: ContactClass.Type,
     fetchContact: Bool = false,
@@ -450,7 +450,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
    - Parameter contactClass: Contact class.
    - Parameter fetchContact: Contact model will be fetched by *getContact()*. Default is *false*.
    */
-  open func updateContact <ContactClass: Mappable> (
+  open func updateContact <ContactClass> (
     request : ContactRequest,
     contactClass: ContactClass.Type,
     fetchContact: Bool = false,
@@ -943,15 +943,18 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
-          if (response.result.isSuccess) {
-            if (response.result.value?.characters.count)! > 0 {
-              handler(.failure(ApiError.resetPasswordError(reason: response.result.value)))
-            } else {
-              handler(.success(response.result.value))
-            }
-          } else {
+          guard response.result.isSuccess else {
             handler(.failure(ApiError.network(error: response.result.error)))
+            return
           }
+          
+          guard let resultString = response.result.value,
+            !resultString.isEmpty else {
+            handler(.success(response.result.value))
+            return
+          }
+          
+          handler(.failure(ApiError.resetPasswordError(reason: response.result.value)))
       }
     } else {
       handler(.failure(ApiError.networkConnectionError()))
@@ -1205,7 +1208,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       if paymentId != nil{
         params["paymentId"] = paymentId!
       }
-      if coupons.characters.count > 0{
+      if !coupons.isEmpty {
         params["coupons"] = coupons
       } else {
         params["coupons"] = ""

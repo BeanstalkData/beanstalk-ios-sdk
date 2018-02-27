@@ -175,7 +175,7 @@ open class BEAccountTests: BEBaseTestCase {
   open func loyaltyAccountParsingTest(_ JSON: [String: AnyObject]) {
     let map = Map(mappingType: .fromJSON, JSON: JSON)
     
-    var loyaltyAccount = BELoyaltyUser(map: map)
+    let loyaltyAccount = BELoyaltyUser(map: map)
     loyaltyAccount?.mapping(map: map)
     
     XCTAssert(loyaltyAccount!.contactId == JSON["contactId"] as? String, "Loyalty account object is invalid")

@@ -12,7 +12,7 @@ import ObjectMapper
 /**
  Response model for contact create/update request.
  */
-public struct ContactRequestResponse <ContactClass: Mappable> {
+public struct ContactRequestResponse <ContactClass> where ContactClass: Mappable {
   let contactId: String
   let contact: ContactClass?
   let fetchContactRequested: Bool

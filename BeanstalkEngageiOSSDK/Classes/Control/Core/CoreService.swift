@@ -1111,25 +1111,22 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   //MARK: - Private
   
   fileprivate func getBarCodeInfo(_ data: String?, cardId : String?, coupons : [BECouponProtocol]) -> BarCodeInfo {
-    if data == nil || data!.characters.count == 0{
+    guard let content = data, !content.isEmpty else {
       guard let contactId = self.session.getContactId() else {
         return BarCodeInfo(data: "", type: .memberId)
       }
       
       return BarCodeInfo(data: contactId, type: .memberId)
     }
+    
+    if cardId == nil && coupons.count > 0 {
+      return BarCodeInfo(data: content, type: .rewardsToken)
+    }
+    else if cardId != nil  && coupons.count == 0 {
+      return BarCodeInfo(data: content, type: .payToken)
+    }
     else {
-      let content = data!
-      
-      if cardId == nil && coupons.count > 0 {
-        return BarCodeInfo(data: content, type: .rewardsToken)
-      }
-      else if cardId != nil  && coupons.count == 0 {
-        return BarCodeInfo(data: content, type: .payToken)
-      }
-      else {
-        return BarCodeInfo(data: content, type: .rewardsAndPayToken)
-      }
+      return BarCodeInfo(data: content, type: .rewardsAndPayToken)
     }
   }
 }

@@ -52,7 +52,7 @@ public class BEOpeningWeekHours: NSObject, NSCoding {
           let state = openHourComponents[1]
           
           if state.caseInsensitiveCompare(BEOpeningWeekHours.kClosedStore) == .orderedSame {
-            let openingHour = BEOpeningHour(closedDayOfWeek: dayOfWeek)
+            let _ = BEOpeningHour(closedDayOfWeek: dayOfWeek)
           }
         }
       
