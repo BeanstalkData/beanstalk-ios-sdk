@@ -34,6 +34,7 @@ open class HTTPAlamofireManager: Alamofire.SessionManager  {
 open class HTTPTimberjackManager: HTTPAlamofireManager {
   static internal let shared: Alamofire.SessionManager = {
     let configuration = HTTPTimberjackManager.defaultSessionConfiguration()
+    configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
     
     let delegate: SessionDelegate = SessionDelegate()
     delegate.dataTaskWillCacheResponseWithCompletion = { (session, dataTask, proposedResponse, completionHandler) -> Void in

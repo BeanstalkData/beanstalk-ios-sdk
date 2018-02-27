@@ -28,6 +28,7 @@ public enum Style {
     case light
 }
 
+@objcMembers
 open class Timberjack: URLProtocol {
     var connection: NSURLConnection?
     var data: NSMutableData?

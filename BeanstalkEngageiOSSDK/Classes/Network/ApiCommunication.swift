@@ -31,7 +31,10 @@ public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
   return left.responder === right.responder
 }
 
-fileprivate let kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
+public enum ApiParams : String {
+  case kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
+}
+
 
 /**
  Contains majority of API calls. It is utilized by CoreService. Can be used directly.
@@ -53,7 +56,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     return dateFormatter
   }()
   
-  public required init(apiKey: String, apiUsername: String? = nil, beanstalkUrl: String = kDefaultBeanstalkUrl) {
+  public required init(apiKey: String, apiUsername: String? = nil, beanstalkUrl: String = ApiParams.kDefaultBeanstalkUrl.rawValue) {
     self.apiKey = apiKey
     self.apiUsername = apiUsername
     self.BASE_URL = "https://" + beanstalkUrl

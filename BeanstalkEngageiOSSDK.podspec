@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.6.42'
+  s.version          = '0.7.1'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.subspec 'Model' do |ms|
     ms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Model/**/*'
 
-    ms.dependency 'AlamofireObjectMapper', '~> 4.1.0'
+    ms.dependency 'AlamofireObjectMapper', '~> 5.0.0'
   end
 
   s.subspec 'Network' do |ns|
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
-    ns.dependency 'Alamofire', '~> 4.4.0'
+    ns.dependency 'Alamofire', '~> 4.6.0'
   end
 
   s.subspec 'Control' do |cns|
@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
 
     cms.dependency 'BeanstalkEngageiOSSDK/Localization'
     cms.dependency 'BeanstalkEngageiOSSDK/Vendor'
-    cms.dependency 'Alamofire', '~> 4.4.0'
+    cms.dependency 'Alamofire', '~> 4.6.0'
     cms.dependency 'libPhoneNumber-iOS'
   end
 
