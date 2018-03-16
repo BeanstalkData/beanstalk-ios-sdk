@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.6.42'
+  s.version          = '0.6.43'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
     ns.dependency 'Alamofire', '~> 4.4.0'
+    ns.dependency 'ReachabilitySwift', '~> 4.1.0'
   end
 
   s.subspec 'Control' do |cns|
