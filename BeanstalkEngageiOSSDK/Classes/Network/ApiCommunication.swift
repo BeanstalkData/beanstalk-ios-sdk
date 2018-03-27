@@ -77,9 +77,20 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     } catch {
       print("Unable to start notifier")
     }
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.notifyNetworkReachabilityObservers),
+      name: NSNotification.Name.UIApplicationWillEnterForeground,
+      object: nil
+    )
   }
 
-  fileprivate func notifyNetworkReachabilityObservers() {
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+
+  @objc fileprivate func notifyNetworkReachabilityObservers() {
     let isOnline = self.isOnline()
     self.enumerateObservers { (i) in
       i.networkStatusChanged?(isOnline)
@@ -87,7 +98,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   open func isOnline() -> Bool {
-    return self.reachability.isReachable
+    return self.reachability.connection != .none
   }
   
   open func checkContactsByEmailExisted(_ email: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
