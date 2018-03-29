@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
+import Reachability
 
 public struct BEApiResponder: Equatable, WeakResponderHolder {
   public weak var responder: AnyObject?
@@ -45,7 +46,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   fileprivate let apiKey: String
   fileprivate let apiUsername: String?
   
-  internal let reachabilityManager: Alamofire.NetworkReachabilityManager
+  internal let reachability: Reachability
   
   internal var dataGenerator: MockDataGenerator?
   
@@ -61,19 +62,38 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     self.apiUsername = apiUsername
     self.BASE_URL = "https://" + beanstalkUrl
     
-    self.reachabilityManager = Alamofire.NetworkReachabilityManager(host: beanstalkUrl)!
+    self.reachability = Reachability(hostname: beanstalkUrl)!
     
     super.init()
     
-    weak var weakSelf = self
-    self.reachabilityManager.listener = { status in
-      print("Network Status Changed: \(status)")
-      weakSelf?.notifyNetworkReachabilityObservers()
+    reachability.whenReachable = {[weak self] reachability in
+      print("Reachable via \(reachability.connection.description)")
+      self?.notifyNetworkReachabilityObservers()
     }
-    self.reachabilityManager.startListening()
+    reachability.whenUnreachable = {[weak self] _ in
+      print("Not reachable")
+      self?.notifyNetworkReachabilityObservers()
+    }
+    
+    do {
+      try reachability.startNotifier()
+    } catch {
+      print("Unable to start notifier")
+    }
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.notifyNetworkReachabilityObservers),
+      name: NSNotification.Name.UIApplicationWillEnterForeground,
+      object: nil
+    )
   }
-  
-  fileprivate func notifyNetworkReachabilityObservers() {
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+
+  @objc fileprivate func notifyNetworkReachabilityObservers() {
     let isOnline = self.isOnline()
     self.enumerateObservers { (i) in
       i.networkStatusChanged?(isOnline)
@@ -81,7 +101,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   }
   
   open func isOnline() -> Bool {
-    return self.reachabilityManager.isReachable
+    return self.reachability.connection != .none
   }
   
   open func checkContactsByEmailExisted(_ email: String, prospectTypes: [ProspectType], handler: @escaping (Result<Bool>) -> Void) {
