@@ -85,7 +85,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                     "key": self.apiKey,
                     "q": email
       ]
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -165,7 +165,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                     "key": self.apiKey,
                     "q": phone
       ]
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -644,7 +644,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       "q": fieldValue
     ]
     
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
       .validate(getDefaultErrorHandler())
       .responseString {
         response in
@@ -886,7 +886,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       tmp?.mapping(map: map)
       print(tmp.debugDescription)
       
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
           (response : DataResponse<[ContactClass]>) in
