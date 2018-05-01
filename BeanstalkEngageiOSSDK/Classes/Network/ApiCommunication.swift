@@ -1104,7 +1104,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       }
       
       weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment", method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<PaymentResponse>) in
@@ -1193,7 +1193,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (response : DataResponse<PushNotificationResponse>) in
         
@@ -1233,7 +1233,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (response : DataResponse<PushNotificationResponse>) in
         
@@ -1274,7 +1274,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseArray {
         (response : DataResponse <[BEPushNotificationMessage]>) in
@@ -1312,7 +1312,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject {
         (response : DataResponse<PushNotificationResponse>) in
@@ -1349,7 +1349,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject {
         (response : DataResponse<BEPushNotificationMessage>) in
