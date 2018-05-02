@@ -1322,7 +1322,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (response : DataResponse<PushNotificationResponse>) in
         
