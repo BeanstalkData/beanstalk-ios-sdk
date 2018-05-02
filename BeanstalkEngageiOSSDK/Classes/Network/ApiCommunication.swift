@@ -88,11 +88,11 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       object: nil
     )
   }
-
+  
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
-
+  
   @objc fileprivate func notifyNetworkReachabilityObservers() {
     let isOnline = self.isOnline()
     self.enumerateObservers { (i) in
@@ -110,7 +110,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                     "key": self.apiKey,
                     "q": email
       ]
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -190,7 +190,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
                     "key": self.apiKey,
                     "q": phone
       ]
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
         .validate(getDefaultErrorHandler())
         .responseString {
           response in
@@ -669,7 +669,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       "q": fieldValue
     ]
     
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters : params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters : params)
       .validate(getDefaultErrorHandler())
       .responseString {
         response in
@@ -1017,7 +1017,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       tmp?.mapping(map: map)
       print(tmp.debugDescription)
       
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts", method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/contacts/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseArray {
           (response : DataResponse<[ContactClass]>) in
@@ -1152,7 +1152,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       ]
       
       weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/list?key=" + self.apiKey, method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/list/?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<GCResponse<GiftCardClass>>) in
@@ -1191,7 +1191,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       ]
       
       weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/inquiry?key=" + self.apiKey, method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/inquiry/?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<GCBResponse>) in
@@ -1235,7 +1235,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
       }
       
       weak var weakSelf = self
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment", method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdPayment/startPayment/", method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<PaymentResponse>) in
@@ -1284,7 +1284,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         params["version"] = version
       }
       
-      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdStores/locate?key=" + self.apiKey, method: .get, parameters: params)
+      SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdStores/locate/?key=" + self.apiKey, method: .get, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseObject {
           (response : DataResponse<StoresResponse<StoreClass>>) in
@@ -1328,7 +1328,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationEnroll/", method: .post, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (response : DataResponse<PushNotificationResponse>) in
         
@@ -1368,7 +1368,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotificationDelete/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject { (response : DataResponse<PushNotificationResponse>) in
         
@@ -1409,7 +1409,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessages/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseArray {
         (response : DataResponse <[BEPushNotificationMessage]>) in
@@ -1447,7 +1447,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/updateStatus/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject {
         (response : DataResponse<PushNotificationResponse>) in
@@ -1484,7 +1484,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     ]
     
     weak var weakSelf = self
-    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById", method: .get, parameters: params)
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/pushNotification/getMessageById/", method: .get, parameters: params)
       .validate(getDefaultErrorHandler())
       .responseObject {
         (response : DataResponse<BEPushNotificationMessage>) in
@@ -1734,15 +1734,15 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
           
         }
         
-//TODO: Create corresponding error
-//        let error = NSError(
-//          domain: Error.domain,
-//          code: Error.Code.StatusCodeValidationFailed.rawValue,
-//          userInfo: [
-//            NSLocalizedFailureReasonErrorKey: failureReason,
-//            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
-//          ]
-//        )
+        //TODO: Create corresponding error
+        //        let error = NSError(
+        //          domain: Error.domain,
+        //          code: Error.Code.StatusCodeValidationFailed.rawValue,
+        //          userInfo: [
+        //            NSLocalizedFailureReasonErrorKey: failureReason,
+        //            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
+        //          ]
+        //        )
         
         let error = ApiError.unacceptableStatusCodeError(reason: failureReason, statusCode: ulrResponse.statusCode)
         
@@ -1816,3 +1816,4 @@ public enum ContactFetchField: String {
     }
   }
 }
+
