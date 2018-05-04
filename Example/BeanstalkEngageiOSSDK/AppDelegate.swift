@@ -8,7 +8,6 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-
 public enum PushNotificationsKeys: String {
   case DidReceiveToken = "DidReceiveToken"
   case TokenKey = "token" // userInfo key
@@ -20,10 +19,11 @@ public enum PushNotificationsKeys: String {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  private let socialNetworksClient = SocialNetworksClient.sharedInstance
+  
   
   var window: UIWindow?
-  let coreService = ApiService(apiKey: AppDelegate.getApiKey(), session: BESession(), apiUsername: nil)
-  
+  let coreService = ApiService(apiKey: AppDelegate.getApiKey(), session: BESession(), apiUsername: nil, beanstalkUrl: "stg-proc.beanstalkdata.com")
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   
   
@@ -32,7 +32,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.pushNotificationEnrollment = PushNotificationEnrollmentController(beanstalkCoreService: self.coreService, session: session)
     }
     
+    GIDSignIn.sharedInstance().clientID = "938888404219-q3uklfftme7t0hdpu8gs1sij2duu001q.apps.googleusercontent.com"
+    GIDSignIn.sharedInstance().delegate = socialNetworksClient
+    
     return true
+  }
+  
+  open func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+    
+    return GIDSignIn.sharedInstance().handle(url,
+                                             sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                             annotation: options[UIApplicationOpenURLOptionsKey.annotation])
   }
   
   class func apiService() -> ApiService {

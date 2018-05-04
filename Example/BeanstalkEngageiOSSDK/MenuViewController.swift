@@ -8,7 +8,8 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-class MenuViewController: BaseViewController {
+class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
+  
   @IBOutlet var registerButton: UIButton!
   @IBOutlet var signInButton: UIButton!
   @IBOutlet var signOutButton: UIButton!
@@ -20,6 +21,7 @@ class MenuViewController: BaseViewController {
   @IBOutlet var trackTransactionButton: UIButton!
   @IBOutlet var transactionsListButton: UIButton!
   
+  private(set) var googleUser: GoogleUserInfo?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -114,6 +116,34 @@ class MenuViewController: BaseViewController {
     self.present(alert, animated: true, completion: nil)
   }
   
+  
+  @IBAction func onGoogleSignIn(_ sender: Any) {
+    onLoginByGoogleAction(vc: self)
+  }
+  
+  func onLoginByGoogleAction(vc: UIViewController) {
+    GIDSignIn.sharedInstance().uiDelegate = self
+    SocialNetworksClient.sharedInstance.loginWithGoogle {[weak self] (user, error) in
+      guard let user = user else {
+        self?.loadingHandler.hideProgress()
+        return
+      }
+      
+      self?.googleUser = user
+      self?.loadingHandler.handleError(success: error == nil, error: error as? BEErrorType)
+
+      self?.coreService?.authWithGoogleUser(googleId: user.user.userID,
+                                            googleToken: user.user.authentication.idToken,
+                                            contactClass: ContactModel.self,
+                                            handler: { success, error in
+                                              self?.loadingHandler.hideProgress()
+
+                                              if let contact = self?.coreService?.getSession()?.getContact() {
+//                                                self?.pushEnrollment?.onSignIn(contact: contact)
+                                              }
+      })
+    }
+  }
   
   //MARK: - Private
   

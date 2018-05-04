@@ -374,7 +374,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         // check for response value
-        guard let data = response.result.value as? [String], data.count == 2 else {
+        guard let data = (response.result.value as? [Any])?.first as? [String], data.count == 2 else {
           handler(.failure(ApiError.createContactFailed(reason : "Incorrect response data")))
           return
         }

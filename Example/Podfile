@@ -3,6 +3,7 @@ use_frameworks!
 target 'BeanstalkEngageiOSSDK_Example' do
   pod 'PKHUD', '~> 4.2.0'
   pod 'BeanstalkEngageiOSSDK', :path => '../'
+  pod 'GoogleSignIn', '4.1.0'
 end
 
 target 'BeanstalkEngageiOSSDK_Tests' do

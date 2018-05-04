@@ -26,6 +26,8 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		660861F1209C5472005F5E21 /* SocialNetworksClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F0209C5471005F5E21 /* SocialNetworksClient.swift */; };
+		660861F5209C57D3005F5E21 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F4209C57D3005F5E21 /* RegistrationModel.swift */; };
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		6C7E8E0DFDCFAB0757D82709 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
 		891053A91E9D12E000595D1D /* PushNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891053A81E9D12E000595D1D /* PushNotificationsTests.swift */; };
@@ -93,6 +95,10 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* BeanstalkEngageiOSSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanstalkEngageiOSSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		660861F0209C5471005F5E21 /* SocialNetworksClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNetworksClient.swift; sourceTree = "<group>"; };
+		660861F2209C54D3005F5E21 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		660861F3209C5616005F5E21 /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
+		660861F4209C57D3005F5E21 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		891053A81E9D12E000595D1D /* PushNotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsTests.swift; sourceTree = "<group>"; };
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 		0AC13FCA1E718CE700D4B17D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				660861F0209C5471005F5E21 /* SocialNetworksClient.swift */,
 				89EDF7CE1E9F78DA0027B3DC /* LoadingHandler.swift */,
 				89EDF7CC1E9F78540027B3DC /* LoadingHandlerProtocol.swift */,
 				0AC13FCB1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift */,
@@ -170,6 +177,8 @@
 		607FACD21AFB9204008FA782 /* Example for BeanstalkEngageiOSSDK */ = {
 			isa = PBXGroup;
 			children = (
+				660861F3209C5616005F5E21 /* Bridge-Header.h */,
+				660861F2209C54D3005F5E21 /* Bridging-Header.h */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				0AC13FCA1E718CE700D4B17D /* Controllers */,
 				89ACF7EE1E4F210F00F8B67A /* Core */,
@@ -246,6 +255,7 @@
 		896623EB1E49B6E70015698C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				660861F4209C57D3005F5E21 /* RegistrationModel.swift */,
 				896623ED1E49B74E0015698C /* ContactModel.swift */,
 			);
 			name = Models;
@@ -319,7 +329,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				21A2DC47AB39941623D75707 /* [CP] Embed Pods Frameworks */,
-				0E2F13C3AD77CFB3213C36C7 /* [CP] Copy Pods Resources */,
+				7B4185400E3A5DA13E3A96FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,7 +349,6 @@
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				04A37FB5409FCF02AFE686AF /* [CP] Embed Pods Frameworks */,
-				58A6D0ECDEF06D347D4C3158 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -454,21 +463,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0E2F13C3AD77CFB3213C36C7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		21A2DC47AB39941623D75707 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -479,6 +473,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
@@ -489,6 +486,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BeanstalkEngageiOSSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -499,19 +499,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		58A6D0ECDEF06D347D4C3158 /* [CP] Copy Pods Resources */ = {
+		7B4185400E3A5DA13E3A96FD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CCB328D686DB73D93574904F /* [CP] Check Pods Manifest.lock */ = {
@@ -558,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A6696E21DC2454200E51E82 /* ProfileViewController.swift in Sources */,
+				660861F1209C5472005F5E21 /* SocialNetworksClient.swift in Sources */,
 				89EDF7CF1E9F78DA0027B3DC /* LoadingHandler.swift in Sources */,
 				89BFAC7B1F69326000C2C87B /* LocKeys.swift in Sources */,
 				89BFAC7A1F69326000C2C87B /* Localization.swift in Sources */,
@@ -570,6 +574,7 @@
 				0A9467F21EA11B2A00085C54 /* TrackTransactionViewController.swift in Sources */,
 				0AC13FCC1E718CFC00D4B17D /* PushNotificationEnrollmentController.swift in Sources */,
 				0ADD73961E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift in Sources */,
+				660861F5209C57D3005F5E21 /* RegistrationModel.swift in Sources */,
 				0AFA7C1F1E8D64D0004DE357 /* ContactManagementViewController.swift in Sources */,
 				0A9467F41EA6371500085C54 /* TransactionsListTableViewController.swift in Sources */,
 				89ACF7F01E4F215300F8B67A /* ApiService.swift in Sources */,
@@ -739,10 +744,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 587P7DM9NE;
 				INFOPLIST_FILE = BeanstalkEngageiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeanstalkEngageiOSSDK/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -757,10 +764,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 587P7DM9NE;
 				INFOPLIST_FILE = BeanstalkEngageiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BeanstalkEngageiOSSDK/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
