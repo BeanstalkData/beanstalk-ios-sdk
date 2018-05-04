@@ -9,14 +9,14 @@ import Foundation
 import CoreLocation
 import Alamofire
 
-public typealias CoreService = CoreServiceT<HTTPAlamofireManager>
+public typealias CoreService = CoreServiceT<HTTPTimberjackManager>
 
 /**
  Main core model interface. Contains ApiCommunication as property. All request performed through ApiCommunication.
  Manages auth state of user and persists session-related data to provided session entity (BESessionProtocol).
  */
 
-open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespondersHolder {
+open class CoreServiceT <SessionManager: HTTPTimberjackManager>: BEAbstractRespondersHolder {
   public let apiService: ApiCommunication<SessionManager>
   let session: BESessionProtocol
   

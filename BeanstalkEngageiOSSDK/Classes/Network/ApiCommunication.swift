@@ -37,7 +37,7 @@ fileprivate let kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
 /**
  Contains majority of API calls. It is utilized by CoreService. Can be used directly.
  */
-open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespondersHolder <BEApiResponder> {
+open class ApiCommunication <SessionManagerClass: HTTPTimberjackManager>: BERespondersHolder <BEApiResponder> {
   
   fileprivate let BASE_URL: String
   fileprivate let apiKey: String

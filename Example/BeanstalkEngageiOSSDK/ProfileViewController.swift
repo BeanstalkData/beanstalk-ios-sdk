@@ -17,6 +17,7 @@ class ProfileViewController: BaseViewController {
   @IBOutlet var emailLabel: UILabel!
   @IBOutlet var genderSegment: UISegmentedControl!
   @IBOutlet var pushNotificationsSwitch: UISwitch!
+  @IBOutlet weak var phoneLabel: UILabel!
   
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   
@@ -77,6 +78,7 @@ class ProfileViewController: BaseViewController {
     
     self.nameLabel.text = self.contact?.getFullName()
     self.emailLabel.text = updateRequest.getEmail()
+    self.phoneLabel.text = contact?.phone
     
     if self.updateContactRequest?.getGender() == "Male" {
       self.genderSegment.selectedSegmentIndex = 0
