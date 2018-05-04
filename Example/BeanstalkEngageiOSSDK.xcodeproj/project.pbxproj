@@ -742,6 +742,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BeanstalkEngageiOSSDK_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 587P7DM9NE;
 				INFOPLIST_FILE = BeanstalkEngageiOSSDK/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -749,6 +750,8 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1069470-8ca2-4de9-9712-9e7c5859fffd";
+				PROVISIONING_PROFILE_SPECIFIER = "Beanstalk Engage SDK Test";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeanstalkEngageiOSSDK/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -769,6 +772,8 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c1069470-8ca2-4de9-9712-9e7c5859fffd";
+				PROVISIONING_PROFILE_SPECIFIER = "Beanstalk Engage SDK Test";
 				SWIFT_OBJC_BRIDGING_HEADER = "BeanstalkEngageiOSSDK/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
