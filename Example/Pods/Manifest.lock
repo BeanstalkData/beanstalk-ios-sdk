@@ -44,7 +44,7 @@ PODS:
 DEPENDENCIES:
   - BeanstalkEngageiOSSDK (from `../`)
   - BeanstalkEngageiOSSDK/Testing (from `../`)
-  - PKHUD
+  - PKHUD (= 5.0.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -70,6 +70,6 @@ SPEC CHECKSUMS:
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
   SwiftyRSA: 601e4585fece2c6c50ae93a67c77cc2426e55cb2
 
-PODFILE CHECKSUM: eae082e342bc840a655f1eaccbc1c96ae9fb744f
+PODFILE CHECKSUM: 43612ced6510664141c76abb18e21901c6596d26
 
 COCOAPODS: 1.5.0
