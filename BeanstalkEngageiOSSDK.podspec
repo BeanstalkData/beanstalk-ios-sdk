@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.6.16.1'
+  s.version          = '0.6.16.2'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Beanstalk Data' => 'info@beanstalkdata.com' }
   s.source           = { :git => 'https://github.com/BeanstalkData/beanstalk-ios-sdk.git', :tag => s.version }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '8.3'
 
   s.default_subspec = 'Core'
 
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
     ns.dependency 'Alamofire', '~> 4.4.0'
+    ns.dependency 'SwiftyRSA', '1.4.0'
   end
 
   s.subspec 'Control' do |cns|

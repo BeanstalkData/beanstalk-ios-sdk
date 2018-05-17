@@ -1,12 +1,12 @@
 use_frameworks!
 
 target 'BeanstalkEngageiOSSDK_Example' do
-  pod 'PKHUD', '~> 4.2.0'
+  pod 'PKHUD'#, '~> 4.2.0'
   pod 'BeanstalkEngageiOSSDK', :path => '../'
 end
 
 target 'BeanstalkEngageiOSSDK_Tests' do
-  pod 'PKHUD', '~> 4.2.0'
+  pod 'PKHUD'#, '~> 4.2.0'
   pod 'BeanstalkEngageiOSSDK', :path => '../'
   pod 'BeanstalkEngageiOSSDK/Testing', :path => '../'
 end
