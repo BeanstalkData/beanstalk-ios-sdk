@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Beanstalk Data' => 'info@beanstalkdata.com' }
   s.source           = { :git => 'https://github.com/BeanstalkData/beanstalk-ios-sdk.git', :tag => s.version }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '8.3'
 
   s.default_subspec = 'Core'
 
@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
 
     ns.dependency 'Alamofire', '~> 4.4.0'
     ns.dependency 'ReachabilitySwift', '~> 4.1.0'
+    ns.dependency 'SwiftyRSA', '1.4.0'
   end
 
   s.subspec 'Control' do |cns|
