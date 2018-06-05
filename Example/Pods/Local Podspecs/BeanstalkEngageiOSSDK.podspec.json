@@ -15,7 +15,7 @@
     "tag": "0.7.1"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "8.3"
   },
   "default_subspecs": "Core",
   "subspecs": [
@@ -60,6 +60,12 @@
         ],
         "Alamofire": [
           "~> 4.6.0"
+        ],
+        "ReachabilitySwift": [
+          "~> 4.1.0"
+        ],
+        "SwiftyRSA": [
+          "1.4.0"
         ]
       }
     },

@@ -27,6 +27,8 @@ PODS:
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Vendor
+    - ReachabilitySwift (~> 4.1.0)
+    - SwiftyRSA (= 1.4.0)
   - BeanstalkEngageiOSSDK/Testing (0.7.1):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Control
@@ -36,27 +38,44 @@ PODS:
   - BeanstalkEngageiOSSDK/Vendor (0.7.1)
   - CCTestingUserDefaults (0.1.2)
   - libPhoneNumber-iOS (0.9.13)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.2.0)
   - PKHUD (5.0.0)
+  - ReachabilitySwift (4.1.0)
+  - SwiftyRSA (1.4.0):
+    - SwiftyRSA/ObjC (= 1.4.0)
+  - SwiftyRSA/ObjC (1.4.0)
 
 DEPENDENCIES:
   - BeanstalkEngageiOSSDK (from `../`)
   - BeanstalkEngageiOSSDK/Testing (from `../`)
   - PKHUD (~> 5.0.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - CCTestingUserDefaults
+    - libPhoneNumber-iOS
+    - ObjectMapper
+    - PKHUD
+    - ReachabilitySwift
+    - SwiftyRSA
+
 EXTERNAL SOURCES:
   BeanstalkEngageiOSSDK:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  BeanstalkEngageiOSSDK: 168ea7d2946071f9f69a49036178529b23d20fba
+  BeanstalkEngageiOSSDK: bdb2fc283ccae1a8a2c479cec43832ed8ad57223
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: 5cccd2de6f253eda859df8116a5a554d9769e859
   PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  SwiftyRSA: 601e4585fece2c6c50ae93a67c77cc2426e55cb2
 
 PODFILE CHECKSUM: d60ec2b9ad35452ff617fba4dee9baa69140ed1c
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
