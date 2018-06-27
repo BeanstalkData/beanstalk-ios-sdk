@@ -7,19 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyRSA
-
-let serverPublicKey = """
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsuDZEQbwq5HIPgEsWqkS
-cu1ad1SvF0qox9sNs4IBSheij3wR7Zh3q2KIdYkf+g59qsQ/JoA1bzJV+UuGhAWD
-P/VfQr2kpD7kuab5aKKmETUsE78+NgsWT1Ra1Jf9eSDGpVBk6tJpNAvt6B10AwIm
-NrfVDctFDA8vSRSsCvbOlxciHXKw+VZTx1BCL5zD1rXzWAFxHxmfSh1xGV0aA+Bd
-rnBh2vX//5sunw5SVsD60Zy66AGAKKU4LKAg22NkS3WTSk7/+cYwhlD8CXTgC0u+
-PVDcRV4ihsS64beN05bkcyIvfq7Hys6Xv/x03UO10k0snjuU2KyLAlJSFaj4GLIM
-hwIDAQAB
------END PUBLIC KEY-----
-"""
 
 let beanstalkPoint = "proc.beanstalkdata.com"
 
@@ -48,21 +35,6 @@ open class HTTPAlamofireManager: Alamofire.SessionManager {
     
     return configuration
   }
-  
-  static internal func getServerTrustPolicyManager() -> ServerTrustPolicyManager {
-    let publicKey = try? PublicKey(pemEncoded: serverPublicKey)
-    var publicKeys = [SecKey]()
-    if let key = publicKey?.reference {
-      publicKeys.append(key)
-    }
-    
-    let trustPolicy = ServerTrustPolicy.pinPublicKeys(
-      publicKeys: publicKeys,
-      validateCertificateChain: true,
-      validateHost: true)
-
-    return ServerTrustPolicyManager(policies: [beanstalkPoint : trustPolicy])
-  }
 }
 
 open class HTTPTimberjackManager: HTTPAlamofireManager {
@@ -81,3 +53,22 @@ open class HTTPTimberjackManager: HTTPAlamofireManager {
   }
 }
 
+private func getServerTrustPolicyManager() -> ServerTrustPolicyManager? {
+  let frameworkBundle = Bundle(for: BeanstalkEngageiOSSDKClass.self)
+  
+  guard let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("BeanstalkEngageiOSSDK.bundle"),
+    let resourceBundle = Bundle(url: bundleURL) else {
+      return nil
+  }
+  
+  let publicKeys = ServerTrustPolicy.publicKeys(in: resourceBundle)
+  
+  let trustPolicy = ServerTrustPolicy.pinPublicKeys(
+    publicKeys: publicKeys,
+    validateCertificateChain: true,
+    validateHost: true)
+  
+  return ServerTrustPolicyManager(policies: [beanstalkPoint: trustPolicy])
+}
+
+class BeanstalkEngageiOSSDKClass {}

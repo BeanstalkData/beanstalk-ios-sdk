@@ -26,13 +26,13 @@ Pod::Spec.new do |s|
 
   s.subspec 'Network' do |ns|
     ns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Network/**/*'
+    ns.resource_bundles = { 'BeanstalkEngageiOSSDK' => ['BeanstalkEngageiOSSDK/Certificates/*.cer'] }
 
     ns.dependency 'BeanstalkEngageiOSSDK/Common'
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
     ns.dependency 'Alamofire', '~> 4.4.0'
-    ns.dependency 'SwiftyRSA', '1.4.0'
   end
 
   s.subspec 'Control' do |cns|

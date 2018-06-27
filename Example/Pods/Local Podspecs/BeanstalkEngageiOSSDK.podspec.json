@@ -48,6 +48,11 @@
     {
       "name": "Network",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Network/**/*",
+      "resource_bundles": {
+        "BeanstalkEngageiOSSDK": [
+          "BeanstalkEngageiOSSDK/Certificates/*.cer"
+        ]
+      },
       "dependencies": {
         "BeanstalkEngageiOSSDK/Common": [
 
@@ -60,9 +65,6 @@
         ],
         "Alamofire": [
           "~> 4.4.0"
-        ],
-        "SwiftyRSA": [
-          "1.4.0"
         ]
       }
     },
