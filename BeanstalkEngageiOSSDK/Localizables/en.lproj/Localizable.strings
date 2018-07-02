@@ -14,7 +14,7 @@
 "error_update_failed"                                         = "Update Failed!";
 "error_contact_ID_should_be_provided_by_session"              = "Contact ID should be provided by session";
 "error_sorry_an_error_occurred_while_processing_your_request" = "Sorry, an error occurred while processing your request";
-"error_connection_unavailable"                                = "Connection unavailable";
+"error_connection_unavailable"                                = "Requested resource available only with network connection";
 "error_unknown"                                               = "Unknown error";
 "error_failed_to_delete_contact"                              = "Failed to delete contact";
 "error_failed_to_fetch_contact"                               = "Failed to fetch contact";
@@ -30,7 +30,7 @@
 "failed_to_track_transaction"                                 = "Failed to Track Transaction";
 "failed_to_send_support_request"                              = "Failed to send Support Request";
 "error_bad_request_title"                                     = "Bad request";
-"error_connection_failed_title"                               = "Connection Failed";
+"error_connection_failed_title"                               = "Network connection unavailable";
 "error_create_contact_failed_title"                           = "Create Contact Failed";
 "error_delete_contact_failed_title"                           = "Delete Contact Failed";
 "error_update_contact_failed_title"                           = "Update Contact Failed";
