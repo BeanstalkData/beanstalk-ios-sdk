@@ -958,7 +958,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   open func resetPassword(_ email: String, handler: @escaping (Result<String?>) -> Void) {
     
     if (isOnline()) {
-      let params = ["user": email]
+      let params: Parameters = ["user": email, "version": 2]
       SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdLoyalty/ResetPassword.php?key=" + self.apiKey, method: .post, parameters: params)
         .validate(getDefaultErrorHandler())
         .responseString {
