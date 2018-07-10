@@ -1310,6 +1310,43 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     }
   }
   
+  open func getStore <StoreClass> (storeId: String?, token : String?, version: String? = nil, storeClass: StoreClass.Type, handler: @escaping (Result<BEStoreProtocol?>) -> Void) where StoreClass: BEStoreProtocol {
+    
+    if (!isOnline()) {
+      handler(.failure(ApiError.networkConnectionError()))
+      return
+    }
+    
+    var params = Parameters()
+    if let storeId = storeId { params["storeNumber"] = storeId }
+    if let token = token { params["token"] = token }
+    if let version = version { params["version"] = version }
+    
+    SessionManagerClass.getSharedInstance().request(BASE_URL + "/bsdStores/locate/?key=" + self.apiKey, method: .get, parameters: params)
+      .validate(getDefaultErrorHandler())
+      .responseObject {
+        (response : DataResponse<StoresResponse<StoreClass>>) in
+        
+        if (response.result.isSuccess) {
+          guard let data = response.result.value else {
+            return handler(.failure(ApiError.unknown()))
+          }
+          
+          if (data.failed()) {
+            return handler(.failure(ApiError.dataSerialization(reason: Localized(key: BELocKey.error_bad_request_title))))
+          } else {
+            let store = data.getStores()?.filter { storeId == $0.storeId }.first
+            return handler(.success(store))
+          }
+        }
+        
+        if response.response?.statusCode == 200 {
+          return handler(.success(nil))
+        }
+        
+        handler(.failure(ApiError.network(error: response.result.error)))
+    }
+  }
   
   //MARK: - Push Notifications
   

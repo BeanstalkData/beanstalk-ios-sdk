@@ -994,6 +994,21 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
     })
   }
   
+  /**
+   Performs store with storeNumber for store class
+  */
+  
+  open func getStore <StoreClass> (storeNumber: String?, version: String? = nil, storeClass: StoreClass.Type, handler: @escaping ((_ success: Bool, _ store : BEStoreProtocol?, _ error: BEErrorType?) -> Void)) where StoreClass: BEStoreProtocol {
+    let token = self.session.getAuthToken()
+    
+    apiService.getStore(storeId: storeNumber, token: token, version: version, storeClass: storeClass) { result in
+      guard result.isSuccess else {
+        return handler(false, nil, ApiError.findStoresError(reason: result.error! as? BEErrorType))
+      }
+      
+      handler(true, result.value!, nil)
+    }
+  }
   
   //MARK: - Transactions
   
