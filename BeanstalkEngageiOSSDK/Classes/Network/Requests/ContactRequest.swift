@@ -32,6 +32,7 @@ open class ContactRequest: Mappable {
   fileprivate var googleToken: String?
   fileprivate var fBid: String?
   fileprivate var fBToken: String?
+  fileprivate var primaryId: String?
 
   open fileprivate(set) var origin: BEContact?
   
@@ -373,6 +374,24 @@ open class ContactRequest: Mappable {
     self.fBToken = fBToken
   }
 
+  open func set(primaryId: String?) {
+    guard let primaryId = primaryId else { return }
+    
+    guard origin?.primaryId?.caseInsensitiveCompare(primaryId) != ComparisonResult.orderedSame else {
+      self.primaryId = nil
+      return
+    }
+    
+    self.primaryId = primaryId
+  }
+  
+  open func getPrimaryId() -> String? {
+    guard self.primaryId == nil else {
+      return self.primaryId
+    }
+    return self.origin?.primaryId
+  }
+  
   open func mapping(map: Map) {
     
     contactId <- map["ContactID"]
@@ -394,6 +413,7 @@ open class ContactRequest: Mappable {
     googleToken <- map["GoogleToken"]
     fBid <- map["FBid"]
     fBToken <- map["FBToken"]
+    primaryId <- map["Primary_Id"]
   }
 
   open func normalize() {
