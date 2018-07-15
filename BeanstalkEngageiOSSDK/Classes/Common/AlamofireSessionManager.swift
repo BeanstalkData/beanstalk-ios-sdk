@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyRSA
 
 let beanstalkPoint = "proc.beanstalkdata.com"
 
