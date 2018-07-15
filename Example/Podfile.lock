@@ -3,43 +3,39 @@ PODS:
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - BeanstalkEngageiOSSDK (0.6.15.5):
-    - BeanstalkEngageiOSSDK/Core (= 0.6.15.5)
-  - BeanstalkEngageiOSSDK/Common (0.6.15.5):
+  - BeanstalkEngageiOSSDK (0.6.15.6):
+    - BeanstalkEngageiOSSDK/Core (= 0.6.15.6)
+  - BeanstalkEngageiOSSDK/Common (0.6.15.6):
     - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Vendor
     - libPhoneNumber-iOS
-  - BeanstalkEngageiOSSDK/Control (0.6.15.5):
+  - BeanstalkEngageiOSSDK/Control (0.6.15.6):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Core (0.6.15.5):
+  - BeanstalkEngageiOSSDK/Core (0.6.15.6):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
-  - BeanstalkEngageiOSSDK/Model (0.6.15.5):
+  - BeanstalkEngageiOSSDK/Model (0.6.15.6):
     - AlamofireObjectMapper (~> 4.1.0)
-  - BeanstalkEngageiOSSDK/Network (0.6.15.5):
+  - BeanstalkEngageiOSSDK/Network (0.6.15.6):
     - Alamofire (~> 4.4.0)
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Vendor
-    - SwiftyRSA (= 1.4.0)
-  - BeanstalkEngageiOSSDK/Testing (0.6.15.5):
+  - BeanstalkEngageiOSSDK/Testing (0.6.15.6):
     - BeanstalkEngageiOSSDK/Common
     - BeanstalkEngageiOSSDK/Control
     - BeanstalkEngageiOSSDK/Model
     - BeanstalkEngageiOSSDK/Network
     - CCTestingUserDefaults
-  - BeanstalkEngageiOSSDK/Vendor (0.6.15.5)
+  - BeanstalkEngageiOSSDK/Vendor (0.6.15.6)
   - CCTestingUserDefaults (0.1.2)
-  - libPhoneNumber-iOS (0.9.6)
-  - ObjectMapper (2.2.5)
+  - libPhoneNumber-iOS (0.9.13)
+  - ObjectMapper (2.2.9)
   - PKHUD (4.2.1)
-  - SwiftyRSA (1.4.0):
-    - SwiftyRSA/ObjC (= 1.4.0)
-  - SwiftyRSA/ObjC (1.4.0)
 
 DEPENDENCIES:
   - BeanstalkEngageiOSSDK (from `../`)
@@ -54,7 +50,6 @@ SPEC REPOS:
     - libPhoneNumber-iOS
     - ObjectMapper
     - PKHUD
-    - SwiftyRSA
 
 EXTERNAL SOURCES:
   BeanstalkEngageiOSSDK:
@@ -63,12 +58,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  BeanstalkEngageiOSSDK: 2cee703e985a949385759a27e077e6c8446c954c
+  BeanstalkEngageiOSSDK: c9373580c1a741766ba37f7882ccc103b9a41ef2
   CCTestingUserDefaults: 5fd8cfeb6cbc646031fc09825906cc9305beef87
-  libPhoneNumber-iOS: 36044ed9658b5c11ee3cb3011751e47251d34992
-  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
+  ObjectMapper: 63cfe41bc6f8e7c8f44344c49901b8ae7de14c52
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
-  SwiftyRSA: 601e4585fece2c6c50ae93a67c77cc2426e55cb2
 
 PODFILE CHECKSUM: e322132dbb409131c7843b050e40f29341fa33bc
 

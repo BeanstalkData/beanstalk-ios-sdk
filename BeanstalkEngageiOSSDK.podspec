@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.6.15.5'
+  s.version          = '0.6.15.6'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -26,13 +26,13 @@ Pod::Spec.new do |s|
 
   s.subspec 'Network' do |ns|
     ns.source_files   = 'BeanstalkEngageiOSSDK/Classes/Network/**/*'
+    ns.resource_bundles = { 'BeanstalkEngageiOSSDK' => ['BeanstalkEngageiOSSDK/Certificates/*.cer'] }
 
     ns.dependency 'BeanstalkEngageiOSSDK/Common'
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
     ns.dependency 'Alamofire', '~> 4.4.0'
-    ns.dependency 'SwiftyRSA', '1.4.0'
   end
 
   s.subspec 'Control' do |cns|

@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.6.15.5",
+  "version": "0.6.15.6",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.6.15.5"
+    "tag": "0.6.15.6"
   },
   "platforms": {
     "ios": "8.3"
@@ -48,6 +48,11 @@
     {
       "name": "Network",
       "source_files": "BeanstalkEngageiOSSDK/Classes/Network/**/*",
+      "resource_bundles": {
+        "BeanstalkEngageiOSSDK": [
+          "BeanstalkEngageiOSSDK/Certificates/*.cer"
+        ]
+      },
       "dependencies": {
         "BeanstalkEngageiOSSDK/Common": [
 
@@ -60,9 +65,6 @@
         ],
         "Alamofire": [
           "~> 4.4.0"
-        ],
-        "SwiftyRSA": [
-          "1.4.0"
         ]
       }
     },
