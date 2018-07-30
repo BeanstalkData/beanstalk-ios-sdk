@@ -1,11 +1,10 @@
 "login_failed"                                                = "Login failed";
 "login_failed_text"                                           = "Please check your credentials and try again";
+"we_are_sorry"                                                = "We\'re Sorry.";
+"transaction_problem"                                         = "There was a problem processing your transaction. Please try again later.";
 "error_store_is_not_alive_title"                              = "Store not available";
 "error_store_is_not_alive_message"                            = "The store is not available at the moment. Please try again later.";
 "too_late_to_cancel"                                          = "Sorry, it is too late to cancel your order online. Please contact the store.";
-"mobile_ordering_not_available_today_error"                   = "Mobile Ordering is no longer available today due to selected location's working day is over. Please try again tomorrow";
-"ordering_no_available"                                       = "Ordering is not available";
-"pickup_time_expired"                                         = "Pick up time is expired, please select the new time to pick up your order";
 "error_please_verify_parameters"                              = "Please verify parameter(s)";
 "error_api_username_must_be_provided"                         = "In order to perform this action API username must be provided";
 "error_invalid_request_title"                                 = "Invalid request";

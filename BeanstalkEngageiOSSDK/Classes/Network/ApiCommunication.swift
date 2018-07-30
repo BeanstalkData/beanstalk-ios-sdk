@@ -1756,40 +1756,21 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
   fileprivate func getErrorHandler(_ defaultMessage: String) -> DataRequest.Validation {
     let validation : DataRequest.Validation = { (urlRequest, ulrResponse, data) -> Request.ValidationResult in
       
-      let acceptableStatusCodes: Range<Int> = 200..<300
-      if acceptableStatusCodes.contains(ulrResponse.statusCode) {
-        
+      switch ulrResponse.statusCode {
+      case 200..<300:
         return .success
-      } else {
+      
+      case 400..<599:
+        return .failure(ApiError.default)
         
-        var failureReason = defaultMessage
-        
-        if (ulrResponse.statusCode == 400) {
-          //TODO: Handle custom error
-          failureReason = "Response status code was unacceptable: \(ulrResponse.statusCode)"
-        } else if (ulrResponse.statusCode == 404) {
-          
-        }
-        
-        //TODO: Create corresponding error
-        //        let error = NSError(
-        //          domain: Error.domain,
-        //          code: Error.Code.StatusCodeValidationFailed.rawValue,
-        //          userInfo: [
-        //            NSLocalizedFailureReasonErrorKey: failureReason,
-        //            Error.UserInfoKeys.StatusCode: ulrResponse.statusCode
-        //          ]
-        //        )
-        
-        let error = ApiError.unacceptableStatusCodeError(reason: failureReason, statusCode: ulrResponse.statusCode)
-        
-        return .failure(error)
+      default:
+        return .failure(ApiError.unacceptableStatusCodeError(reason: defaultMessage, statusCode: ulrResponse.statusCode))
       }
     }
     
     return validation
   }
-  
+
   fileprivate func getDefaultErrorHandler() -> DataRequest.Validation {
     return getErrorHandler("Got error while processing your request.")
   }
