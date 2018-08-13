@@ -33,9 +33,10 @@ open class BEPushNotificationMessage: Mappable {
   open var thumbnailUrl: String?
   open var messageUrl: String?
   
+  open var map: Map?
   
   required public init?(map: Map) {
-    
+
   }
   
   open func mapping(map: Map) {
@@ -59,8 +60,10 @@ open class BEPushNotificationMessage: Mappable {
     
     messageId = messageIdInfo?["$id"] as? String
     updatedAt = updatedAtInfo?["sec"] as? Int
+    
+    self.map = map
   }
-  
+
   open func updatedDate() -> Date? {
     guard let updatedStr = self.updatedAt else {
       return nil

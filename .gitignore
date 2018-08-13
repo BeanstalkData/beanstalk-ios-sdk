@@ -46,3 +46,4 @@ Example/build_output/*
 Example/build/*
 Example/build_tmp/*
 Example/test-reports/*
+gen_loc_enum.rb

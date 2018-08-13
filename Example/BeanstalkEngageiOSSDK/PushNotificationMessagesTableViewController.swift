@@ -33,6 +33,13 @@ class PushNotificationMessagesTableViewController: UITableViewController {
     return handler
   }()
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 60.0
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
@@ -68,28 +75,19 @@ class PushNotificationMessagesTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
     
-    let titleLabel = cell.contentView.viewWithTag(1) as? UILabel
-    let subtitleLabel = cell.contentView.viewWithTag(2) as? UILabel
-    let updatedLabel = cell.contentView.viewWithTag(3) as? UILabel
+    let text = cell.contentView.viewWithTag(1) as? UITextView
     let statusLabel = cell.contentView.viewWithTag(4) as? UILabel
     
     if let message = self.messages?[indexPath.row] {
-      titleLabel?.text = message.title
-      subtitleLabel?.text = message.subtitle
-      if let date = message.updatedDate() {
-        updatedLabel?.text = self.dateFormatter.string(from: date)
-      }
-      else {
-        updatedLabel?.text = nil
-      }
+      text?.text = message.debugDescription
       statusLabel?.text = message.status
     }
     else {
-      titleLabel?.text = nil
-      subtitleLabel?.text = nil
-      updatedLabel?.text = nil
+      text?.text = nil
       statusLabel?.text = nil
     }
+    
+    text?.delegate = self
     
     return cell
   }
@@ -167,5 +165,21 @@ class PushNotificationMessagesTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
+  }
+}
+
+extension PushNotificationMessagesTableViewController: UITextViewDelegate {
+  @available(iOS 10.0, *)
+  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    return true
+  }
+}
+
+
+extension BEPushNotificationMessage: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    let desc = self.map?.JSON.debugDescription
+    
+    return desc ?? ""
   }
 }
