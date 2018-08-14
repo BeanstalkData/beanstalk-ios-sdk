@@ -740,27 +740,32 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
    Performs start payment request.
    */
   open func startPayment(cardId : String?, coupons: [BECouponProtocol], handler: @escaping (_ success: Bool, BarCodeInfo, _ error: BEErrorType?)->Void){
-    guard let contactId = self.session.getContactId(),
-      let token = self.session.getAuthToken(),
-      cardId != nil,
-      coupons.count > 0 else
-    {
+    
+    if cardId == nil && coupons.count == 0 {
       let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
       handler(true, data, nil)
       return
     }
     
+    guard let contactId = self.session.getContactId(),
+      let token = self.session.getAuthToken() else {
+        let data = getBarCodeInfo(nil, cardId: cardId, coupons: coupons)
+        handler(true, data, nil)
+        return
+    }
+    
     let couponsString : String = coupons.reduce("", { $0 == "" ? $1.number! : $0 + "," + $1.number! })
     
     apiService.startPayment(contactId, token: token, paymentId: cardId, coupons: couponsString, handler: {[weak self] result in
-      if result.isFailure {
+      
+      guard result.isSuccess else {
         let data = self?.getBarCodeInfo(nil, cardId: cardId, coupons: coupons) ?? BarCodeInfo(data: "", type: .memberId)
-        handler(false, data, result.error as? BEErrorType)
-        return
+        return handler(false, data, ApiError.paymentError(reason: result.error as? BEErrorType))
       }
       
-      let cards = result.value ?? nil
-      let data = self?.getBarCodeInfo(cards, cardId: cardId, coupons: coupons) ?? BarCodeInfo(data: "", type: .memberId)
+      let number = result.value ?? nil
+      
+      var data = self?.getBarCodeInfo(number, cardId: cardId, coupons: coupons) ?? BarCodeInfo(data: "", type: .memberId)
       handler(true, data, nil)
     })
   }
