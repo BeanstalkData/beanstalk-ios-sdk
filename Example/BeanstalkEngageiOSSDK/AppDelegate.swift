@@ -32,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.pushNotificationEnrollment = PushNotificationEnrollmentController(beanstalkCoreService: self.coreService, session: session)
     }
     
+    // application handles remote push notification when it was terminated
+    if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable : Any] {
+      // is this case application should redirect to required screen silently
+      self.pushNotificationEnrollment?.application(application, didReceiveRemoteNotification: remoteNotification)
+    }
+    
     GIDSignIn.sharedInstance().clientID = "938888404219-q3uklfftme7t0hdpu8gs1sij2duu001q.apps.googleusercontent.com"
     GIDSignIn.sharedInstance().delegate = socialNetworksClient
     

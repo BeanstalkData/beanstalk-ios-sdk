@@ -264,13 +264,7 @@ final class PushNotificationEnrollmentController: NSObject {
   }
   
   fileprivate func handlePushNotification(info: [AnyHashable : Any]) {
-    guard let aps = info["aps"] as? [AnyHashable: Any] else {
-      return
-    }
-    
-    guard let alert = aps["alert"] as? String else {
-      return
-    }
+    let alert = (info as? [String: Any])?.description
     
     guard let rootController = UIApplication.shared.keyWindow?.rootViewController else {
       return
