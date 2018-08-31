@@ -397,7 +397,7 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Logouts user.
    */
-  open func logout(handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void){
+  open func logout(handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
     guard let contactId = self.session.getContactId(), let token = self.session.getAuthToken() else {
       handler(false, ApiError.missingParameterError(reason: ""))
       return

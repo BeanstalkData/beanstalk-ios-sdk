@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BeanstalkEngageiOSSDK'
-  s.version          = '0.7.2'
+  s.version          = '0.7.3'
   s.summary          = 'Beanstalk Engage iOS SDK.'
   s.homepage         = 'https://github.com/BeanstalkData/beanstalk-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
     cs.dependency 'BeanstalkEngageiOSSDK/Model'
     cs.dependency 'BeanstalkEngageiOSSDK/Network'
     cs.dependency 'BeanstalkEngageiOSSDK/Control'
+    cs.dependency 'PromiseKit/CorePromise', '~> 6.3'
   end
 
   s.subspec 'Model' do |ms|
