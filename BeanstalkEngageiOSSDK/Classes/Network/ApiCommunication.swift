@@ -934,11 +934,10 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         
         guard let resultString = response.result.value,
           !resultString.isEmpty else {
-            handler(.success(response.result.value))
-            return
+            return handler(.failure(ApiError.resetPasswordError(reason: response.result.value)))
         }
         
-        handler(.failure(ApiError.resetPasswordError(reason: response.result.value)))
+        handler(.success(response.result.value))
     }
   }
   
