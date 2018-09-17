@@ -87,7 +87,7 @@ open class BECoreServiceTestHandler {
     self.testCase.prepare()
     
     var resetPasswordStatus = false
-    self.testCase.getCoreService()?.resetPassword(email: email, handler: { (success, error) in
+    self.testCase.getCoreService()?.resetPassword(email: email, handler: { success, message, error in
       
       resetPasswordStatus = success
       self.testCase .fullfill()
