@@ -62,7 +62,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     self.apiUsername = apiUsername
     self.BASE_URL = "https://" + beanstalkUrl
     
-    self.reachability = Reachability(hostname: beanstalkUrl)!
+    self.reachability = Reachability()!
     
     super.init()
     
