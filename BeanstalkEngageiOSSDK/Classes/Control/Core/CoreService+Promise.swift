@@ -65,10 +65,10 @@ extension CoreServiceT {
     }
   }
   
-  open func resetPassword(email : String?) -> Promise<Void> {
+  open func resetPassword(email : String?) -> Promise<String> {
     return Promise { seal in
-      resetPassword(email: email, handler: { _, error in
-        seal.resolve(error)
+      resetPassword(email: email, handler: { _, message, error in
+        seal.resolve(message, error)
       })
     }
   }

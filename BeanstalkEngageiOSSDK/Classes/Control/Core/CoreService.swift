@@ -379,18 +379,18 @@ open class CoreServiceT <SessionManager: HTTPAlamofireManager>: BEAbstractRespon
   /**
    Performs reset password request.
    */
-  open func resetPassword(email : String?, handler: @escaping (_ success: Bool, _ error: BEErrorType?) -> Void) {
-    guard self.validator.validate(email: email, errorHandler: { handler(false, $0) }) else {
-      return handler(false, ApiError.unknown())
+  open func resetPassword(email : String?, handler: @escaping (_ success: Bool, _ resultMessage: String?, _ error: BEErrorType?) -> Void) {
+    guard self.validator.validate(email: email, errorHandler: { handler(false, nil, $0) }) else {
+      return handler(false, nil, ApiError.unknown())
     }
     
     apiService.resetPassword(email!, handler: { (result) in
       if result.isFailure {
-        handler(false, result.error as? BEErrorType)
+        handler(false, nil, result.error as? BEErrorType)
         return
       }
-      
-      handler(true, nil)
+
+      handler(true, result.value ?? nil, nil)
     })
   }
   

@@ -102,10 +102,10 @@ class MenuViewController: BaseViewController {
       handler: { (_) in
         if let email = alert.textFields?.first?.text {
           self.loadingHandler.showProgress("Reseting Password")
-          self.coreService?.resetPassword(email: email, handler: { (success, error) in
+          self.coreService?.resetPassword(email: email, handler: { (success, string, error) in
             self.loadingHandler.handleError(success: true, error: error)
             if success {
-              self.loadingHandler.showMessage("Password reset", message: nil)
+              self.loadingHandler.showMessage("Password reset", message: string)
             }
           })
         }
