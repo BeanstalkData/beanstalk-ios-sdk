@@ -99,7 +99,7 @@ extension CoreServiceT {
     }
   }
   
-  open func updateContact <ContactClass: BEContact> (request : ContactRequest, contactClass : ContactClass.Type, fetchContact : Bool = false) -> Promise<ContactClass> {
+  open func updateContact <ContactClass: BEContact> (request : ContactRequest, contactClass : ContactClass.Type, fetchContact : Bool = false) -> Promise<ContactClass?> {
     return Promise { seal in
       updateContact(request: request, contactClass: contactClass, handler: { _, contact, error in
         seal.resolve(error, contact)
