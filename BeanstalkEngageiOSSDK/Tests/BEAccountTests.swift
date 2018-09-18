@@ -125,11 +125,14 @@ open class BEAccountTests: BEBaseTestCase {
   open func resetPasswordTest() {
     let coreServiceHandler = BECoreServiceTestHandler.create(self)
     
-    coreServiceHandler.resetPassword("invalidEmail@InvalidEmail.com") { (result) in
-      XCTAssert(result == false, "Success reset password for invalid user email")
+    coreServiceHandler.resetPassword("invalidEmail@InvalidEmail.com") { (result, message) in
+      XCTAssert(result == true, "Failed to reset password for invalid user email")
+      XCTAssert(message == "Username not found.", "Wrong message data")
       
-      coreServiceHandler.resetPassword(self.getMetadata()!.getRegisteredUserEmail()) { (result) in
+      let registeredEmail = self.getMetadata()!.getRegisteredUserEmail()
+      coreServiceHandler.resetPassword(registeredEmail) { (result, message) in
         XCTAssert(result == true, "Failed to reset password for valid user email")
+        XCTAssert(message == "Email has been sent to \(registeredEmail)", "Wrong message data")
       }
     }
   }

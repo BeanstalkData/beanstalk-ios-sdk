@@ -82,20 +82,22 @@ open class BECoreServiceTestHandler {
   }
   
   @discardableResult
-  open func resetPassword(_ email: String, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
+  open func resetPassword(_ email: String, handler: (_ success: Bool, _ message: String?) -> Void) -> BECoreServiceTestHandler? {
     
     self.testCase.prepare()
     
     var resetPasswordStatus = false
+    var messageText: String? = nil
     self.testCase.getCoreService()?.resetPassword(email: email, handler: { success, message, error in
       
       resetPasswordStatus = success
+      messageText = message
       self.testCase .fullfill()
     })
     
     self.testCase.wait()
     
-    handler(resetPasswordStatus)
+    handler(resetPasswordStatus, messageText)
     
     return self
   }
@@ -173,7 +175,7 @@ open class BECoreServiceTestHandler {
     
     return self
   }
-
+  
   @discardableResult
   open func updateContact(request : ContactRequest, handler: (_ success: Bool) -> Void) -> BECoreServiceTestHandler? {
     
@@ -234,7 +236,7 @@ open class BECoreServiceTestHandler {
     
     return self
   }
-
+  
   @discardableResult
   open func getProgress (_ handler: (_ progress: Double?, _ error: BEErrorType?) -> Void) -> BECoreServiceTestHandler? {
     
