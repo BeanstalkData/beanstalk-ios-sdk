@@ -134,6 +134,7 @@
 		7B22C95E452B45A79F0452CFA1126D88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C3271BE4D07369BD7313EFAAF7A23C /* Foundation.framework */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB50C5BB1F89C9F9CE73E4362BB7D46 /* SessionDelegate.swift */; };
 		7BE81D28BE233A47AC5BE1B3FA26FDB5 /* TransformOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E976B414866E40ED8E8FE2EDB437B09 /* TransformOperators.swift */; };
+		7CC40CB72BF5D54341D03B0780048F12 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A7BCABAC5B1F3DD3A351D6BD5A97F /* Reachability.swift */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8A7C6EA7A88B863F281E069485F6C9 /* Result.swift */; };
 		7DADC0ADF55AE13C7DC074A5DE0174A2 /* Pods-BeanstalkEngageiOSSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8FE680B74D9D057EC4D4ED344E05D9 /* Pods-BeanstalkEngageiOSSDK_Example-dummy.m */; };
 		7E64281CCE605F56D7CBFEC041302B25 /* CouponResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7159346EA90F2F7400C603B92F92FFD5 /* CouponResponse.swift */; };
@@ -146,7 +147,6 @@
 		834F4D9819C6010E611A7E151B8899C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C3271BE4D07369BD7313EFAAF7A23C /* Foundation.framework */; };
 		8491440E494CAAAE6DB2EA1D8D215903 /* ImmutableMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2085D1903056EE626255B0AD37C193 /* ImmutableMappable.swift */; };
 		84EE852444539B3621ADDE18AE47204E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C3271BE4D07369BD7313EFAAF7A23C /* Foundation.framework */; };
-		85758D6918C754481413A669AE903021 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCFA11CC48BDFAEDE89C7641278A9C6 /* Reachability.swift */; };
 		869B25CDDA4D1BDA81A495A23D43E108 /* PKHUDAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4C26286FC5E813C2B6E1BB63C8DFD6 /* PKHUDAssets.swift */; };
 		877399A20DB6A91D1DDE71B8F26A1CF1 /* race.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5890FBF44EB002614034BDFDE5A1B0 /* race.m */; };
 		87C98977FCB4E0C0D77D6796E6917865 /* libPhoneNumber-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86EDAD99EF5305FF74C124D0209B3200 /* libPhoneNumber-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -236,7 +236,7 @@
 		D5781CF4E8453F4928D487679D091E97 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496B6DC81E662BD1DC0DA378A0013A68 /* CoreTelephony.framework */; };
 		D5E1535B781AADA5A5ED5E29ACFA8DA3 /* BESession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A88712DFA8EC225423C6D2409E650A1 /* BESession.swift */; };
 		D601198F2E67D00390CDA90BC2056456 /* BELocKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FBD1CCCFB75D072130F7AC37F10C3A /* BELocKeys.swift */; };
-		D6CE7B90E92B25AA5C2386653C8CBEB3 /* ReachabilitySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C92E0E91211FCFCEBCA30C7696CDE /* ReachabilitySwift-dummy.m */; };
+		D6CE7B90E92B25AA5C2386653C8CBEB3 /* ReachabilitySwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D4888AC036E94818A325E2706204AE /* ReachabilitySwift-dummy.m */; };
 		D7FF17FF2066B3EC696B215AB1B0BA65 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ED48C13EFAA260662EB4BD253A194E /* PaymentResponse.swift */; };
 		D9301A3E6F2BC5BEF4884536E3C838A4 /* CheckContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E59FC0A2A2550D38430F2D3E2BE09D /* CheckContactResponse.swift */; };
 		D9ED430DF166CF743E219B0CAD1FDC66 /* BEOpeningHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F806C47B04EE8A9BB00F53F8DECA /* BEOpeningHour.swift */; };
@@ -267,7 +267,7 @@
 		EF874C556BE14ABCAEA0C3342D5BD306 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60C3271BE4D07369BD7313EFAAF7A23C /* Foundation.framework */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFEE9C8369E03CB55297D76005C2A4 /* Notifications.swift */; };
 		F143342F7277C18C242E294F35B6B007 /* after.m in Sources */ = {isa = PBXBuildFile; fileRef = A401E9194AB0499EA1F710F66232879C /* after.m */; };
-		F1E300C1E8F62FA4158546730F96C028 /* ReachabilitySwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC718C9432447A82ACE3EE846FA1D28 /* ReachabilitySwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1E300C1E8F62FA4158546730F96C028 /* ReachabilitySwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72242937A6118D5D4A36B2020C7D97D0 /* ReachabilitySwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F28DAED51F7E04B6A470CF8F69496CCB /* BEBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F97AB3E03C4664A0F9131E4F3DDDB /* BEBaseTestCase.swift */; };
 		F2DDBFF7011CF9B2C9052F25448C7B0A /* StoresResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C7C7A1C45E9E4C57A2090AA1F7422 /* StoresResponse.swift */; };
 		F329617ADA73EFD0FFAEEB5E27FE1CBF /* hang.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD03B62609BA2AF3D0393CD0C6F72618 /* hang.swift */; };
@@ -585,6 +585,7 @@
 		2113F33E4D5AC631DA8FE033A33B02BD /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/docsets/BeanstalkEngageiOSSDK.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
 		2258B4CA71951042BE1B7055113D1AE2 /* TransformOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformOf.swift; path = Sources/TransformOf.swift; sourceTree = "<group>"; };
 		22D3E3B9B88C317AAD2F8023652B8820 /* BEAccountTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEAccountTests.swift; path = BeanstalkEngageiOSSDK/Tests/BEAccountTests.swift; sourceTree = "<group>"; };
+		22D4888AC036E94818A325E2706204AE /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
 		22F4E662CCE62DEC9FBC8495AF0512F8 /* Pods-BeanstalkEngageiOSSDK_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeanstalkEngageiOSSDK_Tests-resources.sh"; sourceTree = "<group>"; };
 		23C4D784828ADD6E46600FE6F41547DD /* BECouponProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BECouponProtocol.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BECouponProtocol.swift; sourceTree = "<group>"; };
 		243EF6A13A0676CCD63E467E1A931FD2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -598,12 +599,13 @@
 		27C83F0C3EF986D1D587F64283132448 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/docsets/BeanstalkEngageiOSSDK.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
 		2A24B2F9DA25AB7F4D64960EEFEB7CAF /* PKHUDAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDAnimation.swift; path = PKHUD/PKHUDAnimation.swift; sourceTree = "<group>"; };
 		2AE0C85AF1C80F605E77D9D9F2CC8952 /* Pods-BeanstalkEngageiOSSDK_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BeanstalkEngageiOSSDK_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		2B2FEE6745BB645F374D3BAC462E9626 /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
+		2C2FA9430866CC7A106C5D52A343C954 /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		2C8858D73F069C80A471646FF7D8FC9A /* Pods-BeanstalkEngageiOSSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BeanstalkEngageiOSSDK_Tests.modulemap"; sourceTree = "<group>"; };
 		2E260D8A4085EBA345B5E7ECC7274FA6 /* firstly.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = firstly.swift; path = Sources/firstly.swift; sourceTree = "<group>"; };
 		2F2E525C30D70833CDC8A18778DE8D9F /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/js/lunr.min.js; sourceTree = "<group>"; };
 		3047800EB37392B994250663E5E7AA49 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/Map.swift; sourceTree = "<group>"; };
 		3119E002F3970323990EE9951D911346 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		319FDDB5580EAC866395BE866D2C21B2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32624FE45A076C7E4B7754F5B6DDE37A /* BeanstalkEngageiOSSDK.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = BeanstalkEngageiOSSDK.tgz; path = docs/docsets/BeanstalkEngageiOSSDK.tgz; sourceTree = "<group>"; };
 		32D2732F73BD567C7E5415E4B8C9A5EA /* AlamofireObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireObjectMapper-umbrella.h"; sourceTree = "<group>"; };
 		32DAA1383BB4265BF5CB912658BDAC97 /* ObjectMapper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ObjectMapper-umbrella.h"; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 		372FC118EEAC8230821A31D63E4086D2 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Reachability.framework; path = ReachabilitySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37526E20ADFD6DD4F31E452735DA4D58 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		37D5ABE22AC61F9DE11F46F123279EC4 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		382ED6A9EB2C601A15A9C1987E3C2333 /* ReachabilitySwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ReachabilitySwift.modulemap; sourceTree = "<group>"; };
 		3AD70F9C762544D9D14A2BC67A154899 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PKHUD/Images.xcassets; sourceTree = "<group>"; };
 		3B5E09C453FD067A7350D9E14CB0A9AB /* BeanstalkEngageiOSSDK.common-Testing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "BeanstalkEngageiOSSDK.common-Testing-prefix.pch"; path = "../BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-prefix.pch"; sourceTree = "<group>"; };
 		3BFE1EDF7020D7A77D617F407DC9B96F /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -664,7 +667,6 @@
 		587F6647E6F343B188CBEF55E07FB55F /* Enums.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Enums.html; path = docs/Enums.html; sourceTree = "<group>"; };
 		59581F0DD1F6046F12284F78CF258E36 /* PKHUDRotatingImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PKHUDRotatingImageView.swift; path = PKHUD/PKHUDRotatingImageView.swift; sourceTree = "<group>"; };
 		59F5F6806BD2BF15FDE0F9B6B806FFF5 /* CCTestingUserDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CCTestingUserDefaults.h; path = Classes/CCTestingUserDefaults.h; sourceTree = "<group>"; };
-		5A6C92E0E91211FCFCEBCA30C7696CDE /* ReachabilitySwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ReachabilitySwift-dummy.m"; sourceTree = "<group>"; };
 		5A7CEC5A2F0F2E271847ABE901FCF911 /* BeanstalkEngageiOSSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = BeanstalkEngageiOSSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5AB875E6CD757E14E6311110344DE226 /* PKHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PKHUD.framework; path = PKHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B03DBB9EB6B64059AA6594D34FC69E8 /* race.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = race.swift; path = Sources/race.swift; sourceTree = "<group>"; };
@@ -679,7 +681,6 @@
 		60C3271BE4D07369BD7313EFAAF7A23C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		63140A1BA07C3896DB4B0C2C5520126F /* BEPushNotificationMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEPushNotificationMessage.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEPushNotificationMessage.swift; sourceTree = "<group>"; };
 		6512FCF3447DA8EF88B3BD4287408554 /* Pods-BeanstalkEngageiOSSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BeanstalkEngageiOSSDK_Example-umbrella.h"; sourceTree = "<group>"; };
-		6543025E2C4863B579C7E920086E01EB /* ReachabilitySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.xcconfig; sourceTree = "<group>"; };
 		654892BF5782D3BF4316980475EE93C3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66455330CA8E8CFB76FB53739DDC90FD /* Pods_BeanstalkEngageiOSSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BeanstalkEngageiOSSDK_Tests.framework; path = "Pods-BeanstalkEngageiOSSDK_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6778F8C7436F3A7CDE0C4A6345A7CBBA /* CoreService+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CoreService+Promise.swift"; sourceTree = "<group>"; };
@@ -707,6 +708,7 @@
 		7194D6836C3FA04BC300972280E94794 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71ACE7A91A6466C3BEAD5E2598BFB03C /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Configuration.swift; sourceTree = "<group>"; };
 		71C49D9F37725325848B434262D7556D /* PaymentResponse.html */ = {isa = PBXFileReference; includeInIndex = 1; name = PaymentResponse.html; path = docs/Classes/PaymentResponse.html; sourceTree = "<group>"; };
+		72242937A6118D5D4A36B2020C7D97D0 /* ReachabilitySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-umbrella.h"; sourceTree = "<group>"; };
 		7383BB5DD1594671AFD4D516C5C1CE26 /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/docsets/BeanstalkEngageiOSSDK.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
 		7397FB6B06B5C72276B413AD8F5A9614 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/css/highlight.css; sourceTree = "<group>"; };
 		73BE38776AE08DF3527D06714AE84446 /* Structs.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Structs.html; path = docs/Structs.html; sourceTree = "<group>"; };
@@ -719,7 +721,6 @@
 		7A13B499F1053026DB36935691064009 /* BEGiftCardBalance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEGiftCardBalance.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEGiftCardBalance.swift; sourceTree = "<group>"; };
 		7A4CBF13284DFBB9E3F529EEF8FC1C19 /* NBPhoneMetaData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneMetaData.h; path = libPhoneNumber/NBPhoneMetaData.h; sourceTree = "<group>"; };
 		7A85944F6EAF08297725E20F75E94BCD /* ServerErrorResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ServerErrorResponse.swift; sourceTree = "<group>"; };
-		7D14EC5434625ED6B67D9339099D8E09 /* ReachabilitySwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-prefix.pch"; sourceTree = "<group>"; };
 		7DB7B5F2BE0640D69268DA93ABA59F09 /* StringExtensions copy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StringExtensions copy.swift"; path = "BeanstalkEngageiOSSDK/Classes/Common/StringExtensions copy.swift"; sourceTree = "<group>"; };
 		7DF8F0893B3AE861DC6A3E5A301DF274 /* ServerResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		7E48DD591EEFC792C4C7C80316874461 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
@@ -759,6 +760,7 @@
 		919F70F64EBA408D5156AFCEAFFFC666 /* BERequestValidator.html */ = {isa = PBXFileReference; includeInIndex = 1; name = BERequestValidator.html; path = docs/Classes/BERequestValidator.html; sourceTree = "<group>"; };
 		9210A59F92ABCA699A90840F8D5FE6D4 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/img/carat.png; sourceTree = "<group>"; };
 		92924BEC41CD14A76A2C0D83CBEE351A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		929A7BCABAC5B1F3DD3A351D6BD5A97F /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Sources/Reachability.swift; sourceTree = "<group>"; };
 		92F7CA18333CAFA1E991FD536A3C6214 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		931185895C28C903452AEDF878FE5A32 /* URLTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLTransform.swift; path = Sources/URLTransform.swift; sourceTree = "<group>"; };
 		932B21CF6DC22C230CD3498DEB629058 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
@@ -802,12 +804,10 @@
 		A7BFE72EACD1A98A361791FC3378F9CB /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/docsets/BeanstalkEngageiOSSDK.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
 		A941C5C4FAC0D78C3AD2D4ED545CF81D /* BEAsyncTestCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEAsyncTestCase.swift; path = BeanstalkEngageiOSSDK/Tests/BEAsyncTestCase.swift; sourceTree = "<group>"; };
 		AA526D45CA4DACE8AF2CE42342E40A76 /* ContactRequest.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ContactRequest.html; path = docs/Classes/ContactRequest.html; sourceTree = "<group>"; };
-		AB3FC882BCE3BFCAD592376D814A78A2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB560CD15DADA03A24A212FB25B96867 /* BEOpeningDayHour.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEOpeningDayHour.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEOpeningDayHour.swift; sourceTree = "<group>"; };
 		AC8FE680B74D9D057EC4D4ED344E05D9 /* Pods-BeanstalkEngageiOSSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BeanstalkEngageiOSSDK_Example-dummy.m"; sourceTree = "<group>"; };
 		AD169E1E14AE69B2A33C63E891D0666A /* CoreService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoreService.swift; sourceTree = "<group>"; };
 		AD92E3AB45B7EE446DAA8C76BE737622 /* BERespondersHolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BERespondersHolder.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BERespondersHolder.swift; sourceTree = "<group>"; };
-		AEC718C9432447A82ACE3EE846FA1D28 /* ReachabilitySwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ReachabilitySwift-umbrella.h"; sourceTree = "<group>"; };
 		AF488F0F2A659E1EB8BE1897D10C8C64 /* BERequestValidator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BERequestValidator.swift; sourceTree = "<group>"; };
 		AFD589D24FBF3D8719D9CC72F5A12AB2 /* ObjectMapper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ObjectMapper-dummy.m"; sourceTree = "<group>"; };
 		B602AF5F9227780321EEEA6D6970135B /* DateTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateTransform.swift; path = Sources/DateTransform.swift; sourceTree = "<group>"; };
@@ -819,7 +819,6 @@
 		B876D0245135AC8E79E3FB7409A73DC7 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		BA3E9180F8389CF89AE07D21E667F07E /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		BAB2AEE2D39CA9506A78C56050136FA5 /* NBPhoneNumber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBPhoneNumber.h; path = libPhoneNumber/NBPhoneNumber.h; sourceTree = "<group>"; };
-		BBCFA11CC48BDFAEDE89C7641278A9C6 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Reachability/Reachability.swift; sourceTree = "<group>"; };
 		BC2535BE1BD2299CDA7FD62016F4E707 /* Deprecations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = Sources/Deprecations.swift; sourceTree = "<group>"; };
 		BE6FE556644F972AA7072E929574BDCB /* BEStoreV2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEStoreV2.swift; path = BeanstalkEngageiOSSDK/Classes/Model/BEStoreV2.swift; sourceTree = "<group>"; };
 		BE980C0D5451C6AB78B934419A981AD9 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
@@ -837,6 +836,7 @@
 		C69C58BC2625CE4D45884BC7D2880E38 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = BeanstalkEngageiOSSDK/Localizables/en.lproj; sourceTree = "<group>"; };
 		C844D9F94CDFEB8FE5EBF6C2060FFFFB /* PKHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PKHUD-prefix.pch"; sourceTree = "<group>"; };
 		C88967D916BC09BD933A892AC48D3FBB /* BELoyaltyUser.html */ = {isa = PBXFileReference; includeInIndex = 1; name = BELoyaltyUser.html; path = docs/Classes/BELoyaltyUser.html; sourceTree = "<group>"; };
+		C8A2923127909E014117A37F7C49146B /* ReachabilitySwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ReachabilitySwift.xcconfig; sourceTree = "<group>"; };
 		C9743A1F279682D8B291B9D0E2C1E9D7 /* ContactRequestResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContactRequestResponse.swift; sourceTree = "<group>"; };
 		CB2EA1A9A7A5548E15EA0F779E9A87D8 /* BEPushNotificationsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BEPushNotificationsTests.swift; path = BeanstalkEngageiOSSDK/Tests/BEPushNotificationsTests.swift; sourceTree = "<group>"; };
 		CBCE508E65675E6AC1C291EA30933104 /* NBMetadataHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NBMetadataHelper.h; path = libPhoneNumber/NBMetadataHelper.h; sourceTree = "<group>"; };
@@ -1065,16 +1065,6 @@
 			path = BeanstalkEngageiOSSDK/Classes/Network/Responses;
 			sourceTree = "<group>";
 		};
-		0B218897A5299351210CDF9C5B47C886 /* ReachabilitySwift */ = {
-			isa = PBXGroup;
-			children = (
-				BBCFA11CC48BDFAEDE89C7641278A9C6 /* Reachability.swift */,
-				E5497AEC3DF84C7DDCFDBCB3F4AC104F /* Support Files */,
-			);
-			name = ReachabilitySwift;
-			path = ReachabilitySwift;
-			sourceTree = "<group>";
-		};
 		0C1B1F4191A29EEED0CA3F8819D47AD2 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1143,20 @@
 				C69C58BC2625CE4D45884BC7D2880E38 /* en.lproj */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		39A8DD034A087BEE0E3852D5BC2313EF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				319FDDB5580EAC866395BE866D2C21B2 /* Info.plist */,
+				382ED6A9EB2C601A15A9C1987E3C2333 /* ReachabilitySwift.modulemap */,
+				C8A2923127909E014117A37F7C49146B /* ReachabilitySwift.xcconfig */,
+				22D4888AC036E94818A325E2706204AE /* ReachabilitySwift-dummy.m */,
+				2C2FA9430866CC7A106C5D52A343C954 /* ReachabilitySwift-prefix.pch */,
+				72242937A6118D5D4A36B2020C7D97D0 /* ReachabilitySwift-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ReachabilitySwift";
 			sourceTree = "<group>";
 		};
 		3BB5E3DDFF2B929387399C0414C1752A /* Frameworks */ = {
@@ -1592,7 +1596,7 @@
 				448A436B07BE21C164572F562E07CA26 /* ObjectMapper */,
 				E3AE53C9756D9968A3508F9F6BDAB3A5 /* PKHUD */,
 				EB9D9C91628D341AFF02147ECE634480 /* PromiseKit */,
-				0B218897A5299351210CDF9C5B47C886 /* ReachabilitySwift */,
+				E63786E4EF11F523956E0A7A032CC38E /* ReachabilitySwift */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1718,18 +1722,14 @@
 			path = PKHUD;
 			sourceTree = "<group>";
 		};
-		E5497AEC3DF84C7DDCFDBCB3F4AC104F /* Support Files */ = {
+		E63786E4EF11F523956E0A7A032CC38E /* ReachabilitySwift */ = {
 			isa = PBXGroup;
 			children = (
-				AB3FC882BCE3BFCAD592376D814A78A2 /* Info.plist */,
-				2B2FEE6745BB645F374D3BAC462E9626 /* ReachabilitySwift.modulemap */,
-				6543025E2C4863B579C7E920086E01EB /* ReachabilitySwift.xcconfig */,
-				5A6C92E0E91211FCFCEBCA30C7696CDE /* ReachabilitySwift-dummy.m */,
-				7D14EC5434625ED6B67D9339099D8E09 /* ReachabilitySwift-prefix.pch */,
-				AEC718C9432447A82ACE3EE846FA1D28 /* ReachabilitySwift-umbrella.h */,
+				929A7BCABAC5B1F3DD3A351D6BD5A97F /* Reachability.swift */,
+				39A8DD034A087BEE0E3852D5BC2313EF /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/ReachabilitySwift";
+			name = ReachabilitySwift;
+			path = ReachabilitySwift;
 			sourceTree = "<group>";
 		};
 		EB9D9C91628D341AFF02147ECE634480 /* PromiseKit */ = {
@@ -2306,7 +2306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85758D6918C754481413A669AE903021 /* Reachability.swift in Sources */,
+				7CC40CB72BF5D54341D03B0780048F12 /* Reachability.swift in Sources */,
 				D6CE7B90E92B25AA5C2386653C8CBEB3 /* ReachabilitySwift-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2797,23 +2797,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0039792540733348407B1F94887BDEAB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common-Testing";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				PRODUCT_NAME = BeanstalkEngageiOSSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		0140C9E7791B697948EF0416620E98D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 08600ECC681B869A68C1B563EE516848 /* Alamofire.xcconfig */;
@@ -2911,6 +2894,69 @@
 			};
 			name = Release;
 		};
+		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
 		1C9E1B64230ECA84BB789342D3B7613E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F49A025660C1F71AD53156CD1FEE7DB /* CCTestingUserDefaults.xcconfig */;
@@ -2977,7 +3023,7 @@
 		};
 		2A392097C33D60AFEF285CB6C28CB09E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6543025E2C4863B579C7E920086E01EB /* ReachabilitySwift.xcconfig */;
+			baseConfigurationReference = C8A2923127909E014117A37F7C49146B /* ReachabilitySwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3007,14 +3053,14 @@
 			};
 			name = Debug;
 		};
-		2EF0E918B1841F0C7BB26AED6B21E747 /* Release */ = {
+		2B2C2BAF29CA165E6018311825AE5C56 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E87C47677192A88567B493D34AB000A7 /* BeanstalkEngageiOSSDK.common.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common";
 				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_NAME = BeanstalkEngageiOSSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -3023,42 +3069,6 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
-		};
-		36EFA06F47865E4866B0B2BB0E04AFD7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81281A71186C8C65D9A0D92AC9E2FBE2 /* Pods-BeanstalkEngageiOSSDK_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		5DCFAAFBBF2E79875CE46FF006378B9D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -3125,78 +3135,6 @@
 			};
 			name = Release;
 		};
-		6C530FE32DB2A8B1978566B8E48D15FE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 972C36D341CF15319943904E717A53A9 /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		74EA5E8CD3BB355C76B87987411C7CD5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDDE509F62F03CAE6EBA0F3844EF582D /* Pods-BeanstalkEngageiOSSDK_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		752A8FB9242F679EE1FD013741C961D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE64B3474856748D43C0A1357C5039BB /* libPhoneNumber-iOS.xcconfig */;
@@ -3226,6 +3164,40 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8AEBEB83C6DD7D18977C70E90EBCE902 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E87C47677192A88567B493D34AB000A7 /* BeanstalkEngageiOSSDK.common.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = BeanstalkEngageiOSSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		8B047E06B9D679D886F2451B65445C50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common-Testing";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = BeanstalkEngageiOSSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -3261,7 +3233,111 @@
 			};
 			name = Debug;
 		};
-		983797F6605E28D79B42FBDF5D8F4AE0 /* Release */ = {
+		99EE51FFF744C608D578E2AB82B09381 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 972C36D341CF15319943904E717A53A9 /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9BB7CA4AEE30683D0BDDB80BD0BFAEEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap";
+				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
+				PRODUCT_NAME = BeanstalkEngageiOSSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A47CB3167831173C3D0A08A989A634E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81523A2AEDB26B1B22D6629A26A6C1E7 /* Pods-BeanstalkEngageiOSSDK_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B7C0515A268F680C0633D6B95ECF14D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E87C47677192A88567B493D34AB000A7 /* BeanstalkEngageiOSSDK.common.xcconfig */;
 			buildSettings = {
@@ -3277,7 +3353,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common.modulemap";
 				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
@@ -3294,10 +3370,11 @@
 			};
 			name = Release;
 		};
-		B854BB3376918EF2B311904B7652F132 /* Release */ = {
+		BF394ABB643346E81CAD5BCF3A306BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
+			baseConfigurationReference = DDDE509F62F03CAE6EBA0F3844EF582D /* Pods-BeanstalkEngageiOSSDK_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -3307,50 +3384,20 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap";
-				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
-				PRODUCT_NAME = BeanstalkEngageiOSSDK;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B9D4386165EBF2F024485B1A0E746D28 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap";
-				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
-				PRODUCT_NAME = BeanstalkEngageiOSSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3391,42 +3438,6 @@
 			};
 			name = Debug;
 		};
-		C1A474B632C0196F3E4BA55166819853 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81523A2AEDB26B1B22D6629A26A6C1E7 /* Pods-BeanstalkEngageiOSSDK_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		C54CCEE37439EF764ECD795FD35B53D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F2F8DE52F9533936D7D877CB8B88681 /* AlamofireObjectMapper.xcconfig */;
@@ -3459,130 +3470,42 @@
 			};
 			name = Debug;
 		};
-		C7BE62186E17127FF3B5B27A193214BD /* Debug */ = {
+		D066DF3FE22E3673764F1787993499A6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_DEBUG=1",
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		D077E5AF30E3A09910AC48CA760A1280 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/BeanstalkEngageiOSSDK.common-Testing.modulemap";
+				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
+				PRODUCT_NAME = BeanstalkEngageiOSSDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
 		D0952320EC2F783EF552016AA9E515AA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6543025E2C4863B579C7E920086E01EB /* ReachabilitySwift.xcconfig */;
+			baseConfigurationReference = C8A2923127909E014117A37F7C49146B /* ReachabilitySwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -3613,37 +3536,71 @@
 			};
 			name = Release;
 		};
-		D272DF3F033AC01FE7B3E2AC427AAB52 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common-Testing";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				PRODUCT_NAME = BeanstalkEngageiOSSDK;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		D89BBC55253D6D1C037194D31592B6D6 /* Debug */ = {
+		D39B2655CFB45F2361FCDD715E9EA590 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E87C47677192A88567B493D34AB000A7 /* BeanstalkEngageiOSSDK.common.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common.modulemap";
+				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
 				PRODUCT_NAME = BeanstalkEngageiOSSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D519860D17D6B886C88FB60D74B15D8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81281A71186C8C65D9A0D92AC9E2FBE2 /* Pods-BeanstalkEngageiOSSDK_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BeanstalkEngageiOSSDK_Tests/Pods-BeanstalkEngageiOSSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -3711,37 +3668,80 @@
 			};
 			name = Debug;
 		};
-		FCB4A881D160DF40A52390F0AD315CCF /* Debug */ = {
+		EE5BB5F782BCF2D7821492800C9BF7B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E87C47677192A88567B493D34AB000A7 /* BeanstalkEngageiOSSDK.common.xcconfig */;
+			baseConfigurationReference = 8720B950FB94975E3BBF83421D86D573 /* BeanstalkEngageiOSSDK.common-Testing.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.common.modulemap";
-				PRODUCT_MODULE_NAME = BeanstalkEngageiOSSDK;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/BeanstalkEngageiOSSDK.common-Testing";
+				INFOPLIST_FILE = "Target Support Files/BeanstalkEngageiOSSDK.common-Testing/ResourceBundle-BeanstalkEngageiOSSDK-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_NAME = BeanstalkEngageiOSSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
+		};
+		FDB2FC4A1E5891381CD9D922145497F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
 		};
 		FEAF4B441BDC3EEF82E7B7EDAC4B4394 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3782,8 +3782,8 @@
 		03CB75DC593A09F1413DF7D3ABBEB1FD /* Build configuration list for PBXNativeTarget "BeanstalkEngageiOSSDK.common-Testing-BeanstalkEngageiOSSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0039792540733348407B1F94887BDEAB /* Debug */,
-				D272DF3F033AC01FE7B3E2AC427AAB52 /* Release */,
+				EE5BB5F782BCF2D7821492800C9BF7B5 /* Debug */,
+				8B047E06B9D679D886F2451B65445C50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3791,8 +3791,8 @@
 		23733256D7CB9216D279C068082DC105 /* Build configuration list for PBXNativeTarget "BeanstalkEngageiOSSDK.common-Testing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B9D4386165EBF2F024485B1A0E746D28 /* Debug */,
-				B854BB3376918EF2B311904B7652F132 /* Release */,
+				9BB7CA4AEE30683D0BDDB80BD0BFAEEC /* Debug */,
+				D066DF3FE22E3673764F1787993499A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3800,8 +3800,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7BE62186E17127FF3B5B27A193214BD /* Debug */,
-				D077E5AF30E3A09910AC48CA760A1280 /* Release */,
+				199D972A13F2B4C56847F7A89CCA83BC /* Debug */,
+				FDB2FC4A1E5891381CD9D922145497F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3809,8 +3809,8 @@
 		340735969DD23BE17A3FF2D811072CEF /* Build configuration list for PBXNativeTarget "BeanstalkEngageiOSSDK.common-BeanstalkEngageiOSSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D89BBC55253D6D1C037194D31592B6D6 /* Debug */,
-				2EF0E918B1841F0C7BB26AED6B21E747 /* Release */,
+				8AEBEB83C6DD7D18977C70E90EBCE902 /* Debug */,
+				2B2C2BAF29CA165E6018311825AE5C56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3845,8 +3845,8 @@
 		82B1666ACC8E18C93C2BDB6DB808AA8C /* Build configuration list for PBXNativeTarget "Pods-BeanstalkEngageiOSSDK_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				74EA5E8CD3BB355C76B87987411C7CD5 /* Debug */,
-				6C530FE32DB2A8B1978566B8E48D15FE /* Release */,
+				BF394ABB643346E81CAD5BCF3A306BD8 /* Debug */,
+				99EE51FFF744C608D578E2AB82B09381 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3863,8 +3863,8 @@
 		AF7CABA6883858599D120AAE1DCF9DF9 /* Build configuration list for PBXNativeTarget "BeanstalkEngageiOSSDK.common" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FCB4A881D160DF40A52390F0AD315CCF /* Debug */,
-				983797F6605E28D79B42FBDF5D8F4AE0 /* Release */,
+				D39B2655CFB45F2361FCDD715E9EA590 /* Debug */,
+				B7C0515A268F680C0633D6B95ECF14D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3899,8 +3899,8 @@
 		F791064151A139B09CCED137A8BD0489 /* Build configuration list for PBXNativeTarget "Pods-BeanstalkEngageiOSSDK_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36EFA06F47865E4866B0B2BB0E04AFD7 /* Debug */,
-				C1A474B632C0196F3E4BA55166819853 /* Release */,
+				D519860D17D6B886C88FB60D74B15D8A /* Debug */,
+				A47CB3167831173C3D0A08A989A634E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
