@@ -106,7 +106,7 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
   override internal func keyboardWillChange(notification: Notification) {
     var scrollInsets = UIEdgeInsets.zero
     
-    if let endFrameInfo = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+    if let endFrameInfo = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
       let endFrame = endFrameInfo.cgRectValue
       let converted = self.view.convert(endFrame, from: UIApplication.shared.keyWindow!)
       

@@ -26,21 +26,21 @@ class BaseViewController: UIViewController {
     super.viewWillAppear(animated)
     
     NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillShow,
+      forName: UIWindow.keyboardWillShowNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillChange(notification: notification)
     }
     
     NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillHide,
+      forName: UIWindow.keyboardWillHideNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillHide(notification: notification)
     }
     
     NotificationCenter.default.addObserver(
-      forName: NSNotification.Name.UIKeyboardWillShow,
+      forName: UIWindow.keyboardWillShowNotification,
       object: nil,
       queue: nil) { (notification) in
         self.keyboardWillChange(notification: notification)

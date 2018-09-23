@@ -6,7 +6,7 @@
 //
 
 import BeanstalkEngageiOSSDK
-import BeanstalkEngageiOSSDK_Example
+import Pods_BeanstalkEngageiOSSDK_Example
 import Pods_BeanstalkEngageiOSSDK_Tests
 
 class RewardsTests: BERewardsTests {

@@ -38,8 +38,8 @@ class LoadingHandler: LoadingHandlerProtocol {
   
   func showMessage(_ title: String?, message : String?) {
     let alertController = UIAlertController(title: title, message:
-      message, preferredStyle: UIAlertControllerStyle.alert)
-    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+      message, preferredStyle: UIAlertController.Style.alert)
+    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
     
     self.viewController?.present(alertController, animated: true, completion: nil)
   }

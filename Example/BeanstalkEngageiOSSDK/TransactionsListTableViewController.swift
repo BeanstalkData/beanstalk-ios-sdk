@@ -25,7 +25,7 @@ class TransactionsListTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.tableView.rowHeight = UITableViewAutomaticDimension
+    self.tableView.rowHeight = UITableView.automaticDimension
     self.tableView.estimatedRowHeight = 100.0
   }
   
@@ -63,7 +63,7 @@ class TransactionsListTableViewController: UITableViewController {
   }
   
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return UITableViewAutomaticDimension
+    return UITableView.automaticDimension
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

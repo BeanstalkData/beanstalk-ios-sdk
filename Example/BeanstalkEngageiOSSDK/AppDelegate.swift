@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   
   
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     if let session = self.coreService.getSession() {
       self.pushNotificationEnrollment = PushNotificationEnrollmentController(beanstalkCoreService: self.coreService, session: session)
     }
