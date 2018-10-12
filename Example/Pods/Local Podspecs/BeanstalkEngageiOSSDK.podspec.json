@@ -15,7 +15,7 @@
     "tag": "0.6.46"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "default_subspecs": "Core",
   "subspecs": [
@@ -41,7 +41,7 @@
       "source_files": "BeanstalkEngageiOSSDK/Classes/Model/**/*",
       "dependencies": {
         "AlamofireObjectMapper": [
-          "~> 4.1.0"
+
         ]
       }
     },
@@ -59,10 +59,10 @@
 
         ],
         "Alamofire": [
-          "~> 4.4.0"
+
         ],
         "ReachabilitySwift": [
-          "~> 4.1.0"
+
         ]
       }
     },
@@ -114,7 +114,7 @@
 
         ],
         "Alamofire": [
-          "~> 4.4.0"
+
         ],
         "libPhoneNumber-iOS": [
 

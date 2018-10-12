@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Beanstalk Data' => 'info@beanstalkdata.com' }
   s.source           = { :git => 'https://github.com/BeanstalkData/beanstalk-ios-sdk.git', :tag => s.version }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.default_subspec = 'Core'
 
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.subspec 'Model' do |ms|
     ms.source_files   = 'BeanstalkEngageiOSSDK/Classes/Model/**/*'
 
-    ms.dependency 'AlamofireObjectMapper', '~> 4.1.0'
+    ms.dependency 'AlamofireObjectMapper'
   end
 
   s.subspec 'Network' do |ns|
@@ -31,8 +31,8 @@ Pod::Spec.new do |s|
     ns.dependency 'BeanstalkEngageiOSSDK/Model'
     ns.dependency 'BeanstalkEngageiOSSDK/Vendor'
 
-    ns.dependency 'Alamofire', '~> 4.4.0'
-    ns.dependency 'ReachabilitySwift', '~> 4.1.0'
+    ns.dependency 'Alamofire'
+    ns.dependency 'ReachabilitySwift'
   end
 
   s.subspec 'Control' do |cns|
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
 
     cms.dependency 'BeanstalkEngageiOSSDK/Localization'
     cms.dependency 'BeanstalkEngageiOSSDK/Vendor'
-    cms.dependency 'Alamofire', '~> 4.4.0'
+    cms.dependency 'Alamofire'
     cms.dependency 'libPhoneNumber-iOS'
   end
 

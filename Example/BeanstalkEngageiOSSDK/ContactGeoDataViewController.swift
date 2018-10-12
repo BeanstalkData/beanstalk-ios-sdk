@@ -90,7 +90,7 @@ class ContactGeoDataViewController: BaseViewController {
   @IBAction func stopLocationTracking() {
     self.coreService?.locationTracker?.stopLocationTracking()
     
-    self.coreService?.subscribeForLocationTracking(relocateContactHandler: { _ in })
+    self.coreService?.subscribeForLocationTracking(relocateContactHandler: { _,_  in })
   }
   
   
