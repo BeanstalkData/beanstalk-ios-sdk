@@ -25,7 +25,6 @@ open class ContactRequest: Mappable {
   fileprivate var gender: String?
   fileprivate var emailOptin: Bool?
   fileprivate var textOptin: Bool?
-  fileprivate var pushNotificationOptin: Bool?
   fileprivate var inboxMessageOptin: Bool?
   fileprivate var prospect : String?
   fileprivate var googleId: String?
@@ -262,26 +261,6 @@ open class ContactRequest: Mappable {
     return self.origin?.isTextOptin()
   }
   
-  open func set(pushNotificationOptin: Bool?) {
-    guard pushNotificationOptin != nil else {
-      return
-    }
-    
-    guard origin?.pushNotificationOptin != (pushNotificationOptin! ? 1 : 0) else {
-      self.pushNotificationOptin = nil
-      return
-    }
-    
-    self.pushNotificationOptin = pushNotificationOptin
-  }
-  
-  open func isPushNotificationOptin() -> Bool? {
-    guard self.pushNotificationOptin == nil else {
-      return self.pushNotificationOptin
-    }
-    return self.origin?.isPushNotificationOptin()
-  }
-  
   open func set(inboxMessageOptin: Bool?) {
     guard inboxMessageOptin != nil else {
       return
@@ -407,7 +386,6 @@ open class ContactRequest: Mappable {
     gender <- map["Gender"]
     emailOptin <- map["Email_Optin"]
     textOptin <- map["Txt_Optin"]
-    pushNotificationOptin <- map["PushNotification_Optin"]
     inboxMessageOptin <- map["InboxMessage_Optin"]
     googleId <- map["GoogleId"]
     googleToken <- map["GoogleToken"]
