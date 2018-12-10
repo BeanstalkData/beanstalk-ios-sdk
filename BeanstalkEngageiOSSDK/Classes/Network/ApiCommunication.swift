@@ -374,7 +374,7 @@ open class ApiCommunication <SessionManagerClass: HTTPTimberjackManager>: BEResp
         }
         
         // check for response value
-        guard let data = (response.result.value as? [Any])?.first as? [String], data.count == 2 else {
+        guard let data = response.result.value as? [String], data.count == 2 else {
           handler(.failure(ApiError.createContactFailed(reason : "Incorrect response data")))
           return
         }
@@ -382,9 +382,13 @@ open class ApiCommunication <SessionManagerClass: HTTPTimberjackManager>: BEResp
         // check for response contact id
         var newContactId: String? = nil
         
-        if "Add" == data[1]{
+        print(data[1])
+        
+        if "Add" == data[1] {
           newContactId = data[0]
-        } else if "Update" == data[1]{
+        }
+        
+        if "Update" == data[1] {
           newContactId = data[0]
         }
         
