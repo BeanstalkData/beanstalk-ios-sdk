@@ -167,9 +167,12 @@ open class CoreServiceT <SessionManager: HTTPTimberjackManager>: BEAbstractRespo
     }
     
     request.normalize()
-    
+
     weak var weakSelf = self
     apiService.checkContactsByEmailExisted(request.getEmail()!, prospectTypes: [.eClub, .Loyalty], handler: { (result) in
+      if result.value == true {
+        return handler(false, ApiError.userEmailExists(reason: "User with same email is already exist"))
+      }
       
       if result.isFailure {
         handler(false, result.error! as? BEErrorType)
@@ -177,6 +180,9 @@ open class CoreServiceT <SessionManager: HTTPTimberjackManager>: BEAbstractRespo
         var updateExisted = result.value!
         
         weakSelf?.apiService.checkContactsByPhoneExisted(request.getPhone()!, prospectTypes: [], handler: { (result) in
+          if result.value == true {
+            return handler(false, ApiError.userPhoneExists(reason: "User with same phone is already exist"))
+          }
           
           if result.isFailure {
             handler(false, ApiError.userPhoneExists(reason: result.error! as? BEErrorType))
