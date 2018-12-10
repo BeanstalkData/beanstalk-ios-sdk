@@ -382,8 +382,6 @@ open class ApiCommunication <SessionManagerClass: HTTPTimberjackManager>: BEResp
         // check for response contact id
         var newContactId: String? = nil
         
-        print(data[1])
-        
         if "Add" == data[1] {
           newContactId = data[0]
         }
