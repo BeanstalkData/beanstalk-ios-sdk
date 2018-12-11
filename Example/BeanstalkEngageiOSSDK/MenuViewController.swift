@@ -101,21 +101,22 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
     alert.addAction(UIAlertAction(
       title: "Reset",
       style: .default,
-      handler: { (_) in
-        if let email = alert.textFields?.first?.text {
-          self.loadingHandler.showProgress("Reseting Password")
-          self.coreService?.resetPassword(email: email, handler: { (success, error) in
-            self.loadingHandler.handleError(success: true, error: error)
-            if success {
-              self.loadingHandler.showMessage("Password reset", message: nil)
-            }
-          })
-        }
+      handler: { _ in
+        self.processResetPasswordAction(alert.textFields?.first?.text)
     }))
     
     self.present(alert, animated: true, completion: nil)
   }
   
+  private func processResetPasswordAction(_ email: String?) {
+    self.loadingHandler.showProgress("Reseting Password")
+    self.coreService?.resetPassword(email: email, handler: { (success, error) in
+      self.loadingHandler.handleError(success: success, error: error)
+      if success {
+        self.loadingHandler.showMessage("Password reset", message: nil)
+      }
+    })
+  }
   
   @IBAction func onGoogleSignIn(_ sender: Any) {
     onLoginByGoogleAction(vc: self)

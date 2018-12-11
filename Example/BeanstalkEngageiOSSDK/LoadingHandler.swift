@@ -22,11 +22,7 @@ class LoadingHandler: LoadingHandlerProtocol {
   func handleError(success: Bool, error: BEErrorType?) {
     self.hideProgress()
     if !success {
-      if error != nil {
-        self.showMessage(error!)
-      } else {
-        self.showMessage(ApiError.unknown())
-      }
+      self.showMessage(error ?? ApiError.unknown())
     }
   }
   
