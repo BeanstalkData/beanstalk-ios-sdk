@@ -20,6 +20,7 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
   @IBOutlet var contactManagementButton: UIButton!
   @IBOutlet var trackTransactionButton: UIButton!
   @IBOutlet var transactionsListButton: UIButton!
+  @IBOutlet weak var versionLabel: UILabel!
   
   private(set) var googleUser: GoogleUserInfo?
   
@@ -27,14 +28,13 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
     super.viewDidLoad()
     
     self.coreService = AppDelegate.apiService()
-    
-    self.updateAuthStatus()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    self.updateAuthStatus()
+    updateAuthStatus()
+    versionLabel.text = version()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -138,9 +138,9 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
                                             handler: { success, error in
                                               self?.loadingHandler.hideProgress()
 
-                                              if let contact = self?.coreService?.getSession()?.getContact() {
+//                                              if let contact = self?.coreService?.getSession()?.getContact() {
 //                                                self?.pushEnrollment?.onSignIn(contact: contact)
-                                              }
+//                                              }
       })
     }
   }
@@ -165,5 +165,12 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
     self.availableRewardsButton.isEnabled = isAuthenticated
     self.userProgressButton.isEnabled = isAuthenticated
     self.giftCardsButton.isEnabled = isAuthenticated
+  }
+  
+  private func version() -> String {
+    let dictionary = Bundle.main.infoDictionary!
+    let version = dictionary["CFBundleShortVersionString"] as! String
+    let build = dictionary["CFBundleVersion"] as! String
+    return "Version: \(version) build \(build)"
   }
 }

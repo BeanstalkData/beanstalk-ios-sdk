@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,35 +52,35 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E22-pW-IJS">
-                                <rect key="frame" x="157" y="134" width="60" height="30"/>
+                                <rect key="frame" x="157.5" y="134" width="60" height="30"/>
                                 <state key="normal" title="Sign Out"/>
                                 <connections>
                                     <action selector="signOutAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Fl-fD-Bof"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NP0-xr-AHM">
-                                <rect key="frame" x="165" y="172" width="44" height="30"/>
+                                <rect key="frame" x="165.5" y="172" width="44" height="30"/>
                                 <state key="normal" title="Profile"/>
                                 <connections>
                                     <segue destination="lNf-gR-G16" kind="show" id="vg2-F7-vzx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUc-Oa-rTy">
-                                <rect key="frame" x="125" y="210" width="124" height="30"/>
+                                <rect key="frame" x="125.5" y="210" width="124" height="30"/>
                                 <state key="normal" title="Available Rewards"/>
                                 <connections>
                                     <segue destination="vjR-zd-UsV" kind="show" id="54d-bM-V5r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avf-pm-cm4">
-                                <rect key="frame" x="138" y="248" width="98" height="30"/>
+                                <rect key="frame" x="138.5" y="248" width="98" height="30"/>
                                 <state key="normal" title="User Progress"/>
                                 <connections>
                                     <segue destination="Ipo-tR-bBO" kind="show" id="yx9-Yl-dJg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wx-nb-jBG">
-                                <rect key="frame" x="152" y="286" width="70" height="30"/>
+                                <rect key="frame" x="152.5" y="286" width="70" height="30"/>
                                 <state key="normal" title="Gift Cards"/>
                                 <connections>
                                     <segue destination="VOh-t8-RsA" kind="show" id="0jD-xV-aR5"/>
@@ -103,7 +101,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFd-hL-4oI">
-                                <rect key="frame" x="126" y="400" width="122" height="30"/>
+                                <rect key="frame" x="126.5" y="400" width="122" height="30"/>
                                 <state key="normal" title="Track Transaction"/>
                                 <connections>
                                     <segue destination="p2c-ag-lOA" kind="show" id="Upy-GB-1bO"/>
@@ -117,12 +115,18 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykj-Rt-FTS">
-                                <rect key="frame" x="140" y="96" width="96" height="30"/>
+                                <rect key="frame" x="139.5" y="96" width="96" height="30"/>
                                 <state key="normal" title="Google SignIn"/>
                                 <connections>
                                     <action selector="onGoogleSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UKG-uf-cl0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcK-C0-lhG">
+                                <rect key="frame" x="159.5" y="578" width="56" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -136,6 +140,7 @@
                             <constraint firstItem="E22-pW-IJS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vlo-Zb-LMD"/>
                             <constraint firstItem="iVR-HE-R9j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WXb-Do-Ysb"/>
                             <constraint firstItem="ykj-Rt-FTS" firstAttribute="top" secondItem="4yI-D0-5a9" secondAttribute="bottom" constant="8" id="bj4-RY-0O3"/>
+                            <constraint firstItem="kcK-C0-lhG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cAO-q6-qHl"/>
                             <constraint firstItem="xCd-fD-fHq" firstAttribute="centerX" secondItem="aFd-hL-4oI" secondAttribute="centerX" id="ckl-tD-9Xw"/>
                             <constraint firstItem="BbU-an-frI" firstAttribute="centerX" secondItem="iVR-HE-R9j" secondAttribute="centerX" id="ew0-c7-dgI"/>
                             <constraint firstItem="fl4-QA-07R" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="g2x-Bg-r52"/>
@@ -149,6 +154,7 @@
                             <constraint firstItem="4yI-D0-5a9" firstAttribute="top" secondItem="fl4-QA-07R" secondAttribute="bottom" constant="8" id="thJ-vZ-EmO"/>
                             <constraint firstItem="BbU-an-frI" firstAttribute="top" secondItem="iVR-HE-R9j" secondAttribute="bottom" constant="8" id="v1w-eV-qYG"/>
                             <constraint firstItem="aFd-hL-4oI" firstAttribute="centerX" secondItem="BbU-an-frI" secondAttribute="centerX" id="vDd-1i-kHR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kcK-C0-lhG" secondAttribute="bottom" constant="8" id="xEw-Hr-ae4"/>
                             <constraint firstItem="9wx-nb-jBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zcz-dV-xGd"/>
                         </constraints>
                     </view>
@@ -164,6 +170,7 @@
                         <outlet property="trackTransactionButton" destination="aFd-hL-4oI" id="qD1-1h-hrP"/>
                         <outlet property="transactionsListButton" destination="xCd-fD-fHq" id="EXS-Hi-99v"/>
                         <outlet property="userProgressButton" destination="avf-pm-cm4" id="35L-Yh-JX4"/>
+                        <outlet property="versionLabel" destination="kcK-C0-lhG" id="nTt-mj-rOq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -613,7 +620,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-W5-JWw">
-                                                <rect key="frame" x="238" y="7.5" width="117" height="29"/>
+                                                <rect key="frame" x="238" y="8" width="117" height="29"/>
                                                 <segments>
                                                     <segment title="Male"/>
                                                     <segment title="Female"/>
@@ -915,7 +922,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaI-5t-9FB">
-                                <rect key="frame" x="355" y="31" width="0.0" height="0.0"/>
+                                <rect key="frame" x="355" y="30.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -927,19 +934,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kv3-VK-o8G">
-                                <rect key="frame" x="355" y="82" width="0.0" height="0.0"/>
+                                <rect key="frame" x="355" y="81.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqJ-dw-Mhz">
-                                <rect key="frame" x="20" y="172.5" width="62" height="21"/>
+                                <rect key="frame" x="20" y="173" width="62" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="AmM-Lb-Cqg">
-                                <rect key="frame" x="140" y="168.5" width="215" height="29"/>
+                                <rect key="frame" x="140" y="169.5" width="215" height="29"/>
                                 <segments>
                                     <segment title="Male"/>
                                     <segment title="Female"/>
@@ -950,26 +957,26 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Notifications:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRR-o9-7Jv">
-                                <rect key="frame" x="20" y="223.5" width="144" height="21"/>
+                                <rect key="frame" x="20" y="224" width="144" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OHX-H7-A4Y">
-                                <rect key="frame" x="306" y="218.5" width="51" height="31"/>
+                                <rect key="frame" x="306" y="219" width="51" height="31"/>
                                 <connections>
                                     <action selector="pushNotificationsAction" destination="lNf-gR-G16" eventType="valueChanged" id="G3c-Yi-WOO"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qt-SF-SqV">
-                                <rect key="frame" x="170" y="553" width="34" height="30"/>
+                                <rect key="frame" x="170.5" y="553" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveContactAction" destination="lNf-gR-G16" eventType="touchUpInside" id="7wa-fq-9YE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-Ui-UET">
-                                <rect key="frame" x="315" y="264.5" width="40" height="40"/>
+                                <rect key="frame" x="315" y="265.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="g0U-Xr-7yb"/>
                                     <constraint firstAttribute="height" constant="40" id="mQP-NP-RBm"/>
@@ -981,19 +988,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-KB-kJq">
-                                <rect key="frame" x="20" y="274.5" width="120" height="21"/>
+                                <rect key="frame" x="20" y="275" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Geo Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oC-Nw-lk0">
-                                <rect key="frame" x="20" y="325.5" width="137.5" height="21"/>
+                                <rect key="frame" x="20" y="326" width="137.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udl-qM-wPJ">
-                                <rect key="frame" x="315" y="315.5" width="40" height="40"/>
+                                <rect key="frame" x="315" y="316.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="N2Q-ae-Lth"/>
                                     <constraint firstAttribute="height" constant="40" id="cNn-P2-zr6"/>
@@ -1093,7 +1100,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OE0-4U-3Hz">
-                                            <rect key="frame" x="8" y="0.0" width="286" height="80"/>
+                                            <rect key="frame" x="8" y="0.0" width="286" height="79.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" link="YES" selected="YES"/>
@@ -1164,13 +1171,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qKQ-QL-8jg">
-                                <rect key="frame" x="112.5" y="136" width="246.5" height="30"/>
+                                <rect key="frame" x="112.5" y="136.5" width="246.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-xo-i9a">
-                                <rect key="frame" x="255" y="196" width="104" height="30"/>
+                                <rect key="frame" x="255" y="196.5" width="104" height="30"/>
                                 <state key="normal" title="Send Geo Data"/>
                                 <connections>
                                     <action selector="sendGeoData" destination="ViW-mS-GRi" eventType="touchUpInside" id="EPD-TP-ke1"/>
@@ -1191,7 +1198,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esv-Pm-W5e">
-                                <rect key="frame" x="16" y="196" width="93" height="30"/>
+                                <rect key="frame" x="16" y="196.5" width="93" height="30"/>
                                 <state key="normal" title="Get Geo Data"/>
                                 <connections>
                                     <action selector="getGeoData" destination="ViW-mS-GRi" eventType="touchUpInside" id="HJl-gz-K9U"/>
