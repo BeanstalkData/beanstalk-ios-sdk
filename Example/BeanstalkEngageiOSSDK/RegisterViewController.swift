@@ -27,9 +27,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    self.firstNameTextField.text = "John"
-//    self.lastNameTextField.text = "Appleseed"
-//    self.phoneTextField.text = "+1234567890"
     self.emailTextField.text = ""
     self.confirmEmailTextField.text = ""
     self.passwordTextField.text = ""

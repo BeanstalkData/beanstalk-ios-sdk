@@ -33,28 +33,8 @@ class TransactionsListTableViewController: UITableViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    guard let coreService = self.coreService else {
-      return
-    }
-    
-    self.loadingHandler.showProgress("Loading")
-    weak var weakSelf = self
-    coreService.getTransactions(
-      startDate: nil,
-      endDate: nil) { (transactions, error) in
-        
-        weakSelf?.loadingHandler.hideProgress()
-        
-        if let err = error {
-          weakSelf?.loadingHandler.showMessage(err)
-        } else {
-          if let transactions = transactions {
-            weakSelf?.transactions = transactions
-          }
-        }
-    }
+    getTransactions()
   }
-  
   
   //MARK: -
   
@@ -76,5 +56,23 @@ class TransactionsListTableViewController: UITableViewController {
     (cell.viewWithTag(2) as? UILabel)?.text = details.description
     
     return cell
+  }
+  
+  // MARK: - Private
+  
+  private func getTransactions() {
+    guard let coreService = self.coreService else { return }
+    
+    self.loadingHandler.showProgress("Loading")
+    coreService.getTransactions(startDate: nil, endDate: nil) {[weak self] (transactions, error) in
+      self?.loadingHandler.hideProgress()
+      
+      if let err = error {
+        self?.loadingHandler.showMessage(err)
+        return
+      }
+      
+      self?.transactions = transactions ?? []
+    }
   }
 }

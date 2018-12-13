@@ -28,6 +28,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		660861F1209C5472005F5E21 /* SocialNetworksClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F0209C5471005F5E21 /* SocialNetworksClient.swift */; };
 		660861F5209C57D3005F5E21 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F4209C57D3005F5E21 /* RegistrationModel.swift */; };
+		665C929621C276EE006A9719 /* MessagesTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */; };
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		6C7E8E0DFDCFAB0757D82709 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
 		891053A91E9D12E000595D1D /* PushNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891053A81E9D12E000595D1D /* PushNotificationsTests.swift */; };
@@ -99,6 +100,7 @@
 		660861F2209C54D3005F5E21 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		660861F3209C5616005F5E21 /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
 		660861F4209C57D3005F5E21 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewPresenter.swift; sourceTree = "<group>"; };
 		891053A81E9D12E000595D1D /* PushNotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsTests.swift; sourceTree = "<group>"; };
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				0AB1DAE51DB50B6400B65DC7 /* MenuViewController.swift */,
 				0A6696E11DC2454200E51E82 /* ProfileViewController.swift */,
 				0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */,
+				665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */,
 				0AB1DAE61DB50B6400B65DC7 /* RegisterViewController.swift */,
 				0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */,
 				0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */,
@@ -563,6 +566,7 @@
 				0A6696E21DC2454200E51E82 /* ProfileViewController.swift in Sources */,
 				660861F1209C5472005F5E21 /* SocialNetworksClient.swift in Sources */,
 				89EDF7CF1E9F78DA0027B3DC /* LoadingHandler.swift in Sources */,
+				665C929621C276EE006A9719 /* MessagesTableViewPresenter.swift in Sources */,
 				89BFAC7B1F69326000C2C87B /* LocKeys.swift in Sources */,
 				89BFAC7A1F69326000C2C87B /* Localization.swift in Sources */,
 				0AB1DAF01DBE22EA00B65DC7 /* BaseViewController.swift in Sources */,
