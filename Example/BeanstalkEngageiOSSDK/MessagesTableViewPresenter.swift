@@ -56,6 +56,7 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
   func setCellType(_ type: MessagesTableViewCellType) {
     cellType = type
     
+    tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     tableView.reloadData()
   }
   
@@ -174,6 +175,14 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
     Alamofire.request(url).responseImage(completionHandler: { res in
       imageView?.image = res.result.value
     })
+    
+    
+    if message.getStatus() == PushNotificationStatus.deleted {
+      for view in cell.subviews {
+        view.alpha = 0.5
+      }
+      cell.backgroundColor = UIColor.lightGray
+    }
     
     return cell
   }
