@@ -9,6 +9,7 @@
 import Foundation
 import BeanstalkEngageiOSSDK
 import Alamofire
+import AlamofireImage
 
 enum MessagesTableViewCellType: Int {
   case json = 0
@@ -31,6 +32,8 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
     tableView.delegate = self
     tableView.dataSource = self
   }
+
+  //MARK: - Actions
   
   func setMessages(_ items:[BEPushNotificationMessage]?) {
     guard let messages = items else { return }
@@ -56,6 +59,14 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
     tableView.reloadData()
   }
   
+  func getMessage(cell: UITableViewCell) -> BEPushNotificationMessage? {
+    guard let idx = tableView.indexPath(for: cell) else {
+      return nil
+    }
+    
+    return messages[idx.row]
+  }
+  
   // MARK: - UITableViewDelegate, UITableViewDataSource
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,14 +78,16 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
   }
   
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    if cellType == .json {
-      return jsonCellEditActions(indexPath: indexPath)
-    }
-    
-    return nil
+    return cellEditActions(indexPath: indexPath)
   }
   
-  private func jsonCellEditActions(indexPath: IndexPath) -> [UITableViewRowAction] {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard cellType == .table else { return }
+  }
+  
+  //MARK: - Private
+
+  private func cellEditActions(indexPath: IndexPath) -> [UITableViewRowAction] {
     return [
       UITableViewRowAction(style: .destructive, title: "Mark Deleted", handler: { (action, indexPath) in
         let message = self.messages[indexPath.row]
@@ -93,8 +106,6 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
       })
     ]
   }
-  
-  //MARK: - Private
   
   private func getCell(indexPath: IndexPath) -> UITableViewCell {
     return cellType == .json ? getJsonCell(indexPath: indexPath) : getTableCell(indexPath: indexPath)
@@ -141,9 +152,9 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
   
   private func getTableCell(indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-    let message = messages[indexPath.row]
+    cell.reloadInputViews()
     
-    let image = cell.contentView.viewWithTag(0) as? UIImageView
+    let message = messages[indexPath.row]
     
     let titleLabel = cell.contentView.viewWithTag(1) as? UILabel
     titleLabel?.text = message.title
@@ -153,6 +164,16 @@ class MessagesTableViewPresenter: NSObject, UITableViewDelegate, UITableViewData
     
     let messageLabel = cell.contentView.viewWithTag(3) as? UILabel
     messageLabel?.text = message.messageBody
+
+    guard let url = message.msgImage else {
+      return cell
+    }
+    
+    let imageView = cell.contentView.viewWithTag(5) as? UIImageView
+    
+    Alamofire.request(url).responseImage(completionHandler: { res in
+      imageView?.image = res.result.value
+    })
     
     return cell
   }

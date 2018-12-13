@@ -29,6 +29,7 @@
 		660861F1209C5472005F5E21 /* SocialNetworksClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F0209C5471005F5E21 /* SocialNetworksClient.swift */; };
 		660861F5209C57D3005F5E21 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660861F4209C57D3005F5E21 /* RegistrationModel.swift */; };
 		665C929621C276EE006A9719 /* MessagesTableViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */; };
+		665C929B21C2B39C006A9719 /* MessageInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665C929A21C2B39C006A9719 /* MessageInfoViewController.swift */; };
 		69C7954FD705D4B0AABC17EF /* Pods_BeanstalkEngageiOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9368698314646B1179234A /* Pods_BeanstalkEngageiOSSDK_Example.framework */; };
 		6C7E8E0DFDCFAB0757D82709 /* Pods_BeanstalkEngageiOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392133891CF7051582DC5028 /* Pods_BeanstalkEngageiOSSDK_Tests.framework */; };
 		891053A91E9D12E000595D1D /* PushNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891053A81E9D12E000595D1D /* PushNotificationsTests.swift */; };
@@ -101,6 +102,7 @@
 		660861F3209C5616005F5E21 /* Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridge-Header.h"; sourceTree = "<group>"; };
 		660861F4209C57D3005F5E21 /* RegistrationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewPresenter.swift; sourceTree = "<group>"; };
+		665C929A21C2B39C006A9719 /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
 		891053A81E9D12E000595D1D /* PushNotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsTests.swift; sourceTree = "<group>"; };
 		893DA2501E3151EE0095A44B /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		893DA26F1E36A5140095A44B /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				0A6696E11DC2454200E51E82 /* ProfileViewController.swift */,
 				0ADD73951E7C122200E1BF24 /* PushNotificationMessagesTableViewController.swift */,
 				665C929521C276EE006A9719 /* MessagesTableViewPresenter.swift */,
+				665C929A21C2B39C006A9719 /* MessageInfoViewController.swift */,
 				0AB1DAE61DB50B6400B65DC7 /* RegisterViewController.swift */,
 				0AB1DAED1DBE21A200B65DC7 /* SignInViewController.swift */,
 				0A9467F11EA11B2A00085C54 /* TrackTransactionViewController.swift */,
@@ -474,6 +477,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BeanstalkEngageiOSSDK_Example/Pods-BeanstalkEngageiOSSDK_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BeanstalkEngageiOSSDK.common/BeanstalkEngageiOSSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
@@ -487,6 +491,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BeanstalkEngageiOSSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
@@ -585,6 +590,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				89ACF7F41E5091C300F8B67A /* ContactRequest.swift in Sources */,
 				0A6696E41DC3654600E51E82 /* AvailableRewardsViewController.swift in Sources */,
+				665C929B21C2B39C006A9719 /* MessageInfoViewController.swift in Sources */,
 				0A9467F81EBA200D00085C54 /* ContactGeoDataViewController.swift in Sources */,
 				896623EE1E49B74E0015698C /* ContactModel.swift in Sources */,
 				0AB1DAE71DB50B6400B65DC7 /* MenuViewController.swift in Sources */,

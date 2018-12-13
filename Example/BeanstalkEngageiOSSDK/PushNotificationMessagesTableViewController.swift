@@ -55,6 +55,18 @@ class PushNotificationMessagesTableViewController: UIViewController {
     
     presenter?.setCellType(type)
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "messageInfo" {
+      guard let nextViewController = segue.destination as? MessageInfoViewController,
+        let cell = sender as? UITableViewCell,
+        let message = presenter?.getMessage(cell: cell) else {
+          return
+      }
+      
+      nextViewController.setMessage(message)
+    }
+  }
 }
 
 extension BEPushNotificationMessage: CustomDebugStringConvertible {
