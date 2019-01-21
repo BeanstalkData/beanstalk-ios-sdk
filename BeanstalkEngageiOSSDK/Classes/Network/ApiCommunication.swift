@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
@@ -84,7 +85,7 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.notifyNetworkReachabilityObservers),
-      name: NSNotification.Name.UIApplicationWillEnterForeground,
+      name: UIApplication.willEnterForegroundNotification,
       object: nil
     )
   }

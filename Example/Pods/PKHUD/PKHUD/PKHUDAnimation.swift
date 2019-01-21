@@ -45,7 +45,7 @@ public final class PKHUDAnimation {
             NSNumber(value: 1.0)
         ]
         animation.duration = 1.2
-        animation.calculationMode = "discrete"
+      animation.calculationMode = CAAnimationCalculationMode(rawValue: "discrete")
         animation.repeatCount = Float(INT_MAX)
         return animation
     }()

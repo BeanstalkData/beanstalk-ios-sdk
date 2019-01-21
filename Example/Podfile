@@ -1,12 +1,13 @@
+platform :ios, '9.0'
 use_frameworks!
 
 target 'BeanstalkEngageiOSSDK_Example' do
-  pod 'PKHUD', '~> 5.0.0'
+  pod 'PKHUD', '~> 5.0'
   pod 'BeanstalkEngageiOSSDK', :path => '../'
 end
 
 target 'BeanstalkEngageiOSSDK_Tests' do
-  pod 'PKHUD', '~> 5.0.0'
+  pod 'PKHUD', '~> 5.0'
   pod 'BeanstalkEngageiOSSDK', :path => '../'
   pod 'BeanstalkEngageiOSSDK/Testing', :path => '../'
 end
@@ -14,7 +15,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '4.0.0'
+      config.build_settings['SWIFT_VERSION'] = '4.2'
     end
   end
 end

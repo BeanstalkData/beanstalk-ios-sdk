@@ -721,13 +721,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1C4626020FA66DEFAE21FA51 /* Pods-BeanstalkEngageiOSSDK_Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BeanstalkEngageiOSSDK_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 587P7DM9NE;
 				INFOPLIST_FILE = BeanstalkEngageiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
@@ -742,12 +742,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FBD98C60E5D745C6627B2FCE /* Pods-BeanstalkEngageiOSSDK_Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BeanstalkEngageiOSSDK_Example.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 587P7DM9NE;
 				INFOPLIST_FILE = BeanstalkEngageiOSSDK/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.beanstalkdata.engagesdk.test;
