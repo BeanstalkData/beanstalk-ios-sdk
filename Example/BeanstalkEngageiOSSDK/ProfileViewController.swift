@@ -97,11 +97,10 @@ class ProfileViewController: BaseViewController {
     var pushEnabled = false
     let deviceRegistered = pushEnrollment.isRegisteredForPushNotifications()
     
-    if let pushOn = self.updateContactRequest?.isPushNotificationOptin() {
-      if let inboxOn = self.updateContactRequest?.isInboxMessageOptin() {
-        pushEnabled = pushOn && inboxOn && deviceRegistered
-      }
+    if let inboxOn = self.updateContactRequest?.isInboxMessageOptin() {
+      pushEnabled = inboxOn && deviceRegistered
     }
+    
     self.pushNotificationsSwitch.isOn = pushEnabled
   }
   

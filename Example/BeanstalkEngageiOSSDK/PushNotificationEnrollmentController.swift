@@ -102,7 +102,6 @@ final class PushNotificationEnrollmentController: NSObject {
       if let cont = contact {
         let updateRequest = ContactRequest(origin: cont)
         
-        updateRequest.set(pushNotificationOptin: true)
         updateRequest.set(inboxMessageOptin: true)
         
         weakSelf?.coreService.updateContact(
