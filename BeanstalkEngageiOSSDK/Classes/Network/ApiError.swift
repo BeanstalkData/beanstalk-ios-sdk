@@ -8,21 +8,6 @@
 import Foundation
 
 /**
- Protocol for error abstraction.
- */
-public protocol BEErrorType: Error {
-  /**
-   Error title to present for user.
-   */
-  func errorTitle() -> String?
-  
-  /**
-   Error message to present for user.
-   */
-  func errorMessage() -> String?
-}
-
-/**
  Implementation of BEErrorType. Represents various errors that may occur during API requests.
  */
 public enum ApiError: BEErrorType {

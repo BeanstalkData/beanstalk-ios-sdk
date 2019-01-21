@@ -1,6 +1,6 @@
 {
   "name": "BeanstalkEngageiOSSDK",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "summary": "Beanstalk Engage iOS SDK.",
   "homepage": "https://github.com/BeanstalkData/beanstalk-ios-sdk",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/BeanstalkData/beanstalk-ios-sdk.git",
-    "tag": "0.7.3"
+    "tag": "0.7.5"
   },
   "platforms": {
     "ios": "8.3"
@@ -67,7 +67,7 @@
 
         ],
         "Alamofire": [
-          "~> 4.6.0"
+
         ],
         "ReachabilitySwift": [
           "~> 4.1.0"
@@ -122,7 +122,7 @@
 
         ],
         "Alamofire": [
-          "~> 4.6.0"
+
         ],
         "libPhoneNumber-iOS": [
 
