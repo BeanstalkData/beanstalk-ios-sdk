@@ -242,7 +242,7 @@ final class PushNotificationEnrollmentController: NSObject {
       title: "Settings",
       style: .default,
       handler: { (_) in
-        if UIApplication.shared.openURL(NSURL(string: UIApplicationOpenSettingsURLString)! as URL) {
+        if UIApplication.shared.openURL(NSURL(string: UIApplication.openSettingsURLString)! as URL) {
           self.systemPreferencesRequested = true
         }
     })
