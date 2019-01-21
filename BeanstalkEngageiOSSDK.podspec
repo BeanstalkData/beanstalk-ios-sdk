@@ -63,7 +63,6 @@ Pod::Spec.new do |s|
 
     cms.dependency 'BeanstalkEngageiOSSDK/Localization'
     cms.dependency 'BeanstalkEngageiOSSDK/Vendor'
-    cms.dependency 'BeanstalkEngageiOSSDK/Network'
     cms.dependency 'Alamofire', '~> 4.6.0'
     cms.dependency 'libPhoneNumber-iOS'
   end
