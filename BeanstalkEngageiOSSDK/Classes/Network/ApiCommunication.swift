@@ -374,26 +374,19 @@ open class ApiCommunication <SessionManagerClass: HTTPTimberjackManager>: BEResp
         }
         
         // check for response value
-        guard let data = response.result.value as? [String], data.count == 2 else {
+        guard let data = response.result.value as? [Any], data.count == 2 else {
           handler(.failure(ApiError.createContactFailed(reason : "Incorrect response data")))
           return
         }
         
-        // check for response contact id
-        var newContactId: String? = nil
-        
-        if "Add" == data[1] {
-          newContactId = data[0]
+        guard
+            let contactDic = data[0] as? [String],
+            contactDic[1] == "Add" || contactDic[1] == "Update" else {
+            handler(.failure(ApiError.createContactFailed(reason : "Failed to parse contact id")))
+            return
         }
-        
-        if "Update" == data[1] {
-          newContactId = data[0]
-        }
-        
-        guard let contactId = newContactId else {
-          handler(.failure(ApiError.createContactFailed(reason : "Failed to parse contact id")))
-          return
-        }
+
+        let contactId = contactDic[0]
         
         // fetch contact model if requested
         
