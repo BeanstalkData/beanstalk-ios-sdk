@@ -15,14 +15,13 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
   @IBOutlet var lastNameTextField: UITextField!
   @IBOutlet var phoneTextField: UITextField!
   @IBOutlet var emailTextField: UITextField!
+  @IBOutlet weak var birthdayTextField: UITextField!
   @IBOutlet var confirmEmailTextField: UITextField!
   @IBOutlet var passwordTextField: UITextField!
   @IBOutlet var confirmPasswordTextField: UITextField!
   @IBOutlet var zipCodeTextField: UITextField!
   @IBOutlet var optEmailCheckBox: UISwitch!
   @IBOutlet var genderSegmentView: UISegmentedControl!
-  
-  var selectedDate = NSDate()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,8 +33,6 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     self.zipCodeTextField.text = ""
     self.optEmailCheckBox.isOn = true
     self.genderSegmentView.selectedSegmentIndex = 0
-    
-    self.selectedDate = self.dateInPast(yearsAgo: 21)!
   }
   
   
@@ -62,7 +59,8 @@ class RegisterViewController: BaseViewController, UITextFieldDelegate {
     request.set(email: self.emailTextField.text)
     request.set(password: self.passwordTextField.text)
     request.set(zipCode: self.zipCodeTextField.text)
-    request.set(birthday: self.getFormatedDate(date: self.selectedDate, dateFormat: "yyyy-MM-dd"))
+    request.set(birthday: birthdayTextField.text ?? "")
+//    request.set(birthday: self.getFormatedDate(date: dateInPast(yearsAgo: 21)!, dateFormat: "yyyy-MM-dd"))
     request.set(emailOptin: self.optEmailCheckBox.isOn)
     request.set(gender: self.genderSegmentView.selectedSegmentIndex == 0 ? "Male" : "Female")
     
