@@ -44,7 +44,7 @@ open class CoreServiceT <SessionManager: HTTPTimberjackManager>: BEAbstractRespo
     self.validator = BERequestValidator()
     
     self.locationTracker = LocationTracker()
-    self.subscribeForLocationTracking(relocateContactHandler: { _ in })
+    self.subscribeForLocationTracking(relocateContactHandler: { _,_  in })
   }
   
   public required init(apiKey: String, session: BESessionProtocol, apiUsername: String? = nil, beanstalkUrl: String) {
@@ -53,7 +53,7 @@ open class CoreServiceT <SessionManager: HTTPTimberjackManager>: BEAbstractRespo
     self.validator = BERequestValidator()
     
     self.locationTracker = LocationTracker()
-    self.subscribeForLocationTracking(relocateContactHandler: { _ in })
+    self.subscribeForLocationTracking(relocateContactHandler: { _,_  in })
   }
   
   /**

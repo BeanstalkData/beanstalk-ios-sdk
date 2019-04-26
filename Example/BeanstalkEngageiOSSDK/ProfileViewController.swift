@@ -8,7 +8,6 @@
 import UIKit
 import BeanstalkEngageiOSSDK
 
-
 class ProfileViewController: BaseViewController {
   var contact: ContactModel?
   var updateContactRequest: ContactRequest?

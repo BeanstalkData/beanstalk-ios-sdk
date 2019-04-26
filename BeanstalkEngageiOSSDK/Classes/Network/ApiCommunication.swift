@@ -11,6 +11,8 @@ import Alamofire
 import AlamofireObjectMapper
 import Reachability
 
+public let kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
+
 public struct BEApiResponder: Equatable, WeakResponderHolder {
   public weak var responder: AnyObject?
   
@@ -31,8 +33,6 @@ public struct BEApiResponder: Equatable, WeakResponderHolder {
 public func ==(left: BEApiResponder, right: BEApiResponder) -> Bool {
   return left.responder === right.responder
 }
-
-fileprivate let kDefaultBeanstalkUrl = "proc.beanstalkdata.com"
 
 /**
  Contains majority of API calls. It is utilized by CoreService. Can be used directly.

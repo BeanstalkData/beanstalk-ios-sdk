@@ -60,7 +60,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.15)
   - libPhoneNumber-iOS (0.9.13)
   - ObjectMapper (3.3.0)
-  - PKHUD (4.2.3)
+  - PKHUD (5.2.1)
   - ReachabilitySwift (4.3.0)
 
 DEPENDENCIES:
@@ -68,7 +68,7 @@ DEPENDENCIES:
   - BeanstalkEngageiOSSDK (from `../`)
   - BeanstalkEngageiOSSDK/Testing (from `../`)
   - GoogleSignIn (= 4.1.0)
-  - PKHUD (~> 4.2.0)
+  - PKHUD (~> 5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -101,9 +101,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
 
-PODFILE CHECKSUM: f7dcf2850da1aa67970fe4e28c59e692c0d08c8c
+PODFILE CHECKSUM: db826c4aa36a1015f19966566ece0314234f71d1
 
 COCOAPODS: 1.5.3
