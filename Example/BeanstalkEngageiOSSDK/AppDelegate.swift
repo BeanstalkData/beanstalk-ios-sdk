@@ -21,9 +21,9 @@ public enum PushNotificationsKeys: String {
 class AppDelegate: UIResponder, UIApplicationDelegate {
   private let socialNetworksClient = SocialNetworksClient.sharedInstance
   
-  
   var window: UIWindow?
-  let coreService = ApiService(apiKey: AppDelegate.getApiKey(), session: BESession(), apiUsername: nil, beanstalkUrl: "stg-proc.beanstalkdata.com")
+  
+  lazy var coreService = getApiService()
   var pushNotificationEnrollment: PushNotificationEnrollmentController?
   
   
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   
-  // MARK: - 
+  // MARK: -
   
   func applicationWillEnterForeground(_ application: UIApplication) {
     self.pushNotificationEnrollment?.applicationWillEnterForeground()
@@ -93,16 +93,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   //MARK: -
   
-  class func getApiKey() -> String {
-    if let fileUrl = Bundle.main.url(forResource: "creds", withExtension: "plist"),
-      let data = try? Data(contentsOf: fileUrl) {
-      if let result = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] { // [String: Any] which ever it is
-        if let apiKey = result?["apiKey"] as? String {
-          return apiKey
-        }
-      }
-    }
+  private func getApiService() -> ApiService {
+    let configurator = EnvironmetConfigurator.shared
+    let env = configurator.getCurrentEnv()
+    print(env)
+    let configuration = configurator.getConfiguration(env: env)
     
-    return ""
-  }
+    let apiSrvice = ApiService(apiKey: configuration.getApiKey(),
+                               session: BESession(),
+                               apiUsername: nil,
+                               beanstalkUrl: configuration.getBaseUrl())
+    
+    return apiSrvice
+  }  
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I5B-lh-MlF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -127,12 +127,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMu-Gh-8oC">
+                                <rect key="frame" x="144.5" y="540" width="86" height="30"/>
+                                <state key="normal" title="Environment"/>
+                                <connections>
+                                    <action selector="didSelectEnvButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hXf-Xt-ki2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NP0-xr-AHM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1xs-Vh-Zhb"/>
+                            <constraint firstItem="zMu-Gh-8oC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xCd-fD-fHq" secondAttribute="bottom" constant="8" id="25o-GS-Ftg"/>
                             <constraint firstItem="aFd-hL-4oI" firstAttribute="top" secondItem="BbU-an-frI" secondAttribute="bottom" constant="8" id="78A-wj-uDu"/>
                             <constraint firstItem="avf-pm-cm4" firstAttribute="top" secondItem="sUc-Oa-rTy" secondAttribute="bottom" constant="8" id="7wJ-XS-eV0"/>
+                            <constraint firstItem="kcK-C0-lhG" firstAttribute="top" secondItem="zMu-Gh-8oC" secondAttribute="bottom" constant="8" id="DYs-YE-yyA"/>
                             <constraint firstItem="E22-pW-IJS" firstAttribute="top" secondItem="ykj-Rt-FTS" secondAttribute="bottom" constant="8" id="OBf-tt-T2G"/>
                             <constraint firstItem="fl4-QA-07R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P1A-CQ-MkY"/>
                             <constraint firstItem="xCd-fD-fHq" firstAttribute="top" secondItem="aFd-hL-4oI" secondAttribute="bottom" constant="8" id="PZg-x0-W5x"/>
@@ -154,6 +163,7 @@
                             <constraint firstItem="4yI-D0-5a9" firstAttribute="top" secondItem="fl4-QA-07R" secondAttribute="bottom" constant="8" id="thJ-vZ-EmO"/>
                             <constraint firstItem="BbU-an-frI" firstAttribute="top" secondItem="iVR-HE-R9j" secondAttribute="bottom" constant="8" id="v1w-eV-qYG"/>
                             <constraint firstItem="aFd-hL-4oI" firstAttribute="centerX" secondItem="BbU-an-frI" secondAttribute="centerX" id="vDd-1i-kHR"/>
+                            <constraint firstItem="zMu-Gh-8oC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wm9-r3-eHy"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kcK-C0-lhG" secondAttribute="bottom" constant="8" id="xEw-Hr-ae4"/>
                             <constraint firstItem="9wx-nb-jBG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zcz-dV-xGd"/>
                         </constraints>
@@ -162,6 +172,7 @@
                     <connections>
                         <outlet property="availableRewardsButton" destination="sUc-Oa-rTy" id="gRb-kk-QO9"/>
                         <outlet property="contactManagementButton" destination="BbU-an-frI" id="nb9-p0-OQp"/>
+                        <outlet property="envButton" destination="zMu-Gh-8oC" id="6lh-iR-PJO"/>
                         <outlet property="giftCardsButton" destination="9wx-nb-jBG" id="ceD-lK-a3E"/>
                         <outlet property="profileButton" destination="NP0-xr-AHM" id="s40-Gy-ff4"/>
                         <outlet property="registerButton" destination="fl4-QA-07R" id="yIE-cm-Xpi"/>

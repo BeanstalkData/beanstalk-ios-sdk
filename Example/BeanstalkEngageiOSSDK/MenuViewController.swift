@@ -20,9 +20,11 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
   @IBOutlet var contactManagementButton: UIButton!
   @IBOutlet var trackTransactionButton: UIButton!
   @IBOutlet var transactionsListButton: UIButton!
+  @IBOutlet weak var envButton: UIButton!
   @IBOutlet weak var versionLabel: UILabel!
   
   private(set) var googleUser: GoogleUserInfo?
+  private let envConfigurator = EnvironmetConfigurator.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +37,7 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
     
     updateAuthStatus()
     versionLabel.text = version()
+    envButton.setTitle("Env: \(envConfigurator.getCurrentEnv().rawValue.uppercased())", for: .normal)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -132,19 +135,24 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
       
       self?.googleUser = user
       self?.loadingHandler.handleError(success: error == nil, error: error as? BEErrorType)
-
+      
       self?.coreService?.authWithGoogleUser(googleId: user.user.userID,
                                             googleToken: user.user.authentication.idToken,
                                             contactClass: ContactModel.self,
                                             handler: { success, error in
                                               self?.loadingHandler.hideProgress()
-
-//                                              if let contact = self?.coreService?.getSession()?.getContact() {
-//                                                self?.pushEnrollment?.onSignIn(contact: contact)
-//                                              }
+                                              
+                                              //                                              if let contact = self?.coreService?.getSession()?.getContact() {
+                                              //                                                self?.pushEnrollment?.onSignIn(contact: contact)
+                                              //                                              }
       })
     }
   }
+  
+  @IBAction func didSelectEnvButton(_ sender: Any) {
+    showEnvPickerView()
+  }
+  
   
   //MARK: - Private
   
@@ -173,5 +181,61 @@ class MenuViewController: BaseViewController, GIDSignInUIDelegate  {
     let version = dictionary["CFBundleShortVersionString"] as! String
     let build = dictionary["CFBundleVersion"] as! String
     return "Version: \(version) build \(build)"
+  }
+  
+}
+
+extension MenuViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+  private class EnvPickerView: UIPickerView {
+    var didSelectEnvironment: ((_ env: Environment) -> Void)?
+  }
+  
+  private func showEnvPickerView() {
+    let picker = EnvPickerView()
+    picker.dataSource = self
+    picker.delegate = self
+    
+    let dummy = UITextField(frame: CGRect.zero)
+    view.addSubview(dummy)
+    
+    dummy.inputView = picker
+    dummy.becomeFirstResponder()
+    
+    let currentEnv = envConfigurator.getCurrentEnv()
+    let selectedRow = envConfigurator.getEnviromentList().index(of: currentEnv) ?? 0
+    
+    picker.selectRow(selectedRow, inComponent: 0, animated: false)
+    
+    picker.didSelectEnvironment = {[weak self] env in
+      self?.envConfigurator.setEnvironment(env: env)
+      
+      self?.envButton.setTitle("Env: \(env.rawValue.uppercased()) (restart please)", for: .normal)
+      self?.envButton.setTitleColor(UIColor.red, for: .normal)
+      dummy.resignFirstResponder()
+    }
+  }
+  
+  // MARK: - UIPickerViewDataSource, UIPickerViewDelegate
+  
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return  envConfigurator.getEnviromentList().count
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    let env = EnvironmetConfigurator.shared.getEnviromentList()[row]
+    
+    return env.rawValue
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    let env = envConfigurator.getEnviromentList()[row]
+    
+    envConfigurator.setEnvironment(env: env)
+    
+    (pickerView as? EnvPickerView)?.didSelectEnvironment?(env)
   }
 }
