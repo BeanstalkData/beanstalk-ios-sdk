@@ -380,12 +380,11 @@ open class ApiCommunication <SessionManagerClass: HTTPAlamofireManager>: BERespo
         }
         
         guard
-            let contactDic = data[0] as? [String],
+          let contactDic = data[0] as? [String] ?? data as? [String], contactDic.count > 1, // API could return various response schemes: {[id, "Add"]} or [id, "Add"]
             contactDic[1] == "Add" || contactDic[1] == "Update" else {
-            handler(.failure(ApiError.createContactFailed(reason : "Failed to parse contact id")))
-            return
+            return handler(.failure(ApiError.createContactFailed(reason : "Failed to parse contact id")))
         }
-
+        
         let contactId = contactDic[0]
         
         // fetch contact model if requested
