@@ -41,10 +41,10 @@ open class BERequestValidator: BERequestValidatorProtocol {
         errorHandler(ApiError.missingParameterError(reason: "Enter Last Name"))
         return false
       }
-//      guard (createRequest.getPhone() != nil && (createRequest.getPhone()?.isValidPhone())!) else {
-//        errorHandler(ApiError.missingParameterError(reason: "Please enter a valid phone number"))
-//        return false
-//      }
+      guard (createRequest.getPhone() != nil /*&& (createRequest.getPhone()?.isValidPhone())!*/) else {
+        errorHandler(ApiError.missingParameterError(reason: "Please enter a valid phone number"))
+        return false
+      }
 //      guard (createRequest.getZipCode() != nil && (createRequest.getZipCode()?.isValidZipCode())!) else {
 //        errorHandler(ApiError.missingParameterError(reason: "Enter 5 Digit Zipcode"))
 //        return false
